@@ -1,1 +1,1 @@
-# website
+# UWaterloo AI Website
