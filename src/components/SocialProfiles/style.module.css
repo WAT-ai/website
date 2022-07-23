@@ -1,0 +1,37 @@
+.Profile {
+    width: auto;
+    height: auto;
+    background: var(--background-color);
+    background: linear-gradient(to right, var(--primary-color) 50%, var(--background-color) 50%);
+    background-size: 205% 100%;
+    background-position: right bottom;
+    border-radius: var(--border-radius);
+    border: 0.125rem solid var(--primary-color);
+    padding: 0.3rem 1.25rem;
+    margin-right: 0.5rem;
+    transition: all 0.1s ease-out;
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+.Profile:hover {
+    background-position: left bottom;
+    color: var(--background-color);
+}
+
+.Profile svg {
+    height: 1rem;
+    width: 1rem;
+    margin-right: 0.25rem;
+    margin-bottom: -0.05rem;
+}
+
+.Profile:hover svg {
+    filter: invert(1);
+}
+
+@media (min-width: 768px) {
+    .Profile {
+        margin-right: 1rem;
+    }
+}
