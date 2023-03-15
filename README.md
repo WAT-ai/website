@@ -1,1 +1,1 @@
-# UWaterloo AI Website
+# WAT.ai Team Website
