@@ -9,7 +9,6 @@
    // });
  // });
   //observer.observe(document.querySelector('.job1'));
-  
 
   function myFunction() {
     var x = document.getElementById("myNavbar");

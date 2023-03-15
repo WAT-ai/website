@@ -58,7 +58,7 @@ html, body{
   }
 /* time to hardcode my navbar spacing */
   .space {
-    width: 24vw;
+    width: 23vw;
   }
 
   .profile {
@@ -75,29 +75,20 @@ html, body{
 
   @media screen and (max-width: 1420px) {
     .space{
-      width: 26vw;
+      width: 17vw;
     }
     .navbar {
       padding-right: 12vw;
     }
   }
 
-  @media screen and (max-width: 1230px) {
-    .navbar {
-        padding-left: 21vw;
+  @media screen and (max-width: 1250px) {
+      .space{
+        width: 12vw;
       }
-   }
-
-   @media screen and (max-width: 1155px) {
-    .space{
-        width: 24vw;
-        }
    }
 
    @media screen and (max-width: 1110px) {
-    .space{
-        width: 37vw;
-      }
       .navbar {
         padding-left: 13vw;
         padding-right: 5vw;
@@ -112,7 +103,7 @@ html, body{
 
 
   
-  @media screen and (max-width: 875px) {
+  @media screen and (max-width: 1160px) {
     .navbar a:not(:first-child) {display: none;}
     .navbar a.icon {
       float: right;
@@ -120,25 +111,25 @@ html, body{
       transition: none;
     }
     .space{
-      width: 5vw;
+      width: 50px;
     }
     .navbar {
-      padding-right: 16vw;
+      padding-right: 90px;
     }
   }
   
-  @media screen and (max-width: 875px) {
+  @media screen and (max-width: 1160px) {
     .navbar.responsive {
         position: fixed;
         z-index: 1;
-        height: 350px;
+        height: 450px;
         transition: 1s;
     }
     .navbar.responsive .icon {
       position: absolute;
       right: 0;
       top: 0;
-      margin-right: 16vw;
+      margin-right: 110px;
       padding-top: 80px;
     }
     .navbar.responsive a {
@@ -170,7 +161,7 @@ html, body{
 
   /* About content */
   .home {
-    margin-top: 400px;
+    margin-top: 330px;
     color: #FFF;
     text-align: justify;
     overflow: hidden;
@@ -178,14 +169,12 @@ html, body{
   }
 
   .section1 {
-    background: url("img/wat-ai-bg1.png") no-repeat center; 
+    background: url("img/wat-ai-bg4.png") no-repeat center; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background-color: #FFF;
     overflow: hidden;
-    margin-top: -80px;
     height: 100%;
     padding-right: 17vw;
     padding-left: 17vw;
@@ -203,12 +192,11 @@ html, body{
   }
 
   .section2 {
-    background: url("img/wat-ai-bg2.png") no-repeat center; 
+    background: url("img/wat-ai-bg1.png") no-repeat center; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background-color: #FFF;
     overflow: hidden;
     margin-top: -60px;
     height: auto;
@@ -218,8 +206,8 @@ html, body{
   .about {
     background-color: #8c8c8c2d;
     color: #fff;
-    width: 50vw;
-    min-width: 450px;
+    width: 55%;
+    min-width: 350px;
     height: auto;
     border-radius: 20px;
     border: 3px solid #FFCE1A;
@@ -230,7 +218,6 @@ html, body{
   }
 
   .grey {
-    margin-left: 50px;
     font-size: 25px;
     font-weight:bold;
     letter-spacing: 3px;
@@ -257,12 +244,10 @@ html, body{
     position: relative;
     overflow: hidden;
     transform: translate3d(0, 0, 0);
-    z-index: 1;
   }
   
   .tech-slideshow > div {
     margin-top: -50px;
-    z-index: 1;
     height: 204px;
     width: 3184px;
     background: url("img/slider3.png");
@@ -290,7 +275,6 @@ html, body{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background-color: #FFF;
     overflow: hidden;
     height: auto;
     padding-left: 4vw;
@@ -307,11 +291,256 @@ html, body{
     color: #fff;
   }
 
-  .footer b {
+  .logos {
+    margin-top: 10px;
+    color:#fff;
+    display:flex;
+  }
+
+  .logos a {
     font-size: 20px;
     color: #ffffff;
   }
 
-  .footer b:hover{
+  .logos a:hover{
     color: #FFCE1A;
+  }
+
+  .footer-logo {
+    display:block;
+    width:30%;
+    min-width:250px;
+  }
+
+  @media screen and (max-width: 570px) {
+    .footer-right {
+      display: none;
+    }
+    .footer {
+      text-align: center;
+      display: block;
+    }
+    .footer-logo {
+      display:block;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .logos {
+      margin-top: 20px;
+      display: block;
+      margin-right: auto;
+      margin-left: auto;
+    }
+   }
+
+
+
+/*-------------------------------------------------------------------------------*/
+
+
+  .section3 {
+    background: url("img/wat-ai-bg3.png") no-repeat center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    margin-top: -60px;
+    height: auto;
+    padding-left: 4vw;
+  }
+
+  .membersection {
+    margin-bottom: 200px;
+  }
+
+
+  .members {
+    display:flex;
+    margin-top:50px;
+    align-items:center;
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  .memberalign {
+    display:flex;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .member {
+    width: 180px;
+    min-width: 150px;
+    height: auto;
+    text-align: center;
+    color: #fff;
+    font-size: 13px;
+    line-height: 13px;
+    transition: 0.4s;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-bottom: 30px;
+  }
+
+  .member:hover{
+    -webkit-transform: translateY(-10px);
+	  -ms-transform:     translateY(-10px);
+	  transform:         translateY(-10px);
+    filter: brightness(120%);
+  }
+
+  .member img {
+    border-radius: 29px;
+    transition: 0.4s;
+  }
+
+  .member img:hover {
+    -moz-box-shadow: 0 0 50px #fff;
+    -webkit-box-shadow: 0 0 50px #ffffff52;
+    box-shadow: 0px 0px 50px #ffffff52;
+  }
+
+  @media screen and (max-width: 920px) {
+    .memberalign {
+      display: block;
+      margin-left:auto;
+      margin-right:auto;
+    }
+  }
+
+  .team {
+    background: url("img/wat-ai-bg7.png") no-repeat center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    margin-top: -60px;
+    height: auto;
+    padding-left: 4vw;
+  }
+
+/*--------------------------------------------------------------------*/
+
+  .section4 {
+    background: url("img/wat-ai-bg1.png") no-repeat center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    margin-top: 40px;
+    height: auto;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    width: 100%;
+    padding-bottom: 60px;
+  }
+
+  .projects {
+    display: inline-flex;
+    margin-top:80px;
+    z-index: 1;
+  }
+
+  .project {
+    background-color: #8c8c8c2d;
+    color: #fff;
+    min-width: 350px;
+    height: auto;
+    border-radius: 20px;
+    border: 3px solid #FFCE1A;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin: 20px;
+    margin-right: 50px;
+    transition: 0.3s;
+    width: 45%;
+    margin-top: -50px;
+  }
+
+  .project:hover {
+    -webkit-transform: translateY(-10px);
+	  -ms-transform:     translateY(-10px);
+	  transform:         translateY(-10px);
+    filter: brightness(120%);
+  }
+
+  .project a {
+    font-size: 15px;
+    color: #FFCE1A;
+    transition: 0.3s;
+    font-weight: bold;
+    margin-bottom: -200px;
+  }
+
+  .project a:hover{
+    color: #fff;
+  }
+
+  .project i {
+    font-size:12px;
+    color:#fff;
+  }
+
+  @media screen and (max-width: 1075px) {
+    .projects {
+      display: block;
+    }
+    .section4 {
+      background: none;
+    }
+    .project {
+      display:block;
+      margin-right: auto;
+      margin-left: auto;
+      margin-top: 50px;
+    }
+  }
+
+
+
+  /*--------------------------------------------------*/
+  .section5 {
+    background: url("img/wat-ai-bg7.png") no-repeat center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    margin-top: -70px;
+    height: auto;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    width: 100%;
+    padding-bottom: 60px;
+  }
+
+  .contact {
+    background-color: #8c8c8c2d;
+    color: #fff;
+    width: 45%;
+    min-width: 350px;
+    height: auto;
+    border-radius: 20px;
+    border: 3px solid #FFCE1A;
+    padding: 50px;
+    margin: 20px;
+    margin-bottom: 100px;
+    margin-right: 50px;
+  }
+
+  .contact a {
+    font-size: 20px;
+    color: #FFCE1A;
+    transition: 0.3s;
+    font-weight: bold;
+    margin-bottom: -200px;
+  }
+
+  .contact a:hover{
+    color: #fff;
   }
