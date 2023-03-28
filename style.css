@@ -24,7 +24,7 @@ html, body{
     padding-left: 14vw;
     padding-top: 50px;
     font-weight: 500;
-    z-index: 3;
+    z-index: 9;
     }
     
     .navbar a {
@@ -121,7 +121,7 @@ html, body{
   @media screen and (max-width: 1160px) {
     .navbar.responsive {
         position: fixed;
-        z-index: 1;
+        z-index: 10;
         height: 450px;
         transition: 1s;
     }
@@ -240,7 +240,7 @@ html, body{
   .slide {
     margin-top: -70px;
     position: absolute;
-    z-index: 10;
+    z-index: 1;
     background: linear-gradient(
     to left,
     rgb(0, 0, 1) 0%,
@@ -268,7 +268,7 @@ html, body{
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 0;
     height: 100%;
     transform: translate3d(0, 0, 0);
   }
