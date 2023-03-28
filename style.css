@@ -237,13 +237,16 @@ html, body{
     color: #fff;
   }
 
-
+  .slide {
+    position: relative;
+    
+  }
   .tech-slideshow {
     height: 200px;
     width: 100%;
     position: relative;
     overflow: hidden;
-    transform: translate3d(0, 0, 0);
+    
   }
   
   .tech-slideshow > div {
@@ -254,6 +257,7 @@ html, body{
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 1;
     height: 100%;
     transform: translate3d(0, 0, 0);
   }
