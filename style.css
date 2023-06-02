@@ -122,7 +122,7 @@ html, body{
     .navbar.responsive {
         position: fixed;
         z-index: 10;
-        height: 500px;
+        height: 550px;
         transition: 1s;
     }
     .navbar.responsive .icon {
