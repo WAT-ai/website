@@ -58,7 +58,7 @@ html, body{
   }
 /* time to hardcode my navbar spacing */
   .space {
-    width: 13vw;
+    width: 11vw;
   }
 
   .profile {
@@ -75,7 +75,7 @@ html, body{
 
   @media screen and (max-width: 1420px) {
     .space{
-      width: 11vw;
+      width: 9vw;
     }
     .navbar {
       padding-right: 9vw;
@@ -84,7 +84,7 @@ html, body{
 
   @media screen and (max-width: 1250px) {
       .space{
-        width: 4vw;
+        width: 2vw;
       }
    }
 
@@ -97,7 +97,7 @@ html, body{
 
    @media screen and (max-width: 977px) {
     .space{
-      width: 22vw;
+      width: 20vw;
     }
    }
 
