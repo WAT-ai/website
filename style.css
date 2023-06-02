@@ -78,7 +78,7 @@ html, body{
       width: 9vw;
     }
     .navbar {
-      padding-right: 9vw;
+      padding-right: 5vw;
     }
   }
 
@@ -91,13 +91,13 @@ html, body{
    @media screen and (max-width: 1110px) {
       .navbar {
         padding-left: 5vw;
-        padding-right: 5vw;
+        padding-right: 3vw;
       }
    }
 
    @media screen and (max-width: 977px) {
     .space{
-      width: 20vw;
+      width: 18vw;
     }
    }
 
