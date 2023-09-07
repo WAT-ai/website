@@ -524,7 +524,27 @@ html, body{
   }
 
 
+  /*--------------------------------------------------*/
+  .events {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:80px;
+    z-index: 1;
+  }
 
+  .section6 {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    height: auto;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    width: 100%;
+    padding-bottom: 30px;
+  }
   /*--------------------------------------------------*/
   .section5 {
     background: url("img/wat-ai-bg7.png") no-repeat center; 
