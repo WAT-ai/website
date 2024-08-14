@@ -40,7 +40,8 @@ const Navbar: React.FC = () => {
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
         event.type === "keydown" &&
-        ((event as React.KeyboardEvent).key === "Tab" || (event as React.KeyboardEvent).key === "Shift")
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
       ) {
         return;
       }
@@ -49,7 +50,14 @@ const Navbar: React.FC = () => {
     []
   );
 
-  const menuItems = ["About", "Team", "Projects", "Events", "Contact", "Apply"];
+  const menuItems = [
+    { text: "About", link: "/" }, // Update the link to navigate to home
+    { text: "Team", link: "/team" },
+    { text: "Projects", link: "/projects" },
+    { text: "Events", link: "/events" },
+    { text: "Contact", link: "/contact" },
+    { text: "Apply", link: "/apply" },
+  ];
 
   return (
     <AppBar
@@ -117,12 +125,12 @@ const Navbar: React.FC = () => {
                 onKeyDown={toggleDrawer(false)}
               >
                 <List>
-                  {menuItems.map((text, index) => (
+                  {menuItems.map((item, index) => (
                     <ListItem
                       button
                       key={index}
                       component={RouterLink}
-                      to={`/${text.toLowerCase()}`}
+                      to={item.link}
                       sx={{
                         "& .MuiListItemText-root": {
                           textAlign: "center",
@@ -130,7 +138,7 @@ const Navbar: React.FC = () => {
                         },
                       }}
                     >
-                      <ListItemText primary={text} />
+                      <ListItemText primary={item.text} />
                     </ListItem>
                   ))}
                 </List>
@@ -139,12 +147,12 @@ const Navbar: React.FC = () => {
           </>
         ) : (
           <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-            {menuItems.map((text, index) => (
+            {menuItems.map((item, index) => (
               <Button
                 key={index}
                 color="inherit"
                 component={RouterLink}
-                to={`/${text.toLowerCase()}`}
+                to={item.link}
                 sx={{
                   color: "primary.main",
                   "&:hover": {
@@ -160,7 +168,7 @@ const Navbar: React.FC = () => {
                     fontSize: "1rem",
                   }}
                 >
-                  {text}
+                  {item.text}
                 </Typography>
               </Button>
             ))}

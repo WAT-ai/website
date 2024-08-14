@@ -44,16 +44,6 @@ const HomePage: React.FC = () => {
           >
             Fostering the future of artificial intelligence at Waterloo
           </Typography>
-          <Typography variant="body1" sx={{ textAlign: "center", mt: -1.5 }}>
-            <a
-              href="https://forms.gle/7bxf6ijXSGTZ8gyu9"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: theme.palette.primary.main }}
-            >
-              Get Involved <b style={{ color: "#fff" }}>❱</b>
-            </a>
-          </Typography>
         </Box>
 
         {/* Section 2: About Us */}

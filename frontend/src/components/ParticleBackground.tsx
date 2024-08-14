@@ -22,8 +22,8 @@ const ParticleBackground: React.FC = () => {
     let particles: Particle[] = [];
 
     const options = {
-      particleColor: "rgba(200,200,200)",
-      lineColor: "rgba(150,150,150)",
+      particleColor: "rgba(150,150,150)",
+      lineColor: "rgba(100,100,120)",
       particleAmount: 0, // This will be dynamically set
       defaultRadius: 1.5,
       variantRadius: 1.5,
@@ -43,12 +43,12 @@ const ParticleBackground: React.FC = () => {
 
     const resizeReset = () => {
       w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight * 0.7; // Adjust height based on a percentage of viewport height
+      h = canvas.height = window.innerHeight * 0.5; // Adjust height based on a percentage of viewport height
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
 
       // Adjust particleAmount based on screen width
-      options.particleAmount = Math.floor(w / 15); // Adjust the divisor for more or fewer particles
+      options.particleAmount = Math.floor(w / 18); // Adjust the divisor for more or fewer particles
       initialiseElements(); // Re-initialize particles on resize to adapt to new dimensions
     };
 
