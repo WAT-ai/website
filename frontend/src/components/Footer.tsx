@@ -1,11 +1,12 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
+import { Link as RouterLink } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg"; // Adjust the path as necessary
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import Link from "@mui/material/Link";
 
 const Footer: React.FC = () => {
   return (
@@ -13,7 +14,7 @@ const Footer: React.FC = () => {
       component="footer"
       sx={{
         backgroundColor: "transparent",
-        padding: "40px 0",
+        pb: "40px",
         color: "#fff",
       }}
     >
@@ -41,27 +42,72 @@ const Footer: React.FC = () => {
         </Box>
         <Box>
           <Typography sx={{ marginBottom: "15px" }}>
-            <Link href="#about" color="#FFCE1A" underline="hover">
+            <Link
+              component={RouterLink}
+              to="/#about"
+              sx={{
+                color: "#FFCE1A",
+                textDecoration: "none",
+                "&:hover": {
+                  color: "#fff", // Change text color to white on hover
+                },
+              }}
+            >
               About
             </Link>
             <br />
-            <Link href="team.html" color="#FFCE1A" underline="hover">
+            <Link
+              component={RouterLink}
+              to="/team"
+              sx={{
+                color: "#FFCE1A",
+                textDecoration: "none",
+                "&:hover": {
+                  color: "#fff", // Change text color to white on hover
+                },
+              }}
+            >
               Team
             </Link>
             <br />
-            <Link href="projects.html" color="#FFCE1A" underline="hover">
+            <Link
+              component={RouterLink}
+              to="/projects"
+              sx={{
+                color: "#FFCE1A",
+                textDecoration: "none",
+                "&:hover": {
+                  color: "#fff", // Change text color to white on hover
+                },
+              }}
+            >
               Projects
             </Link>
             <br />
-            <Link href="contact.html" color="#FFCE1A" underline="hover">
+            <Link
+              component={RouterLink}
+              to="/contact"
+              sx={{
+                color: "#FFCE1A",
+                textDecoration: "none",
+                "&:hover": {
+                  color: "#fff", // Change text color to white on hover
+                },
+              }}
+            >
               Contact
             </Link>
             <br />
             <Link
-              href="https://docs.google.com/forms/d/e/1FAIpQLScK03OHyS4ayMtDpht0k41RKqo8i6vGC5nbqP6vnQLeys1_BQ/viewform"
-              target="_blank"
-              color="#FFCE1A"
-              underline="hover"
+              component={RouterLink}
+              to="/apply"
+              sx={{
+                color: "#FFCE1A",
+                textDecoration: "none",
+                "&:hover": {
+                  color: "#fff", // Change text color to white on hover
+                },
+              }}
             >
               Apply
             </Link>
@@ -71,7 +117,12 @@ const Footer: React.FC = () => {
               href="https://twitter.com/wataiteam"
               target="_blank"
               rel="noopener noreferrer"
-              color="#fff"
+              sx={{
+                color: "#fff",
+                "&:hover": {
+                  color: "#FFCE1A", // Change icon color to yellow on hover
+                },
+              }}
             >
               <TwitterIcon fontSize="small" />
             </Link>
@@ -79,7 +130,12 @@ const Footer: React.FC = () => {
               href="https://www.linkedin.com/company/wat-ai/"
               target="_blank"
               rel="noopener noreferrer"
-              color="#fff"
+              sx={{
+                color: "#fff",
+                "&:hover": {
+                  color: "#FFCE1A", // Change icon color to yellow on hover
+                },
+              }}
             >
               <LinkedInIcon fontSize="small" />
             </Link>
@@ -87,7 +143,12 @@ const Footer: React.FC = () => {
               href="https://www.instagram.com/wataiteam/"
               target="_blank"
               rel="noopener noreferrer"
-              color="#fff"
+              sx={{
+                color: "#fff",
+                "&:hover": {
+                  color: "#FFCE1A", // Change icon color to yellow on hover
+                },
+              }}
             >
               <InstagramIcon fontSize="small" />
             </Link>

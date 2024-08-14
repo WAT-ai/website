@@ -127,7 +127,7 @@ const Navbar: React.FC = () => {
             sx={{
               position: "absolute", // Position the menu icon absolutely
               right: "20px", // Align to the right side
-              color: "white",
+              color: "primary.main",
             }}
           >
             <MenuIcon />
@@ -144,7 +144,7 @@ const Navbar: React.FC = () => {
           PaperProps={{
             sx: {
               backgroundColor: "rgba(0, 0, 0, 0.7)", // Translucent black background
-              borderRadius: "12px", // Rounded corners
+              borderRadius: "20px", // Rounded corners
               mt: 2, // Add margin from the top
               mr: 1, // Add margin from the right
               overflow: "hidden", // Prevents the content from spilling out
@@ -167,7 +167,7 @@ const Navbar: React.FC = () => {
                   sx={{
                     "& .MuiListItemText-root": {
                       textAlign: "center",
-                      color: "white", // White text color for menu items
+                      color: "primary.main",
                     },
                   }}
                 >

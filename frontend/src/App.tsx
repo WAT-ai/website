@@ -6,14 +6,12 @@ import Footer from "./components/Footer"; // Import the Footer component
 import theme from "./theme"; // Import the custom theme
 
 import Home from "./pages/Home";
+import Team from "./pages/Team";
+import Projects from "./pages/Projects";
+import Events from "./pages/Events";
+import Contact from "./pages/Contact";
+import Apply from "./pages/Apply";
 import ParticleBackground from "./components/ParticleBackground";
-
-const About: React.FC = () => <div>About Page</div>;
-const Team: React.FC = () => <div>Team Page</div>;
-const Projects: React.FC = () => <div>Projects Page</div>;
-const Events: React.FC = () => <div>Events Page</div>;
-const Contact: React.FC = () => <div>Contact Page</div>;
-const Apply: React.FC = () => <div>Apply Page</div>;
 
 const App: React.FC = () => {
   return (
@@ -27,7 +25,6 @@ const App: React.FC = () => {
           <div style={{ flex: 1 }}>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
               <Route path="/team" element={<Team />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/events" element={<Events />} />
