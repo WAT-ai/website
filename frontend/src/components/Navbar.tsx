@@ -4,13 +4,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
-import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg";
+import { ReactComponent as Logo } from "../assets/wat_ai_icon.svg";
 import Box from "@mui/material/Box";
 
 const Navbar: React.FC = () => {
   return (
     <AppBar position="static" sx={{ backgroundColor: "black" }}>
-      <Toolbar sx={{ justifyContent: "center", position: "relative" }}>
+      <Toolbar sx={{ justifyContent: "center", position: "relative", py: 4 }}>
         <RouterLink
           to="/"
           style={{
@@ -22,7 +22,7 @@ const Navbar: React.FC = () => {
         >
           <Logo style={{ height: "40px" }} />
         </RouterLink>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 5 }}>
           {["About", "Team", "Projects", "Events", "Contact", "Apply"].map(
             (text, index) => (
               <Button
@@ -37,7 +37,12 @@ const Navbar: React.FC = () => {
                   },
                 }}
               >
-                <Typography variant="button">{text}</Typography>
+                <Typography
+                  variant="button"
+                  sx={{ textTransform: "capitalize", fontWeight: 400 }}
+                >
+                  {text}
+                </Typography>
               </Button>
             )
           )}

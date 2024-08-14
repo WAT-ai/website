@@ -2,9 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer"; // Import the Footer component
 import theme from "./theme"; // Import the custom theme
 
-const Home: React.FC = () => <div>Home Page</div>;
+import Home from "./pages/Home";
+
 const About: React.FC = () => <div>About Page</div>;
 const Team: React.FC = () => <div>Team Page</div>;
 const Projects: React.FC = () => <div>Projects Page</div>;
@@ -15,18 +17,25 @@ const Apply: React.FC = () => <div>Apply Page</div>;
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/apply" element={<Apply />} />
-        </Routes>
-      </Router>
+      <div
+        style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      >
+        <Router>
+          <Navbar />
+          <div style={{ flex: 1 }}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/team" element={<Team />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/apply" element={<Apply />} />
+            </Routes>
+          </div>
+          <Footer /> {/* Footer stays at the bottom */}
+        </Router>
+      </div>
     </ThemeProvider>
   );
 };
