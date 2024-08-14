@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
   );
 
   const menuItems = [
-    { text: "About", link: "/" }, // Update the link to navigate to home
+    { text: "About", link: "/" },
     { text: "Team", link: "/team" },
     { text: "Projects", link: "/projects" },
     { text: "Events", link: "/events" },
@@ -70,16 +70,18 @@ const Navbar: React.FC = () => {
     >
       <Toolbar
         sx={{
-          justifyContent: "space-between",
+          justifyContent: "center", // Center the content within the toolbar
           position: "relative",
           py: 2,
           px: isMobile ? 2 : 5,
-          backgroundColor: "black", // Ensures the toolbar has a black background
+          backgroundColor: "black",
         }}
       >
         <RouterLink
           to="/"
           style={{
+            position: "absolute",
+            left: "20px",
             display: "flex",
             alignItems: "center",
           }}
@@ -87,67 +89,9 @@ const Navbar: React.FC = () => {
           <Logo style={{ height: "40px", maxHeight: "100%", width: "auto" }} />
         </RouterLink>
 
-        {isMobile ? (
-          <>
-            <IconButton
-              edge="end"
-              color="inherit"
-              aria-label="menu"
-              onClick={toggleDrawer(true)}
-              sx={{
-                ml: 2,
-                color: "white", // White color for the menu icon
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Drawer
-              anchor="right"
-              open={drawerOpen}
-              onClose={toggleDrawer(false)}
-              ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
-              }}
-              PaperProps={{
-                sx: {
-                  backgroundColor: "rgba(0, 0, 0, 0.7)", // Translucent black background
-                  borderRadius: "12px", // Rounded corners
-                  mt: 2, // Add margin from the top
-                  mr: 1, // Add margin from the right
-                  overflow: "hidden", // Prevents the content from spilling out
-                },
-              }}
-            >
-              <Box
-                sx={{ width: 250, height: "100%" }} // Adjust the size as needed
-                role="presentation"
-                onClick={toggleDrawer(false)}
-                onKeyDown={toggleDrawer(false)}
-              >
-                <List>
-                  {menuItems.map((item, index) => (
-                    <ListItem
-                      button
-                      key={index}
-                      component={RouterLink}
-                      to={item.link}
-                      sx={{
-                        "& .MuiListItemText-root": {
-                          textAlign: "center",
-                          color: "white", // White text color for menu items
-                        },
-                      }}
-                    >
-                      <ListItemText primary={item.text} />
-                    </ListItem>
-                  ))}
-                </List>
-              </Box>
-            </Drawer>
-          </>
-        ) : (
-          <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-            {menuItems.map((item, index) => (
+        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+          {!isMobile &&
+            menuItems.map((item, index) => (
               <Button
                 key={index}
                 color="inherit"
@@ -172,8 +116,67 @@ const Navbar: React.FC = () => {
                 </Typography>
               </Button>
             ))}
-          </Box>
+        </Box>
+
+        {isMobile && (
+          <IconButton
+            edge="end"
+            color="inherit"
+            aria-label="menu"
+            onClick={toggleDrawer(true)}
+            sx={{
+              position: "absolute", // Position the menu icon absolutely
+              right: "20px", // Align to the right side
+              color: "white",
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
         )}
+
+        <Drawer
+          anchor="right"
+          open={drawerOpen}
+          onClose={toggleDrawer(false)}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          PaperProps={{
+            sx: {
+              backgroundColor: "rgba(0, 0, 0, 0.7)", // Translucent black background
+              borderRadius: "12px", // Rounded corners
+              mt: 2, // Add margin from the top
+              mr: 1, // Add margin from the right
+              overflow: "hidden", // Prevents the content from spilling out
+            },
+          }}
+        >
+          <Box
+            sx={{ width: 250, height: "100%" }} // Adjust the size as needed
+            role="presentation"
+            onClick={toggleDrawer(false)}
+            onKeyDown={toggleDrawer(false)}
+          >
+            <List>
+              {menuItems.map((item, index) => (
+                <ListItem
+                  button
+                  key={index}
+                  component={RouterLink}
+                  to={item.link}
+                  sx={{
+                    "& .MuiListItemText-root": {
+                      textAlign: "center",
+                      color: "white", // White text color for menu items
+                    },
+                  }}
+                >
+                  <ListItemText primary={item.text} />
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+        </Drawer>
       </Toolbar>
     </AppBar>
   );

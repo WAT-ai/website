@@ -27,8 +27,8 @@ const ParticleBackground: React.FC = () => {
       particleAmount: 0, // This will be dynamically set
       defaultRadius: 1.5,
       variantRadius: 1.5,
-      defaultSpeed: 0.5,
-      variantSpeed: 0.5,
+      defaultSpeed: 0.25,
+      variantSpeed: 0.25,
       linkRadius: 320,
     };
 

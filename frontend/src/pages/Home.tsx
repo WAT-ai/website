@@ -3,6 +3,35 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg";
 import { useTheme } from "@mui/material/styles";
+import { keyframes } from "@mui/system";
+import { styled } from "@mui/material/styles";
+import { Link as RouterLink } from "react-router-dom";
+
+const moveSlideshow = keyframes`
+  100% {
+    transform: translateX(-49.23333%);
+  }
+`;
+
+const TechSlideshow = styled(Box)(({ theme }) => ({
+  height: "200px",
+  width: "100%",
+  position: "relative",
+  overflow: "hidden",
+}));
+
+const Mover = styled(Box)(({ theme }) => ({
+  marginTop: "-50px",
+  height: "100%",
+  width: "3184px",
+  backgroundImage: `url(${require("../assets/slider3.png")})`,
+  position: "absolute",
+  top: 0,
+  left: 0,
+  zIndex: 0,
+  transform: "translate3d(0, 0, 0)",
+  animation: `${moveSlideshow} 22s linear infinite`,
+}));
 
 const HomePage: React.FC = () => {
   const theme = useTheme(); // Access the MUI theme
@@ -28,7 +57,7 @@ const HomePage: React.FC = () => {
             style={{
               display: "block",
               margin: "0 auto",
-              width: "22%",
+              width: "18%",
               minWidth: "300px",
             }}
           />
@@ -44,13 +73,26 @@ const HomePage: React.FC = () => {
           >
             Fostering the future of artificial intelligence at Waterloo
           </Typography>
+          <Typography sx={{ mt: 1 }}>
+            <RouterLink
+              to="/apply"
+              style={{
+                color: theme.palette.primary.main,
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
+              Get Involved <b>❱</b>
+            </RouterLink>
+          </Typography>
         </Box>
 
         {/* Section 2: About Us */}
         <Box
           component="section"
           sx={{
-            py: 5,
+            pt: 5,
+            pb: 20,
             px: 4,
             backgroundColor: "transparent",
             textAlign: "left",
@@ -75,18 +117,18 @@ const HomePage: React.FC = () => {
             the University of Waterloo and the undergraduate student body of the{" "}
             <a
               href="https://uwaterloo.ca/artificial-intelligence-institute/"
-              style={{ fontSize: "13px" }}
               target="_blank"
               rel="noopener noreferrer"
+              style={{ color: theme.palette.primary.main }}
             >
               Waterloo AI Institute
             </a>{" "}
             and member of the{" "}
             <a
               href="https://uwaterloo.ca/sedra-student-design-centre/"
-              style={{ fontSize: "13px" }}
               target="_blank"
               rel="noopener noreferrer"
+              style={{ color: theme.palette.primary.main }}
             >
               Sedra Student Design Centre (SSDC)
             </a>
@@ -97,12 +139,16 @@ const HomePage: React.FC = () => {
             collaboration with companies and internal research.
           </Typography>
           <Typography sx={{ mt: 4 }}>
-            <a
-              href="team.html"
-              style={{ color: "inherit", textDecoration: "none" }}
+            <RouterLink
+              to="/team"
+              style={{
+                color: theme.palette.primary.main,
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
             >
-              Meet The Team <b style={{ color: "#fff" }}>❱</b>
-            </a>
+              Meet The Team <b>❱</b>
+            </RouterLink>
           </Typography>
         </Box>
 
@@ -118,9 +164,9 @@ const HomePage: React.FC = () => {
           <Typography variant="h4" sx={{ mb: 2, color: "grey" }}>
             Our Partners
           </Typography>
-          <Box className="tech-slideshow">
-            <Box className="mover-1"></Box>
-          </Box>
+          <TechSlideshow>
+            <Mover className="mover-1"></Mover>
+          </TechSlideshow>
         </Box>
       </Box>
     </Box>
