@@ -24,7 +24,7 @@ const ParticleBackground: React.FC = () => {
     const options = {
       particleColor: "rgba(200,200,200)",
       lineColor: "rgba(150,150,150)",
-      particleAmount: 90,
+      particleAmount: 0, // This will be dynamically set
       defaultRadius: 1.5,
       variantRadius: 1.5,
       defaultSpeed: 0.5,
@@ -38,15 +38,18 @@ const ParticleBackground: React.FC = () => {
       canvas = document.getElementById("canvas") as HTMLCanvasElement;
       ctx = canvas.getContext("2d");
       resizeReset();
-      initialiseElements();
       startAnimation();
     };
 
     const resizeReset = () => {
       w = canvas.width = window.innerWidth;
-      h = canvas.height = 500; // Set your desired height here
+      h = canvas.height = window.innerHeight * 0.7; // Adjust height based on a percentage of viewport height
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
+
+      // Adjust particleAmount based on screen width
+      options.particleAmount = Math.floor(w / 15); // Adjust the divisor for more or fewer particles
+      initialiseElements(); // Re-initialize particles on resize to adapt to new dimensions
     };
 
     const initialiseElements = () => {
@@ -178,9 +181,9 @@ const ParticleBackground: React.FC = () => {
       id="canvas"
       style={{
         position: "absolute",
-        top: "180px", // Moves the canvas down by 50px
+        top: "180px",
         left: "50%",
-        transform: "translateX(-50%)", // Centers the canvas
+        transform: "translateX(-50%)",
         maxWidth: "100%",
         zIndex: -1,
         display: "block",
