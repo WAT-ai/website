@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer"; // Import the Footer component
-import theme from "./theme"; // Import the custom theme
+import theme from "./styles/theme"; // Import the custom theme
 
 import Home from "./pages/Home";
 import Team from "./pages/Team";
