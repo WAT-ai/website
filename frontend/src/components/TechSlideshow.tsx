@@ -26,6 +26,22 @@ const Slideshow = styled(Box)(({ theme }) => ({
   width: "100%",
   position: "relative",
   overflow: "hidden",
+  "&::before, &::after": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    width: "15%", // Width of the fading edges
+    zIndex: 1,
+  },
+  "&::before": {
+    left: 0,
+    background: "linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))", // Fading from black to transparent
+  },
+  "&::after": {
+    right: 0,
+    background: "linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))", // Fading from black to transparent
+  },
 }));
 
 const TechSlideshow: React.FC = () => (
