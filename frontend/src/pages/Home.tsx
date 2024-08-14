@@ -3,35 +3,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg";
 import { useTheme } from "@mui/material/styles";
-import { keyframes } from "@mui/system";
-import { styled } from "@mui/material/styles";
+import TechSlideshow from "../components/TechSlideshow";
 import { Link as RouterLink } from "react-router-dom";
-
-const moveSlideshow = keyframes`
-  100% {
-    transform: translateX(-49.23333%);
-  }
-`;
-
-const TechSlideshow = styled(Box)(({ theme }) => ({
-  height: "200px",
-  width: "100%",
-  position: "relative",
-  overflow: "hidden",
-}));
-
-const Mover = styled(Box)(({ theme }) => ({
-  marginTop: "-50px",
-  height: "100%",
-  width: "3184px",
-  backgroundImage: `url(${require("../assets/slider3.png")})`,
-  position: "absolute",
-  top: 0,
-  left: 0,
-  zIndex: 0,
-  transform: "translate3d(0, 0, 0)",
-  animation: `${moveSlideshow} 22s linear infinite`,
-}));
 
 const HomePage: React.FC = () => {
   const theme = useTheme(); // Access the MUI theme
@@ -74,16 +47,20 @@ const HomePage: React.FC = () => {
             Fostering the future of artificial intelligence at Waterloo
           </Typography>
           <Typography sx={{ mt: 1 }}>
-            <RouterLink
+            <Box
+              component={RouterLink}
               to="/apply"
-              style={{
+              sx={{
                 color: theme.palette.primary.main,
                 textDecoration: "none",
                 fontWeight: "bold",
+                "&:hover": {
+                  color: "#fff", // Change text color to white on hover
+                },
               }}
             >
               Get Involved <b>❱</b>
-            </RouterLink>
+            </Box>
           </Typography>
         </Box>
 
@@ -115,23 +92,37 @@ const HomePage: React.FC = () => {
           <Typography variant="body1">
             WAT.ai is a student-run Artificial Intelligence (AI) Organization at
             the University of Waterloo and the undergraduate student body of the{" "}
-            <a
+            <Box
+              component="a"
               href="https://uwaterloo.ca/artificial-intelligence-institute/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: theme.palette.primary.main }}
+              sx={{
+                color: theme.palette.primary.main,
+                textDecoration: "none",
+                "&:hover": {
+                  color: "#fff", // Change text color to white on hover
+                },
+              }}
             >
               Waterloo AI Institute
-            </a>{" "}
+            </Box>{" "}
             and member of the{" "}
-            <a
+            <Box
+              component="a"
               href="https://uwaterloo.ca/sedra-student-design-centre/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: theme.palette.primary.main }}
+              sx={{
+                color: theme.palette.primary.main,
+                textDecoration: "none",
+                "&:hover": {
+                  color: "#fff", // Change text color to white on hover
+                },
+              }}
             >
               Sedra Student Design Centre (SSDC)
-            </a>
+            </Box>
             . Our goal is to establish an environment to enable the continued
             growth of AI talent and suitable access to opportunities within the
             Waterloo community. We provide opportunities for undergraduate and
@@ -139,16 +130,20 @@ const HomePage: React.FC = () => {
             collaboration with companies and internal research.
           </Typography>
           <Typography sx={{ mt: 4 }}>
-            <RouterLink
+            <Box
+              component={RouterLink}
               to="/team"
-              style={{
+              sx={{
                 color: theme.palette.primary.main,
                 textDecoration: "none",
                 fontWeight: "bold",
+                "&:hover": {
+                  color: "#fff", // Change text color to white on hover
+                },
               }}
             >
               Meet The Team <b>❱</b>
-            </RouterLink>
+            </Box>
           </Typography>
         </Box>
 
@@ -164,9 +159,7 @@ const HomePage: React.FC = () => {
           <Typography variant="h4" sx={{ mb: 2, color: "grey" }}>
             Our Partners
           </Typography>
-          <TechSlideshow>
-            <Mover className="mover-1"></Mover>
-          </TechSlideshow>
+          <TechSlideshow />
         </Box>
       </Box>
     </Box>
