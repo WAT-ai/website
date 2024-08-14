@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -8,8 +8,32 @@ import { ReactComponent as Logo } from "../assets/wat_ai_icon.svg";
 import Box from "@mui/material/Box";
 
 const Navbar: React.FC = () => {
+  const [isSticky, setIsSticky] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      setIsSticky(true);
+    } else {
+      setIsSticky(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <AppBar position="static" sx={{ backgroundColor: "black" }}>
+    <AppBar
+      position="sticky"
+      sx={{
+        backgroundColor: isSticky ? "black" : "transparent",
+        transition: "background-color 0.3s ease-in-out",
+        boxShadow: isSticky ? 1 : "none",
+      }}
+    >
       <Toolbar sx={{ justifyContent: "center", position: "relative", py: 4 }}>
         <RouterLink
           to="/"

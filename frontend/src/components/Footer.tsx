@@ -1,87 +1,100 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg"; // Adjust the path as necessary
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import InstagramIcon from "@mui/icons-material/Instagram";
 
 const Footer: React.FC = () => {
   return (
-    <div
-      className="footer"
-      style={{ backgroundColor: "#000", padding: "40px 0" }}
+    <Box
+      component="footer"
+      sx={{
+        backgroundColor: "transparent",
+        padding: "40px 0",
+        color: "#fff",
+      }}
     >
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
+          alignItems: "center",
           padding: "0 4vw",
           fontSize: "14px",
         }}
       >
-        <div>
-          <Logo
-            style={{ marginBottom: "20px", height: "auto", width: "75px" }}
-          />{" "}
-          {/* Updated logo */}
+        <Box>
+          <Box
+            component={Logo}
+            sx={{ marginBottom: "20px", height: "auto", width: "75px" }}
+          />
           <Typography sx={{ color: "#FFCE1A", marginBottom: "15px" }}>
             contact@watai.ca
           </Typography>
-          <Typography sx={{ color: "#fff" }}>
+          <Typography>
             Located at 200 University, <br />
             University of Waterloo, ON
           </Typography>
-        </div>
-        <div>
-          <Typography sx={{ color: "#FFCE1A", marginBottom: "15px" }}>
-            <a href="#about">About</a>
+        </Box>
+        <Box>
+          <Typography sx={{ marginBottom: "15px" }}>
+            <Link href="#about" color="#FFCE1A" underline="hover">
+              About
+            </Link>
             <br />
-            <a href="team.html">Team</a>
+            <Link href="team.html" color="#FFCE1A" underline="hover">
+              Team
+            </Link>
             <br />
-            <a href="projects.html">Projects</a>
+            <Link href="projects.html" color="#FFCE1A" underline="hover">
+              Projects
+            </Link>
             <br />
-            <a href="contact.html">Contact</a>
+            <Link href="contact.html" color="#FFCE1A" underline="hover">
+              Contact
+            </Link>
             <br />
-            <a
+            <Link
               href="https://docs.google.com/forms/d/e/1FAIpQLScK03OHyS4ayMtDpht0k41RKqo8i6vGC5nbqP6vnQLeys1_BQ/viewform"
               target="_blank"
+              color="#FFCE1A"
+              underline="hover"
             >
               Apply
-            </a>
+            </Link>
           </Typography>
-          <Typography sx={{ display: "flex", gap: "10px", color: "#fff" }}>
-            <a
+          <Box sx={{ display: "flex", gap: "10px" }}>
+            <Link
               href="https://twitter.com/wataiteam"
               target="_blank"
               rel="noopener noreferrer"
+              color="#fff"
             >
-              <i
-                className="fa-brands fa-twitter"
-                style={{ fontSize: "21px" }}
-              ></i>
-            </a>
-            <a
+              <TwitterIcon fontSize="small" />
+            </Link>
+            <Link
               href="https://www.linkedin.com/company/wat-ai/"
               target="_blank"
               rel="noopener noreferrer"
+              color="#fff"
             >
-              <i
-                className="fa-brands fa-linkedin"
-                style={{ fontSize: "21px" }}
-              ></i>
-            </a>
-            <a
+              <LinkedInIcon fontSize="small" />
+            </Link>
+            <Link
               href="https://www.instagram.com/wataiteam/"
               target="_blank"
               rel="noopener noreferrer"
+              color="#fff"
             >
-              <i
-                className="fa-brands fa-instagram"
-                style={{ fontSize: "24px" }}
-              ></i>
-            </a>
-          </Typography>
-        </div>
+              <InstagramIcon fontSize="small" />
+            </Link>
+          </Box>
+        </Box>
       </Box>
-    </div>
+    </Box>
   );
 };
 

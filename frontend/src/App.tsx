@@ -6,6 +6,7 @@ import Footer from "./components/Footer"; // Import the Footer component
 import theme from "./theme"; // Import the custom theme
 
 import Home from "./pages/Home";
+import ParticleBackground from "./components/ParticleBackground";
 
 const About: React.FC = () => <div>About Page</div>;
 const Team: React.FC = () => <div>Team Page</div>;
@@ -20,6 +21,7 @@ const App: React.FC = () => {
       <div
         style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
       >
+        <ParticleBackground />
         <Router>
           <Navbar />
           <div style={{ flex: 1 }}>

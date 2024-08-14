@@ -1,6 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg"; // Adjust the path as necessary
 
 const HomePage: React.FC = () => {
   return (
@@ -12,14 +13,11 @@ const HomePage: React.FC = () => {
           className="section1"
           style={{ textAlign: "center", padding: "40px 0" }}
         >
-          <img
-            src="../assets/text-logo.png"
-            alt="Text Logo"
-            draggable={false}
+          <Logo
             style={{
               display: "block",
               margin: "0 auto",
-              width: "32%",
+              width: "22%",
               minWidth: "300px",
             }}
           />
@@ -49,10 +47,7 @@ const HomePage: React.FC = () => {
           </Typography>
         </div>
         {/* Section 2: About Us */}
-        <div
-          className="section2"
-          style={{ padding: "50px", backgroundColor: "#f0f0f0" }}
-        >
+        <div className="section2" style={{ padding: "50px" }}>
           <Typography variant="h4" sx={{ marginBottom: "20px", color: "grey" }}>
             About Us
           </Typography>
