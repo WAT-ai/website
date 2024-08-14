@@ -1,17 +1,28 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg"; // Adjust the path as necessary
+import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg";
+import { useTheme } from "@mui/material/styles";
 
 const HomePage: React.FC = () => {
+  const theme = useTheme(); // Access the MUI theme
+
   return (
-    <div>
+    <Box component="div">
       {/* Main Content */}
-      <div className="main">
+      <Box component="main">
         {/* Section 1 */}
-        <div
-          className="section1"
-          style={{ textAlign: "center", padding: "40px 0" }}
+        <Box
+          component="section"
+          sx={{
+            textAlign: "center",
+            py: 5,
+            minHeight: "60vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
           <Logo
             style={{
@@ -26,29 +37,36 @@ const HomePage: React.FC = () => {
             sx={{
               textAlign: "center",
               fontSize: "17px",
-              marginTop: "-20px",
+              mt: -2,
               fontWeight: 200,
               letterSpacing: "2px",
             }}
           >
             Fostering the future of artificial intelligence at Waterloo
           </Typography>
-          <Typography
-            variant="body1"
-            sx={{ textAlign: "center", marginTop: "-15px" }}
-          >
+          <Typography variant="body1" sx={{ textAlign: "center", mt: -1.5 }}>
             <a
               href="https://forms.gle/7bxf6ijXSGTZ8gyu9"
               target="_blank"
               rel="noopener noreferrer"
+              style={{ color: theme.palette.primary.main }}
             >
               Get Involved <b style={{ color: "#fff" }}>❱</b>
             </a>
           </Typography>
-        </div>
+        </Box>
+
         {/* Section 2: About Us */}
-        <div className="section2" style={{ padding: "50px" }}>
-          <Typography variant="h4" sx={{ marginBottom: "20px", color: "grey" }}>
+        <Box
+          component="section"
+          sx={{
+            py: 5,
+            px: 4,
+            backgroundColor: "transparent",
+            textAlign: "left",
+          }}
+        >
+          <Typography variant="h4" sx={{ mb: 2, color: "grey" }}>
             About Us
           </Typography>
           <Typography
@@ -56,7 +74,7 @@ const HomePage: React.FC = () => {
             sx={{
               fontWeight: "bold",
               lineHeight: "40px",
-              marginBottom: "20px",
+              mb: 2,
             }}
           >
             Fostering The Future Of AI Talent <br />
@@ -88,30 +106,34 @@ const HomePage: React.FC = () => {
             graduate students to engage in impactful projects through
             collaboration with companies and internal research.
           </Typography>
-          <Typography sx={{ marginTop: "40px" }}>
-            <a href="team.html">
+          <Typography sx={{ mt: 4 }}>
+            <a
+              href="team.html"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
               Meet The Team <b style={{ color: "#fff" }}>❱</b>
             </a>
           </Typography>
-        </div>
+        </Box>
+
         {/* Section 3: Our Partners */}
-        <div
-          className="slide"
-          style={{
-            marginTop: "-120px",
+        <Box
+          component="section"
+          sx={{
+            mt: -12,
             textAlign: "center",
-            padding: "50px 0",
+            py: 5,
           }}
         >
-          <Typography variant="h4" sx={{ marginBottom: "20px", color: "grey" }}>
+          <Typography variant="h4" sx={{ mb: 2, color: "grey" }}>
             Our Partners
           </Typography>
-          <div className="tech-slideshow">
-            <div className="mover-1"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+          <Box className="tech-slideshow">
+            <Box className="mover-1"></Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

@@ -24,11 +24,11 @@ const ParticleBackground: React.FC = () => {
     const options = {
       particleColor: "rgba(200,200,200)",
       lineColor: "rgba(150,150,150)",
-      particleAmount: 120,
-      defaultRadius: 1,
-      variantRadius: 1,
-      defaultSpeed: .5,
-      variantSpeed: .5,
+      particleAmount: 90,
+      defaultRadius: 1.5,
+      variantRadius: 1.5,
+      defaultSpeed: 0.5,
+      variantSpeed: 0.5,
       linkRadius: 320,
     };
 
@@ -44,7 +44,7 @@ const ParticleBackground: React.FC = () => {
 
     const resizeReset = () => {
       w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
+      h = canvas.height = 500; // Set your desired height here
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
     };
@@ -177,12 +177,13 @@ const ParticleBackground: React.FC = () => {
     <canvas
       id="canvas"
       style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
+        position: "absolute",
+        top: "180px", // Moves the canvas down by 50px
+        left: "50%",
+        transform: "translateX(-50%)", // Centers the canvas
+        maxWidth: "100%",
         zIndex: -1,
+        display: "block",
       }}
     />
   );
