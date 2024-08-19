@@ -181,7 +181,7 @@ const ParticleBackground: React.FC = () => {
       id="canvas"
       style={{
         position: "absolute",
-        top: "180px",
+        top: "150px",
         left: "50%",
         transform: "translateX(-50%)",
         maxWidth: "100%",
