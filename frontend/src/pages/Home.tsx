@@ -65,19 +65,26 @@ const HomePage: React.FC = () => {
         </Box>
 
         {/* Section 2: About Us */}
-        <Box
-          component="section"
-          sx={{
-            pt: 5,
-            pb: 20,
-            px: 4,
-            backgroundColor: "transparent",
-            textAlign: "left",
-          }}
-        >
+        <Box sx={{ textAlign: "center", px: { xs: 3, md: 10 }, mb: 4, mt: 5 }}>
           <Typography variant="h4" sx={{ mb: 2, color: "grey" }}>
             About Us
           </Typography>
+        </Box>
+        <Box
+          component="section"
+          sx={{
+            pt: 3,
+            pb: 5,
+            px: { xs: 3, md: 10 }, // Responsive padding for left and right spacing
+            textAlign: "left",
+            border: `2px solid ${theme.palette.primary.main}`, // Yellow border
+            borderRadius: "20px", // Rounded corners
+            marginX: "auto",
+            maxWidth: "70vw", // Max width to control the content width
+            mb: 10, // Margin bottom to add space between sections
+            backgroundColor: "#8c8c8c2d",
+          }}
+        >
           <Typography
             variant="h5"
             sx={{
@@ -89,7 +96,7 @@ const HomePage: React.FC = () => {
             Fostering The Future Of AI Talent <br />
             At The University of Waterloo
           </Typography>
-          <Typography variant="body1">
+          <Typography variant="body2">
             WAT.ai is a student-run Artificial Intelligence (AI) Organization at
             the University of Waterloo and the undergraduate student body of the{" "}
             <Box
@@ -151,9 +158,9 @@ const HomePage: React.FC = () => {
         <Box
           component="section"
           sx={{
-            mt: -12,
             textAlign: "center",
             py: 5,
+            mt: 5, // Add margin-top to create space above Section 3
           }}
         >
           <Typography variant="h4" sx={{ mb: 2, color: "grey" }}>

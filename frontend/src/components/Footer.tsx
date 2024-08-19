@@ -86,7 +86,7 @@ const Footer: React.FC = () => {
             <br />
             <Link
               component={RouterLink}
-              to="/contact"
+              to="/events"
               sx={{
                 color: "#FFCE1A",
                 textDecoration: "none",
@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
                 },
               }}
             >
-              Contact
+              Events
             </Link>
             <br />
             <Link
