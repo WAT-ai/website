@@ -2,60 +2,69 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg";
-import { useTheme } from "@mui/material/styles";
 import TechSlideshow from "../components/TechSlideshow";
 import { Link as RouterLink } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
 
 const HomePage: React.FC = () => {
-  const theme = useTheme(); // Access the MUI theme
+  const theme = useTheme(); // Access the updated MUI theme
 
   return (
     <Box component="div">
-      {/* Main Content */}
       <Box component="main">
-        {/* Section 1 */}
         <Box
           component="section"
           sx={{
             textAlign: "center",
-            py: 5,
-            minHeight: "60vh",
+            py: { xs: 8, md: 10 },
+            minHeight: "80vh",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            background: `linear-gradient(135deg, ${theme.palette.secondary.main}, ${theme.customColors.transparentSecondary})`,
+            color: theme.palette.primary.contrastText,
+            clipPath: "polygon(0 0, 100% 0, 100% 85%, 0 100%)",
+            zIndex: -2,
           }}
         >
           <Logo
             style={{
               display: "block",
               margin: "0 auto",
-              width: "18%",
-              minWidth: "300px",
+              width: "20%",
+              minWidth: "250px",
+              filter: "drop-shadow(0px 4px 6px rgba(0,0,0,0.2))",
             }}
           />
           <Typography
-            variant="body1"
+            variant="h4"
             sx={{
-              textAlign: "center",
-              fontSize: "17px",
-              mt: -2,
-              fontWeight: 200,
+              fontWeight: "bold",
+              mt: 4,
               letterSpacing: "2px",
+              textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
             }}
           >
-            Fostering the future of artificial intelligence at Waterloo
+            Fostering the Future of AI at Waterloo
           </Typography>
-          <Typography sx={{ mt: 1 }}>
+          <Typography sx={{ mt: 4 }}>
             <Box
               component={RouterLink}
               to="/apply"
               sx={{
-                color: theme.palette.primary.main,
+                color: theme.palette.primary.contrastText,
                 textDecoration: "none",
                 fontWeight: "bold",
+                fontSize: "18px",
+                padding: "10px 20px",
+                backgroundColor: theme.palette.secondary.main,
+                borderRadius: theme.shape.borderRadius,
+                transition: theme.transitions.create(["background-color"], {
+                  duration: theme.transitions.duration.short,
+                }),
                 "&:hover": {
-                  color: "#fff", // Change text color to white on hover
+                  backgroundColor: theme.palette.primary.light, // Adjusted for theme
                 },
               }}
             >
@@ -66,7 +75,10 @@ const HomePage: React.FC = () => {
 
         {/* Section 2: About Us */}
         <Box sx={{ textAlign: "center", px: { xs: 3, md: 10 }, mb: 4, mt: 5 }}>
-          <Typography variant="h4" sx={{ mb: 2, color: "grey" }}>
+          <Typography
+            variant="h4"
+            sx={{ mb: 2, color: theme.palette.text.secondary }}
+          >
             About Us
           </Typography>
         </Box>
@@ -75,14 +87,16 @@ const HomePage: React.FC = () => {
           sx={{
             pt: 3,
             pb: 5,
-            px: { xs: 3, md: 10 }, // Responsive padding for left and right spacing
+            px: { xs: 3, md: 10 },
             textAlign: "left",
-            border: `2px solid ${theme.palette.primary.main}`, // Yellow border
-            borderRadius: "20px", // Rounded corners
+            border: `2px solid ${theme.palette.primary.main}`,
+            borderRadius: theme.shape.borderRadius,
             marginX: "auto",
-            maxWidth: "70vw", // Max width to control the content width
-            mb: 10, // Margin bottom to add space between sections
-            backgroundColor: "#8c8c8c2d",
+            maxWidth: "70vw",
+            mb: 10,
+            backgroundColor: theme.palette.background.paper,
+            boxShadow: theme.shadows[3],
+            color: theme.palette.text.primary,
           }}
         >
           <Typography
@@ -108,7 +122,7 @@ const HomePage: React.FC = () => {
                 color: theme.palette.primary.main,
                 textDecoration: "none",
                 "&:hover": {
-                  color: "#fff", // Change text color to white on hover
+                  color: theme.palette.secondary.contrastText,
                 },
               }}
             >
@@ -124,7 +138,7 @@ const HomePage: React.FC = () => {
                 color: theme.palette.primary.main,
                 textDecoration: "none",
                 "&:hover": {
-                  color: "#fff", // Change text color to white on hover
+                  color: theme.palette.secondary.contrastText,
                 },
               }}
             >
@@ -145,7 +159,7 @@ const HomePage: React.FC = () => {
                 textDecoration: "none",
                 fontWeight: "bold",
                 "&:hover": {
-                  color: "#fff", // Change text color to white on hover
+                  color: theme.palette.secondary.contrastText,
                 },
               }}
             >
@@ -160,10 +174,15 @@ const HomePage: React.FC = () => {
           sx={{
             textAlign: "center",
             py: 5,
-            mt: 5, // Add margin-top to create space above Section 3
+            mt: 5,
+            backgroundColor: theme.palette.background.default,
+            borderTop: `2px solid ${theme.palette.primary.main}`,
           }}
         >
-          <Typography variant="h4" sx={{ mb: 2, color: "grey" }}>
+          <Typography
+            variant="h4"
+            sx={{ mb: 2, color: theme.palette.text.secondary }}
+          >
             Our Partners
           </Typography>
           <TechSlideshow />

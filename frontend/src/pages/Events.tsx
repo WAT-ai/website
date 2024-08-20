@@ -4,18 +4,30 @@ import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 import EventCard from "../components/EventCard";
 import { previousEvents } from "../data/eventsData";
+import { useTheme } from "@mui/material/styles";
 
 const Events: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const theme = useTheme(); // Access the theme
 
   const handleIframeLoad = () => {
     setIsLoading(false);
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ textAlign: "center", marginTop: "100px" }}>
-        <Typography variant="h4" sx={{ color: "#FFF" }}>
+    <Box
+      sx={{
+        width: "100%",
+        backgroundColor: theme.palette.background.default,
+        color: theme.palette.text.primary,
+        minHeight: "100vh",
+        px: 3,
+        pt: 5,
+        pb: 10,
+      }}
+    >
+      <Box sx={{ textAlign: "center", marginBottom: theme.spacing(6) }}>
+        <Typography variant="h4" sx={{ color: theme.palette.text.secondary }}>
           WAT.ai Events
         </Typography>
       </Box>
@@ -23,9 +35,9 @@ const Events: React.FC = () => {
       <Box
         sx={{
           textAlign: "center",
-          marginBottom: "50px",
-          fontSize: "14px",
-          color: "#FFCE1A",
+          marginBottom: theme.spacing(8),
+          fontSize: theme.typography.body2.fontSize,
+          color: theme.palette.primary.main,
         }}
       >
         {/* Loading Animation */}
@@ -35,11 +47,11 @@ const Events: React.FC = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              mt: "50px",
+              mt: theme.spacing(6),
               height: "600px",
             }}
           >
-            <CircularProgress color="inherit" />
+            <CircularProgress color="primary" />
           </Box>
         )}
 
@@ -49,16 +61,17 @@ const Events: React.FC = () => {
             display: isLoading ? "none" : "flex",
             justifyContent: "center",
             alignItems: "center",
-            mt: "50px",
+            mt: theme.spacing(6),
+            border: `5px solid ${theme.palette.primary.main}`,
+            borderRadius: theme.shape.borderRadius,
+            overflow: "hidden",
           }}
         >
           <iframe
             src="https://calendar.google.com/calendar/embed?src=contact%40watai.ca&ctz=America%2FToronto"
             title="Google Calendar"
             style={{
-              border: "5px solid grey",
-              borderRadius: "10px", // Optional: add rounded corners
-              width: "80%",
+              width: "100%",
               height: "600px",
             }}
             onLoad={handleIframeLoad}
@@ -67,10 +80,8 @@ const Events: React.FC = () => {
       </Box>
 
       {/* Previous Events Section */}
-      <Box
-        sx={{ textAlign: "center", marginTop: "100px", marginBottom: "50px" }}
-      >
-        <Typography variant="h4" sx={{ color: "#FFF" }}>
+      <Box sx={{ textAlign: "center", marginTop: theme.spacing(10) }}>
+        <Typography variant="h4" sx={{ color: theme.palette.text.secondary }}>
           Previous Events
         </Typography>
       </Box>
@@ -81,12 +92,11 @@ const Events: React.FC = () => {
           flexDirection: "column", // One event per row
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "80px",
-          zIndex: 1,
+          marginTop: theme.spacing(10),
           height: "auto",
           px: "4vw",
-          pb: "30px",
-          gap: 8,
+          pb: theme.spacing(8),
+          gap: theme.spacing(4),
           maxWidth: "800px",
           mx: "auto",
         }}
