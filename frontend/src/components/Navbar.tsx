@@ -63,33 +63,46 @@ const Navbar: React.FC = () => {
     <AppBar
       position="sticky"
       sx={{
-        backgroundColor: isSticky ? "black" : "transparent",
-        transition: "background-color 0.3s ease-in-out",
-        boxShadow: isSticky ? 1 : "none",
+        backgroundColor: isSticky
+          ? theme.palette.background.default
+          : "transparent",
+        transition: theme.transitions.create("background-color", {
+          duration: theme.transitions.duration.standard,
+          easing: theme.transitions.easing.easeInOut,
+        }),
+        boxShadow: isSticky ? theme.shadows[4] : "none",
       }}
     >
       <Toolbar
         sx={{
           justifyContent: "center", // Center the content within the toolbar
           position: "relative",
-          py: 2,
-          px: isMobile ? 2 : 5,
-          backgroundColor: "black",
+          py: theme.spacing(2),
+          px: isMobile ? theme.spacing(2) : theme.spacing(5),
+          backgroundColor: theme.palette.background.default,
         }}
       >
         <RouterLink
           to="/"
           style={{
             position: "absolute",
-            left: "20px",
+            left: theme.spacing(2.5),
             display: "flex",
             alignItems: "center",
           }}
         >
-          <Logo style={{ height: "40px", maxHeight: "100%", width: "auto" }} />
+          <Logo
+            style={{
+              height: "40px",
+              maxHeight: "100%",
+              width: "auto",
+            }}
+          />
         </RouterLink>
 
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+        <Box
+          sx={{ display: "flex", alignItems: "center", gap: theme.spacing(3) }}
+        >
           {!isMobile &&
             menuItems.map((item, index) => (
               <Button
@@ -98,9 +111,9 @@ const Navbar: React.FC = () => {
                 component={RouterLink}
                 to={item.link}
                 sx={{
-                  color: "primary.main",
+                  color: theme.palette.primary.main,
                   "&:hover": {
-                    color: "white",
+                    color: theme.palette.text.primary,
                   },
                 }}
               >
@@ -108,8 +121,8 @@ const Navbar: React.FC = () => {
                   variant="button"
                   sx={{
                     textTransform: "capitalize",
-                    fontWeight: 400,
-                    fontSize: "1rem",
+                    fontWeight: theme.typography.fontWeightRegular,
+                    fontSize: theme.typography.body1.fontSize,
                   }}
                 >
                   {item.text}
@@ -126,8 +139,8 @@ const Navbar: React.FC = () => {
             onClick={toggleDrawer(true)}
             sx={{
               position: "absolute", // Position the menu icon absolutely
-              right: "20px", // Align to the right side
-              color: "primary.main",
+              right: theme.spacing(2.5), // Align to the right side
+              color: theme.palette.primary.main,
             }}
           >
             <MenuIcon />
@@ -143,16 +156,16 @@ const Navbar: React.FC = () => {
           }}
           PaperProps={{
             sx: {
-              backgroundColor: "rgba(0, 0, 0, 0.7)", // Translucent black background
-              borderRadius: "20px", // Rounded corners
-              mt: 2, // Add margin from the top
-              mr: 1, // Add margin from the right
-              overflow: "hidden", // Prevents the content from spilling out
+              backgroundColor: theme.customColors.transparentSecondary,
+              borderRadius: theme.shape.borderRadius,
+              mt: theme.spacing(2),
+              mr: theme.spacing(1),
+              overflow: "hidden",
             },
           }}
         >
           <Box
-            sx={{ width: 250, height: "100%" }} // Adjust the size as needed
+            sx={{ width: 250, height: "100%" }}
             role="presentation"
             onClick={toggleDrawer(false)}
             onKeyDown={toggleDrawer(false)}
@@ -167,7 +180,10 @@ const Navbar: React.FC = () => {
                   sx={{
                     "& .MuiListItemText-root": {
                       textAlign: "center",
-                      color: "primary.main",
+                      color: theme.palette.primary.main,
+                    },
+                    "&:hover": {
+                      backgroundColor: theme.customColors.transparentPrimary,
                     },
                   }}
                 >
