@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "https://watai.ca",
+  "homepage": "http://www.watai.ca",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.0",
