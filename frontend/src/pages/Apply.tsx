@@ -47,7 +47,7 @@ const Apply: React.FC = () => {
           },
         }}
       >
-        Apply Now
+        Apply for Core Member
       </Button>
 
       <Box
