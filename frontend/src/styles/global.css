@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Lato", sans-serif;
+  position: relative; /* Ensure body is positioned for ::before to work */
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-height: 100vh; /* Ensure body takes up the full height */
+  background-color: black; /* Fallback black background */
+  color: white; /* Ensure text is white for contrast */
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  /* background-image: url("../assets/bkg.png"); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1; /* Ensure it stays behind all content */
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1; /* Ensures that the main content area takes up available space */
+}
