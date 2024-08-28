@@ -34,83 +34,98 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
-    title,
-    tpm,
-    coreMembers,
-    description,
-    collaboration,
-    collaborationLogo,
-    collaborationLink,
-  }) => {
-    return (
-      <StyledCard>
-        <CardContent>
-          {/* Project Title */}
-          <Typography
-            variant="h5"
-            component="div"
-            sx={{ fontWeight: "bold", fontSize: "30px", lineHeight: "40px", mb: 1, textAlign: "left" }}
+  title,
+  tpm,
+  coreMembers,
+  description,
+  collaboration,
+  collaborationLogo,
+  collaborationLink,
+}) => {
+  return (
+    <StyledCard>
+      <CardContent>
+        {/* Project Title */}
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{
+            fontWeight: "bold",
+            fontSize: "30px",
+            lineHeight: "40px",
+            mb: 1,
+            textAlign: "left",
+          }}
+        >
+          {title}
+        </Typography>
+
+        {/* TPM and Core Members */}
+        <Typography
+          variant="body2"
+          sx={{ fontSize: "12px", mb: 1, textAlign: "left" }}
+        >
+          <span style={{ color: "#b9b8b8" }}>TPMs:</span> <i>{tpm}</i>
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{ fontSize: "12px", mb: 2, textAlign: "left" }}
+        >
+          <span style={{ color: "#b9b8b8" }}>Core Members:</span> <i>{tpm}</i>
+        </Typography>
+
+        {/* Project Description */}
+        <Typography
+          variant="body2"
+          sx={{ fontSize: "14px", lineHeight: "1.6", textAlign: "left" }}
+        >
+          {description}
+        </Typography>
+
+        {/* Collaboration Section */}
+        {collaboration && (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: collaborationLogo ? "flex-end" : "flex-start",
+              mt: 3,
+            }}
           >
-            {title}
-          </Typography>
-  
-          {/* TPM and Core Members */}
-          <Typography variant="body2" sx={{ fontSize: "12px", mb: 1, textAlign: "left" }}>
-            <span style={{ color: "#b9b8b8" }}>TPMs:</span> <i>{tpm}</i>
-          </Typography>
-          <Typography variant="body2" sx={{ fontSize: "12px", mb: 2, textAlign: "left" }}>
-            <span style={{ color: "#b9b8b8" }}>Core Members:</span> <i>{tpm}</i>
-          </Typography>
-  
-          {/* Project Description */}
-          <Typography variant="body2" sx={{ fontSize: "14px", lineHeight: "1.6", textAlign: "left" }}>
-            {description}
-          </Typography>
-  
-          {/* Collaboration Section */}
-          {collaboration && (
-            <Box
+            <Typography
+              variant="body2"
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: collaborationLogo ? 'flex-end' : 'flex-start',
-                mt: 3,
+                fontSize: "12px",
+                marginRight: collaborationLogo ? "10px" : "0px",
               }}
             >
-              <Typography
-                variant="body2"
-                sx={{
-                  fontSize: "12px",
-                  marginRight: collaborationLogo ? "10px" : "0px",
-                }}
+              In collaboration with{" "}
+              <a
+                href={collaborationLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#FFCE1A", fontWeight: "bold" }}
               >
-                In collaboration with{" "}
-                <a
-                  href={collaborationLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "#FFCE1A", fontWeight: "bold" }}
-                >
-                  {collaboration}
-                </a>
-              </Typography>
-              {collaborationLogo && (
-                <CardMedia
-                  component="img"
-                  image={require(`../assets/collaborationLogos/${collaborationLogo}`)}
-                  alt={collaboration}
-                  sx={{
-                    width: "35px",
-                    height: "auto",
-                    display: "inline-block",
-                  }}
-                />
-              )}
-            </Box>
-          )}
-        </CardContent>
-      </StyledCard>
-    );
-  };
-  
-  export default ProjectCard;
+                {collaboration}
+              </a>
+            </Typography>
+            {collaborationLogo && (
+              <CardMedia
+                component="img"
+                image={require(`../assets/collaborationLogos/${collaborationLogo}`)}
+                alt={collaboration}
+                sx={{
+                  width: "35px",
+                  height: "auto",
+                  display: "inline-block",
+                }}
+              />
+            )}
+          </Box>
+        )}
+      </CardContent>
+    </StyledCard>
+  );
+};
+
+export default ProjectCard;
