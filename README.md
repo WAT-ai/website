@@ -8,4 +8,9 @@ This repository contains a React frontend located in the `frontend` directory.
 
 ### Deploying the React App
 
-Any changes to the main branch will automatically deploy changes to the Github pages site.
+To deploy the React app to GitHub Pages, navigate to the `frontend` directory and run:
+
+```bash
+cd frontend
+npm run deploy
+```
