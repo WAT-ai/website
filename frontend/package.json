@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "http://www.watai.ca",
+  "homepage": "http://watai.ca",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.0",
@@ -28,7 +28,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build --cname www.watai.ca"
+    "deploy": "gh-pages -d build --cname watai.ca"
   },
   "eslintConfig": {
     "extends": [
