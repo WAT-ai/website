@@ -10,7 +10,6 @@ This is the frontend code for the WAT.ai website.
 - [Usage](#usage)
 - [Technologies](#technologies)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
@@ -81,7 +80,3 @@ This is the frontend code for the WAT.ai website.
    ```
 
 5. Open a pull request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details."
