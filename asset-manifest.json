@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.b514ad47.css",
-    "main.js": "/static/js/main.6facb6b0.js",
+    "main.js": "/static/js/main.fe497fbd.js",
     "static/media/slider3.png": "/static/media/slider3.a0475f6b17052663a2a0.png",
     "static/media/companylogos.png": "/static/media/companylogos.d2c7b5b32f91e4de402f.png",
     "static/media/subeka-manokanthan.png": "/static/media/subeka-manokanthan.778a22f3d955e61b0f2f.png",
@@ -25,10 +25,10 @@
     "static/media/wat_ai_icon.svg": "/static/media/wat_ai_icon.b371ef708ef06efa901d2688b0b69693.svg",
     "index.html": "/index.html",
     "main.b514ad47.css.map": "/static/css/main.b514ad47.css.map",
-    "main.6facb6b0.js.map": "/static/js/main.6facb6b0.js.map"
+    "main.fe497fbd.js.map": "/static/js/main.fe497fbd.js.map"
   },
   "entrypoints": [
     "static/css/main.b514ad47.css",
-    "static/js/main.6facb6b0.js"
+    "static/js/main.fe497fbd.js"
   ]
 }
