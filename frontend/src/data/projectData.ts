@@ -32,6 +32,60 @@ export const ProjectData = [
     description:
       "We are developing a reinforcement learning policy-agent model that optimizes a stock portfolio for long-term capital gains. This model will trade on stocks, commodities and indexes, and have access to real-time data on individual assets, as well as various indicators. In simpler words, we’re making a model to make your Wealthsimple balance go up fast! 💰",
   },
+  {
+    title: "DelayNoMore: TTC Bus Delay Forecaster",
+    tpm: "Ted Ferris, Chow Sheng Liang, Franklin Ramirez",
+    description:
+      "The goal of this project is to develop a model that accurately predicts whether a bus route will be delayed by leveraging previous years' TTC delay data which includes time of delay, location, route, vehicle number, and a few other fields. We also plan on expanding these fields by including seasonality, weather/road conditions, and other applicable features.",
+  },
+  {
+    title:
+      "Deploying AI onboard satellite microcontrollers for the Semantic Segmentation of Methane Plumes with Hyperspectral ML Models",
+    tpm: "Liam McAlpine, Prahar Ijner, Kaxit Pandya",
+    description:
+      "This project aims to develop and deploy artificial intelligence onboard microcontrollers to identify and segment methane plumes using hyperspectral machine learning models. The goal is to enhance environmental monitoring and contribute to climate change mitigation by providing precise and real-time data on methane emissions. The STARCOP dataset provides a fully annotated dataset to be used for training and evaluation. This project will aim to develop a model on this dataset and benchmark it against existing solutions.",
+  },
+  {
+    title: "Energy-efficient AI Accelerators for Transformer Models",
+    tpm: "Madhav Malhotra",
+    description:
+      "We’ll be creating an AI accelerator (a computer chip optimised to run AI models) for transformers. Our specific goal is to optimise the energy consumption of this AI accelerator, given the rising energy demand from data centres housing computer LLM inference. Our final digital accelerator design will be manufactured using Tiny Tapeout, whereas intermediate testing will occur using industry simulation softwares and field-programmable gate arrays (FPGAs).",
+  },
+  {
+    title: "NuanceEdge",
+    tpm: "Rachel Heo, Ethan Lem, Shruti Srivatsan",
+    description:
+      "Open science is critical for a society’s development and prosperity through knowledge sharing, collaboration, public trust, and evidence-informed decision making. It is currently difficult for policymakers to access and understand latest scientific results, making it difficult to appropriately inform decision making with the latest knowledge. Our team will be looking to address this problem by developing a web-based platform, NuanceEdge, aimed at making science more accessible through extraction of key insights and better presentation using generative AI tools.",
+    collaboration: "W&W",
+  },
+  {
+    title: "Pitch AI",
+    tpm: "Amandeep Kaur, Zahra Sarayloo",
+    description:
+      "We aim to develop a generative AI tool to create movie trailers for the media industry. We’ll be using machine learning and deep learning to generate scenarios. The input parameters for the trailer generation include character ideas, plot points, and the user’s prompt. The output is a text-based trailer with characters, scene descriptions, and emotions that the user can utilize. This project aims to provide a new tool for filmmakers and creatives in the industry.",
+    collaboration: "Product Ventures",
+  },
+  {
+    title: "Reinforcement Learning for Doom (1993)",
+    tpm: "Karman Singh, Krish Sethi",
+    description:
+      "The project aims to build an RL agent that plays Doom (1993), improving upon the work from Playing FPS Games with Deep Reinforcement Learning (Lample & Chaplot 2017). They are currently implementing a DTQN model to train an agent in Vizdoom.",
+  },
+  {
+    title:
+      "Transfer learning to test decision-making generalisation in LLM agents",
+    tpm: "Mehar Shienh, Madhav Malhotra",
+    description:
+      "We’re aiming to create LLM agents that can make political decisions, like in parliamentary legislation. Our approach will attempt to train agents to make good decisions in gamified environments like Monopoly. We will then see how this training ‘generalises’ (transfers) to a real-life context using the case study of politics. The ‘product’ outcome is getting a good political decision-making agent. The ‘research’ outcome is testing the generalisation of the agent’s decision making capabilities.",
+  },
+  {
+    title:
+      "WindDM: Conditional Diffusion Models for Super-resolution of Wind Data",
+    tpm: "Daniel Bartman, Jacob Schnell",
+    description:
+      "Access to high-quality, microscale data on local wind patterns is essential for determining optimal placements of wind farms. While this has traditionally been achieved through the use of Large Eddy Simulations (LES) to super-resolve mesoscale data, these are slow and costly to produce. We propose using recent advances in diffusion models to produce scalable and accurate microscale data at a fraction of the cost of LES models. We also leverage conditional information from the domain of interest to further improve our generations.",
+    collaboration: "Veer Renewables",
+  },
 ];
 
 export const PastProjects = [
