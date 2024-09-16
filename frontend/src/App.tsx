@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import theme from "./styles/theme";
+import ReactGA from "react-ga4";
 
 import Home from "./pages/Home";
 import Team from "./pages/Team";
@@ -12,6 +13,21 @@ import Events from "./pages/Events";
 import Contact from "./pages/Contact";
 import Apply from "./pages/Apply";
 import ParticleBackground from "./components/ParticleBackground";
+
+// Initialize Google Analytics
+ReactGA.initialize("G-QF2L195HKF");
+
+// Track page views
+const PageViewTracker: React.FC = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Log the current page and search
+    ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
+  }, [location]);
+
+  return null;
+};
 
 const App: React.FC = () => {
   return (
