@@ -74,8 +74,27 @@ const ProjectsGraph: React.FC<ProjectsGraphProps> = ({
     };
   }, [initialNodes, initialEdges, options]);
 
+  const getRelatedNodes = (nodeId: string): string[] => {
+    if (!network || !edges) return [];
+
+    const connectedEdges = network.getConnectedEdges(nodeId);
+    const relatedNodes = new Set<string>();
+
+    connectedEdges.forEach((edgeId) => {
+      const edge = edges.get(edgeId);
+      if (edge) {
+        if (edge.from !== nodeId) relatedNodes.add(edge.from as string);
+        if (edge.to !== nodeId) relatedNodes.add(edge.to as string);
+      }
+    });
+
+    return Array.from(relatedNodes);
+  };
+
   const updateNodeColors = (selectedNodeId: string | null) => {
     if (!nodes) return;
+
+    const relatedNodes = selectedNodeId ? getRelatedNodes(selectedNodeId) : [];
 
     const updatedNodes = nodes.get().map((node) => {
       if (selectedNodeId === null) {
@@ -83,6 +102,9 @@ const ProjectsGraph: React.FC<ProjectsGraphProps> = ({
         return { ...node, color: node.originalColor };
       } else if (node.id === selectedNodeId) {
         // Set selected node to yellow
+        return { ...node, color: "#d8b125" };
+      } else if (relatedNodes.includes(node.id as string)) {
+        // Set related nodes to a highlighted color
         return { ...node, color: "#d8b125" };
       } else {
         // Set all other nodes to grey
