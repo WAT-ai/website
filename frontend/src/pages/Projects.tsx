@@ -8,12 +8,23 @@ import { ProjectData, PastProjects } from "../data/projectData";
 import ProjectCard from "../components/ProjectCard";
 import TechSlideshow from "../components/TechSlideshow";
 import theme from "../styles/theme";
+import ProjectsGraph from "../components/ProjectsGraph";
 
 const Projects: React.FC = () => {
   const [showPastProjects, setShowPastProjects] = useState(false);
 
   return (
     <Box sx={{ padding: "20px" }}>
+      {/* Network Graph Section */}
+      <Box sx={{ mb: 5 }}>
+        <Typography variant="h4" sx={{ textAlign: "center", mb: 3 }}>
+          Project Connections
+        </Typography>
+        <Box sx={{ height: "750px", width: "100%" }}>
+          <ProjectsGraph />
+        </Box>
+      </Box>
+
       {/* Current Projects Section */}
       <ProjectSection title="Current Projects" projects={ProjectData} />
 
@@ -39,7 +50,8 @@ const Projects: React.FC = () => {
           </Box>
         )}
       </Box>
-      {/* Section 3: Our Partners */}
+
+      {/* Our Partners Section */}
       <Box
         component="section"
         sx={{
@@ -81,9 +93,9 @@ const ProjectSection = ({
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
-        gap: 4, // Add gap between cards
+        gap: 4,
         maxWidth: "90vw",
-        mx: "auto", // Center the container horizontally
+        mx: "auto",
         paddingLeft: "10px",
         paddingRight: "10px",
         mt: "50px",
@@ -93,9 +105,9 @@ const ProjectSection = ({
         <Box
           key={index}
           sx={{
-            flex: "1 1 calc(50% - 32px)", // Allow two cards per row with space in between
-            maxWidth: "calc(50% - 32px)", // Set max width for two cards per row
-            minWidth: "300px", // Ensure the cards don't get too small
+            flex: "1 1 calc(50% - 32px)",
+            maxWidth: "calc(50% - 32px)",
+            minWidth: "300px",
           }}
         >
           <ProjectCard {...project} />
