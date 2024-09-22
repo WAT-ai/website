@@ -18,7 +18,7 @@ const Projects: React.FC = () => {
       {/* Network Graph Section */}
       <Box sx={{ mb: 5 }}>
         <Typography variant="h4" sx={{ textAlign: "center", mb: 3 }}>
-          Project Connections
+          Projects
         </Typography>
         <Box sx={{ height: "750px", width: "100%" }}>
           <ProjectsGraph />
