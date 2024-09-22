@@ -17,22 +17,25 @@ const Projects: React.FC = () => {
   return (
     <Box sx={{ padding: "20px" }}>
       {/* Network Graph Section */}
-      <Box sx={{ mb: 5 }}>
+      <Box sx={{ mb: 10, maxWidth: "1200px", margin: "0 auto" }}>
         <Typography variant="h4" sx={{ textAlign: "center", mb: 3 }}>
-          Projects Graph
+          Projects
         </Typography>
-        <Box sx={{ height: "750px", width: "100%" }}>
+        <Box sx={{ height: "650px", width: "100%" }}>
           <ProjectsGraph nodes={nodes} edges={edges} options={options} />
-          {/* <ProjectsGraph /> */}
         </Box>
       </Box>
 
       {/* Current Projects Section */}
-      <ProjectSection title="Current Projects" projects={ProjectData} />
+      <Box
+        sx={{ mt: 30, pt: 5, borderTop: `1px solid ${theme.palette.divider}` }}
+      >
+        <ProjectSection title="Current Projects" projects={ProjectData} />
+      </Box>
 
       {/* Toggle Past Projects Section */}
-      <Box sx={{ textAlign: "center", mb: 10 }}>
-        <Typography variant="h4" sx={{ textAlign: "center", mt: 5, mb: 2 }}>
+      <Box sx={{ textAlign: "center", mb: 10, mt: 10 }}>
+        <Typography variant="h4" sx={{ textAlign: "center", mb: 2 }}>
           Past Projects
         </Typography>
         <IconButton
@@ -86,7 +89,7 @@ const ProjectSection = ({
   projects: any[];
   alignTitle?: "center" | "left";
 }) => (
-  <Box sx={{ mt: 5, mb: 5 }}>
+  <Box sx={{ mb: 5 }}>
     <Typography variant="h4" sx={{ textAlign: alignTitle, mb: 5 }}>
       {title}
     </Typography>

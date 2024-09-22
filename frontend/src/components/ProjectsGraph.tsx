@@ -152,7 +152,7 @@ const ProjectsGraph: React.FC<ProjectsGraphProps> = ({
         }}
       >
         <Typography variant="h6" sx={{ color: theme.palette.text.primary }}>
-          Network Visualization
+          Projects Graph
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <Select
