@@ -2,6 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import { Network, Node, Edge, Options } from "vis-network";
 import { DataSet } from "vis-data";
 import "vis-network/styles/vis-network.css";
+import {
+  Box,
+  Typography,
+  Select,
+  MenuItem,
+  Button,
+  SelectChangeEvent,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 interface CustomNode extends Node {
   title?: string;
@@ -50,10 +59,12 @@ const NetworkVisualization: React.FC<NetworkVisualizationProps> = ({
   edges: initialEdges,
   options = {},
 }) => {
+  const theme = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const [network, setNetwork] = useState<Network | null>(null);
   const [nodes, setNodes] = useState<DataSet<Node, "id">>();
   const [edges, setEdges] = useState<DataSet<Edge, "id">>();
+  const [selectedNode, setSelectedNode] = useState<string>("");
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -166,46 +177,82 @@ const NetworkVisualization: React.FC<NetworkVisualizationProps> = ({
     nodes.update(updateArray);
   };
 
+  const handleNodeSelect = (event: SelectChangeEvent<string>) => {
+    const nodeId = event.target.value;
+    setSelectedNode(nodeId);
+    if (network && nodeId) {
+      network.selectNodes([nodeId]);
+    }
+  };
+
+  const handleResetSelection = () => {
+    setSelectedNode("");
+    if (network) {
+      network.unselectAll();
+    }
+  };
+
   return (
-    <div className="card" style={{ width: "100%" }}>
-      <div id="select-menu" className="card-header">
-        <div className="row no-gutters">
-          <div className="col-10 pb-2">
-            <select
-              className="form-select"
-              aria-label="Default select example"
-              onChange={(e) => {
-                if (network) network.selectNodes([e.target.value]);
-              }}
-              id="select-node"
-            >
-              <option value="">Select a Node by ID</option>
-              {initialNodes.map((node) => (
-                <option key={node.id} value={node.id as string}>
-                  {node.label}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="col-2 pb-2">
-            <button
-              type="button"
-              className="btn btn-primary btn-block"
-              onClick={() => {
-                if (network) network.unselectAll();
-              }}
-            >
-              Reset Selection
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
+    <Box
+      sx={{
+        width: "100%",
+        bgcolor: theme.palette.background.paper,
+        borderRadius: theme.shape.borderRadius,
+        boxShadow: theme.shadows[3],
+        overflow: "hidden",
+      }}
+    >
+      <Box
+        sx={{
+          p: 2,
+          borderBottom: `1px solid ${theme.palette.divider}`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography variant="h6" sx={{ color: theme.palette.text.primary }}>
+          Network Visualization
+        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Select
+            value={selectedNode}
+            onChange={handleNodeSelect}
+            displayEmpty
+            sx={{ minWidth: 200 }}
+          >
+            <MenuItem value="">
+              <em>Select a Node</em>
+            </MenuItem>
+            {initialNodes.map((node) => (
+              <MenuItem key={node.id} value={node.id as string}>
+                {node.label}
+              </MenuItem>
+            ))}
+          </Select>
+          <Button
+            variant="contained"
+            onClick={handleResetSelection}
+            sx={{
+              bgcolor: theme.palette.secondary.main,
+              color: theme.palette.secondary.contrastText,
+              "&:hover": {
+                bgcolor: theme.palette.secondary.dark,
+              },
+            }}
+          >
+            Reset Selection
+          </Button>
+        </Box>
+      </Box>
+      <Box
         ref={containerRef}
-        className="card-body"
-        style={{ height: "750px", background: "#222222" }}
-      ></div>
-    </div>
+        sx={{
+          height: "750px",
+          bgcolor: theme.palette.background.default,
+        }}
+      />
+    </Box>
   );
 };
 
