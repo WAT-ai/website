@@ -189,7 +189,7 @@ const ProjectsGraph: React.FC<ProjectsGraphProps> = ({
         ref={containerRef}
         sx={{
           height: "750px",
-          bgcolor: theme.palette.background.default,
+          bgcolor: "#2e2e2e",
         }}
       />
     </Box>

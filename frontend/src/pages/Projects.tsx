@@ -9,7 +9,7 @@ import ProjectCard from "../components/ProjectCard";
 import TechSlideshow from "../components/TechSlideshow";
 import theme from "../styles/theme";
 import ProjectsGraph from "../components/ProjectsGraph";
-import { edges, nodes, options } from "../data/networkVisData";
+import { edges, nodes, options } from "../data/projectsGraphData";
 
 const Projects: React.FC = () => {
   const [showPastProjects, setShowPastProjects] = useState(false);
