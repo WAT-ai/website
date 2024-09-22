@@ -8,18 +8,34 @@ import { ProjectData, PastProjects } from "../data/projectData";
 import ProjectCard from "../components/ProjectCard";
 import TechSlideshow from "../components/TechSlideshow";
 import theme from "../styles/theme";
+import ProjectsGraph from "../components/ProjectsGraph";
+import { edges, nodes, options } from "../data/projectsGraphData";
 
 const Projects: React.FC = () => {
   const [showPastProjects, setShowPastProjects] = useState(false);
 
   return (
     <Box sx={{ padding: "20px" }}>
+      {/* Network Graph Section */}
+      <Box sx={{ mb: 10, maxWidth: "1200px", margin: "0 auto" }}>
+        <Typography variant="h4" sx={{ textAlign: "center", mb: 3 }}>
+          Projects
+        </Typography>
+        <Box sx={{ height: "650px", width: "100%" }}>
+          <ProjectsGraph nodes={nodes} edges={edges} options={options} />
+        </Box>
+      </Box>
+
       {/* Current Projects Section */}
-      <ProjectSection title="Current Projects" projects={ProjectData} />
+      <Box
+        sx={{ mt: 30, pt: 5, borderTop: `1px solid ${theme.palette.divider}` }}
+      >
+        <ProjectSection title="Current Projects" projects={ProjectData} />
+      </Box>
 
       {/* Toggle Past Projects Section */}
-      <Box sx={{ textAlign: "center", mb: 10 }}>
-        <Typography variant="h4" sx={{ textAlign: "center", mt: 5, mb: 2 }}>
+      <Box sx={{ textAlign: "center", mb: 10, mt: 10 }}>
+        <Typography variant="h4" sx={{ textAlign: "center", mb: 2 }}>
           Past Projects
         </Typography>
         <IconButton
@@ -39,7 +55,8 @@ const Projects: React.FC = () => {
           </Box>
         )}
       </Box>
-      {/* Section 3: Our Partners */}
+
+      {/* Our Partners Section */}
       <Box
         component="section"
         sx={{
@@ -72,7 +89,7 @@ const ProjectSection = ({
   projects: any[];
   alignTitle?: "center" | "left";
 }) => (
-  <Box sx={{ mt: 5, mb: 5 }}>
+  <Box sx={{ mb: 5 }}>
     <Typography variant="h4" sx={{ textAlign: alignTitle, mb: 5 }}>
       {title}
     </Typography>
@@ -81,9 +98,9 @@ const ProjectSection = ({
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
-        gap: 4, // Add gap between cards
+        gap: 4,
         maxWidth: "90vw",
-        mx: "auto", // Center the container horizontally
+        mx: "auto",
         paddingLeft: "10px",
         paddingRight: "10px",
         mt: "50px",
@@ -93,9 +110,9 @@ const ProjectSection = ({
         <Box
           key={index}
           sx={{
-            flex: "1 1 calc(50% - 32px)", // Allow two cards per row with space in between
-            maxWidth: "calc(50% - 32px)", // Set max width for two cards per row
-            minWidth: "300px", // Ensure the cards don't get too small
+            flex: "1 1 calc(50% - 32px)",
+            maxWidth: "calc(50% - 32px)",
+            minWidth: "300px",
           }}
         >
           <ProjectCard {...project} />
