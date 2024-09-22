@@ -4,11 +4,18 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { ProjectData, PastProjects } from "../data/projectData";
+import {
+  ProjectData,
+  PastProjects,
+  nodesData,
+  edgesData,
+} from "../data/projectData";
 import ProjectCard from "../components/ProjectCard";
 import TechSlideshow from "../components/TechSlideshow";
 import theme from "../styles/theme";
 import ProjectsGraph from "../components/ProjectsGraph";
+import FullProjectsGraph from "../components/FullProjectsGraph";
+import { edges, nodes, options } from "../data/networkVisData";
 
 const Projects: React.FC = () => {
   const [showPastProjects, setShowPastProjects] = useState(false);
@@ -21,7 +28,8 @@ const Projects: React.FC = () => {
           Projects Graph
         </Typography>
         <Box sx={{ height: "750px", width: "100%" }}>
-          <ProjectsGraph />
+          <FullProjectsGraph nodes={nodes} edges={edges} options={options} />
+          {/* <ProjectsGraph /> */}
         </Box>
       </Box>
 

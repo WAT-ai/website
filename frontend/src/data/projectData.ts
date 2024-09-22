@@ -1,5 +1,10 @@
 import { DataSet, Node, Edge } from "vis-network/standalone";
 
+interface CustomNode extends Node {
+  title?: string;
+  hiddenLabel?: string;
+}
+
 export const ProjectData = [
   {
     title: "Audio Temporal Segmentation & Sentiment Analysis",
@@ -522,4 +527,85 @@ export const projectNodes = new DataSet<Node>([
 
 export const projectEdges = new DataSet<Edge>([
   // Your edges data here (empty in this case)
+]);
+
+export const nodesData = new DataSet<CustomNode, "id">([
+  {
+    id: "AI Chip Hardware",
+    label: "AI Chip Hardware",
+    color: "#d8b125",
+    font: { color: "white" },
+    shape: "dot",
+    title:
+      "AI Chip Hardware: \n \nWe'll be creating an AI accelerator (a computer\nchip optimised to run AI models) for transformers.\nOur specific goal is to optimise the energy\nconsumption of this AI accelerator, given the\nrising energy demand from data centres housing\ncompute for LLM inference. Our final digital\naccelerator design will be manufactured using Tiny\nTapeout, whereas intermediate testing will occur\nusing industry simulation softwares and field-\nprogrammable gate arrays (FPGAs).",
+  },
+  {
+    id: "Cybersecurity",
+    label: "Cybersecurity",
+    color: "#d8b125",
+    font: { color: "white" },
+    shape: "dot",
+    title:
+      "Cybersecurity: \n \nThe cybersecurity team was testing AI-enabled\ncyberdefences for IoT devices. We used the\nCanadian Institute for Cybersecurity's dataset to\ncompare bio-inspired AI algorithms to shallow ML\nalgorithms which can fit on common IoT devices\nlike the ESP32 NodeMCU. To learn more about the\nalgorithms we tested, see our blog or our\nconference paper.",
+  },
+  {
+    id: "Deep Learning Framework Comparison",
+    label: "Deep Learning Framework Comparison",
+    color: "#d8b125",
+    font: { color: "white" },
+    shape: "dot",
+    title:
+      "Deep Learning Framework Comparison: \n \nThe goal of our project is to benchmark\nperformance of several deep learning frameworks,\nincluding TensorFlow, PyTorch, Jax, MxNet,\nFlux.jl, and KNet.jl. We build models from scratch\nin each framework and test them on common\ndatasets.",
+  },
+  {
+    id: "Reinforcement Learning Chess Engine",
+    label: "Reinforcement Learning Chess Engine",
+    color: "#d8b125",
+    font: { color: "white" },
+    shape: "dot",
+    title:
+      "Reinforcement Learning Chess Engine: \n \nWe are developing an artificial intelligence chess\nengine based on the work of Deep Mind on their\nchess engine—Alpha-Zero. We are also iteratively\ntesting and modifying the model to improve\nperformance on hardware with much more limited\nprocessing power than what was available to Deep\nMind when creating Alpha-Zero.",
+  },
+  {
+    id: "Audio Analysis",
+    label: "Audio Analysis",
+    color: "#d8b125",
+    font: { color: "white" },
+    shape: "dot",
+    title:
+      "Audio Analysis: \n \nOur project aims to analyze audio signals to\ndetect phrases and understand emotions. We break\ndown audio into smaller parts (called phrases) and\nstudy their patterns over time. This is done using\na supervised dataset of audio with labeled phrases\nand different emotional tags corresponding to each\nphrase. By looking at the frequency and timing of\nsounds, we can predict and identify key phrases.\nWe also apply language processing methods to\nanalyze the emotional tone of the audio. This\nhelps improve technologies like phrase detection\nand language analysis in various multimedia\napplications.",
+  },
+]);
+
+export const edgesData = new DataSet<Edge, "id">([
+  {
+    from: "AI Chip Hardware",
+    to: "Cybersecurity",
+    color: "#898989",
+    value: 0.6568132434376022,
+  },
+  {
+    from: "AI Chip Hardware",
+    to: "Deep Learning Framework Comparison",
+    color: "#898989",
+    value: 0.6270103232270665,
+  },
+  {
+    from: "AI Chip Hardware",
+    to: "Reinforcement Learning Chess Engine",
+    color: "#898989",
+    value: 0.5840044543747099,
+  },
+  {
+    from: "Audio Analysis",
+    to: "Cybersecurity",
+    color: "#898989",
+    value: 0.7108286619186401,
+  },
+  {
+    from: "Audio Analysis",
+    to: "Deep Learning Framework Comparison",
+    color: "#898989",
+    value: 0.5670989622801231,
+  },
 ]);
