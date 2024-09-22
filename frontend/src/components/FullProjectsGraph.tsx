@@ -94,15 +94,12 @@ const NetworkVisualization: React.FC<NetworkVisualizationProps> = ({
     const allNodes = nodes.get({ returnType: "Object" }) as {
       [key: string]: Node;
     };
-    const allEdges = edges.get({ returnType: "Object" }) as {
-      [key: string]: Edge;
-    };
 
     // if something is selected:
     if (params.nodes.length > 0) {
       const selectedNode = params.nodes[0];
 
-      // mark all nodes as hard to read.
+      // mark all nodes as gray
       for (let nodeId in allNodes) {
         allNodes[nodeId].color = "rgba(200,200,200,0.5)";
         if ("hiddenLabel" in allNodes[nodeId]) {
@@ -112,45 +109,8 @@ const NetworkVisualization: React.FC<NetworkVisualizationProps> = ({
         }
       }
 
-      // get the second degree nodes
-      const connectedNodes = network.getConnectedNodes(selectedNode);
-      const allConnectedNodes = [];
-      for (let i = 1; i < 2; i++) {
-        for (let j = 0; j < connectedNodes.length; j++) {
-          allConnectedNodes.push(
-            ...(network.getConnectedNodes(
-              connectedNodes[j] as string
-            ) as string[])
-          );
-        }
-      }
-
-      // all second degree nodes get their own color and their label back
-      for (let i = 0; i < allConnectedNodes.length; i++) {
-        allNodes[allConnectedNodes[i]].color = "rgba(150,150,150,0.75)";
-        if ("hiddenLabel" in allNodes[allConnectedNodes[i]]) {
-          const node = allNodes[allConnectedNodes[i]] as CustomNode;
-          if (node.hiddenLabel !== undefined) {
-            node.label = node.hiddenLabel;
-            node.hiddenLabel = undefined;
-          }
-        }
-      }
-
-      // all first degree nodes get their own color and their label back
-      for (let i = 0; i < connectedNodes.length; i++) {
-        allNodes[connectedNodes[i] as string].color = undefined;
-        if ("hiddenLabel" in allNodes[connectedNodes[i] as string]) {
-          const node = allNodes[connectedNodes[i] as string] as CustomNode;
-          if (node.hiddenLabel !== undefined) {
-            node.label = node.hiddenLabel;
-            node.hiddenLabel = undefined;
-          }
-        }
-      }
-
-      // the selected node gets its own color and its label back.
-      allNodes[selectedNode].color = undefined;
+      // highlight the selected node in yellow
+      allNodes[selectedNode].color = "yellow";
       if ("hiddenLabel" in allNodes[selectedNode]) {
         const node = allNodes[selectedNode] as CustomNode;
         if (node.hiddenLabel !== undefined) {
