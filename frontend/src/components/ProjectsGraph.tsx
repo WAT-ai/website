@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Network, Options } from "vis-network/standalone";
 import { projectNodes, projectEdges } from "../data/projectData";
+import theme from "../styles/theme";
 
 interface ProjectsGraphProps {
   // add props here if needed
@@ -65,7 +66,9 @@ const ProjectsGraph: React.FC<ProjectsGraphProps> = () => {
           width: "100%",
           height: "750px",
           backgroundColor: "#222222",
-          border: "1px solid lightgray",
+          border: "3px solid",
+          borderColor: theme.palette.primary.main,
+          borderRadius: "10px",
           position: "relative",
           float: "left",
         }}
