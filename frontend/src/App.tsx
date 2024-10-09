@@ -20,7 +20,7 @@ import Apply from "./pages/Apply";
 import ParticleBackground from "./components/ParticleBackground";
 
 // Initialize Google Analytics
-ReactGA.initialize("G-QF2L195HKF");
+ReactGA.initialize("G-1LBF0CDH72");
 
 // Track page views
 const PageViewTracker: React.FC = () => {
