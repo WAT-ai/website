@@ -25,10 +25,22 @@ const Apply: React.FC = () => {
         variant="h4"
         sx={{ mb: theme.spacing(4), color: theme.palette.primary.main }}
       >
-        Apply to Join Us
+        No Roles Open Right Now
       </Typography>
+      <Typography
+        sx={{ mb: theme.spacing(4)}}
+      >
+        Please check again at a later time! Below are all the roles we have available and the rough recruiting timelines.
+      </Typography>
+      
+      {/* <Typography
+        variant="h4"
+        sx={{ mb: theme.spacing(4), color: theme.palette.primary.main }}
+      >
+        Apply to Join Us
+      </Typography> */}
 
-      <Button
+      {/* <Button
         variant="contained"
         color="primary"
         href="https://forms.gle/9MD4He84vJftQxLS7"
@@ -48,7 +60,7 @@ const Apply: React.FC = () => {
         }}
       >
         Apply for Core Member
-      </Button>
+      </Button> */}
 
       <Box
         sx={{

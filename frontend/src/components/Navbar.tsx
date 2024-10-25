@@ -55,6 +55,7 @@ const Navbar: React.FC = () => {
     { text: "Team", link: "/team" },
     { text: "Projects", link: "/projects" },
     { text: "Events", link: "/events" },
+    { text: "Blog", link: "/blog" },
     { text: "Contact", link: "/contact" },
     { text: "Apply", link: "/apply" },
   ];
