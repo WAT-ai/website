@@ -21,7 +21,7 @@ const Apply: React.FC = () => {
         textAlign: "left",
       }}
     >
-      <Typography
+      {/* <Typography
         variant="h4"
         sx={{ mb: theme.spacing(4), color: theme.palette.primary.main }}
       >
@@ -31,19 +31,19 @@ const Apply: React.FC = () => {
         sx={{ mb: theme.spacing(4)}}
       >
         Please check again at a later time! Below are all the roles we have available and the rough recruiting timelines.
-      </Typography>
+      </Typography> */}
       
-      {/* <Typography
+      <Typography
         variant="h4"
         sx={{ mb: theme.spacing(4), color: theme.palette.primary.main }}
       >
         Apply to Join Us
-      </Typography> */}
+      </Typography>
 
-      {/* <Button
+      <Button
         variant="contained"
         color="primary"
-        href="https://forms.gle/9MD4He84vJftQxLS7"
+        href="https://forms.gle/q9RTUegf1HMVWFKPA"
         target="_blank"
         sx={{
           fontWeight: "bold",
@@ -59,8 +59,8 @@ const Apply: React.FC = () => {
           },
         }}
       >
-        Apply for Core Member
-      </Button> */}
+        Apply for Technical Project Manager
+      </Button>
 
       <Box
         sx={{
