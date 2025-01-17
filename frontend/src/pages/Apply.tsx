@@ -43,7 +43,7 @@ const Apply: React.FC = () => {
       <Button
         variant="contained"
         color="primary"
-        href="https://forms.gle/q9RTUegf1HMVWFKPA"
+        href="https://docs.google.com/forms/d/1MgUhW8v6w6-lRHM6mhhXaWSWEWmHgHiWTCEXvS4G6b8/edit?usp=drivesdk"
         target="_blank"
         sx={{
           fontWeight: "bold",
@@ -59,7 +59,7 @@ const Apply: React.FC = () => {
           },
         }}
       >
-        Apply for Technical Project Manager
+        Apply for Core Member
       </Button>
 
       <Box
@@ -83,8 +83,7 @@ const Apply: React.FC = () => {
           Core Member
         </Typography>
         <Typography variant="body1" sx={{ mb: theme.spacing(2) }}>
-          Members of our small project teams. Applications open Aug 27 - Sept 17
-          2024 for F24-W25 projects.
+          Members of our small project teams. Applications open January 27, 2025.
         </Typography>
 
         <Typography
