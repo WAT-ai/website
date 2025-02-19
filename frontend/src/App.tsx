@@ -12,6 +12,9 @@ import theme from "./styles/theme";
 import ReactGA from "react-ga4";
 
 import Home from "./pages/Home";
+import Students from "./pages/Students"
+import Sponsors from "./pages/Sponsors";
+import Professors from "./pages/Professors";
 import Team from "./pages/Team";
 import Projects from "./pages/Projects";
 import Events from "./pages/Events";
@@ -38,36 +41,49 @@ const PageViewTracker: React.FC = () => {
   return null;
 };
 
+const AppContent: React.FC = () => {
+  const location = useLocation();
+  const hideParticlesOnRoutes = ['/students']; // Add any routes where you want to hide particles
+
+  const showParticles = !hideParticlesOnRoutes.includes(location.pathname);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+        position: "relative",
+      }}
+    >
+      {showParticles && <ParticleBackground />}
+
+      <Navbar />
+      <div style={{ flex: 1, position: "relative", zIndex: 1 }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/students" element={<Students />} />
+          <Route path="/sponsors" element={<Sponsors />} />
+          <Route path="/professors" element={<Professors />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/apply" element={<Apply />} />
+        </Routes>
+      </div>
+      <Footer />
+    </div>
+  );
+};
+
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "100vh",
-          position: "relative",
-        }}
-      >
-        {/* Particle Background */}
-        <ParticleBackground />
-
-        <Router>
-          <Navbar />
-          <div style={{ flex: 1, position: "relative", zIndex: 1 }}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/apply" element={<Apply />} />
-            </Routes>
-          </div>
-          <Footer />
-        </Router>
-      </div>
+      <Router>
+        <AppContent />
+      </Router>
     </ThemeProvider>
   );
 };
