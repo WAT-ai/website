@@ -144,7 +144,7 @@ const Sponsors: React.FC = () => {
                   textAlign: "center",
                   p: 2,
                   px: 4,
-                  mt: 4,
+                  mt: 6,
                   backgroundColor: "transparent",
                   color: theme.palette.primary.main,
                   borderRadius: 2,
@@ -227,7 +227,6 @@ const Sponsors: React.FC = () => {
               variant="body1" 
               sx={{ 
                 fontSize: "1.1rem",
-                mb: 8,
                 maxWidth: "800px",
                 margin: "0 auto",
                 color: theme.palette.text.primary,
@@ -246,6 +245,7 @@ const Sponsors: React.FC = () => {
                 textAlign: "center",
                 p: 2,
                 px: 4,
+                mt: 6,
                 backgroundColor: "transparent",
                 color: theme.palette.primary.main,
                 borderRadius: 2,

@@ -10,6 +10,19 @@ import StarryBackground from "../components/StarryBackground";
 import StyledBulletPoints from "../components/StyledBulletPoints";
 import ImageGallery from "../components/ImageGallery";
 
+// Import images
+import cucai1 from "../assets/studentLandingPage/cucai1.jpg"
+import cucai2 from "../assets/studentLandingPage/cucai2.jpg"
+import cucai3 from "../assets/studentLandingPage/cucai3.jpg"
+import cucai4 from "../assets/studentLandingPage/cucai4.jpg"
+import cucai5 from "../assets/studentLandingPage/cucai5.jpg"
+import cucai6 from "../assets/studentLandingPage/cucai6.jpg"
+import cucai7 from "../assets/studentLandingPage/cucai7.jpg"
+import cucai8 from "../assets/studentLandingPage/cucai8.jpg"
+import cm1 from "../assets/studentLandingPage/cm1.jpg"
+import cm2 from "../assets/studentLandingPage/cm2.jpg"
+
+
 // Enhanced star animation with multiple layers and brightness variations
 const moveStars = keyframes`
   from {
@@ -42,10 +55,14 @@ const Students: React.FC = () => {
   };
 
   const galleryImages = [
-    { src: "/gallery/event1.jpg", alt: "WAT.ai Team Event" },
-    { src: "/gallery/event2.jpg", alt: "AI Workshop" },
-    { src: "/gallery/event3.jpg", alt: "Hackathon" },
-    // Add more images as needed
+    { src: cucai1, alt: "CUCAI 24" },
+    { src: cucai2, alt: "CUCAI 24" },
+    { src: cucai3, alt: "CUCAI 24" },
+    { src: cucai4, alt: "CUCAI 24" },
+    { src: cucai5, alt: "CUCAI 24" },
+    { src: cucai6, alt: "CUCAI 24" },
+    { src: cucai7, alt: "CUCAI 24" },
+    { src: cucai8, alt: "CUCAI 24" },
   ];
 
   return (
@@ -159,13 +176,13 @@ const Students: React.FC = () => {
                 <Box sx={{ display: "flex", flexDirection: "column", alignItems: { xs: "center", md: "flex-start" } }}>
                   <Box
                     component={RouterLink}
-                    to="/apply/core"
+                    //to=""
                     sx={{
                       display: "inline-block",
                       textAlign: "center",
                       p: 2,
                       px: 4,
-                      mt: 8,
+                      mt: 16,
                       backgroundColor: "transparent",
                       color: theme.palette.primary.main,
                       borderRadius: 2,
@@ -194,16 +211,38 @@ const Students: React.FC = () => {
                 </Box>
               </Box>
             </Box>
-            <Box
-              component="img"
-              src="/default-core.jpg"
-              alt="Core Member"
-              sx={{
-                width: { xs: "100%", md: "45%" },
-                borderRadius: 2,
-                boxShadow: theme.shadows[4],
-              }}
-            />
+            <Box sx={{ 
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              gap: 4,
+              height: "100%",
+            }}>
+              <Box
+                component="img"
+                src={cm1}
+                alt="Core Member 1"
+                sx={{
+                  width: "100%",
+                  height: "300px",
+                  objectFit: "cover",
+                  borderRadius: 2,
+                  boxShadow: theme.shadows[4],
+                }}
+              />
+              <Box
+                component="img"
+                src={cm2}
+                alt="Core Member 2"
+                sx={{
+                  width: "100%",
+                  height: "300px",
+                  objectFit: "cover",
+                  borderRadius: 2,
+                  boxShadow: theme.shadows[4],
+                }}
+              />
+            </Box>
           </Box>
         </Box>
       </motion.div>
@@ -257,13 +296,13 @@ const Students: React.FC = () => {
                 <Box sx={{ display: "flex", flexDirection: "column", alignItems: { xs: "center", md: "flex-end" } }}>
                   <Box
                     component={RouterLink}
-                    to="/apply/tpm"
+                    //to=""
                     sx={{
                       display: "inline-block",
                       textAlign: "center",
                       p: 2,
                       px: 4,
-                      mt: 8,
+                      mt: 16,
                       backgroundColor: "transparent",
                       color: theme.palette.primary.main,
                       borderRadius: 2,
@@ -292,16 +331,38 @@ const Students: React.FC = () => {
                 </Box>
               </Box>
             </Box>
-            <Box
-              component="img"
-              src="/default-tpm.jpg"
-              alt="Technical Project Manager"
-              sx={{
-                width: { xs: "100%", md: "45%" },
-                borderRadius: 2,
-                boxShadow: theme.shadows[4],
-              }}
-            />
+            <Box sx={{ 
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              gap: 4,
+              height: "100%",
+            }}>
+              <Box
+                component="img"
+                src=""
+                alt="TPM 1"
+                sx={{
+                  width: "100%",
+                  height: "300px",
+                  objectFit: "cover",
+                  borderRadius: 2,
+                  boxShadow: theme.shadows[4],
+                }}
+              />
+              <Box
+                component="img"
+                src=""
+                alt="TPM 2"
+                sx={{
+                  width: "100%",
+                  height: "300px",
+                  objectFit: "cover",
+                  borderRadius: 2,
+                  boxShadow: theme.shadows[4],
+                }}
+              />
+            </Box>
           </Box>
         </Box>
       </motion.div>
