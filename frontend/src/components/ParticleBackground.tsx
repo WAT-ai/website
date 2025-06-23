@@ -27,9 +27,9 @@ const ParticleBackground: React.FC = () => {
       particleAmount: 0, // This will be dynamically set
       defaultRadius: 1.5,
       variantRadius: 1.5,
-      defaultSpeed: 0.25,
-      variantSpeed: 0.25,
-      linkRadius: 320,
+      defaultSpeed: 0.15, // Reduced speed for smoother animation
+      variantSpeed: 0.15,
+      linkRadius: 200, // Reduced link radius to decrease calculations
     };
 
     const rgb = options.lineColor.match(/\d+/g) as string[];
@@ -38,7 +38,11 @@ const ParticleBackground: React.FC = () => {
       canvas = document.getElementById("canvas") as HTMLCanvasElement;
       ctx = canvas.getContext("2d");
       resizeReset();
-      startAnimation();
+      
+      // Delay animation start to reduce initial load lag
+      setTimeout(() => {
+        startAnimation();
+      }, 100);
     };
 
     const resizeReset = () => {
@@ -47,8 +51,8 @@ const ParticleBackground: React.FC = () => {
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
 
-      // Adjust particleAmount based on screen width
-      options.particleAmount = Math.floor(w / 18); // Adjust the divisor for more or fewer particles
+      // Limit particle count for better performance
+      options.particleAmount = Math.min(Math.floor(w / 25), 60); // Cap at 60 particles max
       initialiseElements(); // Re-initialize particles on resize to adapt to new dimensions
     };
 
@@ -59,16 +63,24 @@ const ParticleBackground: React.FC = () => {
       }
     };
 
+    let animationId: number;
+    let lastTime = 0;
+    const targetFPS = 60;
+    const frameInterval = 1000 / targetFPS;
+
     const startAnimation = () => {
-      requestAnimationFrame(animationLoop);
+      animationId = requestAnimationFrame(animationLoop);
     };
 
-    const animationLoop = () => {
-      if (ctx) {
-        ctx.clearRect(0, 0, w, h);
-        drawScene();
-        requestAnimationFrame(animationLoop);
+    const animationLoop = (currentTime: number) => {
+      if (currentTime - lastTime >= frameInterval) {
+        if (ctx) {
+          ctx.clearRect(0, 0, w, h);
+          drawScene();
+        }
+        lastTime = currentTime;
       }
+      animationId = requestAnimationFrame(animationLoop);
     };
 
     const drawScene = () => {
@@ -90,17 +102,29 @@ const ParticleBackground: React.FC = () => {
     };
 
     const linkPoints = (point: Particle, hubs: Particle[]) => {
+      // Optimize by only checking nearby particles
       hubs.forEach((hub) => {
-        const distance = checkDistance(point.x, point.y, hub.x, hub.y);
-        const opacity = 1 - distance / options.linkRadius;
-        if (opacity > 0 && ctx) {
-          ctx.lineWidth = 0.5;
-          ctx.strokeStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${opacity})`;
-          ctx.beginPath();
-          ctx.moveTo(point.x, point.y);
-          ctx.lineTo(hub.x, hub.y);
-          ctx.closePath();
-          ctx.stroke();
+        if (point === hub) return; // Skip self
+        
+        const dx = point.x - hub.x;
+        const dy = point.y - hub.y;
+        
+        // Quick distance check before expensive sqrt
+        const distanceSquared = dx * dx + dy * dy;
+        const linkRadiusSquared = options.linkRadius * options.linkRadius;
+        
+        if (distanceSquared < linkRadiusSquared) {
+          const distance = Math.sqrt(distanceSquared);
+          const opacity = (1 - distance / options.linkRadius) * 0.6; // Reduced opacity
+          
+          if (ctx) {
+            ctx.lineWidth = 0.3; // Thinner lines for better performance
+            ctx.strokeStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${opacity})`;
+            ctx.beginPath();
+            ctx.moveTo(point.x, point.y);
+            ctx.lineTo(hub.x, hub.y);
+            ctx.stroke();
+          }
         }
       });
     };
@@ -159,10 +183,9 @@ const ParticleBackground: React.FC = () => {
 
       draw() {
         if (ctx) {
+          ctx.fillStyle = this.color;
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-          ctx.closePath();
-          ctx.fillStyle = this.color;
           ctx.fill();
         }
       }
@@ -173,6 +196,9 @@ const ParticleBackground: React.FC = () => {
 
     return () => {
       window.removeEventListener("resize", resizeReset);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
     };
   }, []);
 

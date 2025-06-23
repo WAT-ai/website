@@ -52,6 +52,9 @@ const Navbar: React.FC = () => {
 
   const menuItems = [
     { text: "About", link: "/" },
+    { text: "Students", link: "/students" },
+    { text: "Sponsors", link: "/sponsors" },
+    { text: "Professors", link: "/professors" },
     { text: "Team", link: "/team" },
     { text: "Projects", link: "/projects" },
     { text: "Events", link: "/events" },
