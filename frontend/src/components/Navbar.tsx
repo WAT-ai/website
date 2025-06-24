@@ -57,10 +57,8 @@ const Navbar: React.FC = () => {
     { text: "Professors", link: "/professors" },
     { text: "Team", link: "/team" },
     { text: "Projects", link: "/projects" },
-    { text: "Events", link: "/events" },
-    { text: "Blog", link: "/blog" },
+    { text: "Blog", link: "https://wataiteam.substack.com/" },
     { text: "Contact", link: "/contact" },
-    { text: "Apply", link: "/apply" },
   ];
 
   return (
@@ -112,8 +110,11 @@ const Navbar: React.FC = () => {
               <Button
                 key={index}
                 color="inherit"
-                component={RouterLink}
-                to={item.link}
+                component={item.link.startsWith('http') ? "a" : RouterLink}
+                {...(item.link.startsWith('http')
+                  ? { href: item.link }
+                  : { to: item.link }
+                )}
                 sx={{
                   color: theme.palette.primary.main,
                   "&:hover": {
@@ -179,8 +180,11 @@ const Navbar: React.FC = () => {
                 <ListItem
                   button
                   key={index}
-                  component={RouterLink}
-                  to={item.link}
+                  component={item.link.startsWith('http') ? "a" : RouterLink}
+                  {...(item.link.startsWith('http')
+                    ? { href: item.link }
+                    : { to: item.link }
+                  )}
                   sx={{
                     "& .MuiListItemText-root": {
                       textAlign: "center",

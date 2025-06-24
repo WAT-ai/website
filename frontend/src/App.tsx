@@ -17,11 +17,8 @@ import Sponsors from "./pages/Sponsors";
 import Professors from "./pages/Professors";
 import Team from "./pages/Team";
 import Projects from "./pages/Projects";
-import Events from "./pages/Events";
 import Contact from "./pages/Contact";
-import Apply from "./pages/Apply";
 import ParticleBackground from "./components/ParticleBackground";
-import Blog from "./pages/Blog";
 
 // Initialize Google Analytics
 ReactGA.initialize("G-1LBF0CDH72");
@@ -67,10 +64,7 @@ const AppContent: React.FC = () => {
           <Route path="/professors" element={<Professors />} />
           <Route path="/team" element={<Team />} />
           <Route path="/projects" element={<Projects />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/events" element={<Events />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/apply" element={<Apply />} />
         </Routes>
       </div>
       <Footer />

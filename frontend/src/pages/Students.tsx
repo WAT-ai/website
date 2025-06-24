@@ -2,13 +2,14 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
-import { Link as RouterLink } from "react-router-dom";
-import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
 import { motion } from "framer-motion";
-import { keyframes } from "@mui/system";
 import StarryBackground from "../components/StarryBackground";
 import StyledBulletPoints from "../components/StyledBulletPoints";
 import ImageGallery from "../components/ImageGallery";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import InstagramIcon from "@mui/icons-material/Instagram";
 
 // Import images
 import cucai1 from "../assets/studentLandingPage/cucai1.jpg"
@@ -22,16 +23,6 @@ import cucai8 from "../assets/studentLandingPage/cucai8.jpg"
 import cm1 from "../assets/studentLandingPage/cm1.jpg"
 import cm2 from "../assets/studentLandingPage/cm2.jpg"
 
-
-// Enhanced star animation with multiple layers and brightness variations
-const moveStars = keyframes`
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-100%);
-  }
-`;
 
 const Students: React.FC = () => {
   const theme = useTheme();
@@ -174,40 +165,65 @@ const Students: React.FC = () => {
                 }}
               >
                 <Box sx={{ display: "flex", flexDirection: "column", alignItems: { xs: "center", md: "flex-start" } }}>
-                  <Box
-                    component={RouterLink}
-                    //to=""
-                    sx={{
-                      display: "inline-block",
-                      textAlign: "center",
-                      p: 2,
-                      px: 4,
-                      mt: 16,
-                      backgroundColor: "transparent",
-                      color: theme.palette.primary.main,
-                      borderRadius: 2,
-                      textDecoration: "none",
-                      transition: "all 0.3s ease",
-                      border: `2px solid ${theme.palette.primary.main}`,
-                      "&:hover": {
-                        transform: "translateY(-4px)",
-                        boxShadow: `0 0 20px ${theme.palette.primary.main}40`,
-                        backgroundColor: `${theme.palette.primary.main}10`,
-                      },
-                    }}
-                  >
-                    Apply as Core Member
-                  </Box>
                   <Typography
+                    variant="h6"
                     sx={{
-                      color: "red",
-                      fontSize: "0.8rem",
-                      mt: 1,
+                      color: theme.palette.primary.main,
                       textAlign: "center",
+                      mt: 16,
+                      mb: 2,
                     }}
                   >
-                    (Currently Closed)
+                    Interested in applying? Check our socials for updates!
                   </Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: theme.spacing(3),
+                      mt: 2,
+                    }}
+                  >
+                    <Link
+                      href="https://twitter.com/wataiteam"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{
+                        color: theme.palette.text.primary,
+                        "&:hover": {
+                          color: theme.palette.primary.main,
+                        },
+                      }}
+                    >
+                      <TwitterIcon fontSize="large" />
+                    </Link>
+                    <Link
+                      href="https://www.linkedin.com/company/wat-ai/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{
+                        color: theme.palette.text.primary,
+                        "&:hover": {
+                          color: theme.palette.primary.main,
+                        },
+                      }}
+                    >
+                      <LinkedInIcon fontSize="large" />
+                    </Link>
+                    <Link
+                      href="https://www.instagram.com/wataiteam/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{
+                        color: theme.palette.text.primary,
+                        "&:hover": {
+                          color: theme.palette.primary.main,
+                        },
+                      }}
+                    >
+                      <InstagramIcon fontSize="large" />
+                    </Link>
+                  </Box>
                 </Box>
               </Box>
             </Box>
@@ -294,40 +310,65 @@ const Students: React.FC = () => {
                 }}
               >
                 <Box sx={{ display: "flex", flexDirection: "column", alignItems: { xs: "center", md: "flex-end" } }}>
-                  <Box
-                    component={RouterLink}
-                    //to=""
-                    sx={{
-                      display: "inline-block",
-                      textAlign: "center",
-                      p: 2,
-                      px: 4,
-                      mt: 16,
-                      backgroundColor: "transparent",
-                      color: theme.palette.primary.main,
-                      borderRadius: 2,
-                      textDecoration: "none",
-                      transition: "all 0.3s ease",
-                      border: `2px solid ${theme.palette.primary.main}`,
-                      "&:hover": {
-                        transform: "translateY(-4px)",
-                        boxShadow: `0 0 20px ${theme.palette.primary.main}40`,
-                        backgroundColor: `${theme.palette.primary.main}10`,
-                      },
-                    }}
-                  >
-                    Apply as TPM
-                  </Box>
                   <Typography
+                    variant="h6"
                     sx={{
-                      color: "red",
-                      fontSize: "0.8rem",
-                      mt: 1,
+                      color: theme.palette.primary.main,
                       textAlign: "center",
+                      mt: 16,
+                      mb: 2,
                     }}
                   >
-                    (Currently Closed)
+                    Interested in applying? Check our socials for updates!
                   </Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: theme.spacing(3),
+                      mt: 2,
+                    }}
+                  >
+                    <Link
+                      href="https://twitter.com/wataiteam"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{
+                        color: theme.palette.text.primary,
+                        "&:hover": {
+                          color: theme.palette.primary.main,
+                        },
+                      }}
+                    >
+                      <TwitterIcon fontSize="large" />
+                    </Link>
+                    <Link
+                      href="https://www.linkedin.com/company/wat-ai/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{
+                        color: theme.palette.text.primary,
+                        "&:hover": {
+                          color: theme.palette.primary.main,
+                        },
+                      }}
+                    >
+                      <LinkedInIcon fontSize="large" />
+                    </Link>
+                    <Link
+                      href="https://www.instagram.com/wataiteam/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{
+                        color: theme.palette.text.primary,
+                        "&:hover": {
+                          color: theme.palette.primary.main,
+                        },
+                      }}
+                    >
+                      <InstagramIcon fontSize="large" />
+                    </Link>
+                  </Box>
                 </Box>
               </Box>
             </Box>
