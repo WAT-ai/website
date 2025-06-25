@@ -24,66 +24,29 @@ const StarryBackground = () => {
         },
         particles: {
           number: {
-            value: 100,
-            density: {
-              enable: true,
-              value_area: 800
-            }
+            value: 60,
           },
           color: {
             value: "#ffffff"
           },
           size: {
             value: 1,
-            random: true,
-            anim: {
-              enable: true,
-              speed: 0.5,
-              size_min: 0.1,
-              sync: false
-            }
           },
           move: {
             enable: true,
-            speed: 0.2,
-            direction: "none",
-            random: true,
-            straight: false,
-            out_mode: "out",
-            bounce: false,
-          },
-          line_linked: {
-            enable: false
+            speed: 0.1,
           },
           opacity: {
-            value: 0.8,
-            random: true,
-            anim: {
-              enable: true,
-              speed: 0.5,
-              opacity_min: 0.1,
-              sync: false
-            }
+            value: 0.7,
           }
         },
         interactivity: {
-          detect_on: "canvas",
           events: {
             onhover: {
-              enable: true,
-              mode: "bubble"
+              enable: false,
             },
             resize: true
           },
-          modes: {
-            bubble: {
-              distance: 200,
-              size: 2,
-              duration: 0.4,
-              opacity: 1,
-              speed: 3
-            }
-          }
         },
         retina_detect: true
       }}
@@ -93,11 +56,11 @@ const StarryBackground = () => {
         left: 0,
         width: "100%",
         height: "100%",
-        zIndex: 1,
+        zIndex: -1,
         pointerEvents: "none"
       }}
     />
   );
 };
 
-export default StarryBackground; 
+export default StarryBackground;
