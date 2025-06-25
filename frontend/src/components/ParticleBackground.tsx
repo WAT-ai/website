@@ -46,14 +46,50 @@ const ParticleBackground: React.FC = () => {
     };
 
     const resizeReset = () => {
+      const oldW = w;
+      const oldH = h;
+      
       w = canvas.width = window.innerWidth;
       h = canvas.height = window.innerHeight * 0.5; // Adjust height based on a percentage of viewport height
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
 
+      // Scale existing particles to new dimensions
+      if (particles.length > 0 && oldW && oldH) {
+        const scaleX = w / oldW;
+        const scaleY = h / oldH;
+        
+        particles.forEach(particle => {
+          particle.x *= scaleX;
+          particle.y *= scaleY;
+          
+          // Keep particles within bounds
+          particle.x = Math.min(Math.max(particle.x, 0), w);
+          particle.y = Math.min(Math.max(particle.y, 0), h);
+        });
+      }
+
       // Limit particle count for better performance
-      options.particleAmount = Math.min(Math.floor(w / 25), 60); // Cap at 60 particles max
-      initialiseElements(); // Re-initialize particles on resize to adapt to new dimensions
+      const newParticleAmount = Math.min(Math.floor(w / 25), 60); // Cap at 60 particles max
+      
+      // Handle particle count changes without losing existing particles
+      if (particles.length === 0) {
+        // First initialization
+        options.particleAmount = newParticleAmount;
+        initialiseElements();
+      } else if (newParticleAmount > particles.length) {
+        // Add new particles to existing array
+        const particlesToAdd = newParticleAmount - particles.length;
+        for (let i = 0; i < particlesToAdd; i++) {
+          particles.push(new Particle());
+        }
+        options.particleAmount = newParticleAmount;
+      } else if (newParticleAmount < particles.length) {
+        // Remove excess particles
+        particles = particles.slice(0, newParticleAmount);
+        options.particleAmount = newParticleAmount;
+      }
+      // If newParticleAmount === particles.length, do nothing
     };
 
     const initialiseElements = () => {
