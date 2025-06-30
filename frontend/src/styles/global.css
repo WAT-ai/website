@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Inter", sans-serif;
   position: relative; /* Ensure body is positioned for ::before to work */
   margin: 0;
   padding: 0;

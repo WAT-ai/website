@@ -51,7 +51,7 @@ const HomePage: React.FC = () => {
           <Typography sx={{ mt: 4 }}>
             <Box
               component={RouterLink}
-              to="/apply"
+              to="/students"
               sx={{
                 color: theme.palette.primary.contrastText,
                 textDecoration: "none",
