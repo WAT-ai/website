@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { PERFORMANCE_CONFIG } from "../utils/performance";
 
 interface Particle {
   x: number;
@@ -27,9 +28,9 @@ const ParticleBackground: React.FC = () => {
       particleAmount: 0, // This will be dynamically set
       defaultRadius: 1.5,
       variantRadius: 1.5,
-      defaultSpeed: 0.15, // Reduced speed for smoother animation
-      variantSpeed: 0.15,
-      linkRadius: 200, // Reduced link radius to decrease calculations
+      defaultSpeed: 0.1, // Reduced speed for better performance
+      variantSpeed: 0.1,
+      linkRadius: PERFORMANCE_CONFIG.PARTICLE_LINK_RADIUS, // Use config value
     };
 
     const rgb = options.lineColor.match(/\d+/g) as string[];
@@ -69,8 +70,12 @@ const ParticleBackground: React.FC = () => {
         });
       }
 
-      // Limit particle count for better performance
-      const newParticleAmount = Math.min(Math.floor(w / 25), 60); // Cap at 60 particles max
+      // Optimize particle count based on device capability
+      const isMobile = window.innerWidth < 768;
+      const maxParticles = isMobile 
+        ? PERFORMANCE_CONFIG.PARTICLE_COUNT_MOBILE 
+        : PERFORMANCE_CONFIG.PARTICLE_COUNT_DESKTOP;
+      const newParticleAmount = Math.min(Math.floor(w / 25), maxParticles);
       
       // Handle particle count changes without losing existing particles
       if (particles.length === 0) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg";
@@ -6,7 +6,8 @@ import TechSlideshow from "../components/TechSlideshow";
 import { Link as RouterLink } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 
-const HomePage: React.FC = () => {
+// Memoize the component to prevent unnecessary re-renders
+const HomePage: React.FC = memo(() => {
   const theme = useTheme(); // Access the updated MUI theme
 
   return (
@@ -190,6 +191,6 @@ const HomePage: React.FC = () => {
       </Box>
     </Box>
   );
-};
+});
 
 export default HomePage;

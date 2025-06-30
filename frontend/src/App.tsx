@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense, lazy } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -6,19 +6,23 @@ import {
   useLocation,
 } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
+import { Box, CircularProgress } from "@mui/material";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import theme from "./styles/theme";
 import ReactGA from "react-ga4";
 
-import Home from "./pages/Home";
-import Students from "./pages/Students"
-import Sponsors from "./pages/Sponsors";
-import Professors from "./pages/Professors";
-import Team from "./pages/Team";
-import Projects from "./pages/Projects";
-import Contact from "./pages/Contact";
-import ParticleBackground from "./components/ParticleBackground";
+// Lazy load components for code splitting
+const Home = lazy(() => import("./pages/Home"));
+const Students = lazy(() => import("./pages/Students"));
+const Sponsors = lazy(() => import("./pages/Sponsors"));
+const Professors = lazy(() => import("./pages/Professors"));
+const Team = lazy(() => import("./pages/Team"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Contact = lazy(() => import("./pages/Contact"));
+
+// Remove ParticleBackground from initial bundle
+const ParticleBackground = lazy(() => import("./components/ParticleBackground"));
 
 // Initialize Google Analytics
 ReactGA.initialize("G-1LBF0CDH72");
@@ -53,19 +57,29 @@ const AppContent: React.FC = () => {
         position: "relative",
       }}
     >
-      {showParticles && <ParticleBackground />}
+      {showParticles && (
+        <Suspense fallback={null}>
+          <ParticleBackground />
+        </Suspense>
+      )}
 
       <Navbar />
       <div style={{ flex: 1, position: "relative", zIndex: 1 }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/students" element={<Students />} />
-          <Route path="/sponsors" element={<Sponsors />} />
-          <Route path="/professors" element={<Professors />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        <Suspense fallback={
+          <Box display="flex" justifyContent="center" alignItems="center" minHeight="50vh">
+            <CircularProgress />
+          </Box>
+        }>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/students" element={<Students />} />
+            <Route path="/sponsors" element={<Sponsors />} />
+            <Route path="/professors" element={<Professors />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Suspense>
       </div>
       <Footer />
     </div>
