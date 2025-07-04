@@ -15,12 +15,17 @@ import ListItemText from "@mui/material/ListItemText";
 import useTheme from "@mui/material/styles/useTheme";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+/**
+ * Navigation component with responsive design and scroll-based styling
+ * Transforms to sticky header on scroll for better UX
+ */
 const Navbar: React.FC = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
+  // Monitor scroll position to enable sticky navigation
   const handleScroll = useCallback(() => {
     if (window.scrollY > 50) {
       setIsSticky(true);
@@ -36,8 +41,10 @@ const Navbar: React.FC = () => {
     };
   }, [handleScroll]);
 
+  // Mobile drawer toggle with keyboard accessibility
   const toggleDrawer = useCallback(
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+      // Prevent drawer from closing on tab navigation
       if (
         event.type === "keydown" &&
         ((event as React.KeyboardEvent).key === "Tab" ||
@@ -50,6 +57,7 @@ const Navbar: React.FC = () => {
     []
   );
 
+  // Navigation menu structure for both desktop and mobile
   const menuItems = [
     { text: "About", link: "/" },
     { text: "Students", link: "/students" },

@@ -11,12 +11,16 @@ import theme from "../styles/theme";
 import ProjectsGraph from "../components/ProjectsGraph";
 import { edges, nodes, options } from "../data/projectsGraphData";
 
+/**
+ * Projects page showcasing current and past WAT.ai research initiatives
+ * Features interactive network graph and collapsible project sections
+ */
 const Projects: React.FC = () => {
   const [showPastProjects, setShowPastProjects] = useState(false);
 
   return (
     <Box sx={{ padding: "20px" }}>
-      {/* Network Graph Section */}
+      {/* Interactive network visualization of project relationships */}
       <Box sx={{ mb: 10, maxWidth: "1200px", margin: "0 auto" }}>
         <Typography variant="h4" sx={{ textAlign: "center", mb: 3 }}>
           Projects
@@ -26,14 +30,14 @@ const Projects: React.FC = () => {
         </Box>
       </Box>
 
-      {/* Current Projects Section */}
+      {/* Active research projects section */}
       <Box
         sx={{ mt: 30, pt: 5, borderTop: `1px solid ${theme.palette.divider}` }}
       >
         <ProjectSection title="Current Projects" projects={ProjectData} />
       </Box>
 
-      {/* Toggle Past Projects Section */}
+      {/* Collapsible historical projects section */}
       <Box sx={{ textAlign: "center", mb: 10, mt: 10 }}>
         <Typography variant="h4" sx={{ textAlign: "center", mb: 2 }}>
           Past Projects

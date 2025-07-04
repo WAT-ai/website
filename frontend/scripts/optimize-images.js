@@ -2,21 +2,22 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
+// Script to optimize images using ImageMagick for better web performance
 async function optimizeImages() {
-  console.log('🖼️  Starting image optimization...');
+  console.log('Starting image optimization...');
   
-  // Check if imagemagick is installed
+  // Verify ImageMagick installation before proceeding
   try {
     execSync('which convert', { stdio: 'ignore' });
   } catch (error) {
-    console.log('❌ ImageMagick not found. Please install it first:');
+    console.log('ImageMagick not found. Please install it first:');
     console.log('   brew install imagemagick');
     return;
   }
   
   const srcAssetsDir = path.join(__dirname, '../src/assets');
   
-  // Find all JPG and PNG files recursively
+  // Recursively find all image files in the assets directory
   function findImages(dir) {
     let images = [];
     if (!fs.existsSync(dir)) return images;
@@ -46,24 +47,25 @@ async function optimizeImages() {
     
     try {
       if (ext === '.jpg' || ext === '.jpeg') {
-        // Optimize JPEG with 80% quality and progressive
+        // JPEG: 80% quality with progressive encoding for faster loading
         execSync(`convert "${imagePath}" -quality 80 -interlace Plane "${optimizedPath}"`);
       } else if (ext === '.png') {
-        // Optimize PNG
+        // PNG: Compress while maintaining transparency
         execSync(`convert "${imagePath}" -quality 80 "${optimizedPath}"`);
       }
       
+      // Calculate and display file size reduction
       const originalSize = fs.statSync(imagePath).size;
       const optimizedSize = fs.statSync(optimizedPath).size;
       const savings = ((originalSize - optimizedSize) / originalSize * 100).toFixed(1);
       
-      console.log(`✅ ${path.basename(imagePath)} - ${savings}% smaller`);
+      console.log(`Optimized ${path.basename(imagePath)} - ${savings}% smaller`);
     } catch (error) {
-      console.log(`❌ Failed to optimize ${path.basename(imagePath)}: ${error.message}`);
+      console.log(`Failed to optimize ${path.basename(imagePath)}: ${error.message}`);
     }
   }
   
-  console.log('✅ Image optimization completed!');
+  console.log('Image optimization completed!');
 }
 
 optimizeImages().catch(console.error);

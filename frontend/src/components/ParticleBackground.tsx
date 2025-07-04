@@ -25,33 +25,42 @@ const ParticleBackground: React.FC = () => {
     const options = {
       particleColor: "rgba(150,150,150)",
       lineColor: "rgba(100,100,120)",
-      particleAmount: 0, // This will be dynamically set
+      particleAmount: 0, // Dynamically calculated based on screen size
       defaultRadius: 1.5,
       variantRadius: 1.5,
-      defaultSpeed: 0.1, // Reduced speed for better performance
+      defaultSpeed: 0.1, // Optimized for performance
       variantSpeed: 0.1,
-      linkRadius: PERFORMANCE_CONFIG.PARTICLE_LINK_RADIUS, // Use config value
+      linkRadius: PERFORMANCE_CONFIG.PARTICLE_LINK_RADIUS,
     };
 
     const rgb = options.lineColor.match(/\d+/g) as string[];
 
+    /**
+     * Initialize canvas and start particle animation
+     * Uses delayed start to avoid blocking initial page render
+     */
     const init = () => {
       canvas = document.getElementById("canvas") as HTMLCanvasElement;
       ctx = canvas.getContext("2d");
       resizeReset();
       
-      // Delay animation start to reduce initial load lag
+      // Delayed animation start to improve initial page load
       setTimeout(() => {
         startAnimation();
       }, 100);
     };
 
+    /**
+     * Handle canvas resize and particle redistribution
+     * Maintains particle density while preventing performance degradation
+     * Scales existing particles to new dimensions to avoid jarring transitions
+     */
     const resizeReset = () => {
       const oldW = w;
       const oldH = h;
       
       w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight * 0.5; // Adjust height based on a percentage of viewport height
+      h = canvas.height = window.innerHeight * 0.5; // 50% viewport height for performance
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
 

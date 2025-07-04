@@ -23,10 +23,15 @@ import cucai8 from "../assets/studentLandingPage/cucai8.jpg"
 import cm1 from "../assets/studentLandingPage/cm1.jpg"
 import cm2 from "../assets/studentLandingPage/cm2.jpg"
 
-
+/**
+ * Student engagement page with membership information and application processes
+ * Features different membership tiers, benefits, and visual galleries
+ * Uses framer-motion for smooth animations and starry background for ambiance
+ */
 const Students: React.FC = () => {
   const theme = useTheme();
 
+  // Benefits and responsibilities for core membership tier
   const coreMemberPoints = {
     title: "By becoming a Core Member, you will:",
     points: [
@@ -36,6 +41,7 @@ const Students: React.FC = () => {
     ]
   };
 
+  // Benefits and responsibilities for Technical Project Manager tier
   const tpmPoints = {
     title: "As a Technical Project Manager, you will:",
     points: [
@@ -45,6 +51,7 @@ const Students: React.FC = () => {
     ]
   };
 
+  // Images for the community gallery section
   const galleryImages = [
     { src: cucai1, alt: "CUCAI 24" },
     { src: cucai2, alt: "CUCAI 24" },
@@ -430,4 +437,4 @@ const Students: React.FC = () => {
   );
 };
 
-export default Students; 
+export default Students;

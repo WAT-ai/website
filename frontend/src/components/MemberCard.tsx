@@ -4,7 +4,12 @@ import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
 import Link from "@mui/material/Link";
 
-// Styled component for team member image
+/**
+ * Team member card component with hover effects and LinkedIn integration
+ * Displays profile image, name, role with smooth animations
+ */
+
+// Styled image component with hover glow effect
 const MemberImage = styled("img")(({ theme }) => ({
   width: "100%",
   height: "auto",
@@ -16,7 +21,10 @@ const MemberImage = styled("img")(({ theme }) => ({
   },
 }));
 
-// Member component
+/**
+ * Individual team member card with lift animation on hover
+ * Integrates with LinkedIn for external profile access
+ */
 const MemberCard = ({ name, role, imageUrl, linkedinUrl }: any) => (
   <Box
     sx={{

@@ -1,4 +1,10 @@
-// Data for Executive Team
+/**
+ * Team member data for WAT.ai organization
+ * Structured by hierarchy: Executive, Leadership, and Project Managers
+ * Images stored in src/assets/team/ directory
+ */
+
+// Executive team - founding members and VPs
 export const ExecutiveTeam = [
   {
     name: "Jarett Dewbury",
@@ -20,7 +26,7 @@ export const ExecutiveTeam = [
   },
 ];
 
-// Data for Leadership Team
+// Leadership team - directors and key stakeholders
 export const LeadershipTeam = [
   {
     name: "Trevor Yu",

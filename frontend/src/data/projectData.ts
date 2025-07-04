@@ -1,3 +1,8 @@
+/**
+ * Project data for WAT.ai research initiatives
+ * Contains project descriptions, team leads, and collaboration details
+ * Used to populate the Projects page and graph visualization
+ */
 export const ProjectData = [
   {
     title: "Audio Temporal Segmentation & Sentiment Analysis",

@@ -32,8 +32,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       sx={{
         backgroundColor: theme.palette.background.paper,
         color: theme.palette.text.primary,
-        width: "100%", // Ensure the card takes full width of the container
-        height: "100%", // Ensure the card takes full height of the container
+        width: "100%",
+        height: "100%",
         borderRadius: theme.shape.borderRadius,
         border: `3px solid ${theme.palette.primary.main}`,
         transition: "0.3s",

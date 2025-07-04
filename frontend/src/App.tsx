@@ -12,7 +12,7 @@ import Footer from "./components/Footer";
 import theme from "./styles/theme";
 import ReactGA from "react-ga4";
 
-// Lazy load components for code splitting
+// Lazy-loaded components for code splitting and performance
 const Home = lazy(() => import("./pages/Home"));
 const Students = lazy(() => import("./pages/Students"));
 const Sponsors = lazy(() => import("./pages/Sponsors"));
@@ -20,19 +20,16 @@ const Professors = lazy(() => import("./pages/Professors"));
 const Team = lazy(() => import("./pages/Team"));
 const Projects = lazy(() => import("./pages/Projects"));
 const Contact = lazy(() => import("./pages/Contact"));
-
-// Remove ParticleBackground from initial bundle
 const ParticleBackground = lazy(() => import("./components/ParticleBackground"));
 
-// Initialize Google Analytics
+// Google Analytics configuration
 ReactGA.initialize("G-1LBF0CDH72");
 
-// Track page views
+// Component to track page views for analytics
 const PageViewTracker: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Log the current page and search
     ReactGA.send({
       hitType: "pageview",
       page: location.pathname + location.search,
@@ -44,7 +41,7 @@ const PageViewTracker: React.FC = () => {
 
 const AppContent: React.FC = () => {
   const location = useLocation();
-  const hideParticlesOnRoutes = ['/students']; // Add any routes where you want to hide particles
+  const hideParticlesOnRoutes = ['/students']; // Routes where particles are disabled for performance
 
   const showParticles = !hideParticlesOnRoutes.includes(location.pathname);
 

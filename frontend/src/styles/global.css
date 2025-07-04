@@ -4,13 +4,13 @@
 
 body {
   font-family: "Inter", sans-serif;
-  position: relative; /* Ensure body is positioned for ::before to work */
+  position: relative;
   margin: 0;
   padding: 0;
   height: 100%;
-  min-height: 100vh; /* Ensure body takes up the full height */
-  background-color: black; /* Fallback black background */
-  color: white; /* Ensure text is white for contrast */
+  min-height: 100vh;
+  background-color: black; /* Fallback background */
+  color: white; /* High contrast text */
 }
 
 html {
@@ -31,7 +31,7 @@ body::before {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  z-index: -1; /* Ensure it stays behind all content */
+  z-index: -1; /* Behind all content */
 }
 
 #root {
@@ -41,5 +41,5 @@ body::before {
 }
 
 .main {
-  flex: 1; /* Ensures that the main content area takes up available space */
+  flex: 1; /* Fill available space */
 }

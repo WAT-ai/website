@@ -2,12 +2,19 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { keyframes, styled } from "@mui/system";
 
+/**
+ * Continuous horizontal slideshow of technology/company logos
+ * Creates infinite scrolling effect with fade edges for seamless appearance
+ */
+
+// Animation keyframes for infinite horizontal movement
 const moveSlideshow = keyframes`
   100% {
-    transform: translateX(-49.23333%);
+    transform: translateX(-49.23333%); /* Move half the sprite width for seamless loop */
   }
 `;
 
+// Moving background sprite container
 const Mover = styled(Box)(({ theme }) => ({
   marginTop: "-50px",
   height: "100%",
@@ -21,17 +28,19 @@ const Mover = styled(Box)(({ theme }) => ({
   animation: `${moveSlideshow} 22s linear infinite`,
 }));
 
+// Container with fade edge masks for seamless scrolling appearance
 const Slideshow = styled(Box)(({ theme }) => ({
   height: "200px",
   width: "100%",
   position: "relative",
   overflow: "hidden",
+  // Create fade masks on both edges to hide the loop transition
   "&::before, &::after": {
     content: '""',
     position: "absolute",
     top: 0,
     bottom: 0,
-    width: "15%", // Width of the fading edges
+    width: "15%", // Fade zone width
     zIndex: 1,
   },
   "&::before": {

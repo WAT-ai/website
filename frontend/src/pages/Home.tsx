@@ -6,9 +6,9 @@ import TechSlideshow from "../components/TechSlideshow";
 import { Link as RouterLink } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 
-// Memoize the component to prevent unnecessary re-renders
+// Memoized component to prevent unnecessary re-renders
 const HomePage: React.FC = memo(() => {
-  const theme = useTheme(); // Access the updated MUI theme
+  const theme = useTheme();
 
   return (
     <Box component="div">
@@ -65,7 +65,7 @@ const HomePage: React.FC = memo(() => {
                   duration: theme.transitions.duration.short,
                 }),
                 "&:hover": {
-                  backgroundColor: theme.palette.primary.light, // Adjusted for theme
+                  backgroundColor: theme.palette.primary.light,
                 },
               }}
             >

@@ -1,5 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 
+// Extend MUI theme interface to include custom colors
 declare module "@mui/material/styles" {
   interface Theme {
     customColors: {
@@ -7,7 +8,6 @@ declare module "@mui/material/styles" {
       transparentSecondary: string;
     };
   }
-  // allow configuration using `createTheme`
   interface ThemeOptions {
     customColors?: {
       transparentPrimary?: string;
@@ -19,20 +19,20 @@ declare module "@mui/material/styles" {
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#FFCE1A", // Custom yellow color
-      contrastText: "#ffffff", // White text for contrast
+      main: "#FFCE1A", // WAT.ai brand yellow
+      contrastText: "#ffffff",
     },
     secondary: {
-      main: "#1c1c1c", // Dark gray for secondary elements
+      main: "#1c1c1c", // Dark charcoal
       contrastText: "#ffffff",
     },
     background: {
-      default: "#000000", // Black background
-      paper: "#1c1c1c", // Dark gray for containers
+      default: "#000000", // Pure black
+      paper: "#1c1c1c", // Dark containers
     },
     text: {
-      primary: "#ffffff", // White text
-      secondary: "#cfcfcf", // Light gray text
+      primary: "#ffffff", // Primary text
+      secondary: "#cfcfcf", // Muted text
     },
   },
   typography: {
@@ -55,7 +55,7 @@ const theme = createTheme({
     },
   },
   shape: {
-    borderRadius: 5, // Rounded corners
+    borderRadius: 5,
   },
   components: {
     MuiButton: {
@@ -68,8 +68,8 @@ const theme = createTheme({
     },
   },
   customColors: {
-    transparentPrimary: "rgba(255, 206, 26, 0.5)", // 50% transparent primary color
-    transparentSecondary: "rgba(28, 28, 28, 0.2)", // 50% transparent secondary color
+    transparentPrimary: "rgba(255, 206, 26, 0.5)",
+    transparentSecondary: "rgba(28, 28, 28, 0.2)",
   },
 });
 
