@@ -87,6 +87,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <Router>
+        <PageViewTracker />
         <AppContent />
       </Router>
     </ThemeProvider>

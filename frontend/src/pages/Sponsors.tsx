@@ -9,7 +9,7 @@ import StyledBulletPoints from "../components/StyledBulletPoints";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
-import { SectionTitle, SubsectionTitle, BodyLarge } from "../components/Typography";
+import { SectionTitle, BodyLarge } from "../components/Typography";
 
 const Sponsors: React.FC = () => {
   const theme = useTheme();

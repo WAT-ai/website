@@ -1,7 +1,6 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Link as RouterLink } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
