@@ -6,13 +6,14 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { ExecutiveTeam, LeadershipTeam, Alumni } from "../data/teamData";
 import MemberCard from "../components/MemberCard";
+import { SectionTitle, SubsectionTitle } from "../components/Typography";
 
 // Team section component
 const TeamSection = ({ title, members }: any) => (
   <Box sx={{ mt: 5, mb: 5 }}>
-    <Typography variant="h4" sx={{ textAlign: "center", mb: 5 }}>
+    <SubsectionTitle sx={{ textAlign: "center", mb: 5 }}>
       {title}
-    </Typography>
+    </SubsectionTitle>
     <Box
       sx={{
         display: "flex",
@@ -60,13 +61,13 @@ const Team: React.FC = () => {
 
       {/* Member Success Section */}
       <Box sx={{ textAlign: "center", mt: -12, mb: 5 }}>
-        <Typography variant="h4" sx={{ color: "#FFF", mb: 2, mt: 20 }}>
+        <SectionTitle sx={{ mb: 2, mt: 20 }}>
           Member Success:
-        </Typography>
-        <Typography variant="h5" sx={{ color: "grey", mb: 4 }}>
+        </SectionTitle>
+        <SubsectionTitle sx={{ color: "grey", mb: 4 }}>
           Showcasing The Organizations <br />
           Where Our Members Have Landed
-        </Typography>
+        </SubsectionTitle>
         <Box
           component="img"
           src={require("../assets/companylogos.png")}

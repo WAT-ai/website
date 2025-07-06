@@ -9,6 +9,7 @@ import StyledBulletPoints from "../components/StyledBulletPoints";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import { SectionTitle, SubsectionTitle, BodyLarge } from "../components/Typography";
 
 const Sponsors: React.FC = () => {
   const theme = useTheme();
@@ -61,27 +62,13 @@ const Sponsors: React.FC = () => {
               zIndex: 1,
             }}
           >
-            <Typography 
-              variant="h2" 
-              sx={{ 
-                mb: 4,
-                color: theme.palette.primary.main,
-              }}
-            >
+            <SectionTitle>
               Our Impact in AI Innovation
-            </Typography>
-            <Typography 
-              variant="body1" 
-              sx={{ 
-                fontSize: "1.3rem",
-                lineHeight: 1.8,
-                color: theme.palette.text.primary,
-                mb: 4,
-              }}
-            >
+            </SectionTitle>
+            <BodyLarge>
               WAT.ai has successfully completed over 20 cutting-edge AI projects,
               collaborating with industry leaders and academic partners.
-            </Typography>
+            </BodyLarge>
             <StyledBulletPoints {...projectPoints} />
           </Box>
         </Box>

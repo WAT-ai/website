@@ -5,6 +5,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { useTheme } from "@mui/material/styles";
+import { CardTitle, BodyText, Caption } from "./Typography";
 
 interface ProjectCardProps {
   title: string;
@@ -50,44 +51,27 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     >
       <CardContent sx={{ textAlign: "left" }}>
         {/* Project Title */}
-        <Typography
-          variant="h5"
-          sx={{
-            fontWeight: theme.typography.h5.fontWeight,
-            fontSize: "1.875rem",
-            lineHeight: "2.5rem",
-            mb: theme.spacing(1),
-          }}
-        >
+        <CardTitle>
           {title}
-        </Typography>
+        </CardTitle>
         {/* TPM */}
-        <Typography
-          variant="body2"
-          sx={{ fontSize: "1rem", mb: theme.spacing(1) }}
-        >
+        <Caption sx={{ mb: theme.spacing(1) }}>
           <span style={{ color: theme.palette.text.secondary }}>TPMs:</span>{" "}
           <i>{tpm}</i>
-        </Typography>
+        </Caption>
         {/* Core Members (if available) */}
         {coreMembers && (
-          <Typography
-            variant="body2"
-            sx={{ fontSize: "1rem", mb: theme.spacing(2) }}
-          >
+          <Caption sx={{ mb: theme.spacing(2) }}>
             <span style={{ color: theme.palette.text.secondary }}>
               Core Members:
             </span>{" "}
             <i>{coreMembers}</i>
-          </Typography>
+          </Caption>
         )}
         {/* Project Description */}
-        <Typography
-          variant="body2"
-          sx={{ fontSize: "0.875rem", lineHeight: "1.6" }}
-        >
+        <BodyText sx={{ lineHeight: "1.6" }}>
           {description}
-        </Typography>
+        </BodyText>
       </CardContent>
 
       {/* Collaboration Section */}
@@ -100,11 +84,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             mt: theme.spacing(3),
           }}
         >
-          <Typography
-            variant="body2"
+          <Caption
             sx={{
-              fontSize: "1rem",
-              color: theme.palette.text.secondary,
               marginRight: collaborationLogo ? theme.spacing(1) : "0px",
             }}
           >
@@ -117,7 +98,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             >
               {collaboration}
             </a>
-          </Typography>
+          </Caption>
           {collaborationLogo && (
             <CardMedia
               component="img"

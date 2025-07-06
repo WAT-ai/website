@@ -8,6 +8,7 @@ import { useTheme } from "@mui/material/styles";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import { SectionTitle, BodyText } from "../components/Typography";
 
 const Contact: React.FC = () => {
   const theme = useTheme();
@@ -37,12 +38,9 @@ const Contact: React.FC = () => {
         }}
       >
         <CardContent sx={{ textAlign: "center" }}>
-          <Typography
-            variant="h4"
-            sx={{ mb: theme.spacing(3), color: theme.palette.primary.main }}
-          >
+          <SectionTitle sx={{ mb: theme.spacing(3) }}>
             Contact Us
-          </Typography>
+          </SectionTitle>
 
           <Box
             sx={{
@@ -50,13 +48,12 @@ const Contact: React.FC = () => {
               marginBottom: theme.spacing(6),
             }}
           >
-            <Typography variant="body1" sx={{ mb: theme.spacing(2) }}>
+            <BodyText sx={{ mb: theme.spacing(2) }}>
               Located at 200 University Avenue West, <br />
               University of Waterloo, ON
-            </Typography>
+            </BodyText>
 
-            <Typography
-              variant="body1"
+            <BodyText
               sx={{
                 mb: theme.spacing(2),
                 color: theme.palette.text.secondary,
@@ -75,7 +72,7 @@ const Contact: React.FC = () => {
               >
                 contact@watai.ca
               </Link>
-            </Typography>
+            </BodyText>
 
             <Typography variant="body1" sx={{ mb: theme.spacing(2) }}>
               We’re always open to new ideas, collaborations, and opportunities.

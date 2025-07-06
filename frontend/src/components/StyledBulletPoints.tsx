@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
+import { SubsectionTitle, BodyText } from "./Typography";
 
 interface BulletPointsProps {
   title: string;
@@ -12,16 +13,17 @@ const StyledBulletPoints = ({ title, points, align = 'left' }: BulletPointsProps
 
   return (
     <Box sx={{ textAlign: align }}>
-      <Typography
+      <SubsectionTitle
         variant="h6"
         sx={{
           mb: 3,
           color: theme.palette.primary.main,
           fontWeight: 600,
+          fontSize: "1.25rem",
         }}
       >
         {title}
-      </Typography>
+      </SubsectionTitle>
       <Box
         component="ul"
         sx={{
@@ -56,16 +58,16 @@ const StyledBulletPoints = ({ title, points, align = 'left' }: BulletPointsProps
             >
               •
             </Box>
-            <Typography
-              variant="body1"
+            <BodyText
               sx={{
                 fontSize: "1.1rem",
                 color: theme.palette.text.primary,
                 lineHeight: 1.6,
+                mb: 0,
               }}
             >
               {point}
-            </Typography>
+            </BodyText>
           </Box>
         ))}
       </Box>

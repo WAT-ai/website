@@ -1,19 +1,6 @@
 import React, { useEffect } from "react";
 import { PERFORMANCE_CONFIG } from "../utils/performance";
 
-interface Particle {
-  x: number;
-  y: number;
-  color: string;
-  radius: number;
-  speed: number;
-  directionAngle: number;
-  vector: { x: number; y: number };
-  update: () => void;
-  draw: () => void;
-  border: () => void;
-}
-
 const ParticleBackground: React.FC = () => {
   useEffect(() => {
     let w: number,
@@ -60,7 +47,7 @@ const ParticleBackground: React.FC = () => {
       const oldH = h;
       
       w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight * 0.5; // 50% viewport height for performance
+      h = canvas.height = window.innerHeight * 0.9; // 80% viewport height for extended coverage
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
 
@@ -179,16 +166,7 @@ const ParticleBackground: React.FC = () => {
       });
     };
 
-    const checkDistance = (
-      x1: number,
-      y1: number,
-      x2: number,
-      y2: number
-    ): number => {
-      return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-    };
-
-    class Particle implements Particle {
+    class Particle {
       x: number;
       y: number;
       color: string;
@@ -257,12 +235,13 @@ const ParticleBackground: React.FC = () => {
       id="canvas"
       style={{
         position: "absolute",
-        top: "150px",
-        left: "50%",
-        transform: "translateX(-50%)",
+        top: "0px",
+        left: "0",
+        width: "100%",
         maxWidth: "100%",
         zIndex: -1,
         display: "block",
+        pointerEvents: "none",
       }}
     />
   );

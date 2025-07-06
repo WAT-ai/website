@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
 import Link from "@mui/material/Link";
+import { CardTitle, Caption } from "./Typography";
 
 /**
  * Team member card component with hover effects and LinkedIn integration
@@ -50,13 +51,12 @@ const MemberCard = ({ name, role, imageUrl, linkedinUrl }: any) => (
         alt={name}
       />
     </Link>
-    <Typography
-      variant="h6"
-      sx={{ fontSize: "18px", fontWeight: "bold", lineHeight: "20px" }}
+    <CardTitle
+      sx={{ fontSize: "18px", fontWeight: "bold", lineHeight: "20px", mb: 0.5 }}
     >
       {name}
-    </Typography>
-    <Typography variant="body2">{role}</Typography>
+    </CardTitle>
+    <Caption sx={{ mb: 0 }}>{role}</Caption>
   </Box>
 );
 

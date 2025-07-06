@@ -10,6 +10,7 @@ import ImageGallery from "../components/ImageGallery";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import { SectionTitle, SubsectionTitle, BodyLarge } from "../components/Typography";
 
 // Import images
 import cucai1 from "../assets/studentLandingPage/cucai1.jpg"
@@ -102,28 +103,15 @@ const Students: React.FC = () => {
               zIndex: 1,
             }}
           >
-            <Typography 
-              variant="h2" 
-              sx={{ 
-                mb: 4,
-                color: theme.palette.primary.main,
-              }}
-            >
+            <SectionTitle>
               Why Join WAT.ai?
-            </Typography>
-            <Typography 
-              variant="body1" 
-              sx={{ 
-                fontSize: "1.3rem",
-                lineHeight: 1.8,
-                color: theme.palette.text.primary,
-              }}
-            >
+            </SectionTitle>
+            <BodyLarge>
               At WAT.ai, you'll have unprecedented access to cutting-edge AI projects and research
               opportunities. Our strong connections with faculty members often lead to research
               assistant positions for our members. Work alongside industry partners, develop
               practical skills, and be part of groundbreaking AI initiatives.
-            </Typography>
+            </BodyLarge>
           </Box>
         </Box>
       </motion.div>
@@ -157,9 +145,9 @@ const Students: React.FC = () => {
               flex: 1,
               textAlign: "left",
             }}>
-              <Typography variant="h3" sx={{ mb: 4 }}>
+              <SubsectionTitle sx={{ mb: 4 }}>
                 Core Member
-              </Typography>
+              </SubsectionTitle>
               <StyledBulletPoints {...coreMemberPoints} align="left" />
               <Box
                 sx={{
@@ -294,15 +282,9 @@ const Students: React.FC = () => {
                 textAlign: { xs: "left", md: "right" }
               }}
             >
-              <Typography 
-                variant="h3" 
-                sx={{ 
-                  mb: 4,
-                  color: theme.palette.primary.main,
-                }}
-              >
+              <SubsectionTitle>
                 Technical Project Manager
-              </Typography>
+              </SubsectionTitle>
               <StyledBulletPoints {...tpmPoints} align="right" />
               <Box
                 sx={{
@@ -420,16 +402,9 @@ const Students: React.FC = () => {
             minHeight: "60vh",
           }}
         >
-          <Typography
-            variant="h3"
-            sx={{
-              textAlign: "center",
-              mb: 6,
-              color: theme.palette.primary.main,
-            }}
-          >
+          <SectionTitle>
             Our Community
-          </Typography>
+          </SectionTitle>
           <ImageGallery images={galleryImages} />
         </Box>
       </motion.div>
