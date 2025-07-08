@@ -89,10 +89,10 @@ const Students: React.FC = () => {
   ];
 
   const stats = [
-    { number: "100+", label: "Active student members" },
-    { number: "50+", label: "AI projects completed" },
-    { number: "85%", label: "Members land AI internships" },
-    { number: "20+", label: "Industry partnerships" },
+    { number: "XX+", label: "Active student members" },
+    { number: "XX+", label: "AI projects completed" },
+    { number: "XX%", label: "Members land AI internships" },
+    { number: "XX+", label: "Industry partnerships" },
   ];
 
   const faqItems = [
