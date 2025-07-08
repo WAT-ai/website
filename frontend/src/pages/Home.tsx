@@ -33,7 +33,7 @@ const HomePage: React.FC = memo(() => {
       {/* Hero Section */}
       <UnifiedSection
         backgroundColor="transparent"
-        minHeight="80vh"
+        minHeight="90vh"
         centerContent
         padding={8}
       >
