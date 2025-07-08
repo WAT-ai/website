@@ -14,6 +14,8 @@ import UnifiedSection from "../components/UnifiedSection";
 import UnifiedCard from "../components/UnifiedCard";
 import UnifiedHero from "../components/UnifiedHero";
 import UnifiedButton from "../components/UnifiedButton";
+import UnifiedStats from "../components/UnifiedStats";
+import FAQ from "../components/FAQ";
 
 // Students page: Info for student members, roles, and joining. Update sections for new roles or benefits.
 
@@ -83,6 +85,48 @@ const Students: React.FC = () => {
       icon: <InstagramIcon fontSize="large" />,
       href: "https://www.instagram.com/wataiteam/",
       label: "Instagram"
+    }
+  ];
+
+  const stats = [
+    { number: "100+", label: "Active student members" },
+    { number: "50+", label: "AI projects completed" },
+    { number: "85%", label: "Members land AI internships" },
+    { number: "20+", label: "Industry partnerships" },
+  ];
+
+  const faqItems = [
+    {
+      question: "Lorem ipsum dolor sit amet consectetur?",
+      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+      question: "Duis aute irure dolor in reprehenderit?",
+      answer: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    {
+      question: "Sed ut perspiciatis unde omnis iste?",
+      answer: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+    },
+    {
+      question: "Nemo enim ipsam voluptatem quia?",
+      answer: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+    },
+    {
+      question: "At vero eos et accusamus et iusto?",
+      answer: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."
+    },
+    {
+      question: "Temporibus autem quibusdam et aut?",
+      answer: "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae."
+    },
+    {
+      question: "Nam libero tempore cum soluta nobis?",
+      answer: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus."
+    },
+    {
+      question: "Itaque earum rerum hic tenetur?",
+      answer: "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
     }
   ];
 
@@ -321,6 +365,30 @@ const Students: React.FC = () => {
             <ImageGallery images={galleryImages} />
           </Box>
         </Box>
+      </UnifiedSection>
+
+      {/* Stats Section */}
+      <UnifiedSection
+        backgroundColor="paper"
+        minHeight="60vh"
+        centerContent
+      >
+        <Box sx={{ textAlign: "center" }}>
+          <SubsectionTitle sx={{ mb: 8 }}>
+            Our Community Impact
+          </SubsectionTitle>
+          
+          <UnifiedStats stats={stats} />
+        </Box>
+      </UnifiedSection>
+
+      {/* FAQ Section */}
+      <UnifiedSection
+        backgroundColor="transparent"
+        minHeight="80vh"
+        centerContent
+      >
+        <FAQ items={faqItems} title="Student FAQ" />
       </UnifiedSection>
 
       {/* CTA Section */}

@@ -11,6 +11,7 @@ import UnifiedCard from "../components/UnifiedCard";
 import UnifiedHero from "../components/UnifiedHero";
 import UnifiedButton from "../components/UnifiedButton";
 import UnifiedStats from "../components/UnifiedStats";
+import FAQ from "../components/FAQ";
 
 // Partnerships page: For companies/professors to connect with students.
 // Add new FAQ, skills, or partner types by editing the arrays below.
@@ -87,23 +88,31 @@ const Partnerships: React.FC = () => {
   const faqs = [
     {
       question: "Who can partner with WAT.AI?",
-      answer: "Any company, organization, or professor who wants to work with students on AI-related work."
+      answer: "Any company, organization, or professor who wants to work with students on AI-related work. We welcome partnerships with startups, established companies, academic institutions, and research organizations."
     },
     {
       question: "Does it cost anything?",
-      answer: "Students typically must be paid for standard co-op or research positions."
+      answer: "Students typically must be paid for standard co-op or research positions. However, we're flexible and can discuss arrangements that work for both parties, including unpaid research opportunities for academic credit."
     },
     {
       question: "How do you decide which students to recommend?",
-      answer: "We take a pool of our top students with a proven track record of success, and match you with those whose skills, interests, and availability align with your projects."
+      answer: "We take a pool of our top students with a proven track record of success, and match you with those whose skills, interests, and availability align with your projects. We consider technical skills, project experience, and individual career goals."
     },
     {
       question: "Can I post more than one opportunity?",
-      answer: "Yes, feel free to send us details of as many roles or projects as you like."
+      answer: "Yes, feel free to send us details of as many roles or projects as you like. We can help you find the right students for multiple positions across different projects or departments."
     },
     {
       question: "When can students start?",
-      answer: "That depends on each student's individual schedule, let us know your timeline and we'll work with you."
+      answer: "That depends on each student's individual schedule, let us know your timeline and we'll work with you. We typically have students available for summer internships, 4-month co-ops, and part-time positions during the academic year."
+    },
+    {
+      question: "What types of projects do students work on?",
+      answer: "Our students work on a wide range of AI projects including machine learning model development, computer vision applications, natural language processing, data analysis, and AI product development. We can match students to projects based on their expertise and interests."
+    },
+    {
+      question: "How long is the typical collaboration?",
+      answer: "Project durations vary based on your needs. We support short-term projects (1-3 months), standard co-op terms (4-8 months), and longer research collaborations (6-12 months). We're flexible and can accommodate your specific timeline requirements."
     }
   ];
 
@@ -292,29 +301,9 @@ const Partnerships: React.FC = () => {
       <UnifiedSection
         backgroundColor="transparent"
         minHeight="80vh"
+        centerContent
       >
-        <Box sx={{ maxWidth: "1000px", margin: "0 auto" }}>
-          <SubsectionTitle sx={{ textAlign: "center", mb: 8 }}>
-            Frequently Asked Questions
-          </SubsectionTitle>
-          
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
-            {faqs.map((faq, index) => (
-              <UnifiedCard
-                key={index}
-                variant="subtle"
-                padding={4}
-              >
-                <Typography variant="h6" sx={{ color: theme.palette.primary.main, mb: 2 }}>
-                  {faq.question}
-                </Typography>
-                <BodyText>
-                  {faq.answer}
-                </BodyText>
-              </UnifiedCard>
-            ))}
-          </Box>
-        </Box>
+        <FAQ items={faqs} title="Partnership FAQ" />
       </UnifiedSection>
 
       {/* CTA Section */}
