@@ -1,3 +1,5 @@
+// Custom typography components for consistent style.
+// Use for titles, subtitles, body text. Edit styles for branding.
 import React from 'react';
 import { Typography as MuiTypography, TypographyProps } from '@mui/material';
 import { styled } from '@mui/material/styles';

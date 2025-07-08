@@ -3,6 +3,10 @@
  * Contains project descriptions, team leads, and collaboration details
  * Used to populate the Projects page and graph visualization
  */
+// Project data array for research/project listings.
+// Add new projects as objects. Used by Projects page and graph.
+// For new fields, update each project object and consumers.
+
 export const ProjectData = [
   {
     title: "Audio Temporal Segmentation & Sentiment Analysis",

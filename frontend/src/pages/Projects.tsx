@@ -23,10 +23,9 @@ import { NewProjectData, PastProjects } from "../data/newProjectData";
 import ModernProjectCard from "../components/ModernProjectCard";
 import ProjectCard from "../components/ProjectCard";
 
-/**
- * Redesigned Projects page showcasing WAT.ai research initiatives
- * Features modern card design, responsive layout, and enhanced UX
- */
+// Projects page: Lists current and past projects.
+// Add new projects in newProjectData or PastProjects arrays.
+// Adjust layout, cards, or stats as needed for your use case.
 const Projects: React.FC = () => {
   const theme = useTheme();
   const [showPastProjects, setShowPastProjects] = useState(false);

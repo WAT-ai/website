@@ -1,3 +1,7 @@
+// Image optimization script for all images in src/assets.
+// Uses ImageMagick. Run with `node optimize-images.js`.
+// Adds _optimized to output files. Edit quality or formats as needed.
+
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');

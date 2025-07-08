@@ -9,7 +9,9 @@ import UnifiedCard from "../components/UnifiedCard";
 import UnifiedButton from "../components/UnifiedButton";
 import UnifiedStats from "../components/UnifiedStats";
 
-// Memoized component to prevent unnecessary re-renders
+// Home page: Main landing and overview. Edit sections to update intro, stats, or partners.
+// To change the hero, update the HeroTitle and Logo. For stats, edit the stats array.
+// Add or remove sections as needed for your org.
 const HomePage: React.FC = memo(() => {
   const theme = useTheme();
 

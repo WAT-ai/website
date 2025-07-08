@@ -15,6 +15,8 @@ import UnifiedCard from "../components/UnifiedCard";
 import UnifiedHero from "../components/UnifiedHero";
 import UnifiedButton from "../components/UnifiedButton";
 
+// Students page: Info for student members, roles, and joining. Update sections for new roles or benefits.
+
 // Import images
 import cucai1 from "../assets/studentLandingPage/cucai1.jpg"
 import cucai2 from "../assets/studentLandingPage/cucai2.jpg"

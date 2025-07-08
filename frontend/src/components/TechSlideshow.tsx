@@ -1,3 +1,5 @@
+// Animated slideshow of logos. Edit background image or animation speed.
+// Used for partner/tech sections. To add logos, update the sprite image.
 import React from "react";
 import Box from "@mui/material/Box";
 import { keyframes, styled } from "@mui/system";

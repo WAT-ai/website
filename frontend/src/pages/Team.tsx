@@ -10,7 +10,9 @@ import { SectionTitle, SubsectionTitle } from "../components/Typography";
 import ParticleBackground from "../components/ParticleBackground";
 import { useTheme } from "@mui/material/styles";
 
-// Team section component
+// Team page: Lists team members and alumni. Add or update members in teamData.
+// To add new sections, create a new TeamSection. For alumni, update the Alumni array.
+// For design tweaks, adjust the Box and MemberCard props.
 const TeamSection = ({ title, members }: any) => (
   <Box sx={{ mt: 5, mb: 5 }}>
     <SubsectionTitle sx={{ textAlign: "center", mb: 5 }}>

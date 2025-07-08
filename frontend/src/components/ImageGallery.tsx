@@ -1,3 +1,5 @@
+// Image gallery with slider. Pass images array as props.
+// Edit settings for slidesToShow, autoplay, or style.
 import React from "react";
 import Slider from "react-slick";
 import Box from "@mui/material/Box";

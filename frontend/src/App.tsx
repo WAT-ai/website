@@ -1,15 +1,6 @@
-/**
- * Main Application Component
- * 
- * This component sets up the routing, theme provider, analytics tracking,
- * and global layout structure for the WAT.ai website.
- * 
- * Features:
- * - Lazy loading for performance optimization
- * - Google Analytics integration
- * - Global particle background
- * - Responsive layout with navbar and footer
- */
+// Main app entry point. Sets up theme, routing, analytics, and layout.
+// Edit to add new routes, providers, or global UI. See AppContent for layout.
+// For analytics, update ReactGA config. For new pages, add to Routes.
 
 import React, { useEffect, Suspense, lazy } from "react";
 import {
@@ -24,6 +15,7 @@ import { Box, CircularProgress } from "@mui/material";
 // Core components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import theme from "./styles/theme";
 
 // Analytics
@@ -123,6 +115,7 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <Router>
         <PageViewTracker />
+        <ScrollToTop />
         <AppContent />
       </Router>
     </ThemeProvider>

@@ -1,3 +1,5 @@
+// Unified card for consistent container style. Use for sections, cards, or highlights.
+// Edit variant, padding, or borderRadius for new styles.
 import React from 'react';
 import { Box, useTheme } from '@mui/material';
 

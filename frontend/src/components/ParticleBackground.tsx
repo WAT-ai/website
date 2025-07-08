@@ -1,3 +1,5 @@
+// Animated particle background for visual effect.
+// Edit options for color, speed, or density. Used on landing/team pages.
 import React, { useEffect, useRef } from "react";
 import { PERFORMANCE_CONFIG } from "../utils/performance";
 

@@ -9,10 +9,9 @@ import EmailIcon from "@mui/icons-material/Email";
 import { SectionTitle, BodyText, BodyLarge } from "../components/Typography";
 import UnifiedCard from "../components/UnifiedCard";
 
-/**
- * Contact page - single screen layout without scrolling
- * Displays contact information and social media links in a compact format
- */
+// Contact page: Shows contact info and social links. Update or extend as needed.
+// To add new contact methods, add a new UnifiedCard below.
+// For design changes, edit the Box and UnifiedCard props.
 const Contact: React.FC = () => {
   const theme = useTheme();
 

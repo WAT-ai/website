@@ -12,6 +12,9 @@ import UnifiedHero from "../components/UnifiedHero";
 import UnifiedButton from "../components/UnifiedButton";
 import UnifiedStats from "../components/UnifiedStats";
 
+// Partnerships page: For companies/professors to connect with students.
+// Add new FAQ, skills, or partner types by editing the arrays below.
+// Adjust layout or add sections as your needs grow.
 const Partnerships: React.FC = () => {
   const theme = useTheme();
 

@@ -1,3 +1,5 @@
+// Interactive graph for visualizing project relationships.
+// Pass nodes/edges as props. Edit options for layout or style.
 import React, { useEffect, useRef, useState } from "react";
 import { Network, Node, Edge, Options, Color } from "vis-network";
 import { DataSet } from "vis-data";

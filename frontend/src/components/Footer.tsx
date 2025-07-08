@@ -1,3 +1,5 @@
+// Footer with logo, contact, and social links. Edit for new links or style.
+// Used on all pages. To add sections, update Box layout.
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";

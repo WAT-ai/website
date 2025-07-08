@@ -1,3 +1,5 @@
+// Lazy-loads images for performance. Pass src/alt and optional size.
+// Edit for custom placeholder or error handling.
 import React, { useState, useRef, useCallback } from 'react';
 import { Box, Skeleton } from '@mui/material';
 

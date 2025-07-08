@@ -96,6 +96,10 @@ export const NewProjectData: ProjectData[] = [
   }
 ];
 
+// New project data for redesigned Projects page.
+// Add projects as objects in NewProjectData. Update interfaces for new fields.
+// Used by ModernProjectCard and Projects page.
+
 // Keep the old project data for past projects
 export const PastProjects = [
   {

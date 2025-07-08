@@ -1,3 +1,6 @@
+// Project card for modern projects. Displays title, team, links, and tags.
+// To add new fields, update the ModernProjectCardProps interface and usage.
+// For design changes, edit the Card and Box props.
 import React from "react";
 import {
   Box,

@@ -1,3 +1,5 @@
+// Card for displaying a team member. Shows image, name, role, LinkedIn.
+// To add new fields, update props and card layout.
 import React from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/system";

@@ -1,3 +1,5 @@
+// Main navigation bar. Edit links or add menu items as needed.
+// For custom branding, update logo or style props.
 import React, { useState, useEffect, useCallback } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";

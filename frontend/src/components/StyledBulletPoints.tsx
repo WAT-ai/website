@@ -1,3 +1,5 @@
+// Styled bullet points with title and list. Pass title/points as props.
+// Edit for custom icons, alignment, or style.
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
 import { SubsectionTitle, BodyText } from "./Typography";
@@ -79,4 +81,4 @@ const StyledBulletPoints = ({ title, points, align = 'left' }: BulletPointsProps
   );
 };
 
-export default StyledBulletPoints; 
+export default StyledBulletPoints;

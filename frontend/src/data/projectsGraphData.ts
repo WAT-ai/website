@@ -1,3 +1,6 @@
+// Graph data for project relationships. Exports nodes/edges for vis-network.
+// Add new nodes/edges for new projects. Used by ProjectsGraph.
+
 import { Node, Edge, Options } from "vis-network";
 
 export const nodes: Node[] = [
@@ -545,7 +548,6 @@ export const edges: Edge[] = [
   {
     color: "#898989",
     from: "Solar Photovoltaic Output Prediction",
-    to: "Deep Learning Framework Comparison",
     value: 0.6581879665627495,
   },
   {
