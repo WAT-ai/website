@@ -15,8 +15,7 @@ import ReactGA from "react-ga4";
 // Lazy-loaded components for code splitting and performance
 const Home = lazy(() => import("./pages/Home"));
 const Students = lazy(() => import("./pages/Students"));
-const Sponsors = lazy(() => import("./pages/Sponsors"));
-const Professors = lazy(() => import("./pages/Professors"));
+const Partnerships = lazy(() => import("./pages/Partnerships"));
 const Team = lazy(() => import("./pages/Team"));
 const Projects = lazy(() => import("./pages/Projects"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -70,8 +69,7 @@ const AppContent: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/students" element={<Students />} />
-            <Route path="/sponsors" element={<Sponsors />} />
-            <Route path="/professors" element={<Professors />} />
+            <Route path="/partnerships" element={<Partnerships />} />
             <Route path="/team" element={<Team />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
