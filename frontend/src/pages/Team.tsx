@@ -7,6 +7,8 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { ExecutiveTeam, LeadershipTeam, Alumni } from "../data/teamData";
 import MemberCard from "../components/MemberCard";
 import { SectionTitle, SubsectionTitle } from "../components/Typography";
+import ParticleBackground from "../components/ParticleBackground";
+import { useTheme } from "@mui/material/styles";
 
 // Team section component
 const TeamSection = ({ title, members }: any) => (
@@ -34,9 +36,19 @@ const TeamSection = ({ title, members }: any) => (
 // Main TeamPage component
 const Team: React.FC = () => {
   const [showAlumni, setShowAlumni] = useState(false);
+  const theme = useTheme();
 
   return (
-    <Box>
+    <Box
+      sx={{
+        backgroundColor: theme.palette.background.default,
+        minHeight: "100vh",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <ParticleBackground />
+      
       <TeamSection title="Executive Team" members={ExecutiveTeam} />
       <TeamSection title="Leadership Team" members={LeadershipTeam} />
 

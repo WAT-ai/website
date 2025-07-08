@@ -2,12 +2,17 @@ import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
 import { SubsectionTitle, BodyText } from "./Typography";
 
+/**
+ * Styled bullet points component with customizable alignment
+ * Displays a title and list of points with consistent styling
+ */
 interface BulletPointsProps {
   title: string;
   points: string[];
+  align?: 'left' | 'right';
 }
 
-const StyledBulletPoints = ({ title, points, align = 'left' }: BulletPointsProps & { align?: 'left' | 'right' }) => {
+const StyledBulletPoints = ({ title, points, align = 'left' }: BulletPointsProps) => {
   const theme = useTheme();
 
   return (

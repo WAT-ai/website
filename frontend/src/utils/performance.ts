@@ -9,9 +9,9 @@ export const PERFORMANCE_CONFIG = {
   LAZY_LOADING_ROOT_MARGIN: '50px', // Pre-load 50px before viewport
   
   // Particle animation limits based on device capability
-  PARTICLE_COUNT_MOBILE: 30, // Reduced for mobile performance
-  PARTICLE_COUNT_DESKTOP: 60, // Full experience on desktop
-  PARTICLE_LINK_RADIUS: 150, // Balance between visual appeal and performance
+  PARTICLE_COUNT_MOBILE: 100, // Increased for testing visibility
+  PARTICLE_COUNT_DESKTOP: 200, // Increased for testing visibility
+  PARTICLE_LINK_RADIUS: 250, // Increased for better connectivity
   
   // Vis.js network graph optimization
   PHYSICS_ITERATIONS: 100, // Faster stabilization vs visual quality tradeoff

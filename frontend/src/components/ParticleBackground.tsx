@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { PERFORMANCE_CONFIG } from "../utils/performance";
 
 const ParticleBackground: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
   useEffect(() => {
     let w: number,
       h: number,
@@ -10,13 +12,13 @@ const ParticleBackground: React.FC = () => {
     let particles: Particle[] = [];
 
     const options = {
-      particleColor: "rgba(150,150,150)",
-      lineColor: "rgba(100,100,120)",
+      particleColor: "rgba(150, 150, 150, 0.3)",
+      lineColor: "rgba(255, 206, 26, 0.4)",
       particleAmount: 0, // Dynamically calculated based on screen size
-      defaultRadius: 1.5,
-      variantRadius: 1.5,
-      defaultSpeed: 0.1, // Optimized for performance
-      variantSpeed: 0.1,
+      defaultRadius: 5,
+      variantRadius: 3,
+      defaultSpeed: 0.2,
+      variantSpeed: 0.2,
       linkRadius: PERFORMANCE_CONFIG.PARTICLE_LINK_RADIUS,
     };
 
@@ -27,14 +29,20 @@ const ParticleBackground: React.FC = () => {
      * Uses delayed start to avoid blocking initial page render
      */
     const init = () => {
-      canvas = document.getElementById("canvas") as HTMLCanvasElement;
+      canvas = canvasRef.current!;
+      if (!canvas) {
+        return;
+      }
+      
       ctx = canvas.getContext("2d");
+      if (!ctx) {
+        return;
+      }
+      
       resizeReset();
       
-      // Delayed animation start to improve initial page load
-      setTimeout(() => {
-        startAnimation();
-      }, 100);
+      // Start animation immediately
+      startAnimation();
     };
 
     /**
@@ -47,7 +55,7 @@ const ParticleBackground: React.FC = () => {
       const oldH = h;
       
       w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight * 0.9; // 80% viewport height for extended coverage
+      h = canvas.height = window.innerHeight; // Cover full document height
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
 
@@ -232,14 +240,14 @@ const ParticleBackground: React.FC = () => {
 
   return (
     <canvas
-      id="canvas"
+      ref={canvasRef}
       style={{
-        position: "absolute",
+        position: "fixed",
         top: "0px",
-        left: "0",
+        left: "0px",
         width: "100%",
-        maxWidth: "100%",
-        zIndex: -1,
+        height: "100%",
+        zIndex: 0,
         display: "block",
         pointerEvents: "none",
       }}

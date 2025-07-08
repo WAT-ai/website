@@ -1,3 +1,16 @@
+/**
+ * Main Application Component
+ * 
+ * This component sets up the routing, theme provider, analytics tracking,
+ * and global layout structure for the WAT.ai website.
+ * 
+ * Features:
+ * - Lazy loading for performance optimization
+ * - Google Analytics integration
+ * - Global particle background
+ * - Responsive layout with navbar and footer
+ */
+
 import React, { useEffect, Suspense, lazy } from "react";
 import {
   BrowserRouter as Router,
@@ -7,12 +20,16 @@ import {
 } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { Box, CircularProgress } from "@mui/material";
+
+// Core components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import theme from "./styles/theme";
+
+// Analytics
 import ReactGA from "react-ga4";
 
-// Lazy-loaded components for code splitting and performance
+// Lazy-loaded page components for optimal performance
 const Home = lazy(() => import("./pages/Home"));
 const Students = lazy(() => import("./pages/Students"));
 const Partnerships = lazy(() => import("./pages/Partnerships"));
@@ -21,10 +38,13 @@ const Projects = lazy(() => import("./pages/Projects"));
 const Contact = lazy(() => import("./pages/Contact"));
 const ParticleBackground = lazy(() => import("./components/ParticleBackground"));
 
-// Google Analytics configuration
+// Initialize Google Analytics
 ReactGA.initialize("G-1LBF0CDH72");
 
-// Component to track page views for analytics
+/**
+ * Component to track page views for analytics
+ * Automatically sends page view events when route changes
+ */
 const PageViewTracker: React.FC = () => {
   const location = useLocation();
 
@@ -38,12 +58,11 @@ const PageViewTracker: React.FC = () => {
   return null;
 };
 
+/**
+ * Main application content component
+ * Handles layout, routing, and global components
+ */
 const AppContent: React.FC = () => {
-  const location = useLocation();
-  const hideParticlesOnRoutes = ['/students']; // Routes where particles are disabled for performance
-
-  const showParticles = !hideParticlesOnRoutes.includes(location.pathname);
-
   return (
     <div
       style={{
@@ -51,21 +70,33 @@ const AppContent: React.FC = () => {
         flexDirection: "column",
         minHeight: "100vh",
         position: "relative",
+        backgroundColor: "#000000", // Global dark background
       }}
     >
-      {showParticles && (
-        <Suspense fallback={null}>
-          <ParticleBackground />
-        </Suspense>
-      )}
-
+      {/* Global particle background */}
+      <Suspense fallback={null}>
+        <ParticleBackground />
+      </Suspense>
+      
+      {/* Navigation */}
       <Navbar />
-      <div style={{ flex: 1, position: "relative", zIndex: 1 }}>
-        <Suspense fallback={
-          <Box display="flex" justifyContent="center" alignItems="center" minHeight="50vh">
-            <CircularProgress />
-          </Box>
-        }>
+      
+      {/* Main content area */}
+      <main style={{ flex: 1, position: "relative", zIndex: 1 }}>
+        <Suspense 
+          fallback={
+            <Box 
+              display="flex" 
+              justifyContent="center" 
+              alignItems="center" 
+              minHeight="50vh"
+              role="progressbar"
+              aria-label="Loading page content"
+            >
+              <CircularProgress color="primary" />
+            </Box>
+          }
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/students" element={<Students />} />
@@ -75,12 +106,18 @@ const AppContent: React.FC = () => {
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </Suspense>
-      </div>
+      </main>
+      
+      {/* Footer */}
       <Footer />
     </div>
   );
 };
 
+/**
+ * Root App component
+ * Provides theme context and router setup
+ */
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>

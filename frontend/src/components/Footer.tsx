@@ -8,6 +8,10 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import Link from "@mui/material/Link";
 import { useTheme } from "@mui/material/styles";
 
+/**
+ * Footer component for the WAT.ai website
+ * Displays contact information, social media links, and branding
+ */
 const Footer: React.FC = () => {
   const theme = useTheme();
 

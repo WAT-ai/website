@@ -17,7 +17,11 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 /**
  * Navigation component with responsive design and scroll-based styling
- * Transforms to sticky header on scroll for better UX
+ * Features:
+ * - Responsive design with mobile drawer menu
+ * - Scroll-based background opacity changes
+ * - Smooth transitions and hover effects
+ * - Integrated WAT.ai branding
  */
 const Navbar: React.FC = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -59,13 +63,12 @@ const Navbar: React.FC = () => {
 
   // Navigation menu structure for both desktop and mobile
   const menuItems = [
-    { text: "About", link: "/" },
     { text: "Students", link: "/students" },
-    { text: "Partnerships", link: "/partnerships" },
-    { text: "Team", link: "/team" },
     { text: "Projects", link: "/projects" },
-    { text: "Blog", link: "https://wataiteam.substack.com/" },
+    { text: "Team", link: "/team" },
+    { text: "Partnerships", link: "/partnerships" },
     { text: "Contact", link: "/contact" },
+    { text: "Blog", link: "https://wataiteam.substack.com/" },
   ];
 
   return (

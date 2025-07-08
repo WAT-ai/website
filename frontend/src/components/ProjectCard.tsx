@@ -6,10 +6,14 @@ import CardMedia from "@mui/material/CardMedia";
 import { useTheme } from "@mui/material/styles";
 import { CardTitle, BodyText, Caption } from "./Typography";
 
+/**
+ * Project card component with hover effects and collaboration details
+ * Displays project information in a consistent card format
+ */
 interface ProjectCardProps {
   title: string;
   tpm: string;
-  coreMembers?: string; // Mark coreMembers as optional
+  coreMembers?: string;
   description: string;
   collaboration?: string;
   collaborationLogo?: string;
