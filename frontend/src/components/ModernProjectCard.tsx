@@ -13,6 +13,7 @@ import {
   Stack,
   Tooltip,
 } from "@mui/material";
+import { motion } from "framer-motion";
 import {
   LinkedIn,
   Email,
@@ -72,25 +73,31 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
   };
 
   return (
-    <Card
-      sx={{
-        backgroundColor: theme.palette.background.paper,
-        border: `3px solid ${theme.palette.primary.main}`,
-        borderRadius: 4,
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-        position: "relative",
-        overflow: "hidden",
-        boxShadow: `0 4px 16px rgba(0, 0, 0, 0.2)`,
-        "&:hover": {
-          transform: "translateY(-8px)",
-          boxShadow: `0 12px 24px rgba(0, 0, 0, 0.3)`,
-          borderColor: theme.palette.primary.main,
-        },
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      style={{ height: "100%" }}
     >
+      <Card
+        sx={{
+          backgroundColor: theme.palette.background.paper,
+          border: `3px solid ${theme.palette.primary.main}`,
+          borderRadius: 4,
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          transition: "all 0.3s ease",
+          position: "relative",
+          overflow: "hidden",
+          boxShadow: `0 4px 16px rgba(0, 0, 0, 0.2)`,
+          "&:hover": {
+            boxShadow: `0 8px 20px rgba(0, 0, 0, 0.25)`,
+            borderColor: theme.palette.primary.light,
+          },
+        }}
+      >
       <CardContent sx={{ flex: 1, p: 4 }}>
         {/* Header */}
         <Box sx={{ mb: 3 }}>
@@ -152,7 +159,6 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
                   "&:hover": {
                     backgroundColor: `${theme.palette.primary.main}08`,
                     borderColor: `${theme.palette.primary.main}30`,
-                    transform: "translateX(4px)",
                   },
                 }}
               >
@@ -179,7 +185,6 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
                           borderRadius: 2,
                           "&:hover": {
                             backgroundColor: `${theme.palette.primary.main}20`,
-                            transform: "scale(1.05)",
                           },
                         }}
                       >
@@ -201,7 +206,6 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
                           borderRadius: 2,
                           "&:hover": {
                             backgroundColor: `${theme.palette.primary.main}20`,
-                            transform: "scale(1.05)",
                           },
                         }}
                       >
@@ -247,7 +251,6 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
                       transition: "all 0.3s ease",
                       "&:hover": {
                         backgroundColor: `${theme.palette.primary.main}25`,
-                        transform: "scale(1.05)",
                         borderColor: theme.palette.primary.main,
                       },
                     }}
@@ -261,6 +264,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
         )}
       </CardContent>
     </Card>
+    </motion.div>
   );
 };
 

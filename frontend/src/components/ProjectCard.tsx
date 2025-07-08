@@ -4,6 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { useTheme } from "@mui/material/styles";
+import { motion } from "framer-motion";
 import { CardTitle, BodyText, Caption } from "./Typography";
 
 /**
@@ -32,26 +33,33 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const theme = useTheme(); // Access the theme
 
   return (
-    <Card
-      sx={{
-        backgroundColor: theme.palette.background.paper,
-        color: theme.palette.text.primary,
-        width: "100%",
-        height: "100%",
-        borderRadius: theme.shape.borderRadius,
-        border: `3px solid ${theme.palette.primary.main}`,
-        transition: "0.3s",
-        padding: theme.spacing(6),
-        display: "flex",
-        flexDirection: "column", // Ensure content is vertically aligned
-        justifyContent: "space-between", // Ensure content is spaced evenly
-        boxShadow: theme.shadows[3], // Add a subtle shadow
-        "&:hover": {
-          transform: "translateY(-10px)",
-          filter: "brightness(120%)",
-        },
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      style={{ height: "100%" }}
     >
+      <Card
+        sx={{
+          backgroundColor: theme.palette.background.paper,
+          color: theme.palette.text.primary,
+          width: "100%",
+          height: "100%",
+          borderRadius: theme.shape.borderRadius,
+          border: `3px solid ${theme.palette.primary.main}`,
+          transition: "0.3s ease",
+          padding: theme.spacing(6),
+          display: "flex",
+          flexDirection: "column", // Ensure content is vertically aligned
+          justifyContent: "space-between", // Ensure content is spaced evenly
+          boxShadow: theme.shadows[3], // Add a subtle shadow
+          "&:hover": {
+            boxShadow: theme.shadows[6],
+            borderColor: theme.palette.primary.light,
+          },
+        }}
+      >
       <CardContent sx={{ textAlign: "left" }}>
         {/* Project Title */}
         <CardTitle>
@@ -112,11 +120,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 height: "auto",
                 display: "inline-block",
               }}
-            />
-          )}
-        </Box>
+            />        )}
+      </Box>
       )}
     </Card>
+    </motion.div>
   );
 };
 
