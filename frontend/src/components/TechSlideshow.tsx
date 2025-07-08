@@ -21,7 +21,7 @@ const Mover = styled(Box)(({ theme }) => ({
   marginTop: "-50px",
   height: "100%",
   width: "3184px",
-  backgroundImage: `url(${require("../assets/slider3.png")})`,
+  backgroundImage: `url(${require("../assets/slider3_opt.png")})`,
   position: "absolute",
   top: 0,
   left: 0,

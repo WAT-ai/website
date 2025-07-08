@@ -36,7 +36,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Inter, sans-serif",
+    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Roboto", "Helvetica Neue", Arial, sans-serif',
     // Display typography for hero sections
     h1: {
       fontSize: "3.5rem",

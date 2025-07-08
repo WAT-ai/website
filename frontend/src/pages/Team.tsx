@@ -84,7 +84,7 @@ const Team: React.FC = () => {
         </SubsectionTitle>
         <Box
           component="img"
-          src={require("../assets/companylogos.png")}
+          src={require("../assets/companylogos_opt.png")}
           alt="Company Logos"
           draggable={false}
           sx={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
