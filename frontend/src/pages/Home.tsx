@@ -28,53 +28,36 @@ const HomePage: React.FC = memo(() => {
         backgroundColor: "transparent",
         minHeight: "100vh",
         position: "relative",
-        overflow: "hidden",
       }}
     >
       {/* Hero Section */}
-      <Box
-        component="section"
-        sx={{
-          textAlign: "center",
-          py: 0,
-          px: { xs: 2, sm: 3, md: 4 },
-          minHeight: "100vh",
-          height: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          color: theme.palette.primary.contrastText,
-          clipPath: { 
-            xs: "polygon(0 0, 100% 0, 100% 92%, 0 100%)", 
-            md: "polygon(0 0, 100% 0, 100% 85%, 0 100%)" 
-          },
-          zIndex: 1,
-          position: "relative",
-          marginTop: { xs: "-60px", md: "-80px" },
-        }}
+      <UnifiedSection
+        backgroundColor="transparent"
+        minHeight="80vh"
+        centerContent
+        padding={8}
       >
-        <Logo
-          style={{
-            display: "block",
-            margin: "0 auto",
-            width: "min(80vw, 300px)",
-            maxWidth: "300px",
-            minWidth: "200px",
-            height: "auto",
-            filter: "drop-shadow(0px 4px 6px rgba(0,0,0,0.2))",
-          }}
-        />
-        <Box sx={{ mt: { xs: 3, md: 4 }, px: { xs: 2, sm: 3 } }}>
+        <Box sx={{ textAlign: "center" }}>
+          <Logo
+            style={{
+              display: "block",
+              margin: "0 auto 2rem auto",
+              width: "min(80vw, 300px)",
+              maxWidth: "300px",
+              minWidth: "200px",
+              height: "auto",
+              filter: "drop-shadow(0px 4px 6px rgba(0,0,0,0.2))",
+            }}
+          />
           <HeroTitle sx={{ 
             fontSize: { xs: "1.8rem", sm: "2.2rem", md: "2.8rem", lg: "3.5rem" },
             lineHeight: { xs: 1.2, md: 1.1 },
-            px: { xs: 1, sm: 2 }
+            px: { xs: 1, sm: 2 },
+            mb: { xs: 3, md: 4 },
+            color: theme.palette.primary.contrastText,
           }}>
             Fostering the Future of AI at Waterloo
           </HeroTitle>
-        </Box>
-        <Box sx={{ mt: { xs: 3, md: 4 }, px: { xs: 2, sm: 3 } }}>
           <UnifiedButton
             variant="primary"
             size="large"
@@ -84,7 +67,7 @@ const HomePage: React.FC = memo(() => {
             Get Involved
           </UnifiedButton>
         </Box>
-      </Box>
+      </UnifiedSection>
 
       {/* About Us Section */}
       <UnifiedSection

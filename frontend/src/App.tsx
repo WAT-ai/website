@@ -23,7 +23,6 @@ import { Box, CircularProgress } from "@mui/material";
 
 // Core components
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import theme from "./styles/theme";
 
@@ -38,6 +37,7 @@ const Team = lazy(() => import("./pages/Team"));
 const Projects = lazy(() => import("./pages/Projects"));
 const Contact = lazy(() => import("./pages/Contact"));
 const ParticleBackground = lazy(() => import("./components/ParticleBackground"));
+const Footer = lazy(() => import("./components/Footer"));
 
 // Initialize Google Analytics
 ReactGA.initialize("G-1LBF0CDH72");
@@ -110,7 +110,9 @@ const AppContent: React.FC = () => {
       </main>
       
       {/* Footer */}
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };

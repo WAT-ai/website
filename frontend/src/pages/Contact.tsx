@@ -19,9 +19,8 @@ const Contact: React.FC = () => {
     <Box
       sx={{
         backgroundColor: "transparent",
-        height: "100vh",
+        minHeight: "100vh",
         position: "relative",
-        overflow: "hidden",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",

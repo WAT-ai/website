@@ -112,7 +112,6 @@ const Partnerships: React.FC = () => {
         backgroundColor: "transparent",
         minHeight: "100vh",
         position: "relative",
-        overflow: "hidden",
       }}
     >
       {/* Hero Section */}

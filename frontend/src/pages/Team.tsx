@@ -7,8 +7,6 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { ExecutiveTeam, LeadershipTeam, Alumni } from "../data/teamData";
 import MemberCard from "../components/MemberCard";
 import { SectionTitle, SubsectionTitle } from "../components/Typography";
-import ParticleBackground from "../components/ParticleBackground";
-import { useTheme } from "@mui/material/styles";
 
 // Team page: Lists team members and alumni. Add or update members in teamData.
 // To add new sections, create a new TeamSection. For alumni, update the Alumni array.
@@ -38,19 +36,15 @@ const TeamSection = ({ title, members }: any) => (
 // Main TeamPage component
 const Team: React.FC = () => {
   const [showAlumni, setShowAlumni] = useState(false);
-  const theme = useTheme();
 
   return (
     <Box
       sx={{
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: "transparent",
         minHeight: "100vh",
         position: "relative",
-        overflow: "hidden",
       }}
     >
-      <ParticleBackground />
-      
       <TeamSection title="Executive Team" members={ExecutiveTeam} />
       <TeamSection title="Leadership Team" members={LeadershipTeam} />
 
