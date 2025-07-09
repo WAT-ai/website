@@ -87,7 +87,7 @@ const Partnerships: React.FC = () => {
 
   const faqs = [
     {
-      question: "Who can partner with WAT.AI?",
+      question: "Who can partner with WAT.ai?",
       answer: "Any company, organization, or professor who wants to work with students on AI-related work. We welcome partnerships with startups, established companies, academic institutions, and research organizations."
     },
     {
@@ -127,7 +127,7 @@ const Partnerships: React.FC = () => {
       <UnifiedHero
         title="Connecting you with top AI talent"
         subtitle="Partnerships"
-        description="At WAT.AI, we bring together students at the University of Waterloo who are passionate about applying AI to real-world problems. We're here to make it easier for employers and professors to connect with our team members for co-op placements, research projects, or other collaborations."
+        description="At WAT.ai, we bring together students at the University of Waterloo who are passionate about applying AI to real-world problems. We're here to make it easier for employers and professors to connect with our team members for co-op placements, research projects, or other collaborations."
         actions={[
           { label: "Post an Opportunity", to: "/contact", variant: "primary" },
           { label: "See Our Projects", to: "/projects", variant: "outlined" }

@@ -1,23 +1,21 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
-import Link from "@mui/material/Link";
 import DiscordIcon from "../components/DiscordIcon";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import GroupsIcon from '@mui/icons-material/Groups';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import { SectionTitle, SubsectionTitle, BodyLarge, BodyText } from "../components/Typography";
+import CodeIcon from '@mui/icons-material/Code';
+import SchoolIcon from '@mui/icons-material/School';
+import { SubsectionTitle, BodyLarge } from "../components/Typography";
 import StyledBulletPoints from "../components/StyledBulletPoints";
 import ImageGallery from "../components/ImageGallery";
 import UnifiedSection from "../components/UnifiedSection";
 import UnifiedCard from "../components/UnifiedCard";
 import UnifiedHero from "../components/UnifiedHero";
 import UnifiedButton from "../components/UnifiedButton";
-import UnifiedStats from "../components/UnifiedStats";
 import FAQ from "../components/FAQ";
 
-// Students page: Info for student members, roles, and joining. Update sections for new roles or benefits.
+// Students page: Info for student members, opportunities, and joining. Updated with new copy for 2024.
 
 // Import images
 import cucai1 from "../assets/studentLandingPage/cucai1_opt.jpg"
@@ -33,28 +31,33 @@ import cm2 from "../assets/studentLandingPage/cm2_opt.jpg"
 
 /**
  * Updated Student engagement page with unified design system
- * Features membership tiers, benefits, and visual galleries
+ * Features opportunities, benefits, and community showcase
  */
 const Students: React.FC = () => {
   const theme = useTheme();
 
-  // Benefits and responsibilities for core membership tier
-  const coreMemberPoints = {
-    title: "By becoming a Core Member, you will:",
+  // Our three main opportunity areas
+  const projectOpportunities = {
+    title: "Work on High-Impact AI Projects",
     points: [
-      "Lead cutting-edge AI projects and collaborate with industry partners",
-      "Gain hands-on experience with advanced machine learning technologies",
-      "Build a strong professional network in the AI community"
+      "We run 8-month long projects in engineering and research initiatives in areas like GenAI, computer vision, NLP, healthcare, and more. These give you the chance to tackle real world problems and publish your work.",
+      "Less experienced students can apply as core members to learn alongside peers. More experienced students can build their leadership experience by applying as technical project managers."
     ]
   };
 
-  // Benefits and responsibilities for Technical Project Manager tier
-  const tpmPoints = {
-    title: "As a Technical Project Manager, you will:",
+  const workshopOpportunities = {
+    title: "Attend AI Workshops & Events",
     points: [
-      "Develop leadership skills managing cross-functional AI teams",
-      "Bridge technical development with project management expertise",
-      "Drive innovation and project success in AI initiatives"
+      "Learn and teach machine learning through beginner-friendly tutorials, advanced sessions, and cross-disciplinary applications in healthcare, robotics, and beyond.",
+      "We have opportunities for both beginners looking to get ML skills and more experienced students looking for project management and mentorship skills."
+    ]
+  };
+
+  const networkingOpportunities = {
+    title: "Collaborate and Network",
+    points: [
+      "Join a tight-knit community of ambitious builders and researchers. We give students the opportunities to attend a national AI conference with industry leaders, as well as access other resources like mentorship, funding, and more.",
+      "We also connect our top performing students from our projects to professors and industry partners recruiting AI talent."
     ]
   };
 
@@ -88,45 +91,26 @@ const Students: React.FC = () => {
     }
   ];
 
-  const stats = [
-    { number: "XX+", label: "Active student members" },
-    { number: "XX+", label: "AI projects completed" },
-    { number: "XX+", label: "Members land AI internships" },
-    { number: "XX+", label: "Industry partnerships" },
-  ];
-
   const faqItems = [
     {
-      question: "Lorem ipsum dolor sit amet consectetur?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      question: "How do I join WAT.ai?",
+      answer: "We publish application core member application forms in the starting month of every term and technical project manager application forms in the final month of every term. Core members apply to their top 3 desired projects and technical project managers apply with a project idea and take a management skills test. Follow us on Instagram or Linkedin for announcements on the latest applications."
     },
     {
-      question: "Duis aute irure dolor in reprehenderit?",
-      answer: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      question: "I don't have an AI or ML background. Can I still join?",
+      answer: "Absolutely! Many of our members started with little or no AI experience. We offer beginner-friendly workshops and projects to help you build confidence and skills from the ground up. We reserve one or two spots on each team for beginners and have other workshops that don't require applications."
     },
     {
-      question: "Sed ut perspiciatis unde omnis iste?",
-      answer: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+      question: "How do projects work at WAT.ai?",
+      answer: "Every term, we launch new 8 month projects that involve a team of 5-10 core members and 2 technical project managers. It is expected that all team members contribute over their study AND coop term. All projects target different end applications, with some focusing more on building demos and others focusing more on publishing conference papers. Core members will be led by technical project managers through onboarding, research, and implementation phases over the 8 months. Technical project managers work with our executive team to identify technical resources needed and a project roadmap in the month prior to the start of the project."
     },
     {
-      question: "Nemo enim ipsam voluptatem quia?",
-      answer: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+      question: "What resources are available to members?",
+      answer: "WAT.ai members get access to compute resources, mentorship, technical guides, and specialized tools for building ML/AI systems. We also support members interested in submitting to conferences or starting publications."
     },
     {
-      question: "At vero eos et accusamus et iusto?",
-      answer: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."
-    },
-    {
-      question: "Temporibus autem quibusdam et aut?",
-      answer: "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae."
-    },
-    {
-      question: "Nam libero tempore cum soluta nobis?",
-      answer: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus."
-    },
-    {
-      question: "Itaque earum rerum hic tenetur?",
-      answer: "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+      question: "What events does WAT.ai host?",
+      answer: "We run technical workshops, reading groups, speaker sessions, and networking events. Our events connect research, industry, and education under one roof."
     }
   ];
 
@@ -139,203 +123,287 @@ const Students: React.FC = () => {
     >
       {/* Hero Section */}
       <UnifiedHero
-        title="Join WAT.ai"
-        subtitle="For Students"
-        description="At WAT.ai, you'll have unprecedented access to cutting-edge AI projects and research opportunities. Our strong connections with faculty members often lead to research assistant positions for our members. Work alongside industry partners, develop practical skills, and be part of groundbreaking AI initiatives."
+        title="Join WAT.ai – Waterloo's Hub for Student-Led AI Innovation"
+        subtitle="Learn. Build. Research. Publish."
+        description="WAT.ai is the University of Waterloo's student-led artificial intelligence organization focused on hands-on learning, real world impact, and meaningful research. Whether you're just curious about machine learning, ready to publish your first paper, or looking to improve your ML skillset with project management experience, WAT.ai is a space to grow your skills and collaborate with others who are passionate about AI."
         variant="centered"
       />
 
-      {/* Core Member Section */}
+      {/* Our Opportunities Section */}
       <UnifiedSection
         backgroundColor="paper"
-        minHeight="80vh"
+        minHeight="90vh"
         centerContent
       >
-        <Box sx={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-              gap: { xs: 6, sm: 8 },
-              alignItems: "flex-start",
-            }}
-          >
-            {/* Content */}
-            <Box>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 4 }}>
-                <GroupsIcon sx={{ fontSize: 40, color: theme.palette.primary.main }} />
-                <SubsectionTitle>Core Member</SubsectionTitle>
-              </Box>
-              
-              <StyledBulletPoints {...coreMemberPoints} align="left" />
-              
-              <Box sx={{ mt: { xs: 6, sm: 8 }, textAlign: { xs: "center", md: "left" } }}>
-                <BodyText sx={{ color: theme.palette.primary.main, mb: 3, fontWeight: 600 }}>
-                  Interested in applying? Check our socials for updates!
-                </BodyText>
+        <Box sx={{ 
+          textAlign: "center", 
+          maxWidth: "1400px", 
+          margin: "0 auto",
+          px: { xs: 2, sm: 3, md: 4 }
+        }}>
+          <SubsectionTitle sx={{ mb: { xs: 6, md: 8 } }}>
+            Our Opportunities
+          </SubsectionTitle>
+          
+          {/* Responsive alternating layout */}
+          <Box sx={{ position: "relative" }}>
+            {/* Project Work - Left aligned */}
+            <Box sx={{ 
+              display: "flex", 
+              alignItems: "stretch", 
+              mb: { xs: 8, md: 12 },
+              flexDirection: { xs: "column", md: "row" },
+              gap: { xs: 4, md: 6 }
+            }}>
+              <Box sx={{ 
+                flex: 1,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center"
+              }}>
                 <Box sx={{ 
                   display: "flex", 
-                  gap: 3, 
+                  alignItems: "center", 
                   justifyContent: { xs: "center", md: "flex-start" },
-                  flexWrap: "wrap"
+                  mb: 3,
+                  p: 2,
+                  borderRadius: 3,
+                  background: `linear-gradient(135deg, ${theme.palette.primary.main}20, ${theme.palette.primary.main}10)`,
+                  border: `2px solid ${theme.palette.primary.main}30`
                 }}>
-                  {socialLinks.map((social, index) => (
-                    <Link
-                      key={index}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      sx={{
-                        color: theme.palette.text.primary,
-                        transition: "color 0.2s ease",
-                        "&:hover": {
-                          color: theme.palette.primary.main,
-                        },
-                      }}
-                    >
-                      {social.icon}
-                    </Link>
-                  ))}
+                  <CodeIcon sx={{ 
+                    fontSize: { xs: 36, md: 40 }, 
+                    color: theme.palette.primary.main,
+                    mr: 2
+                  }} />
+                  <Box sx={{ 
+                    fontSize: { xs: "1.1rem", md: "1.3rem" }, 
+                    fontWeight: 600,
+                    color: theme.palette.primary.main,
+                    textAlign: { xs: "center", md: "left" },
+                    lineHeight: 1.2
+                  }}>
+                    {projectOpportunities.title}
+                  </Box>
+                </Box>
+                <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
+                  <StyledBulletPoints 
+                    title=""
+                    points={projectOpportunities.points}
+                    align="left" 
+                  />
                 </Box>
               </Box>
-            </Box>
-
-            {/* Images */}
-            <Box sx={{ 
-              display: "flex",
-              flexDirection: "column",
-              gap: { xs: 3, sm: 4 },
-              height: "100%",
-            }}>
-              <Box
-                component="img"
-                src={cm1}
-                alt="Core Member 1"
-                sx={{
-                  width: "100%",
-                  height: { xs: "200px", sm: "240px", md: "280px" },
-                  objectFit: "cover",
-                  borderRadius: 2,
-                  boxShadow: theme.shadows[4],
-                }}
-              />
-              <Box
-                component="img"
-                src={cm2}
-                alt="Core Member 2"
-                sx={{
-                  width: "100%",
-                  height: { xs: "200px", sm: "240px", md: "280px" },
-                  objectFit: "cover",
-                  borderRadius: 2,
-                  boxShadow: theme.shadows[4],
-                }}
-              />
-            </Box>
-          </Box>
-        </Box>
-      </UnifiedSection>
-
-      {/* TPM Section */}
-      <UnifiedSection
-        backgroundColor="transparent"
-        minHeight="80vh"
-        centerContent
-      >
-        <Box sx={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-              gap: { xs: 6, sm: 8 },
-              alignItems: "flex-start",
-            }}
-          >
-            {/* Placeholder for TPM Images - Left side on desktop */}
-            <Box sx={{ 
-              display: "flex",
-              flexDirection: "column",
-              gap: { xs: 3, sm: 4 },
-              height: "100%",
-              order: { xs: 2, md: 1 }
-            }}>
-              <Box sx={{ minHeight: { xs: "200px", sm: "240px", md: "280px" } }}>
+              <Box sx={{ 
+                flex: 1,
+                minHeight: { xs: 250, md: 280 }
+              }}>
                 <UnifiedCard
-                  variant="subtle"
-                  padding={6}
-                  borderRadius="12px"
+                  variant="elevated"
+                  padding={0}
                   fullHeight
                 >
-                  <Box sx={{ 
-                    display: "flex", 
-                    alignItems: "center", 
-                    justifyContent: "center",
+                  <Box sx={{
                     height: "100%",
-                    color: theme.palette.text.secondary,
-                    fontSize: { xs: "1rem", sm: "1.1rem" }
+                    minHeight: { xs: 250, md: 280 },
+                    background: `linear-gradient(135deg, ${theme.palette.primary.main}15, ${theme.palette.primary.main}05)`,
+                    position: "relative",
+                    overflow: "hidden",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
                   }}>
-                    TPM Image Coming Soon
-                  </Box>
-                </UnifiedCard>
-              </Box>
-              <Box sx={{ minHeight: { xs: "200px", sm: "240px", md: "280px" } }}>
-                <UnifiedCard
-                  variant="subtle"
-                  padding={6}
-                  borderRadius="12px"
-                  fullHeight
-                >
-                  <Box sx={{ 
-                    display: "flex", 
-                    alignItems: "center", 
-                    justifyContent: "center",
-                    height: "100%",
-                    color: theme.palette.text.secondary,
-                    fontSize: { xs: "1rem", sm: "1.1rem" }
-                  }}>
-                    TPM Image Coming Soon
+                    <Box sx={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: `radial-gradient(circle at 30% 70%, ${theme.palette.primary.main}20, transparent 50%)`,
+                    }} />
+                    <Box sx={{ 
+                      color: theme.palette.text.secondary,
+                      fontSize: { xs: "1rem", md: "1.1rem" },
+                      fontWeight: 500,
+                      textAlign: "center"
+                    }}>
+                      Project Image Coming Soon
+                    </Box>
                   </Box>
                 </UnifiedCard>
               </Box>
             </Box>
 
-            {/* Content - Right side on desktop */}
-            <Box sx={{ order: { xs: 1, md: 2 } }}>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 4 }}>
-                <ManageAccountsIcon sx={{ fontSize: 40, color: theme.palette.primary.main }} />
-                <SubsectionTitle>Technical Project Manager</SubsectionTitle>
-              </Box>
-              
-              <StyledBulletPoints {...tpmPoints} align="left" />
-              
-              <Box sx={{ mt: { xs: 6, sm: 8 }, textAlign: { xs: "center", md: "left" } }}>
-                <BodyText sx={{ color: theme.palette.primary.main, mb: 3, fontWeight: 600 }}>
-                  Interested in applying? Check our socials for updates!
-                </BodyText>
+            {/* Workshops - Right aligned on desktop */}
+            <Box sx={{ 
+              display: "flex", 
+              alignItems: "stretch", 
+              mb: { xs: 8, md: 12 },
+              flexDirection: { xs: "column", md: "row-reverse" },
+              gap: { xs: 4, md: 6 }
+            }}>
+              <Box sx={{ 
+                flex: 1,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center"
+              }}>
                 <Box sx={{ 
                   display: "flex", 
-                  gap: 3, 
+                  alignItems: "center", 
                   justifyContent: { xs: "center", md: "flex-start" },
-                  flexWrap: "wrap"
+                  mb: 3,
+                  p: 2,
+                  borderRadius: 3,
+                  background: `linear-gradient(135deg, ${theme.palette.warning.main}20, ${theme.palette.warning.main}10)`,
+                  border: `2px solid ${theme.palette.warning.main}30`
                 }}>
-                  {socialLinks.map((social, index) => (
-                    <Link
-                      key={index}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      sx={{
-                        color: theme.palette.text.primary,
-                        transition: "color 0.2s ease",
-                        "&:hover": {
-                          color: theme.palette.primary.main,
-                        },
-                      }}
-                    >
-                      {social.icon}
-                    </Link>
-                  ))}
+                  <SchoolIcon sx={{ 
+                    fontSize: { xs: 36, md: 40 }, 
+                    color: theme.palette.warning.main,
+                    mr: 2
+                  }} />
+                  <Box sx={{ 
+                    fontSize: { xs: "1.1rem", md: "1.3rem" }, 
+                    fontWeight: 600,
+                    color: theme.palette.warning.main,
+                    textAlign: { xs: "center", md: "left" },
+                    lineHeight: 1.2
+                  }}>
+                    {workshopOpportunities.title}
+                  </Box>
                 </Box>
+                <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
+                  <StyledBulletPoints 
+                    title=""
+                    points={workshopOpportunities.points}
+                    align="left" 
+                  />
+                </Box>
+              </Box>
+              <Box sx={{ 
+                flex: 1,
+                minHeight: { xs: 250, md: 280 }
+              }}>
+                <UnifiedCard
+                  variant="elevated"
+                  padding={0}
+                  fullHeight
+                >
+                  <Box sx={{
+                    height: "100%",
+                    minHeight: { xs: 250, md: 280 },
+                    background: `linear-gradient(135deg, ${theme.palette.warning.main}15, ${theme.palette.warning.main}05)`,
+                    position: "relative",
+                    overflow: "hidden",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}>
+                    <Box sx={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: `radial-gradient(circle at 70% 30%, ${theme.palette.warning.main}20, transparent 50%)`,
+                    }} />
+                    <Box sx={{ 
+                      color: theme.palette.text.secondary,
+                      fontSize: { xs: "1rem", md: "1.1rem" },
+                      fontWeight: 500,
+                      textAlign: "center"
+                    }}>
+                      Workshop Image Coming Soon
+                    </Box>
+                  </Box>
+                </UnifiedCard>
+              </Box>
+            </Box>
+
+            {/* Networking - Left aligned */}
+            <Box sx={{ 
+              display: "flex", 
+              alignItems: "stretch", 
+              flexDirection: { xs: "column", md: "row" },
+              gap: { xs: 4, md: 6 }
+            }}>
+              <Box sx={{ 
+                flex: 1,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center"
+              }}>
+                <Box sx={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  justifyContent: { xs: "center", md: "flex-start" },
+                  mb: 3,
+                  p: 2,
+                  borderRadius: 3,
+                  background: `linear-gradient(135deg, #0077B520, #0077B510)`,
+                  border: `2px solid #0077B530`
+                }}>
+                  <LinkedInIcon sx={{ 
+                    fontSize: { xs: 36, md: 40 }, 
+                    color: "#0077B5",
+                    mr: 2
+                  }} />
+                  <Box sx={{ 
+                    fontSize: { xs: "1.1rem", md: "1.3rem" }, 
+                    fontWeight: 600,
+                    color: "#0077B5",
+                    textAlign: { xs: "center", md: "left" },
+                    lineHeight: 1.2
+                  }}>
+                    {networkingOpportunities.title}
+                  </Box>
+                </Box>
+                <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
+                  <StyledBulletPoints 
+                    title=""
+                    points={networkingOpportunities.points}
+                    align="left" 
+                  />
+                </Box>
+              </Box>
+              <Box sx={{ 
+                flex: 1,
+                minHeight: { xs: 250, md: 280 }
+              }}>
+                <UnifiedCard
+                  variant="elevated"
+                  padding={0}
+                  fullHeight
+                >
+                  <Box sx={{
+                    height: "100%",
+                    minHeight: { xs: 250, md: 280 },
+                    background: `linear-gradient(135deg, #0077B515, #0077B505)`,
+                    position: "relative",
+                    overflow: "hidden",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}>
+                    <Box sx={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: `radial-gradient(circle at 50% 50%, #0077B520, transparent 50%)`,
+                    }} />
+                    <Box sx={{ 
+                      color: theme.palette.text.secondary,
+                      fontSize: { xs: "1rem", md: "1.1rem" },
+                      fontWeight: 500,
+                      textAlign: "center"
+                    }}>
+                      Community Image Coming Soon
+                    </Box>
+                  </Box>
+                </UnifiedCard>
               </Box>
             </Box>
           </Box>
@@ -344,14 +412,15 @@ const Students: React.FC = () => {
 
       {/* Community Gallery Section */}
       <UnifiedSection
-        backgroundColor="paper"
-        minHeight="60vh"
+        backgroundColor="transparent"
+        minHeight="80vh"
         centerContent
       >
         <Box sx={{ textAlign: "center", maxWidth: "1200px", margin: "0 auto" }}>
-          <SectionTitle sx={{ mb: { xs: 4, sm: 5, md: 6 } }}>
-            Our Community
-          </SectionTitle>
+          <SubsectionTitle sx={{ mb: 4 }}>
+            Join Our Community
+          </SubsectionTitle>
+          
           <BodyLarge sx={{ 
             mb: { xs: 6, sm: 7, md: 8 }, 
             maxWidth: "800px", 
@@ -361,34 +430,20 @@ const Students: React.FC = () => {
             Join a vibrant community of AI enthusiasts, researchers, and innovators. 
             From conferences to collaborative projects, we're building the future of AI together.
           </BodyLarge>
+          
           <Box sx={{ px: { xs: 1, sm: 2, md: 0 } }}>
             <ImageGallery images={galleryImages} />
           </Box>
         </Box>
       </UnifiedSection>
 
-      {/* Stats Section */}
-      <UnifiedSection
-        backgroundColor="paper"
-        minHeight="60vh"
-        centerContent
-      >
-        <Box sx={{ textAlign: "center" }}>
-          <SubsectionTitle sx={{ mb: 8 }}>
-            Our Community Impact
-          </SubsectionTitle>
-          
-          <UnifiedStats stats={stats} />
-        </Box>
-      </UnifiedSection>
-
       {/* FAQ Section */}
       <UnifiedSection
-        backgroundColor="transparent"
+        backgroundColor="paper"
         minHeight="80vh"
         centerContent
       >
-        <FAQ items={faqItems} title="Student FAQ" />
+        <FAQ items={faqItems} title="FAQ" />
       </UnifiedSection>
 
       {/* CTA Section */}
@@ -398,16 +453,16 @@ const Students: React.FC = () => {
         centerContent
       >
         <Box sx={{ textAlign: "center", maxWidth: "900px", margin: "0 auto", px: { xs: 2, sm: 3, md: 0 } }}>
-          <SectionTitle sx={{ mb: { xs: 3, sm: 4, md: 5 } }}>
-            Ready to Get Started?
-          </SectionTitle>
+          <SubsectionTitle sx={{ mb: { xs: 3, sm: 4, md: 5 } }}>
+            Still have questions?
+          </SubsectionTitle>
           <BodyLarge sx={{ 
             mb: { xs: 6, sm: 7, md: 8 }, 
             maxWidth: "600px", 
             margin: "0 auto",
             px: { xs: 1, sm: 0 }
           }}>
-            Follow us on social media for application updates and join our growing community of AI innovators.
+            Reach out to us via discord or email us at contact@watai.ca. We'd love to hear from you!
           </BodyLarge>
           <Box 
             sx={{ 
@@ -421,17 +476,21 @@ const Students: React.FC = () => {
               }
             }}
           >
-            {socialLinks.map((social, index) => (
-              <UnifiedButton
-                key={index}
-                variant="outlined"
-                size="large"
-                href={social.href}
-                startIcon={social.icon}
-              >
-                Follow on {social.label}
-              </UnifiedButton>
-            ))}
+            <UnifiedButton
+              variant="primary"
+              size="large"
+              href="https://discord.com/invite/Hn3XkK83tJ"
+              startIcon={<DiscordIcon />}
+            >
+              Join Discord
+            </UnifiedButton>
+            <UnifiedButton
+              variant="outlined"
+              size="large"
+              href="mailto:contact@watai.ca"
+            >
+              Email Us
+            </UnifiedButton>
           </Box>
         </Box>
       </UnifiedSection>

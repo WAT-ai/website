@@ -32,7 +32,7 @@ export const NewProjectData: ProjectData[] = [
     title: "Microgrid RL: Autonomous Optimization of Renewable-Powered Microgrids",
     tpm: "Jordan Leis, Devon Kisob",
     description:
-      "The Microgrid RL project at Wat.AI focuses on developing and assessing reinforcement learning (RL) architectures designed for autonomous optimization of renewable-powered microgrids in rural Sub-Saharan Africa. Utilizing realistic simulations integrated with NASA's POWER API weather data, the team evaluates state-of-the-art RL methods, Deep Q-Network (DQN), Proximal Policy Optimization (PPO), and Deep Deterministic Policy Gradient (DDPG) to effectively manage energy storage, renewable generation, and load balancing. The goal is to identify the most robust and efficient solution, ultimately enhancing energy accessibility and reducing operational barriers in energy-deficient regions.",
+      "The Microgrid RL project at WAT.ai focuses on developing and assessing reinforcement learning (RL) architectures designed for autonomous optimization of renewable-powered microgrids in rural Sub-Saharan Africa. Utilizing realistic simulations integrated with NASA's POWER API weather data, the team evaluates state-of-the-art RL methods, Deep Q-Network (DQN), Proximal Policy Optimization (PPO), and Deep Deterministic Policy Gradient (DDPG) to effectively manage energy storage, renewable generation, and load balancing. The goal is to identify the most robust and efficient solution, ultimately enhancing energy accessibility and reducing operational barriers in energy-deficient regions.",
     teamMembers: [
       {
         name: "Jordan Leis",
