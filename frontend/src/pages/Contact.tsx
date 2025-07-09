@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import { useTheme } from "@mui/material/styles";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import DiscordIcon from "../components/DiscordIcon";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import EmailIcon from "@mui/icons-material/Email";
@@ -103,8 +103,9 @@ const Contact: React.FC = () => {
                   gap: 3,
                 }}
               >
+
                 <Link
-                  href="https://twitter.com/wataiteam"
+                  href="https://discord.com/invite/Hn3XkK83tJ"
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={{
@@ -118,8 +119,8 @@ const Contact: React.FC = () => {
                     },
                   }}
                 >
-                  <TwitterIcon sx={{ fontSize: 32, mb: 1 }} />
-                  <BodyText sx={{ fontSize: "0.9rem", mb: 0 }}>Twitter</BodyText>
+                  <DiscordIcon sx={{ fontSize: 32, mb: 1 }} />
+                  <BodyText sx={{ fontSize: "0.9rem", mb: 0 }}>Discord</BodyText>
                 </Link>
                 
                 <Link

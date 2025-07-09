@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
 import Link from "@mui/material/Link";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import DiscordIcon from "../components/DiscordIcon";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import GroupsIcon from '@mui/icons-material/Groups';
@@ -72,9 +72,9 @@ const Students: React.FC = () => {
 
   const socialLinks = [
     {
-      icon: <TwitterIcon fontSize="large" />,
-      href: "https://twitter.com/wataiteam",
-      label: "Twitter"
+      icon: <DiscordIcon fontSize="large" />,
+      href: "https://discord.com/invite/Hn3XkK83tJ",
+      label: "Discord"
     },
     {
       icon: <LinkedInIcon fontSize="large" />,
@@ -91,7 +91,7 @@ const Students: React.FC = () => {
   const stats = [
     { number: "XX+", label: "Active student members" },
     { number: "XX+", label: "AI projects completed" },
-    { number: "XX%", label: "Members land AI internships" },
+    { number: "XX+", label: "Members land AI internships" },
     { number: "XX+", label: "Industry partnerships" },
   ];
 

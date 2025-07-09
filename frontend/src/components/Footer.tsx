@@ -4,7 +4,7 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import DiscordIcon from "./DiscordIcon";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import Link from "@mui/material/Link";
@@ -85,7 +85,7 @@ const Footer: React.FC = () => {
             </Typography>
             <Box sx={{ display: "flex", gap: 2, justifyContent: { xs: "center", md: "flex-start" } }}>
               {[
-                { href: "https://twitter.com/wataiteam", icon: TwitterIcon, label: "Twitter" },
+                { href: "https://discord.com/invite/Hn3XkK83tJ", icon: DiscordIcon, label: "Discord" },
                 { href: "https://www.linkedin.com/company/wat-ai/", icon: LinkedInIcon, label: "LinkedIn" },
                 { href: "https://www.instagram.com/wataiteam/", icon: InstagramIcon, label: "Instagram" },
               ].map((social) => (
