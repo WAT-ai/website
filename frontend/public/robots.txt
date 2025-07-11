@@ -10,8 +10,7 @@ Allow: /home
 Allow: /projects
 Allow: /team
 Allow: /students
-Allow: /professors
-Allow: /sponsors
+Allow: /partnerships
 Allow: /contact
 
 # Block access to build files and source maps
@@ -24,5 +23,5 @@ Disallow: /admin/
 Disallow: /private/
 Disallow: /*.json$
 
-# TODO: Create a sitemap
-# Sitemap: https://watai.ca/sitemap.xml
+# Sitemap
+Sitemap: https://watai.ca/sitemap.xml

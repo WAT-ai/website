@@ -1,8 +1,12 @@
+/* 
+ * Non-critical styles - loaded asynchronously after initial render
+ * Critical styles are inlined in index.html for performance
+ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Keyframe animations */
+/* Enhanced animations (non-critical) */
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
@@ -21,94 +25,22 @@
   }
 }
 
-/* Typography reset and base styles */
-* {
-  box-sizing: border-box;
+/* Enhanced typography utilities */
+.text-balanced {
+  text-wrap: balance;
 }
 
-/* Remove custom font-face declarations - let Google Fonts handle it */
-html {
-  height: 100%;
-  width: 100%;
-  /* Improve text rendering */
+.text-pretty {
+  text-wrap: pretty;
+}
+
+.smooth-text {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  /* Prevent horizontal scrolling */
-  overflow-x: hidden;
 }
 
-body {
-  font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  position: relative;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  min-height: 100vh;
-  background-color: black; /* Fallback background */
-  color: white; /* High contrast text */
-  line-height: 1.6;
-  font-weight: 400;
-  font-size: 16px;
-  /* Prevent horizontal scrolling */
-  overflow-x: hidden;
-  width: 100%;
-  /* Improve font rendering */
-  font-display: swap;
-  /* Improve layout stability during font loading */
-  font-variation-settings: "wght" 400;
-}
-
-/* Improve heading spacing and hierarchy */
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  font-weight: 600;
-  line-height: 1.2;
-  /* Prevent text overflow */
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-/* Improve paragraph spacing */
-p {
-  margin: 0 0 1rem 0;
-  line-height: 1.6;
-  /* Prevent text overflow */
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-/* Better link styles */
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s ease-in-out;
-  /* Prevent text overflow */
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-/* Focus styles for accessibility */
-*:focus-visible {
-  outline: 2px solid #FFCE1A;
-  outline-offset: 2px;
-}
-
-/* Prevent images from overflowing */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Responsive container */
-.container {
-  width: 100%;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
+/* Non-critical background styles */
 body::before {
   content: "";
   position: absolute;
@@ -118,101 +50,9 @@ body::before {
   bottom: 0;
   width: 100%;
   height: 100%;
-  /* background-image: url("../assets/bkg.png"); */
+  /* background-image: url("../assets/bkg_opt.png"); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  z-index: -1; /* Behind all content */
-}
-
-#root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.main {
-  flex: 1; /* Fill available space */
-  width: 100%;
-  overflow-x: hidden;
-}
-
-/* Typography utility classes */
-.text-balanced {
-  text-wrap: balance;
-}
-
-.text-pretty {
-  text-wrap: pretty;
-}
-
-/* Common typography patterns */
-.hero-gradient {
-  background: linear-gradient(135deg, #FFCE1A, #FFD700);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.section-title {
-  font-size: clamp(1.8rem, 5vw, 2.75rem);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: #FFCE1A;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.body-large {
-  font-size: clamp(0.95rem, 2.5vw, 1.125rem);
-  line-height: 1.7;
-  margin-bottom: 1rem;
-}
-
-.smooth-text {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-/* Responsive breakpoints */
-@media (max-width: 480px) {
-  .container {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-  
-  body {
-    font-size: 14px;
-  }
-}
-
-@media (min-width: 640px) {
-  .container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
+  z-index: -1;
 }
