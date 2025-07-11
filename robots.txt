@@ -1,3 +1,31 @@
 # https://www.robotstxt.org/robotstxt.html
+
+
+# delay for respectful crawling (opt)
+# Crawl-delay: 1
+
+# allow all search engines to crawl the site
 User-agent: *
-Disallow:
+Allow: /
+
+# allow all main content pages
+Allow: /home
+Allow: /projects
+Allow: /team
+Allow: /students
+Allow: /professors
+Allow: /sponsors
+Allow: /contact
+
+# block access to build files and source maps that shouldn't be indexed
+Disallow: /static/js/*.map
+Disallow: /static/css/*.map
+Disallow: /asset-manifest.json
+
+# block common sensitive areas (if they exist)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+
+# TODO: uhhhhhhh create a sitemap lol
+# Sitemap: https://watai.ca/sitemap.xml
