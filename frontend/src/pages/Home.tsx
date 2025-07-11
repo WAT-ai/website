@@ -16,10 +16,10 @@ const HomePage: React.FC = memo(() => {
   const theme = useTheme();
 
   const stats = [
-    { number: "XX+", label: "Active Members", description: "Students & researchers" },
-    { number: "XX+", label: "AI Projects", description: "Completed successfully" },
-    { number: "XX+", label: "Publications", description: "Academic papers" },
-    { number: "XX+", label: "Industry Partners", description: "Collaborations" },
+    { number: "450+", label: "Program Graduates", description: "Students & researchers" },
+    { number: "40+", label: "AI Projects", description: "Completed successfully" },
+    { number: "20+", label: "Publications", description: "Academic papers" },
+    { number: "10+", label: "Industry Partners", description: "Collaborations" },
   ];
 
   return (

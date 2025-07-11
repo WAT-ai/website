@@ -24,16 +24,25 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     pauseOnHover: true,
     centerMode: true,
-    centerPadding: "0", // No extra padding for side images
+    centerPadding: "0",
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          centerMode: true,
+          centerPadding: "0",
+        }
+      },
+      {
+        breakpoint: 960,
         settings: {
           slidesToShow: 2,
           centerMode: false,
+          centerPadding: "0",
         }
       },
       {
@@ -41,6 +50,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
         settings: {
           slidesToShow: 1,
           centerMode: false,
+          centerPadding: "0",
         }
       }
     ]
@@ -51,48 +61,120 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
       sx={{
         width: "100%",
         margin: "0 auto",
+        maxWidth: { xs: "100%", sm: "90%", md: "100%" },
+        px: { xs: 0, sm: 2, md: 4 },
         "& .slick-slide": {
           transition: "transform 0.5s ease, opacity 0.5s ease",
-          opacity: 0.4, // Stronger fade for non-centered slides
-          transform: "scale(0.8)", // Smaller size for non-centered slides
+          opacity: { xs: 1, md: 0.6 },
+          transform: { xs: "scale(1)", md: "scale(0.85)" },
+          "&:focus": {
+            outline: "none",
+          },
         },
         "& .slick-center": {
           opacity: 1,
-          transform: "scale(1)", // Default size for centered slide
+          transform: "scale(1)",
         },
         "& .slick-list": {
-          padding: "0 !important", // Remove padding to bring side images closer
-          overflow: "visible", // Prevent cutoff
+          padding: { xs: "0 !important", md: "0 15px !important" },
+          overflow: "visible",
+          margin: { xs: "0 -4px", sm: "0 -8px", md: "0" },
+        },
+        "& .slick-track": {
+          display: "flex",
+          alignItems: "center",
+        },
+        "& .slick-prev, & .slick-next": {
+          width: { xs: 28, sm: 32, md: 36 },
+          height: { xs: 28, sm: 32, md: 36 },
+          zIndex: 2,
+          borderRadius: { xs: "8px", sm: "10px", md: "12px" },
+          background: "rgba(255, 255, 255, 0.9)",
+          backdropFilter: "blur(10px)",
+          border: `1px solid ${theme.palette.grey[200]}`,
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+          transition: "all 0.3s ease",
+          "&:before": {
+            fontSize: { xs: "14px", sm: "16px", md: "18px" },
+            color: theme.palette.grey[700],
+            opacity: 1,
+            fontWeight: "bold",
+          },
+          "&:hover": {
+            background: "rgba(255, 255, 255, 1)",
+            boxShadow: "0 6px 25px rgba(0, 0, 0, 0.15)",
+            "&:before": {
+              color: theme.palette.primary.main,
+            },
+          },
         },
         "& .slick-prev": {
-          left: "10px", // Move previous button closer to the left image
-          zIndex: 1,
+          left: { xs: -8, sm: -15, md: 5 },
         },
         "& .slick-next": {
-          right: "10px", // Move next button closer to the right image
-          zIndex: 1,
+          right: { xs: -8, sm: -15, md: 5 },
         },
         "& .slick-dots": {
-          bottom: -40,
-        },
-        "& .slick-dots li button:before": {
-          color: theme.palette.primary.main,
+          bottom: { xs: -40, sm: -45, md: -50 },
+          display: "flex !important",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: { xs: "6px", sm: "8px", md: "10px" },
+          "& li": {
+            width: "auto",
+            height: "auto",
+            margin: "0",
+          },
+          "& li button": {
+            width: { xs: "5px", sm: "6px", md: "7px" },
+            height: { xs: "5px", sm: "6px", md: "7px" },
+            padding: 0,
+            border: "none",
+            borderRadius: "50%",
+            background: theme.palette.grey[300],
+            transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            opacity: 0.4,
+            "&:before": {
+              display: "none",
+            },
+            "&:hover": {
+              background: theme.palette.grey[400],
+              opacity: 0.6,
+            },
+          },
+          "& li.slick-active button": {
+            background: theme.palette.primary.main,
+            transform: "scale(1.2)",
+            opacity: 0.8,
+            boxShadow: `0 0 0 2px ${theme.palette.primary.main}10`,
+          },
         },
       }}
     >
       <Slider {...settings}>
         {images.map((image, index) => (
-          <Box key={index} sx={{ p: 2 }}>
+          <Box key={index} sx={{ 
+            p: { xs: 0.5, sm: 1, md: 1.5 },
+            "&:focus": {
+              outline: "none",
+            },
+          }}>
             <Box
               component="img"
               src={image.src}
               alt={image.alt}
               sx={{
                 width: "100%",
-                height: 400, // Increase image height
+                height: { xs: 300, sm: 380, md: 450 },
                 objectFit: "cover",
-                borderRadius: 2,
-                boxShadow: theme.shadows[4],
+                borderRadius: { xs: 2, sm: 2.5, md: 3 },
+                boxShadow: theme.shadows[8],
+                transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                cursor: "pointer",
+                "&:hover": {
+                  transform: "translateY(-6px)",
+                  boxShadow: theme.shadows[16],
+                },
               }}
             />
           </Box>
