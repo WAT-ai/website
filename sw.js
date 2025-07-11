@@ -1,49 +1,85 @@
-// Service Worker for aggressive caching and performance
-const CACHE_NAME = 'watai-v2';
+// Service Worker for aggressive caching on GitHub Pages
+const CACHE_NAME = 'watai-v3';
+const STATIC_CACHE_NAME = 'watai-static-v3';
+const DYNAMIC_CACHE_NAME = 'watai-dynamic-v3';
+
+// Critical assets to cache immediately
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',
   '/Weblogo.png',
-  '/logo.png'
+  '/logo.png',
+  '/robots.txt'
 ];
 
-// Resources to cache with different strategies
+// Cache strategies by resource type
 const CACHE_STRATEGIES = {
-  // Cache First (static assets)
-  CACHE_FIRST: [
-    /\.(?:png|jpg|jpeg|webp|svg|gif|ico)$/,
-    /\.(?:woff2|woff|ttf|otf)$/,
-    /\.(?:css|js)$/
-  ],
-  // Network First (API calls, HTML)
-  NETWORK_FIRST: [
-    /\.(?:html)$/,
-    /\/api\//
-  ],
-  // Stale While Revalidate (frequently updated resources)
-  STALE_WHILE_REVALIDATE: [
-    /\.(?:json)$/
-  ]
+  // Cache First with long TTL - static assets that rarely change
+  CACHE_FIRST_LONG: {
+    patterns: [
+      /\.(?:png|jpg|jpeg|webp|svg|gif|ico)$/,
+      /\.(?:woff2|woff|ttf|otf)$/,
+      /\/static\/.*\.(?:css|js)$/,
+      /slider3_opt.*\.png/,
+      /.*_opt\.(?:png|jpg|jpeg|webp)$/
+    ],
+    cacheName: STATIC_CACHE_NAME,
+    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    maxEntries: 100
+  },
+  
+  // Cache First with medium TTL - other static resources
+  CACHE_FIRST_MEDIUM: {
+    patterns: [
+      /\.(?:css|js)$/,
+      /\/logo\.png$/,
+      /\/Weblogo\.png$/
+    ],
+    cacheName: STATIC_CACHE_NAME,
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    maxEntries: 50
+  },
+  
+  // Network First - HTML and API calls
+  NETWORK_FIRST: {
+    patterns: [
+      /\.(?:html)$/,
+      /\/api\//,
+      /\/$/
+    ],
+    cacheName: DYNAMIC_CACHE_NAME,
+    maxAge: 24 * 60 * 60 * 1000, // 1 day
+    maxEntries: 20
+  }
 };
+
+// Handle messages from main thread
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.command === 'skipWaiting') {
+    self.skipWaiting();
+  }
+});
 
 // Install event - cache essential resources
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        return cache.addAll(STATIC_ASSETS);
-      })
-      .then(() => self.skipWaiting())
+    Promise.all([
+      caches.open(STATIC_CACHE_NAME),
+      caches.open(DYNAMIC_CACHE_NAME)
+    ]).then(([staticCache, dynamicCache]) => {
+      return staticCache.addAll(STATIC_ASSETS);
+    }).then(() => self.skipWaiting())
   );
 });
 
-// Activate event - clean up old caches and take control
+// Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
+          if (!cacheName.startsWith('watai-') || 
+              (!cacheName.includes('v3') && cacheName.startsWith('watai-'))) {
             return caches.delete(cacheName);
           }
         })
@@ -63,61 +99,100 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Skip external requests (except fonts)
-  if (url.origin !== location.origin && !url.hostname.includes('fonts.gstatic.com')) {
+  if (url.origin !== location.origin && 
+      !url.hostname.includes('fonts.gstatic.com') &&
+      !url.hostname.includes('fonts.googleapis.com')) {
     return;
   }
 
   // Determine cache strategy
-  const pathname = url.pathname;
-  let strategy = 'NETWORK_FIRST'; // default
-
-  // Check cache strategies
-  for (const [strategyName, patterns] of Object.entries(CACHE_STRATEGIES)) {
-    if (patterns.some(pattern => pattern.test(pathname))) {
-      strategy = strategyName;
-      break;
+  let strategy = findCacheStrategy(url.pathname + url.search);
+  
+  if (strategy) {
+    if (strategy.patterns.some(pattern => pattern.test(request.url))) {
+      if (strategy === CACHE_STRATEGIES.NETWORK_FIRST) {
+        event.respondWith(networkFirst(request, strategy));
+      } else {
+        event.respondWith(cacheFirst(request, strategy));
+      }
     }
-  }
-
-  // Apply strategy
-  if (strategy === 'CACHE_FIRST') {
-    event.respondWith(cacheFirst(request));
-  } else if (strategy === 'NETWORK_FIRST') {
-    event.respondWith(networkFirst(request));
-  } else if (strategy === 'STALE_WHILE_REVALIDATE') {
-    event.respondWith(staleWhileRevalidate(request));
   }
 });
 
-// Cache First strategy
-async function cacheFirst(request) {
-  const cache = await caches.open(CACHE_NAME);
+// Find appropriate cache strategy
+function findCacheStrategy(url) {
+  for (const [name, strategy] of Object.entries(CACHE_STRATEGIES)) {
+    if (strategy.patterns.some(pattern => pattern.test(url))) {
+      return strategy;
+    }
+  }
+  return null;
+}
+
+// Cache First strategy with TTL
+async function cacheFirst(request, strategy) {
+  const cache = await caches.open(strategy.cacheName);
   const cached = await cache.match(request);
   
+  // Check if cached response is still valid
   if (cached) {
-    return cached;
+    const cachedDate = new Date(cached.headers.get('sw-cache-time') || 0);
+    const now = new Date();
+    
+    if (now - cachedDate < strategy.maxAge) {
+      return cached;
+    }
   }
   
   try {
     const response = await fetch(request);
     if (response.status === 200) {
-      cache.put(request, response.clone());
+      // Clone response and add cache timestamp
+      const responseClone = response.clone();
+      const responseWithTime = new Response(responseClone.body, {
+        status: responseClone.status,
+        statusText: responseClone.statusText,
+        headers: {
+          ...Object.fromEntries(responseClone.headers.entries()),
+          'sw-cache-time': new Date().toISOString()
+        }
+      });
+      
+      // Clean up old entries if needed
+      await cleanupCache(cache, strategy.maxEntries);
+      
+      // Cache the response
+      await cache.put(request, responseWithTime);
     }
     return response;
   } catch (error) {
-    console.warn('Cache first failed:', error);
-    return new Response('Network error', { status: 503 });
+    // Return cached version if available, even if expired
+    if (cached) {
+      return cached;
+    }
+    throw error;
   }
 }
 
 // Network First strategy
-async function networkFirst(request) {
-  const cache = await caches.open(CACHE_NAME);
+async function networkFirst(request, strategy) {
+  const cache = await caches.open(strategy.cacheName);
   
   try {
     const response = await fetch(request);
     if (response.status === 200) {
-      cache.put(request, response.clone());
+      const responseClone = response.clone();
+      const responseWithTime = new Response(responseClone.body, {
+        status: responseClone.status,
+        statusText: responseClone.statusText,
+        headers: {
+          ...Object.fromEntries(responseClone.headers.entries()),
+          'sw-cache-time': new Date().toISOString()
+        }
+      });
+      
+      await cleanupCache(cache, strategy.maxEntries);
+      await cache.put(request, responseWithTime);
     }
     return response;
   } catch (error) {
@@ -125,28 +200,15 @@ async function networkFirst(request) {
     if (cached) {
       return cached;
     }
-    return new Response('Network error', { status: 503 });
+    throw error;
   }
 }
 
-// Stale While Revalidate strategy
-async function staleWhileRevalidate(request) {
-  const cache = await caches.open(CACHE_NAME);
-  const cached = await cache.match(request);
-  
-  // Update cache in background
-  const fetchPromise = fetch(request).then(response => {
-    if (response.status === 200) {
-      cache.put(request, response.clone());
-    }
-    return response;
-  });
-  
-  // Return cached version immediately if available
-  if (cached) {
-    return cached;
+// Clean up old cache entries
+async function cleanupCache(cache, maxEntries) {
+  const keys = await cache.keys();
+  if (keys.length > maxEntries) {
+    const oldestKeys = keys.slice(0, keys.length - maxEntries);
+    await Promise.all(oldestKeys.map(key => cache.delete(key)));
   }
-  
-  // Otherwise wait for network
-  return fetchPromise;
 }
