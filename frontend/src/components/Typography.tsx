@@ -1,10 +1,10 @@
-// Custom typography components for consistent style.
-// Use for titles, subtitles, body text. Edit styles for branding.
+/**
+ * Typography - Consistent typography components with responsive design
+ * Provides styled text components with unified theming across the application
+ */
 import React from 'react';
 import { Typography as MuiTypography, TypographyProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
-
-// Enhanced Typography components with consistent styling
 
 export const HeroTitle = styled(MuiTypography)(({ theme }) => ({
   fontWeight: 700,
@@ -146,7 +146,6 @@ export const Label = styled(MuiTypography)(({ theme }) => ({
   marginBottom: theme.spacing(1),
 })) as typeof MuiTypography;
 
-// Gradient text utility
 export const GradientText = styled(MuiTypography)(({ theme }) => ({
   background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.primary.light || theme.palette.primary.main})`,
   backgroundClip: 'text',

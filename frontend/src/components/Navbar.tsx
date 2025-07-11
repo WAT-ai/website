@@ -1,5 +1,7 @@
-// Main navigation bar. Edit links or add menu items as needed.
-// For custom branding, update logo or style props.
+/**
+ * Navbar - Responsive navigation with scroll effects and mobile drawer
+ * Features sticky behavior, smooth transitions, and accessibility support
+ */
 import React, { useState, useEffect, useCallback } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,15 +18,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import useTheme from "@mui/material/styles/useTheme";
 import useMediaQuery from "@mui/material/useMediaQuery";
-
-/**
- * Navigation component with responsive design and scroll-based styling
- * Features:
- * - Responsive design with mobile drawer menu
- * - Scroll-based background opacity changes
- * - Smooth transitions and hover effects
- * - Integrated WAT.ai branding
- */
 const Navbar: React.FC = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);

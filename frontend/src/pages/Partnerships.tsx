@@ -1,3 +1,7 @@
+/**
+ * Partnerships - Connect companies/professors with WAT.ai students
+ * Includes process overview, stats, and FAQ for external partners
+ */
 import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";

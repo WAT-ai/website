@@ -1,20 +1,23 @@
-// Image optimization script for all images in src/assets.
-// Uses ImageMagick. Run with `node optimize-images.js`.
-// Adds _opt to output files. Edit quality or formats as needed.
-// Use --clean flag to remove all optimized images: `node optimize-images.js --clean`
+/**
+ * Image optimization script for WAT.ai website
+ * Compresses images to <200KB using ImageMagick with quality/resize fallbacks
+ * Usage: node optimize-images.js [--clean| --help]
+ */
 
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-// Check command line arguments
+// Command line argument parsing
 const args = process.argv.slice(2);
 const shouldClean = args.includes('--clean');
 const shouldShowHelp = args.includes('--help') || args.includes('-h');
 
-// Function to show usage information
+// Display usage information
 function showHelp() {
   console.log('Image Optimization Script');
+  console.log('');
+  console.log('Optimizes images to under 200KB by adjusting quality and resizing if needed.');
   console.log('');
   console.log('Usage:');
   console.log('  node optimize-images.js           - Optimize all images in src/assets');
@@ -30,13 +33,16 @@ function showHelp() {
   console.log('');
 }
 
-// Function to clean up all optimized images
+/**
+ * Remove all optimized images (_opt suffix files)
+ * Useful for clean rebuilds and removing outdated versions
+ */
 async function cleanOptimizedImages() {
   console.log('Starting cleanup of optimized images...');
   
   const srcAssetsDir = path.join(__dirname, '../src/assets');
   
-  // Recursively find all optimized image files
+  // Recursively find optimized image files
   function findOptimizedImages(dir) {
     let optimizedImages = [];
     if (!fs.existsSync(dir)) return optimizedImages;
@@ -47,8 +53,10 @@ async function cleanOptimizedImages() {
       const stat = fs.statSync(filePath);
       
       if (stat.isDirectory()) {
+        // Recursively search subdirectories
         optimizedImages = optimizedImages.concat(findOptimizedImages(filePath));
       } else if (/_opt\.(jpg|jpeg|png)$/i.test(file)) {
+        // Match files with _opt suffix
         optimizedImages.push(filePath);
       }
     }
@@ -70,11 +78,11 @@ async function cleanOptimizedImages() {
   console.log('Cleanup completed!');
 }
 
-// Script to optimize images using ImageMagick for better web performance
+// Main optimization function using ImageMagick
 async function optimizeImages() {
   console.log('Starting image optimization...');
   
-  // Verify ImageMagick installation before proceeding
+  // Verify ImageMagick installation
   try {
     execSync('which magick', { stdio: 'ignore' });
   } catch (error) {
@@ -85,7 +93,7 @@ async function optimizeImages() {
   
   const srcAssetsDir = path.join(__dirname, '../src/assets');
   
-  // Recursively find all image files in the assets directory
+  // Recursively find all unoptimized image files
   function findImages(dir) {
     let images = [];
     if (!fs.existsSync(dir)) return images;
@@ -98,7 +106,7 @@ async function optimizeImages() {
       if (stat.isDirectory()) {
         images = images.concat(findImages(filePath));
       } else if (/\.(jpg|jpeg|png)$/i.test(file) && !/_opt\.(jpg|jpeg|png)$/i.test(file)) {
-        // Only include original images, not already optimized ones
+        // Only include original images, skip optimized ones
         images.push(filePath);
       }
     }
@@ -114,26 +122,74 @@ async function optimizeImages() {
     const dir = path.dirname(imagePath);
     const optimizedPath = path.join(dir, `${baseName}_opt${ext}`);
     
-    // Check if optimized version already exists and skip or overwrite
+    // Skip if optimized version exists (or overwrite)
     if (fs.existsSync(optimizedPath)) {
       console.log(`Overwriting existing optimized file: ${path.basename(optimizedPath)}`);
     }
     
     try {
-      if (ext === '.jpg' || ext === '.jpeg') {
-        // JPEG: 80% quality with progressive encoding for faster loading
-        execSync(`magick "${imagePath}" -quality 80 -interlace Plane "${optimizedPath}"`);
-      } else if (ext === '.png') {
-        // PNG: Compress while maintaining transparency
-        execSync(`magick "${imagePath}" -quality 80 "${optimizedPath}"`);
+      let quality = 85;
+      let optimizedSize = 0;
+      const targetSize = 200 * 1024; // 200KB target
+      
+      // Iteratively reduce quality/size to meet target
+      for (let attempt = 0; attempt < 15; attempt++) {
+        if (ext === '.jpg' || ext === '.jpeg') {
+          // JPEG: Progressive encoding for faster loading
+          execSync(`magick "${imagePath}" -quality ${quality} -interlace Plane "${optimizedPath}"`);
+        } else if (ext === '.png') {
+          // PNG: Compress while maintaining transparency
+          execSync(`magick "${imagePath}" -quality ${quality} "${optimizedPath}"`);
+        }
+        
+        optimizedSize = fs.statSync(optimizedPath).size;
+        
+        if (optimizedSize <= targetSize) {
+          break; // Target achieved
+        }
+        
+        // Progressive compression strategy
+        if (attempt < 8) {
+          // First 8 attempts: reduce quality
+          quality = Math.max(20, quality - 10);
+        } else {
+          // After attempt 8: aggressive resizing
+          const targetReduction = targetSize / optimizedSize;
+          const scaleFactor = Math.sqrt(targetReduction * 0.85); // 85% safety margin
+          const scalePercent = Math.max(20, Math.floor(scaleFactor * 100)); // Min 20%
+          
+          if (ext === '.jpg' || ext === '.jpeg') {
+            execSync(`magick "${imagePath}" -resize ${scalePercent}% -quality ${Math.max(30, quality)} -interlace Plane "${optimizedPath}"`);
+          } else if (ext === '.png') {
+            execSync(`magick "${imagePath}" -resize ${scalePercent}% -quality ${Math.max(30, quality)} "${optimizedPath}"`);
+          }
+          
+          optimizedSize = fs.statSync(optimizedPath).size;
+          
+          if (optimizedSize <= targetSize) {
+            break;
+          }
+          
+          // Further reduce scale for next attempt
+          quality = Math.max(20, quality - 5);
+        }
+        
+        if (quality <= 15 && attempt > 12) {
+          console.log(`  ⚠️  Reached minimum quality threshold for ${path.basename(imagePath)}`);
+          break;
+        }
       }
       
-      // Calculate and display file size reduction
+      // Display optimization results
       const originalSize = fs.statSync(imagePath).size;
-      const optimizedSize = fs.statSync(optimizedPath).size;
       const savings = ((originalSize - optimizedSize) / originalSize * 100).toFixed(1);
+      const sizeInKB = (optimizedSize / 1024).toFixed(1);
       
-      console.log(`Optimized ${path.basename(imagePath)} - ${savings}% smaller`);
+      if (optimizedSize <= targetSize) {
+        console.log(`✅ Optimized ${path.basename(imagePath)} - ${savings}% smaller (${sizeInKB}KB)`);
+      } else {
+        console.log(`⚠️  ${path.basename(imagePath)} - ${savings}% smaller (${sizeInKB}KB) - Could not reach 200KB target`);
+      }
     } catch (error) {
       console.log(`Failed to optimize ${path.basename(imagePath)}: ${error.message}`);
     }
@@ -142,7 +198,7 @@ async function optimizeImages() {
   console.log('Image optimization completed!');
 }
 
-// Main execution logic
+// Execute based on command line arguments
 async function main() {
   if (shouldShowHelp) {
     showHelp();

@@ -1,3 +1,8 @@
+// ParticleBackground.tsx - Animated particle background for hero sections
+// -----------------------------------------------------------------------
+// This component renders a visually appealing animated background for hero sections.
+// Edit this file to customize animation, colors, or density.
+
 // Animated particle background for visual effect.
 // Edit options for color, speed, or density. Used on landing/team pages.
 import React, { useEffect, useRef } from "react";

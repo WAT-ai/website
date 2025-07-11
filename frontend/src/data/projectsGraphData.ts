@@ -1,3 +1,8 @@
+// projectsGraphData.ts - Data for project graph visualization
+// ----------------------------------------------------------
+// This file exports data used to visualize project relationships and impact.
+// Edit this file to update graph nodes, edges, or project relationships.
+
 // Graph data for project relationships. Exports nodes/edges for vis-network.
 // Add new nodes/edges for new projects. Used by ProjectsGraph.
 

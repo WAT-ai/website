@@ -1,3 +1,8 @@
+// ModernProjectCard.tsx - Card for displaying project info
+// --------------------------------------------------------
+// This component displays a modern card for project details, including title, description, and tags.
+// Edit this file to customize card layout, style, or props.
+
 // Project card for modern projects. Displays title, team, links, and tags.
 // To add new fields, update the ModernProjectCardProps interface and usage.
 // For design changes, edit the Card and Box props.
@@ -46,6 +51,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
 }) => {
   const theme = useTheme();
 
+  // Function to get the appropriate contact icon based on the type
   const getContactIcon = (type: 'email' | 'linkedin') => {
     switch (type) {
       case 'email':
@@ -57,6 +63,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
     }
   };
 
+  // Function to get the appropriate link icon based on the type
   const getLinkIcon = (type: 'website' | 'repository' | 'paper' | 'documentation') => {
     switch (type) {
       case 'website':

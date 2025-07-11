@@ -1,3 +1,7 @@
+/**
+ * UnifiedStats - Consistent statistics display component
+ * Shows key metrics in a responsive grid layout with unified styling
+ */
 import React from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
 import UnifiedCard from './UnifiedCard';

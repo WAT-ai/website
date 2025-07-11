@@ -3,8 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/Weblogo.png" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+
+    <!-- Cache control hints -->
+    <meta http-equiv="cache-control" content="public, max-age=31536000">
+    <meta http-equiv="expires" content="31536000">
     
     <!-- Primary meta tags -->
     <title>WAT.ai</title>
@@ -101,45 +106,84 @@
     }
     </script>
     
-    <!-- Performance optimization -->
+    <!-- Performance optimization - DNS prefetch and preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://www.google-analytics.com">
-    
-    <!-- Inter font - optional display shows text immediately with system font, no blocking -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=optional" rel="stylesheet">
-    
-    <!-- DNS prefetch for performance -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
     
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <!-- Preload critical resources -->
+    <link rel="preload" href="%PUBLIC_URL%/Weblogo.png" as="image">
+    <link rel="preload" href="%PUBLIC_URL%/logo.png" as="image">
+    
+    <!-- Google Fonts CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA routing support -->
+    <script type="text/javascript">
+      // Handle client-side routing for GitHub Pages deployment
+      // Converts query parameters back to proper SPA routes on page load
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   </head>
   <body>
+    <!-- Service Worker for offline support, caching, and performance optimization -->
+    <script>
+      // Register service worker for asset caching, offline support, and faster subsequent visits
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js', {
+          scope: '/'
+        }).then(registration => {
+          console.log('SW: Service Worker registered successfully:', registration);
+          
+          // Handle waiting service worker (update available)
+          if (registration.waiting) {
+            registration.waiting.postMessage({command: 'skipWaiting'});
+          }
+          
+          // Listen for new service worker updates
+          registration.addEventListener('updatefound', () => {
+            console.log('SW: New service worker found, installing...');
+            const newWorker = registration.installing;
+            
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                console.log('SW: New service worker ready to activate');
+                // Skip waiting and activate immediately for better UX
+                newWorker.postMessage({command: 'skipWaiting'});
+              }
+            });
+          });
+        }).catch(error => {
+          console.error('SW: Service Worker registration failed:', error);
+        });
+        
+        // Handle service worker messages and reload notifications
+        navigator.serviceWorker.addEventListener('message', event => {
+          if (event.data && event.data.type === 'SKIP_WAITING') {
+            window.location.reload();
+          }
+        });
+      }
+    </script>
+    
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

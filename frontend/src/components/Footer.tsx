@@ -1,4 +1,8 @@
-// Footer with logo, contact, and social links. Edit for new links or style.
+// Footer.tsx - Footer with logo, contact, and social links for WAT.ai
+// ---------------------------------------------------------------
+// This component displays the footer on all pages, including branding and social/contact links.
+// Edit this file to update links, add new sections, or change layout.
+
 // Used on all pages. To add sections, update Box layout.
 import React from "react";
 import Typography from "@mui/material/Typography";

@@ -1,3 +1,7 @@
+/**
+ * Projects - Display active and completed WAT.ai projects
+ * Includes project cards, stats, and expandable past projects section
+ */
 import React, { useState } from "react";
 import {
   Box,

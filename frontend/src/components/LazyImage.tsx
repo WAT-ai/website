@@ -1,5 +1,7 @@
-// Lazy-loads images for performance. Pass src/alt and optional size.
-// Edit for custom placeholder or error handling.
+/**
+ * LazyImage - Performance-optimized image component with lazy loading
+ * Uses IntersectionObserver for viewport detection and supports error handling
+ */
 import React, { useState, useRef, useCallback } from 'react';
 import { Box, Skeleton } from '@mui/material';
 
@@ -24,12 +26,16 @@ const LazyImage: React.FC<LazyImageProps> = ({
   onLoad,
   onError,
 }) => {
+  // State to track image loading, visibility in viewport, and error status
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const [hasError, setHasError] = useState(false);
+
+  // Refs for image element and IntersectionObserver
   const imgRef = useRef<HTMLImageElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
+  // Callback ref to observe image element and trigger load when in view
   const imgCallbackRef = useCallback((node: HTMLImageElement | null) => {
     if (observerRef.current) observerRef.current.disconnect();
     
@@ -50,16 +56,19 @@ const LazyImage: React.FC<LazyImageProps> = ({
     }
   }, []);
 
+  // Handle image load event
   const handleLoad = () => {
     setIsLoaded(true);
     onLoad?.();
   };
 
+  // Handle image error event
   const handleError = () => {
     setHasError(true);
     onError?.();
   };
 
+  // Container style for the image
   const containerStyle: React.CSSProperties = {
     width,
     height,
@@ -68,6 +77,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
     ...style,
   };
 
+  // Image style with fade-in effect
   const imageStyle: React.CSSProperties = {
     width: '100%',
     height: '100%',
@@ -76,6 +86,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
     opacity: isLoaded ? 1 : 0,
   };
 
+  // Error fallback UI
   if (hasError) {
     return (
       <Box sx={containerStyle}>
@@ -98,6 +109,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
 
   return (
     <Box sx={containerStyle}>
+      {/* Show placeholder or skeleton while image is loading */}
       {!isLoaded && (
         placeholder || (
           <Skeleton
@@ -108,6 +120,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
           />
         )
       )}
+      {/* Image element with lazy loading and error handling */}
       <img
         ref={imgCallbackRef}
         src={isInView ? src : ''}

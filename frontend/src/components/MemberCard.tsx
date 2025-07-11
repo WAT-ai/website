@@ -1,15 +1,12 @@
-// Card for displaying a team member. Shows image, name, role, LinkedIn.
-// To add new fields, update props and card layout.
+/**
+ * MemberCard - Team member display component
+ * Shows profile image, name, role with hover effects and LinkedIn integration
+ */
 import React from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/system";
 import Link from "@mui/material/Link";
 import { CardTitle, Caption } from "./Typography";
-
-/**
- * Team member card component with hover effects and LinkedIn integration
- * Displays profile image, name, role with smooth animations
- */
 
 // Styled image component with hover glow effect
 const MemberImage = styled("img")(({ theme }) => ({
@@ -23,10 +20,6 @@ const MemberImage = styled("img")(({ theme }) => ({
   },
 }));
 
-/**
- * Individual team member card with lift animation on hover
- * Integrates with LinkedIn for external profile access
- */
 const MemberCard = ({ name, role, imageUrl, linkedinUrl }: any) => (
   <Box
     sx={{

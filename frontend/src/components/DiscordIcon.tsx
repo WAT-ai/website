@@ -1,3 +1,7 @@
+/**
+ * DiscordIcon - Custom SVG icon component for Discord branding
+ * Scalable icon that integrates with MUI's SvgIcon system
+ */
 import React from 'react';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 

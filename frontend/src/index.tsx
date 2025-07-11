@@ -1,3 +1,7 @@
+/**
+ * Application Entry Point - WAT.ai Website
+ * Initializes React app with global styles and strict mode
+ */
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";

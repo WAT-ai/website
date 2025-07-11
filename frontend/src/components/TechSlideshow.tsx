@@ -1,18 +1,15 @@
-// Animated slideshow of logos. Edit background image or animation speed.
-// Used for partner/tech sections. To add logos, update the sprite image.
+/**
+ * TechSlideshow - Infinite scrolling logo slideshow
+ * Displays technology/company logos with seamless continuous animation
+ */
 import React from "react";
 import Box from "@mui/material/Box";
 import { keyframes, styled } from "@mui/system";
 
-/**
- * Continuous horizontal slideshow of technology/company logos
- * Creates infinite scrolling effect with fade edges for seamless appearance
- */
-
 // Animation keyframes for infinite horizontal movement
 const moveSlideshow = keyframes`
   100% {
-    transform: translateX(-49.23333%); /* Move half the sprite width for seamless loop */
+    transform: translateX(-49.23333%);
   }
 `;
 
@@ -30,28 +27,27 @@ const Mover = styled(Box)(({ theme }) => ({
   animation: `${moveSlideshow} 22s linear infinite`,
 }));
 
-// Container with fade edge masks for seamless scrolling appearance
+// Container with fade edge masks for seamless scrolling
 const Slideshow = styled(Box)(({ theme }) => ({
   height: "200px",
   width: "100%",
   position: "relative",
   overflow: "hidden",
-  // Create fade masks on both edges to hide the loop transition
   "&::before, &::after": {
     content: '""',
     position: "absolute",
     top: 0,
     bottom: 0,
-    width: "15%", // Fade zone width
+    width: "15%",
     zIndex: 1,
   },
   "&::before": {
     left: 0,
-    background: "linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))", // Fading from black to transparent
+    background: "linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))",
   },
   "&::after": {
     right: 0,
-    background: "linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))", // Fading from black to transparent
+    background: "linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))",
   },
 }));
 

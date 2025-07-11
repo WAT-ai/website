@@ -1,3 +1,8 @@
+/**
+ * teamData - Team member and alumni information
+ * Update this file to add/remove team members or modify their details
+ */
+
 // Team member data arrays for org structure.
 // Add or update members in ExecutiveTeam, LeadershipTeam, or Alumni.
 // Images in src/assets/team/. Used by Team page.

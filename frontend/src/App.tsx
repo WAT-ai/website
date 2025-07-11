@@ -1,14 +1,6 @@
 /**
- * Main Application Component
- * 
- * This component sets up the routing, theme provider, analytics tracking,
- * and global layout structure for the WAT.ai website.
- * 
- * Features:
- * - Lazy loading for performance optimization
- * - Google Analytics integration
- * - Global particle background
- * - Responsive layout with navbar and footer
+ * Main Application Component - WAT.ai Website
+ * Sets up routing, theme, analytics, and global layout with lazy loading optimization
  */
 
 import React, { useEffect, Suspense, lazy } from "react";
@@ -21,15 +13,12 @@ import {
 import { ThemeProvider } from "@mui/material/styles";
 import { Box, CircularProgress } from "@mui/material";
 
-// Core components
 import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
 import theme from "./styles/theme";
-
-// Analytics
 import ReactGA from "react-ga4";
 
-// Lazy-loaded page components for optimal performance
+// Lazy-loaded page components
 const Home = lazy(() => import("./pages/Home"));
 const Students = lazy(() => import("./pages/Students"));
 const Partnerships = lazy(() => import("./pages/Partnerships"));
@@ -39,12 +28,10 @@ const Contact = lazy(() => import("./pages/Contact"));
 const ParticleBackground = lazy(() => import("./components/ParticleBackground"));
 const Footer = lazy(() => import("./components/Footer"));
 
-// Initialize Google Analytics
 ReactGA.initialize("G-1LBF0CDH72");
 
 /**
- * Component to track page views for analytics
- * Automatically sends page view events when route changes
+ * Analytics tracker component for page view events
  */
 const PageViewTracker: React.FC = () => {
   const location = useLocation();
@@ -60,8 +47,7 @@ const PageViewTracker: React.FC = () => {
 };
 
 /**
- * Main application content component
- * Handles layout, routing, and global components
+ * Main application layout and routing component
  */
 const AppContent: React.FC = () => {
   return (
@@ -71,18 +57,15 @@ const AppContent: React.FC = () => {
         flexDirection: "column",
         minHeight: "100vh",
         position: "relative",
-        backgroundColor: "#000000", // Global dark background
+        backgroundColor: "#000000",
       }}
     >
-      {/* Global particle background */}
       <Suspense fallback={null}>
         <ParticleBackground />
       </Suspense>
       
-      {/* Navigation */}
       <Navbar />
       
-      {/* Main content area */}
       <main style={{ flex: 1, position: "relative", zIndex: 1 }}>
         <Suspense 
           fallback={
@@ -109,7 +92,6 @@ const AppContent: React.FC = () => {
         </Suspense>
       </main>
       
-      {/* Footer */}
       <Suspense fallback={null}>
         <Footer />
       </Suspense>
@@ -118,8 +100,7 @@ const AppContent: React.FC = () => {
 };
 
 /**
- * Root App component
- * Provides theme context and router setup
+ * Root App component with theme and router providers
  */
 const App: React.FC = () => {
   return (

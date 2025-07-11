@@ -1,3 +1,7 @@
+/**
+ * Theme Configuration - Material-UI theme customization for WAT.ai
+ * Defines colors, typography, and component overrides for consistent branding
+ */
 import { createTheme } from "@mui/material/styles";
 
 // Extend MUI theme interface to include custom colors

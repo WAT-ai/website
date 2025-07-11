@@ -1,3 +1,7 @@
+/**
+ * Home - Main landing page with hero, about, stats, partners, and CTA sections
+ * Update stats array and section content as needed
+ */
 import React, { memo } from "react";
 import Box from "@mui/material/Box";
 import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg";
@@ -9,12 +13,10 @@ import UnifiedCard from "../components/UnifiedCard";
 import UnifiedButton from "../components/UnifiedButton";
 import UnifiedStats from "../components/UnifiedStats";
 
-// Home page: Main landing and overview. Edit sections to update intro, stats, or partners.
-// To change the hero, update the HeroTitle and Logo. For stats, edit the stats array.
-// Add or remove sections as needed for your org.
 const HomePage: React.FC = memo(() => {
   const theme = useTheme();
 
+  // Key metrics displayed on homepage
   const stats = [
     { number: "450+", label: "Program Graduates", description: "Students & researchers" },
     { number: "40+", label: "AI Projects", description: "Completed successfully" },
@@ -69,7 +71,7 @@ const HomePage: React.FC = memo(() => {
         </Box>
       </UnifiedSection>
 
-      {/* About Us Section */}
+      {/* About Section */}
       <UnifiedSection
         backgroundColor="transparent"
         minHeight="80vh"
@@ -79,7 +81,6 @@ const HomePage: React.FC = memo(() => {
           <SectionTitle sx={{ mb: { xs: 4, sm: 5, md: 6 } }}>
             About Us
           </SectionTitle>
-          
           <UnifiedCard
             variant="elevated"
             padding={5}
@@ -91,7 +92,6 @@ const HomePage: React.FC = memo(() => {
             }}>
               Fostering The Future Of AI Talent At The University of Waterloo
             </SubsectionTitle>
-            
             <BodyLarge sx={{ 
               textAlign: "center", 
               mb: { xs: 3, sm: 4 }, 
@@ -141,7 +141,6 @@ const HomePage: React.FC = memo(() => {
                 Sedra Student Design Centre (SSDC)
               </Box>.
             </BodyLarge>
-
             <BodyText sx={{ 
               textAlign: "center", 
               mb: { xs: 4, sm: 5 }, 
@@ -155,7 +154,6 @@ const HomePage: React.FC = memo(() => {
               graduate students to engage in impactful projects through
               collaboration with companies and internal research.
             </BodyText>
-
             <UnifiedButton
               variant="outlined"
               size="large"
@@ -187,7 +185,7 @@ const HomePage: React.FC = memo(() => {
         </Box>
       </UnifiedSection>
 
-      {/* Our Partners Section */}
+      {/* Partners Section */}
       <UnifiedSection
         backgroundColor="transparent"
         minHeight="60vh"
@@ -215,7 +213,7 @@ const HomePage: React.FC = memo(() => {
         </Box>
       </UnifiedSection>
 
-      {/* Call to Action Section */}
+      {/* CTA Section */}
       <UnifiedSection
         backgroundColor="paper"
         minHeight="50vh"

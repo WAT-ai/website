@@ -1,3 +1,8 @@
+// ImageGallery.tsx - Responsive image gallery with navigation
+// ----------------------------------------------------------
+// This component displays a gallery of images with arrows, dots, and smooth transitions.
+// Edit this file to customize gallery layout, navigation, or image handling.
+
 // Image gallery with slider. Pass images array as props.
 // Edit settings for slidesToShow, autoplay, or style.
 import React from "react";

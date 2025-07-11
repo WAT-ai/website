@@ -1,5 +1,7 @@
-// Interactive graph for visualizing project relationships.
-// Pass nodes/edges as props. Edit options for layout or style.
+/**
+ * ProjectsGraph - Interactive network visualization for project relationships
+ * Uses vis-network library to display nodes and edges with filtering capabilities
+ */
 import React, { useEffect, useRef, useState } from "react";
 import { Network, Node, Edge, Options, Color } from "vis-network";
 import { DataSet } from "vis-data";
@@ -25,7 +27,36 @@ interface ProjectsGraphProps {
 }
 
 const defaultOptions: Options = {
-  // ... (keep the existing defaultOptions)
+  physics: {
+    enabled: true,
+    stabilization: { iterations: 100 },
+  },
+  interaction: {
+    hover: true,
+    zoomView: true,
+    dragView: true,
+  },
+  nodes: {
+    font: {
+      size: 12,
+      color: "white",
+    },
+    borderWidth: 2,
+    shadow: true,
+  },
+  edges: {
+    arrows: {
+      to: { enabled: false },
+    },
+    smooth: {
+      enabled: true,
+      type: "dynamic",
+      roundness: 0.5,
+    },
+  },
+  layout: {
+    improvedLayout: true,
+  },
 };
 
 const ProjectsGraph: React.FC<ProjectsGraphProps> = ({

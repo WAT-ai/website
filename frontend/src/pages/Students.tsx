@@ -1,3 +1,7 @@
+/**
+ * Students - Information and opportunities for student members
+ * Includes gallery, opportunities sections, and FAQ
+ */
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
@@ -14,9 +18,7 @@ import UnifiedHero from "../components/UnifiedHero";
 import UnifiedButton from "../components/UnifiedButton";
 import FAQ from "../components/FAQ";
 
-// Students page: Info for student members, opportunities, and joining. Updated with new copy for 2024.
-
-// Import images
+// Optimized gallery images
 import cucai1 from "../assets/studentLandingPage/cucai1_opt.jpg"
 import cucai2 from "../assets/studentLandingPage/cucai2_opt.jpg"
 import cucai3 from "../assets/studentLandingPage/cucai3_opt.jpg"
@@ -29,7 +31,7 @@ import highImpact from "../assets/studentLandingPage/high_impact_opt.jpg"
 import workshops from "../assets/studentLandingPage/workshops_opt.jpg"
 import network from "../assets/studentLandingPage/network_opt.jpg"
 
-// Custom image component with smooth loading fade-in effect
+// Image component with loading states and fade-in effect
 const LoadingImage: React.FC<{
   src: string;
   alt: string;

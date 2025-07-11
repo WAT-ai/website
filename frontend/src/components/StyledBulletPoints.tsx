@@ -1,13 +1,11 @@
-// Styled bullet points with title and list. Pass title/points as props.
-// Edit for custom icons, alignment, or style.
+/**
+ * StyledBulletPoints - Customizable bullet point list component
+ * Supports left/right alignment and consistent theming
+ */
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
 import { SubsectionTitle, BodyText } from "./Typography";
 
-/**
- * Styled bullet points component with customizable alignment
- * Displays a title and list of points with consistent styling
- */
 interface BulletPointsProps {
   title: string;
   points: string[];

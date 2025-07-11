@@ -1,3 +1,8 @@
+// ProjectCard.tsx - Legacy card for displaying project info
+// ---------------------------------------------------------
+// This component displays a card for project details, including title, description, and tags.
+// Edit this file to customize card layout, style, or props.
+
 import React from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";

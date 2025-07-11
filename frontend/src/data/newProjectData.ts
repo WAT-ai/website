@@ -1,3 +1,8 @@
+// newProjectData.ts - Current and past project data for WAT.ai
+// -----------------------------------------------------------
+// This file exports arrays of active and completed projects for display on the Projects page.
+// Edit this file to add, remove, or update project info and details.
+
 /**
  * Updated project data for WAT.ai research initiatives
  * Contains project descriptions, team leads, contacts, and collaboration details

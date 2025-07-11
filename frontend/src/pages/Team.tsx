@@ -1,3 +1,7 @@
+/**
+ * Team - Display team members and alumni
+ * Includes executive team, leadership team, and expandable alumni section
+ */
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";

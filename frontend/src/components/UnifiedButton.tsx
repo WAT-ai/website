@@ -1,6 +1,7 @@
-// Unified button for consistent style across the app.
-// Use for navigation or actions. Supports variants, icons, and links.
-// To add new styles, update the variant prop handling.
+/**
+ * UnifiedButton - Consistent button component with multiple variants
+ * Provides standardized button styling and behavior across the application
+ */
 import React from 'react';
 import { Box, useTheme } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';

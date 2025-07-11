@@ -1,5 +1,7 @@
-// Unified card for consistent container style. Use for sections, cards, or highlights.
-// Edit variant, padding, or borderRadius for new styles.
+/**
+ * UnifiedCard - Consistent card component with multiple variants
+ * Provides standardized container styling with elevation and hover effects
+ */
 import React from 'react';
 import { Box, useTheme } from '@mui/material';
 

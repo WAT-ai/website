@@ -1,3 +1,7 @@
+/**
+ * UnifiedSection - Consistent section wrapper with animation and theming
+ * Provides standardized spacing, backgrounds, and scroll-triggered animations
+ */
 import React from 'react';
 import { Box, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
@@ -25,6 +29,7 @@ const UnifiedSection: React.FC<UnifiedSectionProps> = ({
 }) => {
   const theme = useTheme();
 
+  // Determines the background color based on the prop value
   const getBackgroundColor = () => {
     switch (backgroundColor) {
       case 'default':
