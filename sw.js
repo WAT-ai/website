@@ -1,214 +1,131 @@
-// Service Worker for aggressive caching on GitHub Pages
-const CACHE_NAME = 'watai-v3';
-const STATIC_CACHE_NAME = 'watai-static-v3';
-const DYNAMIC_CACHE_NAME = 'watai-dynamic-v3';
+/**
+ * WAT.ai Service Worker - Advanced Caching Strategy
+ * 
+ * Implements aggressive caching to bypass GitHub Pages' default 10-minute cache TTL
+ * and provide near-instant loading for returning visitors. Uses dual cache strategy:
+ * - Static assets (images, fonts, CSS, JS) cached indefinitely
+ * - Dynamic content (HTML, API responses) cached with network-first strategy
+ *
+ */
 
-// Critical assets to cache immediately
-const STATIC_ASSETS = [
-  '/',
-  '/manifest.json',
-  '/Weblogo.png',
-  '/logo.png',
-  '/robots.txt'
-];
+const CACHE_NAME = 'watai-cache-v5';          // Main cache for dynamic content
+const STATIC_CACHE_NAME = 'watai-static-v5'; // Long-term cache for static assets
 
-// Cache strategies by resource type
-const CACHE_STRATEGIES = {
-  // Cache First with long TTL - static assets that rarely change
-  CACHE_FIRST_LONG: {
-    patterns: [
-      /\.(?:png|jpg|jpeg|webp|svg|gif|ico)$/,
-      /\.(?:woff2|woff|ttf|otf)$/,
-      /\/static\/.*\.(?:css|js)$/,
-      /slider3_opt.*\.png/,
-      /.*_opt\.(?:png|jpg|jpeg|webp)$/
-    ],
-    cacheName: STATIC_CACHE_NAME,
-    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-    maxEntries: 100
-  },
-  
-  // Cache First with medium TTL - other static resources
-  CACHE_FIRST_MEDIUM: {
-    patterns: [
-      /\.(?:css|js)$/,
-      /\/logo\.png$/,
-      /\/Weblogo\.png$/
-    ],
-    cacheName: STATIC_CACHE_NAME,
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    maxEntries: 50
-  },
-  
-  // Network First - HTML and API calls
-  NETWORK_FIRST: {
-    patterns: [
-      /\.(?:html)$/,
-      /\/api\//,
-      /\/$/
-    ],
-    cacheName: DYNAMIC_CACHE_NAME,
-    maxAge: 24 * 60 * 60 * 1000, // 1 day
-    maxEntries: 20
-  }
-};
+console.log('SW: Service Worker loaded and ready');
 
-// Handle messages from main thread
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.command === 'skipWaiting') {
-    self.skipWaiting();
-  }
-});
-
-// Install event - cache essential resources
+/**
+ * Install Event Handler
+ * Activates immediately without waiting for existing service workers to close
+ * This ensures users get the latest version without needing to refresh twice
+ */
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    Promise.all([
-      caches.open(STATIC_CACHE_NAME),
-      caches.open(DYNAMIC_CACHE_NAME)
-    ]).then(([staticCache, dynamicCache]) => {
-      return staticCache.addAll(STATIC_ASSETS);
-    }).then(() => self.skipWaiting())
-  );
+  console.log('SW: Installing new service worker version...');
+  // Skip waiting phase to activate immediately
+  self.skipWaiting();
 });
 
-// Activate event - clean up old caches
+/**
+ * Activate Event Handler
+ * Cleans up old cache versions and takes control of all clients immediately
+ * This ensures consistent caching behavior across all open tabs
+ */
 self.addEventListener('activate', (event) => {
+  console.log('SW: Activating and cleaning up old caches...');
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
+    caches.keys().then(cacheNames => {
       return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (!cacheName.startsWith('watai-') || 
-              (!cacheName.includes('v3') && cacheName.startsWith('watai-'))) {
+        cacheNames.map(cacheName => {
+          // Delete outdated cache versions to free up storage
+          if (cacheName !== CACHE_NAME && cacheName !== STATIC_CACHE_NAME) {
+            console.log('SW: Deleting outdated cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
-    }).then(() => self.clients.claim())
+    }).then(() => {
+      console.log('SW: Taking control of all clients');
+      // Immediately control all open tabs without waiting for reload
+      return self.clients.claim();
+    })
   );
 });
 
-// Fetch event - smart caching strategy
+/**
+ * Static Asset Detection
+ * Identifies static resources that should be cached long-term
+ * These assets rarely change and benefit from aggressive caching
+ * 
+ * @param {string} url - The URL to check
+ * @returns {boolean} - True if the URL is for a static asset
+ */
+function isStaticAsset(url) {
+  return url.includes('/static/') || 
+         url.match(/\.(css|js|png|jpg|jpeg|webp|svg|gif|ico|woff2|woff|map)$/i) ||
+         url.includes('logo') ||
+         url.includes('manifest.json') ||
+         url.includes('robots.txt') ||
+         url.includes('fonts.googleapis.com') ||
+         url.includes('fonts.gstatic.com');
+}
+
+/**
+ * Fetch Event Handler - Dual Caching Strategy
+ * 
+ * Static Assets: Cache-first strategy for maximum performance
+ * - Serve from cache immediately if available
+ * - Cache indefinitely as these rarely change
+ * 
+ * Dynamic Content: Network-first with cache fallback
+ * - Always try network first for fresh content
+ * - Fall back to cache if network fails (offline support)
+ * - Cache successful responses for future use
+ */
 self.addEventListener('fetch', (event) => {
-  const { request } = event;
-  const url = new URL(request.url);
-
-  // Skip non-GET requests
-  if (request.method !== 'GET') {
-    return;
-  }
-
-  // Skip external requests (except fonts)
-  if (url.origin !== location.origin && 
-      !url.hostname.includes('fonts.gstatic.com') &&
-      !url.hostname.includes('fonts.googleapis.com')) {
-    return;
-  }
-
-  // Determine cache strategy
-  let strategy = findCacheStrategy(url.pathname + url.search);
+  const url = event.request.url;
   
-  if (strategy) {
-    if (strategy.patterns.some(pattern => pattern.test(request.url))) {
-      if (strategy === CACHE_STRATEGIES.NETWORK_FIRST) {
-        event.respondWith(networkFirst(request, strategy));
-      } else {
-        event.respondWith(cacheFirst(request, strategy));
-      }
-    }
-  }
+  // Skip non-GET requests (POST, PUT, DELETE, etc.)
+  if (event.request.method !== 'GET') return;
+  
+  // Skip Chrome extension and other non-http requests
+  if (!url.startsWith('http')) return;
+  
+  console.log('SW: Processing request for:', url);
+  
+  event.respondWith(
+    caches.open(isStaticAsset(url) ? STATIC_CACHE_NAME : CACHE_NAME).then(cache => {
+      return cache.match(event.request).then(cachedResponse => {
+        
+        // Static assets: Serve from cache immediately (cache-first strategy)
+        if (cachedResponse && isStaticAsset(url)) {
+          console.log('SW: Serving static asset from cache:', url);
+          return cachedResponse;
+        }
+        
+        // Dynamic content: Network-first with cache fallback
+        return fetch(event.request).then(networkResponse => {
+          // Only cache successful responses to avoid caching errors
+          if (networkResponse && networkResponse.status === 200) {
+            console.log('SW: Caching successful response for:', url);
+            // Clone the response because it can only be consumed once
+            const responseToCache = networkResponse.clone();
+            cache.put(event.request, responseToCache);
+          }
+          return networkResponse;
+        }).catch(error => {
+          console.log('SW: Network failed, attempting cache fallback for:', url);
+          // Network failed - return cached version if available (offline support)
+          if (cachedResponse) {
+            console.log('SW: Serving cached fallback for:', url);
+            return cachedResponse;
+          }
+          // No cache available - propagate the error
+          throw error;
+        });
+      });
+    }).catch(error => {
+      console.error('SW: Cache operation failed for:', url, error);
+      // Fallback to direct network request if cache operations fail
+      return fetch(event.request);
+    })
+  );
 });
-
-// Find appropriate cache strategy
-function findCacheStrategy(url) {
-  for (const [name, strategy] of Object.entries(CACHE_STRATEGIES)) {
-    if (strategy.patterns.some(pattern => pattern.test(url))) {
-      return strategy;
-    }
-  }
-  return null;
-}
-
-// Cache First strategy with TTL
-async function cacheFirst(request, strategy) {
-  const cache = await caches.open(strategy.cacheName);
-  const cached = await cache.match(request);
-  
-  // Check if cached response is still valid
-  if (cached) {
-    const cachedDate = new Date(cached.headers.get('sw-cache-time') || 0);
-    const now = new Date();
-    
-    if (now - cachedDate < strategy.maxAge) {
-      return cached;
-    }
-  }
-  
-  try {
-    const response = await fetch(request);
-    if (response.status === 200) {
-      // Clone response and add cache timestamp
-      const responseClone = response.clone();
-      const responseWithTime = new Response(responseClone.body, {
-        status: responseClone.status,
-        statusText: responseClone.statusText,
-        headers: {
-          ...Object.fromEntries(responseClone.headers.entries()),
-          'sw-cache-time': new Date().toISOString()
-        }
-      });
-      
-      // Clean up old entries if needed
-      await cleanupCache(cache, strategy.maxEntries);
-      
-      // Cache the response
-      await cache.put(request, responseWithTime);
-    }
-    return response;
-  } catch (error) {
-    // Return cached version if available, even if expired
-    if (cached) {
-      return cached;
-    }
-    throw error;
-  }
-}
-
-// Network First strategy
-async function networkFirst(request, strategy) {
-  const cache = await caches.open(strategy.cacheName);
-  
-  try {
-    const response = await fetch(request);
-    if (response.status === 200) {
-      const responseClone = response.clone();
-      const responseWithTime = new Response(responseClone.body, {
-        status: responseClone.status,
-        statusText: responseClone.statusText,
-        headers: {
-          ...Object.fromEntries(responseClone.headers.entries()),
-          'sw-cache-time': new Date().toISOString()
-        }
-      });
-      
-      await cleanupCache(cache, strategy.maxEntries);
-      await cache.put(request, responseWithTime);
-    }
-    return response;
-  } catch (error) {
-    const cached = await cache.match(request);
-    if (cached) {
-      return cached;
-    }
-    throw error;
-  }
-}
-
-// Clean up old cache entries
-async function cleanupCache(cache, maxEntries) {
-  const keys = await cache.keys();
-  if (keys.length > maxEntries) {
-    const oldestKeys = keys.slice(0, keys.length - maxEntries);
-    await Promise.all(oldestKeys.map(key => cache.delete(key)));
-  }
-}

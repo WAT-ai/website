@@ -3,23 +3,28 @@
   <head>
     <meta charset="utf-8">
     <title>WAT.ai</title>
+    <!--
+      404.html for Single Page Application (SPA) Routing on GitHub Pages
+      ---------------------------------------------------------------
+      This file enables client-side routing for React/SPA sites hosted on GitHub Pages.
+      When a user navigates to a non-root URL, GitHub Pages serves 404.html.
+      The script below rewrites the URL so the SPA router can handle it, preserving query and hash fragments.
+      For more info: https://github.com/rafgraph/spa-github-pages
+    -->
     <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      // This script takes the current url and converts the path and query
-      // string into just a query string, and then redirects the browser
-      // to the new url with only a query string and hash fragment,
-      // e.g. https://www.foo.tld/one/two?a=b&c=d#qwe, becomes
-      // https://www.foo.tld/?/one/two&a=b~and~c=d#qwe
-      // Note: this 404.html file must be at least 512 bytes for it to work
-      // with Internet Explorer (it is currently > 512 bytes)
-
-      // If you're creating a Project Pages site and NOT using a custom domain,
-      // then set pathSegmentsToKeep to 1 (enterprise users may need to set it to > 1).
-      // This way the code will only replace the route part and not the real directory.
-      // If you're using a custom domain, set pathSegmentsToKeep to 0.
-      var pathSegmentsToKeep = 0;
+      // SPA GitHub Pages Redirect Script
+      // ---------------------------------
+      // Converts the current path and query string into a format the SPA router can handle.
+      // Example: /about?x=1#section -> /?about&x=1#section
+      // This allows React Router (or similar) to display the correct page.
+      //
+      // pathSegmentsToKeep:
+      //   - For custom domains: set to 0
+      //   - For project pages (username.github.io/repo): set to 1
+      //   - For enterprise: may need >1
+      //
+      // This file must be >512 bytes for IE compatibility.
+      var pathSegmentsToKeep = 0; // Change to 1 for project pages
 
       var l = window.location;
       l.replace(
@@ -32,5 +37,9 @@
     </script>
   </head>
   <body>
+    <!--
+      This file is intentionally left blank. All routing is handled by the SPA router.
+      If you see this page, JavaScript may be disabled or the SPA router failed to load.
+    -->
   </body>
 </html>
