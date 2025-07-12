@@ -123,7 +123,12 @@ const Navbar: React.FC = () => {
                 sx={{
                   color: theme.palette.primary.main,
                   "&:hover": {
-                    color: theme.palette.text.primary,
+                    color: theme.palette.background.default,
+                    backgroundColor: theme.palette.primary.main,
+                  },
+                  "&:focus-visible": {
+                    backgroundColor: theme.palette.primary.main,
+                    color: theme.palette.background.default,
                   },
                 }}
               >
@@ -196,7 +201,16 @@ const Navbar: React.FC = () => {
                       color: theme.palette.primary.main,
                     },
                     "&:hover": {
-                      backgroundColor: theme.customColors.transparentPrimary,
+                      backgroundColor: theme.palette.primary.main, // Full bright yellow background
+                      "& .MuiListItemText-root": {
+                        color: theme.palette.background.default,
+                      },
+                    },
+                    "&:focus-visible": {
+                      backgroundColor: theme.palette.primary.main,
+                      "& .MuiListItemText-root": {
+                        color: theme.palette.background.default,
+                      },
                     },
                   }}
                 >
