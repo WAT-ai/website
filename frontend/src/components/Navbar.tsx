@@ -1,3 +1,7 @@
+/**
+ * Navbar - Responsive navigation with scroll effects and mobile drawer
+ * Features sticky behavior, smooth transitions, and accessibility support
+ */
 import React, { useState, useEffect, useCallback } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,13 +18,13 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import useTheme from "@mui/material/styles/useTheme";
 import useMediaQuery from "@mui/material/useMediaQuery";
-
 const Navbar: React.FC = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
+  // Monitor scroll position to enable sticky navigation
   const handleScroll = useCallback(() => {
     if (window.scrollY > 50) {
       setIsSticky(true);
@@ -36,8 +40,10 @@ const Navbar: React.FC = () => {
     };
   }, [handleScroll]);
 
+  // Mobile drawer toggle with keyboard accessibility
   const toggleDrawer = useCallback(
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+      // Prevent drawer from closing on tab navigation
       if (
         event.type === "keydown" &&
         ((event as React.KeyboardEvent).key === "Tab" ||
@@ -50,14 +56,14 @@ const Navbar: React.FC = () => {
     []
   );
 
+  // Navigation menu structure for both desktop and mobile
   const menuItems = [
-    { text: "About", link: "/" },
-    { text: "Team", link: "/team" },
+    { text: "Students", link: "/students" },
     { text: "Projects", link: "/projects" },
-    { text: "Events", link: "/events" },
-    { text: "Blog", link: "/blog" },
+    { text: "Team", link: "/team" },
+    { text: "Partnerships", link: "/partnerships" },
     { text: "Contact", link: "/contact" },
-    { text: "Apply", link: "/apply" },
+    { text: "Blog", link: "https://wataiteam.substack.com/" },
   ];
 
   return (
@@ -109,12 +115,20 @@ const Navbar: React.FC = () => {
               <Button
                 key={index}
                 color="inherit"
-                component={RouterLink}
-                to={item.link}
+                component={item.link.startsWith('http') ? "a" : RouterLink}
+                {...(item.link.startsWith('http')
+                  ? { href: item.link }
+                  : { to: item.link }
+                )}
                 sx={{
                   color: theme.palette.primary.main,
                   "&:hover": {
-                    color: theme.palette.text.primary,
+                    color: theme.palette.background.default,
+                    backgroundColor: theme.palette.primary.main,
+                  },
+                  "&:focus-visible": {
+                    backgroundColor: theme.palette.primary.main,
+                    color: theme.palette.background.default,
                   },
                 }}
               >
@@ -176,15 +190,27 @@ const Navbar: React.FC = () => {
                 <ListItem
                   button
                   key={index}
-                  component={RouterLink}
-                  to={item.link}
+                  component={item.link.startsWith('http') ? "a" : RouterLink}
+                  {...(item.link.startsWith('http')
+                    ? { href: item.link }
+                    : { to: item.link }
+                  )}
                   sx={{
                     "& .MuiListItemText-root": {
                       textAlign: "center",
                       color: theme.palette.primary.main,
                     },
                     "&:hover": {
-                      backgroundColor: theme.customColors.transparentPrimary,
+                      backgroundColor: theme.palette.primary.main, // Full bright yellow background
+                      "& .MuiListItemText-root": {
+                        color: theme.palette.background.default,
+                      },
+                    },
+                    "&:focus-visible": {
+                      backgroundColor: theme.palette.primary.main,
+                      "& .MuiListItemText-root": {
+                        color: theme.palette.background.default,
+                      },
                     },
                   }}
                 >

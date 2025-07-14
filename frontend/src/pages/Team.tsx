@@ -1,3 +1,7 @@
+/**
+ * Team - Display team members and alumni
+ * Includes executive team, leadership team, and expandable alumni section
+ */
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -6,13 +10,16 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { ExecutiveTeam, LeadershipTeam, Alumni } from "../data/teamData";
 import MemberCard from "../components/MemberCard";
+import { SectionTitle, SubsectionTitle } from "../components/Typography";
 
-// Team section component
+// Team page: Lists team members and alumni. Add or update members in teamData.
+// To add new sections, create a new TeamSection. For alumni, update the Alumni array.
+// For design tweaks, adjust the Box and MemberCard props.
 const TeamSection = ({ title, members }: any) => (
   <Box sx={{ mt: 5, mb: 5 }}>
-    <Typography variant="h4" sx={{ textAlign: "center", mb: 5 }}>
+    <SubsectionTitle sx={{ textAlign: "center", mb: 5 }}>
       {title}
-    </Typography>
+    </SubsectionTitle>
     <Box
       sx={{
         display: "flex",
@@ -35,7 +42,13 @@ const Team: React.FC = () => {
   const [showAlumni, setShowAlumni] = useState(false);
 
   return (
-    <Box>
+    <Box
+      sx={{
+        backgroundColor: "transparent",
+        minHeight: "100vh",
+        position: "relative",
+      }}
+    >
       <TeamSection title="Executive Team" members={ExecutiveTeam} />
       <TeamSection title="Leadership Team" members={LeadershipTeam} />
 
@@ -60,16 +73,16 @@ const Team: React.FC = () => {
 
       {/* Member Success Section */}
       <Box sx={{ textAlign: "center", mt: -12, mb: 5 }}>
-        <Typography variant="h4" sx={{ color: "#FFF", mb: 2, mt: 20 }}>
+        <SectionTitle sx={{ mb: 2, mt: 20 }}>
           Member Success:
-        </Typography>
-        <Typography variant="h5" sx={{ color: "grey", mb: 4 }}>
+        </SectionTitle>
+        <SubsectionTitle sx={{ color: "grey", mb: 4 }}>
           Showcasing The Organizations <br />
           Where Our Members Have Landed
-        </Typography>
+        </SubsectionTitle>
         <Box
           component="img"
-          src={require("../assets/companylogos.png")}
+          src={require("../assets/companylogos_opt.png")}
           alt="Company Logos"
           draggable={false}
           sx={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}

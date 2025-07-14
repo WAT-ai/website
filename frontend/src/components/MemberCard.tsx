@@ -1,10 +1,14 @@
+/**
+ * MemberCard - Team member display component
+ * Shows profile image, name, role with hover effects and LinkedIn integration
+ */
 import React from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
 import Link from "@mui/material/Link";
+import { CardTitle, Caption } from "./Typography";
 
-// Styled component for team member image
+// Styled image component with hover glow effect
 const MemberImage = styled("img")(({ theme }) => ({
   width: "100%",
   height: "auto",
@@ -16,7 +20,6 @@ const MemberImage = styled("img")(({ theme }) => ({
   },
 }));
 
-// Member component
 const MemberCard = ({ name, role, imageUrl, linkedinUrl }: any) => (
   <Box
     sx={{
@@ -42,13 +45,12 @@ const MemberCard = ({ name, role, imageUrl, linkedinUrl }: any) => (
         alt={name}
       />
     </Link>
-    <Typography
-      variant="h6"
-      sx={{ fontSize: "18px", fontWeight: "bold", lineHeight: "20px" }}
+    <CardTitle
+      sx={{ fontSize: "18px", fontWeight: "bold", lineHeight: "20px", mb: 0.5 }}
     >
       {name}
-    </Typography>
-    <Typography variant="body2">{role}</Typography>
+    </CardTitle>
+    <Caption sx={{ mb: 0 }}>{role}</Caption>
   </Box>
 );
 

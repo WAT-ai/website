@@ -1,73 +1,86 @@
+/**
+ * Contact - Contact information and social links
+ * Displays email, Discord, LinkedIn, and Instagram contact options
+ */
 import React from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import { useTheme } from "@mui/material/styles";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import DiscordIcon from "../components/DiscordIcon";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import EmailIcon from "@mui/icons-material/Email";
+import { SectionTitle, BodyText, BodyLarge } from "../components/Typography";
+import UnifiedCard from "../components/UnifiedCard";
 
+// Contact page: Shows contact info and social links. Update or extend as needed.
+// To add new contact methods, add a new UnifiedCard below.
+// For design changes, edit the Box and UnifiedCard props.
 const Contact: React.FC = () => {
   const theme = useTheme();
 
   return (
     <Box
       sx={{
-        backgroundColor: theme.palette.background.default,
-        color: theme.palette.text.primary,
-        padding: theme.spacing(6),
+        backgroundColor: "transparent",
+        minHeight: "100vh",
+        position: "relative",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        minHeight: "80vh",
+        px: { xs: 2, md: 4 },
       }}
     >
-      <Card
+      {/* Compact Contact Section */}
+      <Box
         sx={{
-          backgroundColor: theme.palette.background.paper,
-          color: theme.palette.text.primary,
-          width: "100%",
           maxWidth: "800px",
-          borderRadius: theme.shape.borderRadius,
-          border: `3px solid ${theme.palette.primary.main}`,
-          boxShadow: theme.shadows[3],
-          padding: theme.spacing(6),
+          width: "100%",
+          textAlign: "center",
         }}
       >
-        <CardContent sx={{ textAlign: "center" }}>
-          <Typography
-            variant="h4"
-            sx={{ mb: theme.spacing(3), color: theme.palette.primary.main }}
-          >
-            Contact Us
-          </Typography>
+        {/* Title */}
+        <SectionTitle sx={{ mb: 2, fontSize: { xs: "2.5rem", md: "3rem" } }}>
+          Get in Touch
+        </SectionTitle>
+        
+        <BodyLarge sx={{ mb: 6, maxWidth: "600px", margin: "0 auto 3rem auto" }}>
+          We're always open to new ideas, collaborations, and opportunities.
+        </BodyLarge>
 
-          <Box
-            sx={{
-              textAlign: "center",
-              marginBottom: theme.spacing(6),
-            }}
+        {/* Contact Cards in Row */}
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+            gap: 4,
+            mb: 6,
+          }}
+        >
+          {/* Email Contact */}
+          <UnifiedCard
+            variant="elevated"
+            padding={4}
           >
-            <Typography variant="body1" sx={{ mb: theme.spacing(2) }}>
-              Located at 200 University Avenue West, <br />
-              University of Waterloo, ON
-            </Typography>
-
-            <Typography
-              variant="body1"
-              sx={{
-                mb: theme.spacing(2),
-                color: theme.palette.text.secondary,
-              }}
-            >
-              For inquiries, please email us at{" "}
+            <Box sx={{ textAlign: "center" }}>
+              <EmailIcon 
+                sx={{ 
+                  fontSize: 40, 
+                  color: theme.palette.primary.main, 
+                  mb: 2 
+                }} 
+              />
+              <SectionTitle sx={{ fontSize: "1.4rem", mb: 2 }}>
+                Email Us
+              </SectionTitle>
               <Link
                 href="mailto:contact@watai.ca"
                 sx={{
                   color: theme.palette.primary.main,
                   textDecoration: "none",
+                  fontSize: "1.1rem",
+                  fontWeight: 600,
                   "&:hover": {
                     color: theme.palette.primary.light,
                   },
@@ -75,64 +88,92 @@ const Contact: React.FC = () => {
               >
                 contact@watai.ca
               </Link>
-            </Typography>
+            </Box>
+          </UnifiedCard>
 
-            <Typography variant="body1" sx={{ mb: theme.spacing(2) }}>
-              We’re always open to new ideas, collaborations, and opportunities.
-              Feel free to reach out to us anytime.
-            </Typography>
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              gap: theme.spacing(3),
-              mt: theme.spacing(5),
-            }}
+          {/* Social Media Links */}
+          <UnifiedCard
+            variant="elevated"
+            padding={4}
           >
-            <Link
-              href="https://twitter.com/wataiteam"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                color: theme.palette.text.primary,
-                "&:hover": {
-                  color: theme.palette.primary.main,
-                },
-              }}
-            >
-              <TwitterIcon fontSize="large" />
-            </Link>
-            <Link
-              href="https://www.linkedin.com/company/wat-ai/"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                color: theme.palette.text.primary,
-                "&:hover": {
-                  color: theme.palette.primary.main,
-                },
-              }}
-            >
-              <LinkedInIcon fontSize="large" />
-            </Link>
-            <Link
-              href="https://www.instagram.com/wataiteam/"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                color: theme.palette.text.primary,
-                "&:hover": {
-                  color: theme.palette.primary.main,
-                },
-              }}
-            >
-              <InstagramIcon fontSize="large" />
-            </Link>
-          </Box>
-        </CardContent>
-      </Card>
+            <Box sx={{ textAlign: "center" }}>
+              <SectionTitle sx={{ fontSize: "1.4rem", mb: 3 }}>
+                Follow Us
+              </SectionTitle>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: 3,
+                }}
+              >
+
+                <Link
+                  href="https://discord.com/invite/Hn3XkK83tJ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textDecoration: "none",
+                    color: theme.palette.text.primary,
+                    "&:hover": {
+                      color: theme.palette.primary.main,
+                    },
+                  }}
+                >
+                  <DiscordIcon sx={{ fontSize: 32, mb: 1 }} />
+                  <BodyText sx={{ fontSize: "0.9rem", mb: 0 }}>Discord</BodyText>
+                </Link>
+                
+                <Link
+                  href="https://linkedin.com/company/watai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textDecoration: "none",
+                    color: theme.palette.text.primary,
+                    "&:hover": {
+                      color: theme.palette.primary.main,
+                    },
+                  }}
+                >
+                  <LinkedInIcon sx={{ fontSize: 32, mb: 1 }} />
+                  <BodyText sx={{ fontSize: "0.9rem", mb: 0 }}>LinkedIn</BodyText>
+                </Link>
+                
+                <Link
+                  href="https://instagram.com/wataiteam"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textDecoration: "none",
+                    color: theme.palette.text.primary,
+                    "&:hover": {
+                      color: theme.palette.primary.main,
+                    },
+                  }}
+                >
+                  <InstagramIcon sx={{ fontSize: 32, mb: 1 }} />
+                  <BodyText sx={{ fontSize: "0.9rem", mb: 0 }}>Instagram</BodyText>
+                </Link>
+              </Box>
+            </Box>
+          </UnifiedCard>
+        </Box>
+
+        {/* Bottom Text */}
+        <BodyText sx={{ color: theme.palette.text.secondary, fontSize: "1rem" }}>
+          For general inquiries, partnership opportunities, or questions about our projects and initiatives.
+        </BodyText>
+      </Box>
     </Box>
   );
 };
