@@ -53,6 +53,63 @@ export const NewProjectData: ProjectData[] = [
     tags: ["Reinforcement Learning", "Microgrids", "Energy Systems", "Sustainability"]
   },
   {
+    title: "AI Sentiment Pulse in Stock Market",
+    tpm: "Jiayou (Sam) Zhong, Shenyan (Bob) Zheng",
+    description:
+      "AI Sentiment Pulse in Stock Market is an application-focused project that leverages social media sentiment to anticipate short-term market trends. Inspired by the 2021 GameStop surge—where Reddit discussions triggered dramatic price shifts—we built a system to monitor real-time updates from subreddits like r/WallStreetBets. Instead of focusing on individual stocks, we analyze trending topics and collective user sentiment to detect sudden shifts in market attention. To improve accuracy, our system includes sarcasm detection tailored to the informal and ironic language often used in financial communities. These insights are combined with market data and processed using classical and deep learning models to forecast potential price movements. Our goal is to equip investors with timely, sentiment-driven signals that highlight emerging retail momentum.",
+    teamMembers: [
+      {
+        name: "Jiayou (Sam) Zhong",
+        email: "j55zhong@uwaterloo.ca",
+        linkedin: "https://www.linkedin.com/in/jiayouz/"
+      },
+      {
+        name: "Shenyan (Bob) Zheng",
+        email: "b63zheng@uwaterloo.ca",
+        linkedin: "https://www.linkedin.com/in/shenyan-zheng-0ab064274/"
+      }
+    ],
+    tags: ["Sentiment Analysis", "Stock Market", "Social Media", "Deep Learning", "Sarcasm Detection"]
+  },
+  {
+    title: "AffiNNity: Predicting Drug–Target Binding with Graph Neural Networks",
+    tpm: "Jahkim Brown-Roopnarine, James Yu",
+    description:
+      "Drug discovery is slow, expensive, and often hit-or-miss. AffiNNity is a machine learning model designed to change that — using Graph Neural Networks (GNNs) to predict how strongly a drug will bind to a target protein. By combining molecular graphs with protein sequence data in a dual-stream setup, the system captures both the shape and behavior of drug–protein interactions. Built on top of large datasets like PDBBind and modern architectures like Graph Isomorphism Networks, AffiNNity learns the patterns that make a drug effective — without needing to run thousands of costly lab tests. The goal is to speed up early-phase drug screening, reduce experimental overhead, and help scientists identify the most promising candidates faster. As pharmaceutical pipelines increasingly rely on computational tools, AffiNNity offers a scalable, accurate way to bring life-saving treatments to patients more efficiently.",
+    teamMembers: [
+      {
+        name: "Jahkim Brown-Roopnarine",
+        email: "jbrownro@uwaterloo.ca",
+        linkedin: "https://www.linkedin.com/in/jahkim-brown-roopnarine/"
+      },
+      {
+        name: "James Yu",
+        email: "j85yu@uwaterloo.ca",
+        linkedin: "https://www.linkedin.com/in/james-yu2005/"
+      }
+    ],
+    tags: ["Drug Discovery", "Graph Neural Networks", "Bioinformatics", "Machine Learning", "Protein Binding"]
+  },
+  {
+    title: "FORTif.ai: AI-Driven Companion for Senior Independence",
+    tpm: "Lino Kee, Edson Takei",
+    description:
+      "FORTif.ai is an AI-driven companion that empowers seniors to live independently by merging proactive safety monitoring with tailored daily support. Using a computer-vision–powered Hazard Detection model, it continuously scans the home for potential risks—like spills, cluttered pathways, and tripping hazards—and offers clear, actionable recommendations to address them. At the same time, an intuitive AI chatbot engages users in friendly, proactive conversations, providing timely medication and appointment reminders, personalized wellness check-ins, and empathetic responses to questions or concerns. With built-in voice-to-text capabilities and real-time safety insights, FORTif.ai delivers a seamless, user-centric experience designed to enhance home safety, streamline everyday routines, and foster lasting independence for seniors.",
+    teamMembers: [
+      {
+        name: "Lino Kee",
+        email: "lino.kee@uwaterloo.ca",
+        linkedin: "https://www.linkedin.com/in/linokee0423/"
+      },
+      {
+        name: "Edson Takei",
+        email: "ektakei@uwaterloo.ca",
+        linkedin: "https://www.linkedin.com/in/edsontakei/"
+      }
+    ],
+    tags: ["Senior Care", "Computer Vision", "AI Chatbot", "Home Safety", "Voice Recognition"]
+  },
+  {
     title: "Oliver: AI-Powered Virtual Teaching Assistant",
     tpm: "Haoran Zhu, Xianda Du",
     description:
