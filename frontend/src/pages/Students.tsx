@@ -256,20 +256,20 @@ const Students: React.FC = () => {
               </Box>
               <Box sx={{ 
                 flex: 1,
-                minHeight: { xs: 250, md: 280 }
+                display: "flex",
+                flexDirection: "column",
+                height: "fit-content",
+                minHeight: "auto"
               }}>
                 <UnifiedCard
                   variant="elevated"
                   padding={0}
-                  fullHeight
                 >
                   <Box sx={{
-                    height: "100%",
-                    minHeight: { xs: 250, md: 280 },
                     position: "relative",
                     overflow: "hidden",
-                    borderRadius: 3,
                     background: `linear-gradient(135deg, ${theme.palette.primary.main}10, ${theme.palette.primary.main}05)`,
+                    padding: 1.3,
                     "&::before": {
                       content: '""',
                       position: "absolute",
@@ -291,9 +291,10 @@ const Students: React.FC = () => {
                       alt="High Impact AI Projects"
                       sx={{
                         width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        objectPosition: "center",
+                        height: "auto",
+                        display: "block",
+                        borderRadius: "inherit",
+                        boxSizing: "border-box",
                         transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                         filter: "brightness(1.1) contrast(1.05) saturate(1.1)",
                         "&:hover": {
@@ -376,20 +377,20 @@ const Students: React.FC = () => {
               </Box>
               <Box sx={{ 
                 flex: 1,
-                minHeight: { xs: 250, md: 280 }
+                display: "flex",
+                flexDirection: "column",
+                height: "fit-content",
+                minHeight: "auto"
               }}>
                 <UnifiedCard
                   variant="elevated"
                   padding={0}
-                  fullHeight
                 >
                   <Box sx={{
-                    height: "100%",
-                    minHeight: { xs: 250, md: 280 },
                     position: "relative",
                     overflow: "hidden",
-                    borderRadius: 3,
                     background: `linear-gradient(135deg, ${theme.palette.warning.main}10, ${theme.palette.warning.main}05)`,
+                    padding: 1.3,
                     "&::before": {
                       content: '""',
                       position: "absolute",
@@ -411,9 +412,10 @@ const Students: React.FC = () => {
                       alt="AI Workshops & Events"
                       sx={{
                         width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        objectPosition: "center",
+                        height: "auto",
+                        display: "block",
+                        borderRadius: "inherit",
+                        boxSizing: "border-box",
                         transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                         filter: "brightness(1.1) contrast(1.05) saturate(1.1)",
                         "&:hover": {
@@ -495,20 +497,20 @@ const Students: React.FC = () => {
               </Box>
               <Box sx={{ 
                 flex: 1,
-                minHeight: { xs: 250, md: 280 }
+                display: "flex",
+                flexDirection: "column",
+                height: "fit-content",
+                minHeight: "auto"
               }}>
                 <UnifiedCard
                   variant="elevated"
                   padding={0}
-                  fullHeight
                 >
                   <Box sx={{
-                    height: "100%",
-                    minHeight: { xs: 250, md: 280 },
                     position: "relative",
                     overflow: "hidden",
-                    borderRadius: 3,
                     background: `linear-gradient(135deg, #0077B510, #0077B505)`,
+                    padding: 1.3,
                     "&::before": {
                       content: '""',
                       position: "absolute",
@@ -530,9 +532,10 @@ const Students: React.FC = () => {
                       alt="Collaborate and Network"
                       sx={{
                         width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        objectPosition: "center",
+                        height: "auto",
+                        display: "block",
+                        borderRadius: "inherit",
+                        boxSizing: "border-box",
                         transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                         filter: "brightness(1.1) contrast(1.05) saturate(1.1)",
                         "&:hover": {
