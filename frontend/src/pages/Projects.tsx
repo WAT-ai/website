@@ -33,9 +33,8 @@ import ProjectCard from "../components/ProjectCard";
 const Projects: React.FC = () => {
   const theme = useTheme();
   const [showPastProjects, setShowPastProjects] = useState(false);
-
   const heroStats = [
-    { icon: <Science />, number: "3", label: "Active Projects" },
+    { icon: <Science />, number: NewProjectData.length.toString(), label: "Active Projects" },
     { icon: <School />, number: "12+", label: "Team Members" },
     { icon: <TrendingUp />, number: "19", label: "Past Projects" },
   ];
