@@ -1,16 +1,19 @@
-# WAT.ai Team Website
+# WAT.ai Website
 
-WAT.ai is a student-run Artificial Intelligence (AI) Organization at the University of Waterloo and the undergraduate student body of the Waterloo AI Institute and member of the Sedra Student Design Centre (SSDC). Our goal is to establish an environment to enable the continued growth of AI talent and suitable access to opportunities within the Waterloo community. We provide opportunities for undergraduate and graduate students to engage in impactful projects through collaboration with companies and internal research.
+The official website for WAT.ai, a student-run AI organization at the University of Waterloo. We connect students with AI opportunities through industry partnerships and internal research projects.
 
-## Frontend
-
-This repository contains a React frontend located in the `frontend` directory.
-
-### Deploying the React App
-
-To deploy the React app to GitHub Pages, navigate to the `frontend` directory and run:
+## Quick Start
 
 ```bash
-cd frontend
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+
+# Build for production
+npm run build
+
+# Deploy to GitHub Pages
 npm run deploy
 ```
