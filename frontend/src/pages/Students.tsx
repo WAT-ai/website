@@ -17,16 +17,8 @@ import UnifiedCard from "../components/UnifiedCard";
 import UnifiedHero from "../components/UnifiedHero";
 import UnifiedButton from "../components/UnifiedButton";
 import FAQ from "../components/FAQ";
+import { processedSlideshowImages } from "../data/slideshowData";
 
-// Optimized gallery images
-import cucai1 from "../assets/studentLandingPage/cucai1_opt.jpg"
-import cucai2 from "../assets/studentLandingPage/cucai2_opt.jpg"
-import cucai3 from "../assets/studentLandingPage/cucai3_opt.jpg"
-import cucai4 from "../assets/studentLandingPage/cucai4_opt.jpg"
-import cucai5 from "../assets/studentLandingPage/cucai5_opt.jpg"
-import cucai6 from "../assets/studentLandingPage/cucai6_opt.jpg"
-import cucai7 from "../assets/studentLandingPage/cucai7_opt.jpg"
-import cucai8 from "../assets/studentLandingPage/cucai8_opt.jpg"
 import highImpact from "../assets/studentLandingPage/high_impact_opt.jpg"
 import workshops from "../assets/studentLandingPage/workshops_opt.jpg"
 import network from "../assets/studentLandingPage/network_opt.jpg"
@@ -138,16 +130,7 @@ const Students: React.FC = () => {
   };
 
   // Images for the community gallery section
-  const galleryImages = [
-    { src: cucai1, alt: "CUCAI 24" },
-    { src: cucai2, alt: "CUCAI 24" },
-    { src: cucai3, alt: "CUCAI 24" },
-    { src: cucai4, alt: "CUCAI 24" },
-    { src: cucai5, alt: "CUCAI 24" },
-    { src: cucai6, alt: "CUCAI 24" },
-    { src: cucai7, alt: "CUCAI 24" },
-    { src: cucai8, alt: "CUCAI 24" },
-  ];
+  const galleryImages = processedSlideshowImages;
 
 
   const faqItems = [
@@ -604,8 +587,10 @@ const Students: React.FC = () => {
           </BodyLarge>
           
           <Box sx={{ 
-            px: { xs: 0, sm: 1, md: 2 },
-            mb: { xs: 4, sm: 6, md: 8 }
+            px: { xs: 0, sm: 0, md: 0 },
+            mb: { xs: 4, sm: 6, md: 8 },
+            width: "100%",
+            maxWidth: "100%"
           }}>
             <ImageGallery images={galleryImages} />
           </Box>

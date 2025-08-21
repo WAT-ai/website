@@ -26,19 +26,27 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
-    centerMode: true,
+    centerMode: false,
     centerPadding: "0",
     responsive: [
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 4,
+          centerMode: false,
+          centerPadding: "0",
+        }
+      },
       {
         breakpoint: 1200,
         settings: {
           slidesToShow: 3,
-          centerMode: true,
+          centerMode: false,
           centerPadding: "0",
         }
       },
@@ -54,8 +62,8 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
-          centerMode: false,
-          centerPadding: "0",
+          centerMode: true,
+          centerPadding: "20px",
         }
       }
     ]
@@ -66,12 +74,12 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
       sx={{
         width: "100%",
         margin: "0 auto",
-        maxWidth: { xs: "100%", sm: "90%", md: "100%" },
-        px: { xs: 0, sm: 2, md: 4 },
+        maxWidth: "none",
+        px: 0,
         "& .slick-slide": {
           transition: "transform 0.5s ease, opacity 0.5s ease",
-          opacity: { xs: 1, md: 0.6 },
-          transform: { xs: "scale(1)", md: "scale(0.85)" },
+          opacity: 1,
+          transform: "scale(1)",
           "&:focus": {
             outline: "none",
           },
@@ -81,9 +89,9 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
           transform: "scale(1)",
         },
         "& .slick-list": {
-          padding: { xs: "0 !important", md: "0 15px !important" },
+          padding: { xs: "0 20px !important", sm: "0 30px !important", md: "0 40px !important", lg: "0 50px !important" },
           overflow: "visible",
-          margin: { xs: "0 -4px", sm: "0 -8px", md: "0" },
+          margin: "0",
         },
         "& .slick-track": {
           display: "flex",
@@ -114,10 +122,10 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
           },
         },
         "& .slick-prev": {
-          left: { xs: -8, sm: -15, md: 5 },
+          left: { xs: -12, sm: -20, md: -25, lg: -30 },
         },
         "& .slick-next": {
-          right: { xs: -8, sm: -15, md: 5 },
+          right: { xs: -12, sm: -20, md: -25, lg: -30 },
         },
         "& .slick-dots": {
           bottom: { xs: -40, sm: -45, md: -50 },
@@ -159,7 +167,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
       <Slider {...settings}>
         {images.map((image, index) => (
           <Box key={index} sx={{ 
-            p: { xs: 0.5, sm: 1, md: 1.5 },
+            p: { xs: 0.5, sm: 1, md: 1.5, lg: 2 },
             "&:focus": {
               outline: "none",
             },
@@ -170,8 +178,9 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
               alt={image.alt}
               sx={{
                 width: "100%",
-                height: { xs: 300, sm: 380, md: 450 },
+                height: { xs: 250, sm: 280, md: 320, lg: 380, xl: 420 },
                 objectFit: "cover",
+                objectPosition: "center",
                 borderRadius: { xs: 2, sm: 2.5, md: 3 },
                 boxShadow: theme.shadows[8],
                 transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
