@@ -251,8 +251,7 @@ const Students: React.FC = () => {
                   <Box sx={{
                     position: "relative",
                     overflow: "hidden",
-                    background: `linear-gradient(135deg, ${theme.palette.primary.main}10, ${theme.palette.primary.main}05)`,
-                    padding: 1.3,
+                    borderRadius: "9px", 
                     "&::before": {
                       content: '""',
                       position: "absolute",
@@ -261,7 +260,7 @@ const Students: React.FC = () => {
                       right: 0,
                       bottom: 0,
                       background: `linear-gradient(135deg, ${theme.palette.primary.main}08, transparent 60%)`,
-                      zIndex: 1,
+                      zIndex: 3,
                       opacity: 0,
                       transition: "opacity 0.4s ease"
                     },
@@ -276,7 +275,6 @@ const Students: React.FC = () => {
                         width: "100%",
                         height: "auto",
                         display: "block",
-                        borderRadius: "inherit",
                         boxSizing: "border-box",
                         transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                         filter: "brightness(1.1) contrast(1.05) saturate(1.1)",
@@ -293,7 +291,7 @@ const Students: React.FC = () => {
                       right: 0,
                       bottom: 0,
                       background: `linear-gradient(135deg, ${theme.palette.primary.main}12, transparent 50%, ${theme.palette.primary.main}08)`,
-                      zIndex: 2,
+                      zIndex: 4,
                       mixBlendMode: "multiply",
                       opacity: 0.7
                     }} />
@@ -304,7 +302,7 @@ const Students: React.FC = () => {
                       right: 0,
                       height: "40%",
                       background: `linear-gradient(to top, ${theme.palette.primary.main}20, transparent)`,
-                      zIndex: 3
+                      zIndex: 5
                     }} />
                   </Box>
                 </UnifiedCard>
@@ -372,8 +370,7 @@ const Students: React.FC = () => {
                   <Box sx={{
                     position: "relative",
                     overflow: "hidden",
-                    background: `linear-gradient(135deg, ${theme.palette.warning.main}10, ${theme.palette.warning.main}05)`,
-                    padding: 1.3,
+                    borderRadius: "9px", 
                     "&::before": {
                       content: '""',
                       position: "absolute",
@@ -382,7 +379,7 @@ const Students: React.FC = () => {
                       right: 0,
                       bottom: 0,
                       background: `linear-gradient(135deg, ${theme.palette.warning.main}08, transparent 60%)`,
-                      zIndex: 1,
+                      zIndex: 3,
                       opacity: 0,
                       transition: "opacity 0.4s ease"
                     },
@@ -397,7 +394,6 @@ const Students: React.FC = () => {
                         width: "100%",
                         height: "auto",
                         display: "block",
-                        borderRadius: "inherit",
                         boxSizing: "border-box",
                         transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                         filter: "brightness(1.1) contrast(1.05) saturate(1.1)",
@@ -414,7 +410,7 @@ const Students: React.FC = () => {
                       right: 0,
                       bottom: 0,
                       background: `linear-gradient(135deg, ${theme.palette.warning.main}12, transparent 50%, ${theme.palette.warning.main}08)`,
-                      zIndex: 2,
+                      zIndex: 4,
                       mixBlendMode: "multiply",
                       opacity: 0.7
                     }} />
@@ -425,7 +421,7 @@ const Students: React.FC = () => {
                       right: 0,
                       height: "40%",
                       background: `linear-gradient(to top, ${theme.palette.warning.main}20, transparent)`,
-                      zIndex: 3
+                      zIndex: 5
                     }} />
                   </Box>
                 </UnifiedCard>
@@ -492,8 +488,7 @@ const Students: React.FC = () => {
                   <Box sx={{
                     position: "relative",
                     overflow: "hidden",
-                    background: `linear-gradient(135deg, #0077B510, #0077B505)`,
-                    padding: 1.3,
+                    borderRadius: "9px", 
                     "&::before": {
                       content: '""',
                       position: "absolute",
@@ -502,7 +497,7 @@ const Students: React.FC = () => {
                       right: 0,
                       bottom: 0,
                       background: `linear-gradient(135deg, #0077B508, transparent 60%)`,
-                      zIndex: 1,
+                      zIndex: 3,
                       opacity: 0,
                       transition: "opacity 0.4s ease"
                     },
@@ -517,7 +512,6 @@ const Students: React.FC = () => {
                         width: "100%",
                         height: "auto",
                         display: "block",
-                        borderRadius: "inherit",
                         boxSizing: "border-box",
                         transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                         filter: "brightness(1.1) contrast(1.05) saturate(1.1)",
@@ -534,7 +528,7 @@ const Students: React.FC = () => {
                       right: 0,
                       bottom: 0,
                       background: `linear-gradient(135deg, #0077B512, transparent 50%, #0077B508)`,
-                      zIndex: 2,
+                      zIndex: 4,
                       mixBlendMode: "multiply",
                       opacity: 0.7
                     }} />
@@ -545,7 +539,7 @@ const Students: React.FC = () => {
                       right: 0,
                       height: "40%",
                       background: `linear-gradient(to top, #0077B520, transparent)`,
-                      zIndex: 3
+                      zIndex: 5
                     }} />
                   </Box>
                 </UnifiedCard>
