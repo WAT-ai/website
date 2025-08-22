@@ -1,0 +1,29 @@
+# Cache static assets for 1 year
+/static/js/*  /static/js/:splat  200  Cache-Control: public, max-age=31536000, immutable
+/static/css/*  /static/css/:splat  200  Cache-Control: public, max-age=31536000, immutable
+/static/media/*  /static/media/:splat  200  Cache-Control: public, max-age=31536000, immutable
+
+# Cache images for 1 year
+*.png  /:splat  200  Cache-Control: public, max-age=31536000
+*.jpg  /:splat  200  Cache-Control: public, max-age=31536000
+*.jpeg  /:splat  200  Cache-Control: public, max-age=31536000
+*.gif  /:splat  200  Cache-Control: public, max-age=31536000
+*.svg  /:splat  200  Cache-Control: public, max-age=31536000
+*.webp  /:splat  200  Cache-Control: public, max-age=31536000
+*.ico  /:splat  200  Cache-Control: public, max-age=31536000
+
+# Cache fonts for 1 year
+*.woff  /:splat  200  Cache-Control: public, max-age=31536000
+*.woff2  /:splat  200  Cache-Control: public, max-age=31536000
+*.ttf  /:splat  200  Cache-Control: public, max-age=31536000
+*.otf  /:splat  200  Cache-Control: public, max-age=31536000
+
+# Cache manifest and robots for 1 day
+/manifest.json  /manifest.json  200  Cache-Control: public, max-age=86400
+/robots.txt  /robots.txt  200  Cache-Control: public, max-age=86400
+
+# Cache HTML for 1 hour (allows for updates)
+/*.html  /:splat  200  Cache-Control: public, max-age=3600
+
+# SPA fallback - cache for 1 hour
+/* /index.html 200  Cache-Control: public, max-age=3600

@@ -1,0 +1,27 @@
+# Robots.txt - Search engine crawler instructions for WAT.ai
+# https://www.robotstxt.org/robotstxt.html
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Allow all main content pages
+Allow: /home
+Allow: /projects
+Allow: /team
+Allow: /students
+Allow: /partnerships
+Allow: /contact
+
+# Block access to build files and source maps
+Disallow: /static/js/*.map
+Disallow: /static/css/*.map
+Disallow: /asset-manifest.json
+
+# Block common sensitive areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://watai.ca/sitemap.xml
