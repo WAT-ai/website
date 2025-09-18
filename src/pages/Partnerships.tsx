@@ -60,7 +60,7 @@ const Partnerships: React.FC = () => {
     {
       step: "Step 1",
       title: "Contact us",
-      description: "Email us at contact@watai.ca with details about your project requirements and what you're looking for",
+      description: "Fill out our contact form with details about your project requirements and what you're looking for",
       icon: <ContactMailIcon sx={{ fontSize: { xs: 36, md: 40 } }} />,
       color: "#1976D2"
     },
@@ -120,7 +120,7 @@ const Partnerships: React.FC = () => {
         subtitle="Partnerships"
         description="At WAT.ai, we bring together students at the University of Waterloo who are passionate about applying AI to real-world problems. We're here to make it easier for employers and professors to connect with our team members for co-op placements, research projects, or other collaborations."
         actions={[
-          { label: "Contact Us", href: "mailto:contact@watai.ca", variant: "primary" },
+          { label: "Contact Us", href: "https://tally.so/r/mY8DEB", variant: "primary" },
           { label: "See Our Projects", to: "/projects", variant: "outlined" }
         ]}
         variant="centered"
@@ -528,7 +528,7 @@ const Partnerships: React.FC = () => {
           <UnifiedButton
             variant="primary"
             size="large"
-            href="mailto:contact@watai.ca"
+            href="https://tally.so/r/mY8DEB"
           >
             Contact Us
           </UnifiedButton>
@@ -581,7 +581,7 @@ const Partnerships: React.FC = () => {
             <UnifiedButton
               variant="primary"
               size="large"
-              href="mailto:contact@watai.ca"
+              href="https://tally.so/r/mY8DEB"
             >
               Contact Us
             </UnifiedButton>
