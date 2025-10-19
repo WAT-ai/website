@@ -6,7 +6,6 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
-import BusinessIcon from '@mui/icons-material/Business';
 import SchoolIcon from '@mui/icons-material/School';
 import StarIcon from '@mui/icons-material/Star';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
@@ -19,7 +18,6 @@ import UnifiedSection from "../components/UnifiedSection";
 import UnifiedCard from "../components/UnifiedCard";
 import UnifiedHero from "../components/UnifiedHero";
 import UnifiedButton from "../components/UnifiedButton";
-import UnifiedStats from "../components/UnifiedStats";
 import FAQ from "../components/FAQ";
 
 // Partnerships page: For companies/professors to connect with students.
@@ -28,53 +26,73 @@ import FAQ from "../components/FAQ";
 const Partnerships: React.FC = () => {
   const theme = useTheme();
 
-  const whyWorkWithUsPoints = [
+  const partnershipOpportunities = [
     {
-      title: "Top-tier Talent Pool",
-      description: "We curate our talent pool to our most engaged and high-performing members. All the students that we recommend have proven their dedication across 8 month projects with successful conference papers or product launches.",
-      icon: <StarIcon sx={{ fontSize: { xs: 44, md: 48 }, color: "#F57C00" }} />,
-      color: "#F57C00"
-    },
-    {
-      title: "Personalised Recommendations",
-      description: "When you tell us about your project requirements, we'll search our talent pool for the ideal fit. After contacting students with the experience you're looking for, we'll set up simple introductions with minimal work on your end.",
+      title: "Hiring & Talent",
+      description: "Hire from our selective pool of the top WAT.ai members with no referral fee. Co-op, URA, and full-time hiring referrals. Job boards to share job postings and applications.",
       icon: <PersonSearchIcon sx={{ fontSize: { xs: 44, md: 48 }, color: "#1976D2" }} />,
       color: "#1976D2"
     },
     {
-      title: "Proven Experience",
-      description: "We've worked on dozens of projects with academic and industry partners, including publications and production-ready solutions. Our partnerships team has experience with NDAs, contracts, and other requirements on your end.",
+      title: "Workshops & Events",
+      description: "Co-create learning experiences to reach Waterloo's AI community. Technical workshops and networking sessions. Hackathons and competitions with sponsorship opportunities.",
+      icon: <SchoolIcon sx={{ fontSize: { xs: 44, md: 48 }, color: "#F57C00" }} />,
+      color: "#F57C00"
+    },
+    {
+      title: "Research & Technical Collaboration",
+      description: "Sponsor a dedicated WAT.ai team to explore an AI side project. Shared datasets and technical mentorship. Funded research projects to explore prototypes or architectures.",
+      icon: <SearchIcon sx={{ fontSize: { xs: 44, md: 48 }, color: "#9C27B0" }} />,
+      color: "#9C27B0"
+    },
+    {
+      title: "Sponsorship & Funding",
+      description: "Support student innovation while advertising your brand via social media or events. Financial sponsorship for hardware, events, and GPU/API credits. Sponsored subteams for paid project work.",
+      icon: <StarIcon sx={{ fontSize: { xs: 44, md: 48 }, color: "#388E3C" }} />,
+      color: "#388E3C"
+    }
+  ];
+
+  const whyPartnerPoints = [
+    {
+      title: "Proven Track Record",
+      description: "40+ completed AI projects, 20+ academic publications, and 15+ successful research collaborations with industry and academic partners.",
+      icon: <StarIcon sx={{ fontSize: { xs: 44, md: 48 }, color: "#F57C00" }} />,
+      color: "#F57C00"
+    },
+    {
+      title: "Access to Top Talent",
+      description: "500+ recruited students, with our most engaged members proving their skills through 8-month projects, conference papers, and product launches.",
+      icon: <PersonSearchIcon sx={{ fontSize: { xs: 44, md: 48 }, color: "#1976D2" }} />,
+      color: "#1976D2"
+    },
+    {
+      title: "Flexible & Professional",
+      description: "Our partnerships team handles NDAs, contracts, and logistics. We can adapt to your timeline and have experience working with companies, academia, and non-profits.",
       icon: <HandshakeIcon sx={{ fontSize: { xs: 44, md: 48 }, color: "#388E3C" }} />,
       color: "#388E3C"
     }
   ];
 
-  const stats = [
-    { number: "40+", label: "AI projects completed" },
-    { number: "15+", label: "Research collaborations" },
-    { number: "20+", label: "Academic publications" },
-    { number: "500+", label: "Students recruited" },
-  ];
-
   const howItWorksSteps = [
     {
       step: "Step 1",
-      title: "Contact us",
-      description: "Fill out our contact form with details about your project requirements and what you're looking for",
+      title: "Tell Us Your Goals",
+      description: "Fill out our partnership form. Share what you're looking to achieve and your timeline.",
       icon: <ContactMailIcon sx={{ fontSize: { xs: 36, md: 40 } }} />,
       color: "#1976D2"
     },
     {
       step: "Step 2", 
-      title: "We review",
-      description: "We look at your needs and identify talented students within our organization who are a good fit",
+      title: "We Develop a Proposal",
+      description: "Our team will craft a collaboration plan tailored to your needs, identifying the right students, format, and structure.",
       icon: <SearchIcon sx={{ fontSize: { xs: 36, md: 40 } }} />,
       color: "#F57C00"
     },
     {
       step: "Step 3",
-      title: "We make introductions", 
-      description: "We put you in touch directly with the recommended students on a timely basis",
+      title: "Launch & Collaborate", 
+      description: "We handle coordination, introductions, and ongoing support to ensure a successful partnership.",
       icon: <ConnectWithoutContactIcon sx={{ fontSize: { xs: 36, md: 40 } }} />,
       color: "#388E3C"
     }
@@ -82,28 +100,28 @@ const Partnerships: React.FC = () => {
 
   const faqs = [
     {
-      question: "Who can partner with WAT.ai?",
-      answer: "Any company, organization, or professor who wants to work with students on AI-related projects lasting at least a month is welcome to get in touch."
+      question: "What types of organizations do you partner with?",
+      answer: "We've worked with big tech companies, startups, research labs, VCs, and nonprofits across various industries."
     },
     {
-      question: "Does it cost anything?",
-      answer: "Students must be paid for standard co-op or research positions. We won't charge placement fees for individual students referred. Larger projects that require entire teams, hosted workshops, or hackathons will involve fees that we can discuss with you."
+      question: "How long do partnerships typically last?",
+      answer: "It varies by collaboration type. Events can be single sessions or recurring programs. Projects typically run 4-8 months. Sponsorships can be one-time or ongoing."
     },
     {
-      question: "How do you decide which students to recommend?",
-      answer: "We maintain a pool of our top students with a proven track record of dedication and strong ML skills. We then match you with those whose skills, interests, and availability align with your projects."
+      question: "Is there a cost to partner with WAT.ai?",
+      answer: "Hiring referrals are free for employers, though for-profit organisations must pay hired students. Sponsored projects and events usually involve funding. Contact us to discuss your specific needs."
     },
     {
-      question: "Can I post more than one opportunity?",
-      answer: "Yes, feel free to send us details of as many roles or projects as you like."
+      question: "What technical areas do your members specialize in?",
+      answer: "Our members have experience with deep learning, computer vision, NLP, reinforcement learning, data pipelines, and more. Past project domains have spanned healthcare, finance, sustainability, and more."
     },
     {
-      question: "What skills do your students have?",
-      answer: "Our members have experience in a wide variety of areas, including but not limited to: computer vision, data analysis, NLP, reinforcement learning, AI for healthcare, and more. See examples of past project areas here."
+      question: "Can we partner on multiple fronts?",
+      answer: "Absolutely! Many partners combine hiring, events, and sponsorship for maximum impact and engagement with our community."
     },
     {
-      question: "When can students start?",
-      answer: "Most students can start full time work by the next academic term. Availability for part-time work depends on a case by case basis. Let us know your timeline and we can provide more detailed estimates."
+      question: "What's the typical timeline to get started?",
+      answer: "Initial conversations happen within days. Simple collaborations (like a hiring referral) can be done within a week. Larger initiatives (projects, sponsored teams) typically require 1-2 months of planning."
     }
   ];
 
@@ -116,9 +134,9 @@ const Partnerships: React.FC = () => {
     >
       {/* Hero Section */}
       <UnifiedHero
-        title="Connecting you with top AI talent"
+        title="Let's build the future of AI together"
         subtitle="Partnerships"
-        description="At WAT.ai, we bring together students at the University of Waterloo who are passionate about applying AI to real-world problems. We're here to make it easier for employers and professors to connect with our team members for co-op placements, research projects, or other collaborations."
+        description="At WAT.ai, we have a history of collaborating with companies, research labs, and nonprofits. Our partnerships have ranged from workshops and hackathons to hiring pipelines and research initiatives."
         actions={[
           { label: "Contact Us", href: "https://tally.so/r/mY8DEB", variant: "primary" },
           { label: "See Our Projects", to: "/projects", variant: "outlined" }
@@ -126,7 +144,7 @@ const Partnerships: React.FC = () => {
         variant="centered"
       />
 
-      {/* Why Work With Us Section */}
+      {/* Partnership Opportunities Section */}
       <UnifiedSection
         backgroundColor="paper"
         minHeight="90vh"
@@ -134,7 +152,7 @@ const Partnerships: React.FC = () => {
       >
         <Box sx={{ textAlign: "center", maxWidth: "1400px", margin: "0 auto", px: { xs: 2, sm: 3, md: 4 } }}>
           <SubsectionTitle sx={{ mb: { xs: 1, md: 2 } }}>
-            Why Work With Us?
+            Partnership Opportunities
           </SubsectionTitle>
           <BodyLarge sx={{ 
             mb: { xs: 6, md: 10 }, 
@@ -143,18 +161,19 @@ const Partnerships: React.FC = () => {
             color: theme.palette.text.secondary,
             fontSize: { xs: "1rem", md: "1.25rem" }
           }}>
-            We connect you with exceptional AI talent through a proven, personalized approach
+            We offer flexible collaboration models to match your goals
           </BodyLarge>
           
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
+              gridTemplateColumns: { xs: "1fr", md: "repeat(2, 1fr)" },
               gap: { xs: 4, sm: 6, md: 8 },
               alignItems: "stretch",
+              mb: { xs: 6, md: 8 }
             }}
           >
-            {whyWorkWithUsPoints.map((point, index) => (
+            {partnershipOpportunities.map((point, index) => (
               <UnifiedCard
                 key={index}
                 variant="elevated"
@@ -169,7 +188,108 @@ const Partnerships: React.FC = () => {
                   flexDirection: "column",
                   alignItems: "center",
                   textAlign: "center",
-                  background: index === 0 ? `linear-gradient(135deg, ${point.color}08, ${point.color}03)` : "transparent"
+                  background: `linear-gradient(135deg, ${point.color}08, ${point.color}03)`
+                }}>
+                  {/* Icon with animated background */}
+                  <Box sx={{ 
+                    mb: { xs: 3, md: 4 },
+                    p: { xs: 2.5, md: 3 },
+                    borderRadius: "50%",
+                    background: `linear-gradient(135deg, ${point.color}20, ${point.color}10)`,
+                    border: `2px solid ${point.color}30`,
+                    position: "relative",
+                    "&::before": {
+                      content: '""',
+                      position: "absolute",
+                      top: -2,
+                      left: -2,
+                      right: -2,
+                      bottom: -2,
+                      borderRadius: "50%",
+                      background: `linear-gradient(45deg, ${point.color}40, transparent)`,
+                      zIndex: -1,
+                      animation: "pulse 2s infinite",
+                    }
+                  }}>
+                    {point.icon}
+                  </Box>
+                  
+                  <Typography variant="h4" sx={{ 
+                    mb: 3, 
+                    color: point.color,
+                    fontWeight: 700,
+                    fontSize: { xs: "1.4rem", md: "1.6rem" },
+                    lineHeight: 1.2
+                  }}>
+                    {point.title}
+                  </Typography>
+                  
+                  <BodyText sx={{ 
+                    textAlign: "left",
+                    lineHeight: 1.7,
+                    fontSize: { xs: "0.95rem", md: "1rem" }
+                  }}>
+                    {point.description}
+                  </BodyText>
+                </Box>
+              </UnifiedCard>
+            ))}
+          </Box>
+          
+          <UnifiedButton
+            variant="primary"
+            size="large"
+            href="https://tally.so/r/mY8DEB"
+          >
+            Get in touch
+          </UnifiedButton>
+        </Box>
+      </UnifiedSection>
+
+      {/* Why Partner With WAT.ai Section */}
+      <UnifiedSection
+        backgroundColor="transparent"
+        minHeight="90vh"
+        centerContent
+      >
+        <Box sx={{ textAlign: "center", maxWidth: "1400px", margin: "0 auto", px: { xs: 2, sm: 3, md: 4 } }}>
+          <SubsectionTitle sx={{ mb: { xs: 1, md: 2 } }}>
+            Why Partner With WAT.ai?
+          </SubsectionTitle>
+          <BodyLarge sx={{ 
+            mb: { xs: 6, md: 10 }, 
+            maxWidth: "700px", 
+            margin: { xs: "0 auto 3rem auto", md: "0 auto 5rem auto" },
+            color: theme.palette.text.secondary,
+            fontSize: { xs: "1rem", md: "1.25rem" }
+          }}>
+            We combine exceptional talent, proven results, and professional support
+          </BodyLarge>
+          
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
+              gap: { xs: 4, sm: 6, md: 8 },
+              alignItems: "stretch",
+            }}
+          >
+            {whyPartnerPoints.map((point, index) => (
+              <UnifiedCard
+                key={index}
+                variant="elevated"
+                padding={0}
+                fullHeight
+              >
+                <Box sx={{ 
+                  position: "relative",
+                  height: "100%",
+                  p: { xs: 3, sm: 4, md: 5 },
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
+                  background: `linear-gradient(135deg, ${point.color}08, ${point.color}03)`
                 }}>
                   {/* Icon with animated background */}
                   <Box sx={{ 
@@ -219,197 +339,6 @@ const Partnerships: React.FC = () => {
         </Box>
       </UnifiedSection>
 
-      {/* Who We Work With Section */}
-      <UnifiedSection
-        backgroundColor="transparent"
-        minHeight="90vh"
-        centerContent
-      >
-        <Box sx={{ textAlign: "center", maxWidth: "1400px", margin: "0 auto", px: { xs: 2, sm: 3, md: 4 } }}>
-          <SubsectionTitle sx={{ mb: { xs: 1, md: 2 } }}>
-            Who We Work With
-          </SubsectionTitle>
-          <BodyLarge sx={{ 
-            mb: { xs: 6, md: 10 }, 
-            maxWidth: "600px", 
-            margin: { xs: "0 auto 3rem auto", md: "0 auto 5rem auto" },
-            color: theme.palette.text.secondary,
-            fontSize: { xs: "1rem", md: "1.25rem" }
-          }}>
-            From startups to research institutions, we partner with organizations seeking top AI talent
-          </BodyLarge>
-          
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-              gap: { xs: 4, sm: 6, md: 12 },
-              alignItems: "stretch",
-            }}
-          >
-            {/* Employers */}
-            <UnifiedCard
-              variant="elevated"
-              padding={0}
-              fullHeight
-            >
-              <Box sx={{ 
-                position: "relative",
-                p: { xs: 4, sm: 5, md: 6 },
-                height: "100%",
-                background: `linear-gradient(135deg, #1976D208, #1976D203)`,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center"
-              }}>
-                {/* Animated icon background */}
-                <Box sx={{ 
-                  position: "relative",
-                  mb: 4,
-                  p: 4,
-                  borderRadius: "20px",
-                  background: `linear-gradient(135deg, #1976D220, #1976D210)`,
-                  "&::before": {
-                    content: '""',
-                    position: "absolute",
-                    top: -3,
-                    left: -3,
-                    right: -3,
-                    bottom: -3,
-                    borderRadius: "23px",
-                    background: `linear-gradient(45deg, #1976D230, transparent)`,
-                    zIndex: -1,
-                  }
-                }}>
-                  <BusinessIcon sx={{ fontSize: { xs: 50, md: 60 }, color: "#1976D2" }} />
-                </Box>
-                
-                <Typography variant="h3" sx={{ 
-                  mb: 4, 
-                  color: "#1976D2",
-                  fontWeight: 700,
-                  fontSize: { xs: "1.8rem", md: "2.2rem" }
-                }}>
-                  Employers
-                </Typography>
-                
-                <BodyText sx={{ 
-                  textAlign: "center",
-                  lineHeight: 1.7,
-                  fontSize: { xs: "1rem", md: "1.1rem" },
-                  maxWidth: "400px"
-                }}>
-                  If you're looking to hire a student for a co-op, internship, or short-term project, we can connect
-                  you with students whose skills match your needs.
-                </BodyText>
-                
-                {/* Decorative elements */}
-                <Box sx={{
-                  position: "absolute",
-                  top: 20,
-                  right: 20,
-                  width: 60,
-                  height: 60,
-                  borderRadius: "50%",
-                  background: `radial-gradient(circle, #1976D215, transparent)`,
-                  opacity: 0.6
-                }} />
-                <Box sx={{
-                  position: "absolute",
-                  bottom: 20,
-                  left: 20,
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  background: `radial-gradient(circle, #1976D220, transparent)`,
-                  opacity: 0.4
-                }} />
-              </Box>
-            </UnifiedCard>
-
-            {/* Professors */}
-            <UnifiedCard
-              variant="elevated"
-              padding={0}
-              fullHeight
-            >
-              <Box sx={{ 
-                position: "relative",
-                p: { xs: 4, sm: 5, md: 6 },
-                height: "100%",
-                background: `linear-gradient(135deg, #9C27B008, #9C27B003)`,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center"
-              }}>
-                {/* Animated icon background */}
-                <Box sx={{ 
-                  position: "relative",
-                  mb: 4,
-                  p: 4,
-                  borderRadius: "20px",
-                  background: `linear-gradient(135deg, #9C27B020, #9C27B010)`,
-                  "&::before": {
-                    content: '""',
-                    position: "absolute",
-                    top: -3,
-                    left: -3,
-                    right: -3,
-                    bottom: -3,
-                    borderRadius: "23px",
-                    background: `linear-gradient(45deg, #9C27B030, transparent)`,
-                    zIndex: -1,
-                  }
-                }}>
-                  <SchoolIcon sx={{ fontSize: { xs: 50, md: 60 }, color: "#9C27B0" }} />
-                </Box>
-                
-                <Typography variant="h3" sx={{ 
-                  mb: 4, 
-                  color: "#9C27B0",
-                  fontWeight: 700,
-                  fontSize: { xs: "1.8rem", md: "2.2rem" }
-                }}>
-                  Professors
-                </Typography>
-                
-                <BodyText sx={{ 
-                  textAlign: "center",
-                  lineHeight: 1.7,
-                  fontSize: { xs: "1rem", md: "1.1rem" },
-                  maxWidth: "400px"
-                }}>
-                  If you need a research assistant or want to otherwise involve students in your research, we can help you
-                  find motivated students willing to put the work in your field.
-                </BodyText>
-                
-                {/* Decorative elements */}
-                <Box sx={{
-                  position: "absolute",
-                  top: 20,
-                  right: 20,
-                  width: 60,
-                  height: 60,
-                  borderRadius: "50%",
-                  background: `radial-gradient(circle, #9C27B015, transparent)`,
-                  opacity: 0.6
-                }} />
-                <Box sx={{
-                  position: "absolute",
-                  bottom: 20,
-                  left: 20,
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  background: `radial-gradient(circle, #9C27B020, transparent)`,
-                  opacity: 0.4
-                }} />
-              </Box>
-            </UnifiedCard>
-          </Box>
-        </Box>
-      </UnifiedSection>
-
       {/* How It Works Section */}
       <UnifiedSection
         backgroundColor="paper"
@@ -426,7 +355,7 @@ const Partnerships: React.FC = () => {
             color: theme.palette.text.secondary,
             fontSize: { xs: "1rem", md: "1.25rem" }
           }}>
-            Ready to connect with exceptional AI talent? Our streamlined process makes it easy to get started
+            Ready to partner with Waterloo's premier AI student organization?
           </BodyLarge>
           
           <Box
@@ -530,30 +459,7 @@ const Partnerships: React.FC = () => {
             size="large"
             href="https://tally.so/r/mY8DEB"
           >
-            Contact Us
-          </UnifiedButton>
-        </Box>
-      </UnifiedSection>
-
-      {/* Our Work So Far Section */}
-      <UnifiedSection
-        backgroundColor="transparent"
-        minHeight="60vh"
-        centerContent
-      >
-        <Box sx={{ textAlign: "center" }}>
-          <SubsectionTitle sx={{ mb: 8 }}>
-            Our Work So Far
-          </SubsectionTitle>
-          
-          <UnifiedStats stats={stats} />
-
-          <UnifiedButton
-            variant="outlined"
-            size="large"
-            to="/projects"
-          >
-            See Our Projects
+            Get in touch
           </UnifiedButton>
         </Box>
       </UnifiedSection>
@@ -574,9 +480,18 @@ const Partnerships: React.FC = () => {
         centerContent
       >
         <Box sx={{ textAlign: "center", maxWidth: "900px", margin: "0 auto" }}>
-          <SubsectionTitle sx={{ mb: 6 }}>
+          <SubsectionTitle sx={{ mb: 3 }}>
             Let's Collaborate
           </SubsectionTitle>
+          <BodyLarge sx={{ 
+            mb: 6, 
+            maxWidth: "600px", 
+            margin: { xs: "0 auto 2rem auto", md: "0 auto 3rem auto" },
+            color: theme.palette.text.secondary,
+            fontSize: { xs: "1rem", md: "1.25rem" }
+          }}>
+            Ready to partner with Waterloo's premier AI student organization?
+          </BodyLarge>
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             <UnifiedButton
               variant="primary"
