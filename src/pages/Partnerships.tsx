@@ -19,6 +19,8 @@ import UnifiedCard from "../components/UnifiedCard";
 import UnifiedHero from "../components/UnifiedHero";
 import UnifiedButton from "../components/UnifiedButton";
 import FAQ from "../components/FAQ";
+import Link from "@mui/material/Link";
+import { Link as RouterLink } from "react-router-dom";
 
 // Partnerships page: For companies/professors to connect with students.
 // Add new FAQ, skills, or partner types by editing the arrays below.
@@ -113,7 +115,15 @@ const Partnerships: React.FC = () => {
     },
     {
       question: "What technical areas do your members specialize in?",
-      answer: "Our members have experience with deep learning, computer vision, NLP, reinforcement learning, data pipelines, and more. Past project domains have spanned healthcare, finance, sustainability, and more."
+      answer: (
+        <>
+          Our members have experience with deep learning, computer vision, NLP, reinforcement learning, data pipelines, and more.{" "}
+          <Link component={RouterLink} to="/projects" sx={{ color: "#1976D2", textDecoration: "underline" }}>
+            Past project
+          </Link>
+          {" "}domains have spanned healthcare, finance, sustainability, and more.
+        </>
+      )
     },
     {
       question: "Can we partner on multiple fronts?",
@@ -466,7 +476,7 @@ const Partnerships: React.FC = () => {
 
       {/* FAQ Section */}
       <UnifiedSection
-        backgroundColor="paper"
+        backgroundColor="transparent"
         minHeight="80vh"
         centerContent
       >
@@ -475,7 +485,7 @@ const Partnerships: React.FC = () => {
 
       {/* CTA Section */}
       <UnifiedSection
-        backgroundColor="transparent"
+        backgroundColor="paper"
         minHeight="60vh"
         centerContent
       >
