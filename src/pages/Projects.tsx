@@ -40,12 +40,13 @@ const Projects: React.FC = () => {
   // Filter projects based on search query only
   const filteredProjects = useMemo(() => {
     return allProjects.filter((project) => {
-      // Search filter - only search by title, description, and TPM
+      // Search filter - search by title, description, and TPM names
+      const tpmNames = project.tpms.map(tpm => tpm.name).join(' ');
       const matchesSearch =
         searchQuery === "" ||
         project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.tpm.toLowerCase().includes(searchQuery.toLowerCase());
+        tpmNames.toLowerCase().includes(searchQuery.toLowerCase());
 
       return matchesSearch;
     });

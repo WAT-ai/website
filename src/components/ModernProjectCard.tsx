@@ -33,18 +33,16 @@ import { TeamMember, ProjectLinks } from "../data/projectData";
 
 interface ModernProjectCardProps {
   title: string;
-  tpm: string;
+  tpms: TeamMember[];
   description: string;
-  teamMembers: TeamMember[];
   links?: ProjectLinks;
   collaboration?: string;
 }
 
 const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
   title,
-  tpm,
+  tpms,
   description,
-  teamMembers,
   links,
   collaboration,
 }) => {
@@ -65,12 +63,6 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
         return <Language sx={{ fontSize: "1rem" }} />;
     }
   };
-
-  // Parse TPM names and find their contact info from teamMembers
-  const tpmNames = tpm.split(',').map(name => name.trim());
-  const tpmMembers = teamMembers.filter(member => 
-    tpmNames.some(tpmName => member.name.trim() === tpmName)
-  );
 
   return (
     <motion.div
@@ -192,7 +184,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
           )}
 
           {/* TPM Contact Info - With Labels */}
-          {tpmMembers.length > 0 && (
+          {tpms.length > 0 && (
             <Box>
               <Typography
                 variant="caption"
@@ -209,7 +201,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
                 Technical Project Managers
               </Typography>
               <Stack spacing={1}>
-                {tpmMembers.map((member, index) => (
+                {tpms.map((member, index) => (
                   <Box
                     key={index}
                     sx={{
