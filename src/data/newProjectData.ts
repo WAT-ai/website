@@ -34,6 +34,106 @@ export interface ProjectData {
 
 export const NewProjectData: ProjectData[] = [
   {
+    title: "Deep Learning Race Car",
+    tpm: "Nina Zhang",
+    description:
+      "The Deep Learning Race Car project leverages Deep RL infrastructure to train a miniature race car using reinforcement learning in simulation, then evaluates performance in physical environments. The trained model is deployed onto a custom-built miniature race car equipped with a Raspberry Pi and onboard sensors for real-time inference. This project demonstrates sim-to-real transfer learning and autonomous racing through curriculum learning, progressing from simple to complex track configurations.",
+    teamMembers: [
+      {
+        name: "Nina Zhang",
+        email: "nina123hz@gmail.com",
+        linkedin: "https://www.linkedin.com/in/nina-zhang-a85935310/"
+      }
+    ],
+    tags: ["Reinforcement Learning", "Robotics", "Autonomous Systems", "PPO", "Sim-to-Real"]
+  },
+  {
+    title: "ClipABit: Semantic Video Search Engine",
+    tpm: "Eshaan Mehta, Safiya Makada",
+    description:
+      "Imagine you are a video editor searching through a directory of hundreds of files of footage, trying to find the exact moment to insert into your project. Instead of manually searching through files, what if your video editor had the context of all your files… That's what we're building, a semantic search engine enabling you to find moments within your footage in seconds. We index the videos using off-the-shelf models to build a knowledge base that you can query using natural language. Search by content, location, entities and people within your clips and find exactly what you're looking for!",
+    teamMembers: [
+      {
+        name: "Eshaan Mehta",
+        email: "e3mehta@uwaterloo.ca",
+        linkedin: "https://www.linkedin.com/in/eshaan-mehta-136a6924b/"
+      },
+      {
+        name: "Safiya Makada",
+        email: "smakada@uwaterloo.ca",
+        linkedin: "https://www.linkedin.com/in/safiya-makada/"
+      }
+    ],
+    links: {
+      repository: "https://github.com/ClipABit"
+    },
+    tags: ["Computer Vision", "NLP", "Semantic Search", "Video Processing", "RAG"]
+  },
+  {
+    title: "FlockRL: Decentralized Drone Swarm Coordination",
+    tpm: "Joshua Zhang, Katie Zhong",
+    description:
+      "FlockRL explores how drones can learn to coordinate without a central controller. Each drone relies only on its own state and the positions of nearby neighbors to decide where to move. The challenge is to traverse constrained spaces and obstacle-filled environments without collisions while maintaining coordination. We start by training a single drone to handle navigation tasks, then scale up to swarms to study decentralized control at larger scales. This project demonstrates how reinforcement learning can enable safe and adaptive coordination in robotics.",
+    teamMembers: [
+      {
+        name: "Joshua Zhang",
+        email: "jlzhang@uwaterloo.ca",
+        linkedin: "https://www.linkedin.com/in/joshualeezhang/"
+      },
+      {
+        name: "Katie Zhong",
+        email: "k2zhong@uwaterloo.ca",
+        linkedin: "https://www.linkedin.com/in/katie-zhong/"
+      }
+    ],
+    tags: ["Reinforcement Learning", "Swarm Robotics", "Multi-Agent Systems", "PPO", "Decentralized Control"]
+  },
+  {
+    title: "Pianofi: AI-Powered Piano Transcription",
+    tpm: "Jonathan Gong, Bruce Wang, Alex Qin",
+    description:
+      "PianoFi is an AI-powered service that turns any song into professional piano cover sheet music. Upload a song and get editable MusicXML/MIDI and preview audio. We combine neural AMT models and an interactive web UI so musicians of all levels can quickly obtain accurate transcriptions/covers and practice material! The project aims to achieve state-of-the-art note-level accuracy while maintaining low latency for a seamless user experience.",
+    teamMembers: [
+      {
+        name: "Jonathan Gong",
+        email: "j56gong@uwaterloo.ca",
+        linkedin: "https://www.linkedin.com/in/jonathan-gong-005491263/"
+      },
+      {
+        name: "Bruce Wang",
+        email: "b225wang@uwaterloo.ca",
+        linkedin: "https://www.linkedin.com/in/brucewang15/"
+      }
+    ],
+    links: {
+      repository: "https://github.com/Pianofi",
+      website: "https://pianofi.ca"
+    },
+    tags: ["Audio Processing", "Music Information Retrieval", "Deep Learning", "Full-Stack"]
+  },
+  {
+    title: "See-DR: Mobile Diabetic Retinopathy Screening",
+    tpm: "Jessica Yuan, Hari Chandrasekhar",
+    description:
+      "See-DR is a low-cost mobile screening tool for diabetic retinopathy (DR), a leading cause of preventable blindness. Using a smartphone camera, our system captures retinal images and applies AI to detect early signs of DR. To ensure transparency, it generates visual heatmaps highlighting which regions of the eye influenced the model's decision. By leveraging mobile AI and explainable deep learning, See-DR aims to provide accessible, portable, and affordable eye screening for clinics and community outreach programs.",
+    teamMembers: [
+      {
+        name: "Jessica Yuan",
+        email: "jl2yuan@uwaterloo.ca",
+        linkedin: "https://www.linkedin.com/in/jessica-yuan1/"
+      },
+      {
+        name: "Hari Chandrasekhar",
+        email: "hchandra@uwaterloo.ca",
+        linkedin: "https://www.linkedin.com/in/hari-chandrasekhar/"
+      }
+    ],
+    links: {
+      repository: "https://github.com/jessicayuan1/see-dr"
+    },
+    tags: ["Medical AI", "Computer Vision", "Mobile Deployment", "Explainable AI", "Healthcare"]
+  },
+  {
     title: "Microgrid RL: Autonomous Optimization of Renewable-Powered Microgrids",
     tpm: "Jordan Leis, Devon Kisob",
     description:
