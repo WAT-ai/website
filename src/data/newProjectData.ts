@@ -37,7 +37,7 @@ export const NewProjectData: ProjectData[] = [
     title: "Deep Learning Race Car",
     tpm: "Nina Zhang",
     description:
-      "The Deep Learning Race Car project leverages Deep RL infrastructure to train a miniature race car using reinforcement learning in simulation, then evaluates performance in physical environments. The trained model is deployed onto a custom-built miniature race car equipped with a Raspberry Pi and onboard sensors for real-time inference. This project demonstrates sim-to-real transfer learning and autonomous racing through curriculum learning, progressing from simple to complex track configurations.",
+      "Self-driving technology could prevent millions of traffic deaths caused by human error each year. The Deep Learning Race Car project advances autonomous vehicle research by building a miniature race car that learns to navigate tracks independently. Racing serves as an ideal testing ground for autonomous systems because it demands split-second decisions and rapid adaptation to new environments. These challenges directly translate to real-world self-driving scenarios. By demonstrating how AI can master high-speed navigation in constrained spaces, this project contributes to making autonomous vehicles safer and more reliable for everyone.",
     teamMembers: [
       {
         name: "Nina Zhang",
@@ -51,7 +51,7 @@ export const NewProjectData: ProjectData[] = [
     title: "ClipABit: Semantic Video Search Engine",
     tpm: "Eshaan Mehta, Safiya Makada",
     description:
-      "Imagine you are a video editor searching through a directory of hundreds of files of footage, trying to find the exact moment to insert into your project. Instead of manually searching through files, what if your video editor had the context of all your files… That's what we're building, a semantic search engine enabling you to find moments within your footage in seconds. We index the videos using off-the-shelf models to build a knowledge base that you can query using natural language. Search by content, location, entities and people within your clips and find exactly what you're looking for!",
+      "Video editors waste countless hours manually scrubbing through hundreds of footage files to find specific moments for their projects. ClipABit transforms this tedious process into seconds by enabling natural language search across entire video libraries. Simply describe what you're looking for: a sunset scene, a person laughing, or someone walking through a doorway, and instantly locate those exact moments. By making video content as searchable as text, ClipABit empowers creators to focus on storytelling instead of file management, dramatically accelerating the creative process for filmmakers, content creators, and media professionals.",
     teamMembers: [
       {
         name: "Eshaan Mehta",
@@ -73,7 +73,7 @@ export const NewProjectData: ProjectData[] = [
     title: "FlockRL: Decentralized Drone Swarm Coordination",
     tpm: "Joshua Zhang, Katie Zhong",
     description:
-      "FlockRL explores how drones can learn to coordinate without a central controller. Each drone relies only on its own state and the positions of nearby neighbors to decide where to move. The challenge is to traverse constrained spaces and obstacle-filled environments without collisions while maintaining coordination. We start by training a single drone to handle navigation tasks, then scale up to swarms to study decentralized control at larger scales. This project demonstrates how reinforcement learning can enable safe and adaptive coordination in robotics.",
+      "From disaster response to search and rescue operations, coordinated drone swarms could transform how we handle emergencies and complex tasks. FlockRL tackles the fundamental challenge of enabling drones to work together safely without relying on a central controller. This is crucial for scenarios where communication networks fail or coordination needs to happen faster than any single controller could manage. By teaching drones to navigate obstacle-filled environments while coordinating only with nearby neighbors, this research paves the way for resilient autonomous systems that can adapt to unpredictable real-world conditions, from collapsed buildings to forest fires.",
     teamMembers: [
       {
         name: "Joshua Zhang",
@@ -92,7 +92,7 @@ export const NewProjectData: ProjectData[] = [
     title: "Pianofi: AI-Powered Piano Transcription",
     tpm: "Jonathan Gong, Bruce Wang, Alex Qin",
     description:
-      "PianoFi is an AI-powered service that turns any song into professional piano cover sheet music. Upload a song and get editable MusicXML/MIDI and preview audio. We combine neural AMT models and an interactive web UI so musicians of all levels can quickly obtain accurate transcriptions/covers and practice material! The project aims to achieve state-of-the-art note-level accuracy while maintaining low latency for a seamless user experience.",
+      "Musicians spend hours painstakingly transcribing songs by ear or settle for inaccurate auto-generated sheet music. PianoFi democratizes music learning by instantly transforming any song into professional-quality piano sheet music. Whether you're a beginner wanting to learn your favorite pop song or an advanced pianist seeking accurate transcriptions of complex pieces, PianoFi makes quality practice material accessible to everyone. By eliminating the barrier between hearing a song and being able to play it, this tool empowers musicians at all skill levels to learn, practice, and perform the music they love.",
     teamMembers: [
       {
         name: "Jonathan Gong",
@@ -115,7 +115,7 @@ export const NewProjectData: ProjectData[] = [
     title: "See-DR: Mobile Diabetic Retinopathy Screening",
     tpm: "Jessica Yuan, Hari Chandrasekhar",
     description:
-      "See-DR is a low-cost mobile screening tool for diabetic retinopathy (DR), a leading cause of preventable blindness. Using a smartphone camera, our system captures retinal images and applies AI to detect early signs of DR. To ensure transparency, it generates visual heatmaps highlighting which regions of the eye influenced the model's decision. By leveraging mobile AI and explainable deep learning, See-DR aims to provide accessible, portable, and affordable eye screening for clinics and community outreach programs.",
+      "Diabetic retinopathy is a leading cause of preventable blindness, yet many at-risk patients lack access to regular eye screenings due to the cost and scarcity of specialized equipment. See-DR addresses this healthcare gap by transforming any smartphone into a portable screening device that can detect early signs of vision-threatening eye disease. By making screenings accessible in community clinics, pharmacies, and underserved areas, this tool has the potential to catch diabetic retinopathy before it causes irreversible damage, saving sight and improving quality of life for millions of people with diabetes worldwide.",
     teamMembers: [
       {
         name: "Jessica Yuan",
@@ -137,7 +137,7 @@ export const NewProjectData: ProjectData[] = [
     title: "Microgrid RL: Autonomous Optimization of Renewable-Powered Microgrids",
     tpm: "Jordan Leis, Devon Kisob",
     description:
-      "The Microgrid RL project at WAT.ai focuses on developing and assessing reinforcement learning (RL) architectures designed for autonomous optimization of renewable-powered microgrids in rural Sub-Saharan Africa. Utilizing realistic simulations integrated with NASA's POWER API weather data, the team evaluates state-of-the-art RL methods, Deep Q-Network (DQN), Proximal Policy Optimization (PPO), and Deep Deterministic Policy Gradient (DDPG) to effectively manage energy storage, renewable generation, and load balancing. The goal is to identify the most robust and efficient solution, ultimately enhancing energy accessibility and reducing operational barriers in energy-deficient regions.",
+      "Millions of people in rural Sub-Saharan Africa lack reliable access to electricity, hindering economic development and quality of life. Renewable-powered microgrids offer a solution, but managing the complex balance between solar generation, battery storage, and fluctuating demand remains challenging and costly. This project develops AI systems that autonomously optimize microgrid operations, making clean energy more reliable and affordable for off-grid communities. By reducing operational complexity and maximizing the use of renewable resources, this work directly contributes to expanding energy access in regions that need it most, enabling education, healthcare, and economic opportunities.",
     teamMembers: [
       {
         name: "Jordan Leis",
