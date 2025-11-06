@@ -58,8 +58,8 @@ const Projects: React.FC = () => {
 
   const heroStats = [
     { icon: <Science />, number: allProjects.length.toString(), label: "Total Projects" },
-    { icon: <School />, number: "12+", label: "Team Members" },
     { icon: <TrendingUp />, number: allProjects.filter(p => p.active).length.toString(), label: "Active Projects" },
+    { icon: <School />, number: (allProjects.length - allProjects.filter(p => p.active).length).toString(), label: "Past Projects" },
   ];
 
   return (
