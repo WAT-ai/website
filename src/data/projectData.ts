@@ -1,13 +1,8 @@
-// newProjectData.ts - Current and past project data for WAT.ai
+// projectData.ts - Project data for WAT.ai
 // -----------------------------------------------------------
-// This file exports arrays of active and completed projects for display on the Projects page.
-// Edit this file to add, remove, or update project info and details.
+// This file contains all WAT.ai projects (active and past) for display on the Projects page.
+// Edit this file to add, remove, or update project information.
 
-/**
- * Updated project data for WAT.ai research initiatives
- * Contains project descriptions, team leads, contacts, and collaboration details
- * Used to populate the redesigned Projects page
- */
 
 export interface TeamMember {
   name: string;
@@ -29,6 +24,7 @@ export interface ProjectData {
   teamMembers: TeamMember[];
   links?: ProjectLinks;
   collaboration?: string;
+  active?: boolean;
 }
 
 export const ProjectsData: ProjectData[] = [
@@ -44,6 +40,7 @@ export const ProjectsData: ProjectData[] = [
         linkedin: "https://www.linkedin.com/in/nina-zhang-a85935310/"
       }
     ],
+    active: true,
   },
   {
     title: "ClipABit: Semantic Video Search Engine",
@@ -65,6 +62,7 @@ export const ProjectsData: ProjectData[] = [
     links: {
       repository: "https://github.com/ClipABit"
     },
+    active: true,
   },
   {
     title: "FlockRL: Decentralized Drone Swarm Coordination",
@@ -83,6 +81,7 @@ export const ProjectsData: ProjectData[] = [
         linkedin: "https://www.linkedin.com/in/katie-zhong/"
       }
     ],
+    active: true,
   },
   {
     title: "Pianofi: AI-Powered Piano Transcription",
@@ -105,6 +104,7 @@ export const ProjectsData: ProjectData[] = [
       repository: "https://github.com/Pianofi",
       website: "https://pianofi.ca"
     },
+    active: true,
   },
   {
     title: "See-DR: Mobile Diabetic Retinopathy Screening",
@@ -126,6 +126,7 @@ export const ProjectsData: ProjectData[] = [
     links: {
       repository: "https://github.com/jessicayuan1/see-dr"
     },
+    active: true,
   },
   {
     title: "Microgrid RL: Autonomous Optimization of Renewable-Powered Microgrids",
@@ -144,6 +145,7 @@ export const ProjectsData: ProjectData[] = [
         linkedin: "https://www.linkedin.com/in/devonkisob/"
       }
     ],
+    active: true,
   },
   {
     title: "AI Sentiment Pulse in Stock Market",
@@ -162,6 +164,7 @@ export const ProjectsData: ProjectData[] = [
         linkedin: "https://www.linkedin.com/in/shenyan-zheng-0ab064274/"
       }
     ],
+    active: true,
   },
   {
     title: "AffiNNity: Predicting Drug–Target Binding with Graph Neural Networks",
@@ -180,6 +183,7 @@ export const ProjectsData: ProjectData[] = [
         linkedin: "https://www.linkedin.com/in/james-yu2005/"
       }
     ],
+    active: true,
   },
   {
     title: "FORTif.ai: AI-Driven Companion for Senior Independence",
@@ -198,6 +202,7 @@ export const ProjectsData: ProjectData[] = [
         linkedin: "https://www.linkedin.com/in/edsontakei/"
       }
     ],
+    active: true,
   },
   {
     title: "Oliver: AI-Powered Virtual Teaching Assistant",
@@ -215,6 +220,7 @@ export const ProjectsData: ProjectData[] = [
       repository: "https://github.com/XiandaDu/WatAIOliver",
       paper: "https://ieeexplore.ieee.org/document/10975875/"
     },
+    active: true,
   },
   {
     title: "Radiel Health: Personalized Medicine Through Computational Fluid Dynamics",
@@ -243,6 +249,7 @@ export const ProjectsData: ProjectData[] = [
       documentation: "https://radielhealth.notion.site/from-barbarism-to-digital-twins"
     },
     collaboration: "UW Fluid Flow Physics Group",
+    active: true,
   },
   {
     title: "Audio Temporal Segmentation & Sentiment Analysis",

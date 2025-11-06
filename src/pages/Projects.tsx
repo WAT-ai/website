@@ -11,7 +11,6 @@ import {
   useTheme,
   Zoom,
   Stack,
-  Divider,
   Paper,
   TextField,
   InputAdornment,
@@ -25,7 +24,7 @@ import {
   Search,
   Clear,
 } from "@mui/icons-material";
-import { ProjectsData } from "../data/newProjectData";
+import { ProjectsData } from "../data/projectData";
 import ModernProjectCard from "../components/ModernProjectCard";
 
 // Projects page: Lists current and past projects.
