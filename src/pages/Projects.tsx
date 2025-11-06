@@ -16,6 +16,7 @@ import {
   TextField,
   InputAdornment,
   Button,
+  IconButton,
 } from "@mui/material";
 import {
   School,
@@ -24,7 +25,7 @@ import {
   Search,
   Clear,
 } from "@mui/icons-material";
-import { ProjectsData } from "../data/projectData";
+import { ProjectsData } from "../data/newProjectData";
 import ModernProjectCard from "../components/ModernProjectCard";
 
 // Projects page: Lists current and past projects.
@@ -58,7 +59,7 @@ const Projects: React.FC = () => {
   const heroStats = [
     { icon: <Science />, number: allProjects.length.toString(), label: "Total Projects" },
     { icon: <School />, number: "12+", label: "Team Members" },
-    { icon: <TrendingUp />, number: "12", label: "Active Projects" },
+    { icon: <TrendingUp />, number: allProjects.filter(p => p.active).length.toString(), label: "Active Projects" },
   ];
 
   return (
@@ -163,68 +164,47 @@ const Projects: React.FC = () => {
 
       {/* Search and Filter Section */}
       <Container maxWidth="lg" sx={{ mb: 6 }}>
-        <Paper
-          elevation={0}
-          sx={{
-            p: 4,
-            borderRadius: 4,
-            backgroundColor: `${theme.palette.background.paper}`,
-            border: `2px solid ${theme.palette.primary.main}30`,
+        {/* Search Bar */}
+        <TextField
+          fullWidth
+          variant="outlined"
+          placeholder="Search by project name, description, or TPM..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Search />
+              </InputAdornment>
+            ),
+            endAdornment: searchQuery && (
+              <InputAdornment position="end">
+                <IconButton
+                  size="small"
+                  onClick={() => setSearchQuery("")}
+                  edge="end"
+                >
+                  <Clear />
+                </IconButton>
+              </InputAdornment>
+            ),
           }}
-        >
-          {/* Search Bar */}
-          <TextField
-            fullWidth
-            variant="outlined"
-            placeholder="Search projects by title, description, or TPM..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search sx={{ color: theme.palette.primary.main }} />
-                </InputAdornment>
-              ),
-              endAdornment: searchQuery && (
-                <InputAdornment position="end">
-                  <Button
-                    size="small"
-                    onClick={() => setSearchQuery("")}
-                    sx={{ minWidth: "auto", p: 0.5 }}
-                  >
-                    <Clear />
-                  </Button>
-                </InputAdornment>
-              ),
-            }}
-            sx={{
-              mb: 3,
-              "& .MuiOutlinedInput-root": {
-                borderRadius: 3,
-                backgroundColor: theme.palette.background.default,
-                "&:hover fieldset": {
-                  borderColor: theme.palette.primary.main,
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: theme.palette.primary.main,
-                },
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              borderRadius: 2,
+              "& fieldset": {
+                borderColor: theme.palette.primary.main,
               },
-            }}
-          />
-
-          {/* Results Summary */}
-          <Box sx={{ mt: 3, textAlign: "center" }}>
-            <Typography
-              variant="body2"
-              sx={{
-                color: theme.palette.text.secondary,
-                fontWeight: 500,
-              }}
-            >
-              Showing {filteredProjects.length} of {allProjects.length} projects
-            </Typography>
-          </Box>
-        </Paper>
+              "&:hover fieldset": {
+                borderColor: theme.palette.primary.main,
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: theme.palette.primary.main,
+                borderWidth: "1px",
+              },
+            },
+          }}
+        />
       </Container>
 
       {/* Current Projects Section */}
@@ -278,6 +258,7 @@ const Projects: React.FC = () => {
                   sx={{
                     color: theme.palette.text.secondary,
                     mb: 2,
+                    fontWeight: 600,
                   }}
                 >
                   No projects found
@@ -286,20 +267,21 @@ const Projects: React.FC = () => {
                   variant="body1"
                   sx={{
                     color: theme.palette.text.secondary,
+                    mb: 3,
                   }}
                 >
-                  Try adjusting your search or filter criteria
+                  Try a different search term
                 </Typography>
                 <Button
-                  variant="contained"
+                  variant="outlined"
                   onClick={handleClearFilters}
+                  startIcon={<Clear />}
                   sx={{
-                    mt: 3,
                     textTransform: "none",
                     borderRadius: 2,
                   }}
                 >
-                  Clear Filters
+                  Clear Search
                 </Button>
               </Box>
             </Grid>
