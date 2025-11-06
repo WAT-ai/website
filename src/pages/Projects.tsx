@@ -2,41 +2,63 @@
  * Projects - Display active and completed WAT.ai projects
  * Includes project cards, stats, and expandable past projects section
  */
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
   Box,
   Typography,
   Container,
   Grid,
-  Collapse,
   useTheme,
-  Fab,
   Zoom,
   Stack,
-  Divider,
   Paper,
+  TextField,
+  InputAdornment,
+  Button,
+  IconButton,
 } from "@mui/material";
 import {
-  ExpandMore,
-  ExpandLess,
   School,
   TrendingUp,
   Science,
+  Search,
+  Clear,
 } from "@mui/icons-material";
-import { NewProjectData, PastProjects } from "../data/newProjectData";
+import { ProjectsData } from "../data/projectData";
 import ModernProjectCard from "../components/ModernProjectCard";
-import ProjectCard from "../components/ProjectCard";
 
 // Projects page: Lists current and past projects.
-// Add new projects in newProjectData or PastProjects arrays.
+// Add new projects in ProjectsData array.
 // Adjust layout, cards, or stats as needed for your use case.
 const Projects: React.FC = () => {
   const theme = useTheme();
-  const [showPastProjects, setShowPastProjects] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // All projects in one array
+  const allProjects = useMemo(() => ProjectsData, []);
+
+  // Filter projects based on search query only
+  const filteredProjects = useMemo(() => {
+    return allProjects.filter((project) => {
+      // Search filter - only search by title, description, and TPM
+      const matchesSearch =
+        searchQuery === "" ||
+        project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.tpm.toLowerCase().includes(searchQuery.toLowerCase());
+
+      return matchesSearch;
+    });
+  }, [searchQuery, allProjects]);
+
+  const handleClearFilters = () => {
+    setSearchQuery("");
+  };
+
   const heroStats = [
-    { icon: <Science />, number: NewProjectData.length.toString(), label: "Active Projects" },
-    { icon: <School />, number: "12+", label: "Team Members" },
-    { icon: <TrendingUp />, number: "19", label: "Past Projects" },
+    { icon: <Science />, number: allProjects.length.toString(), label: "Total Projects" },
+    { icon: <TrendingUp />, number: allProjects.filter(p => p.active).length.toString(), label: "Active Projects" },
+    { icon: <School />, number: (allProjects.length - allProjects.filter(p => p.active).length).toString(), label: "Past Projects" },
   ];
 
   return (
@@ -80,7 +102,7 @@ const Projects: React.FC = () => {
               mb: 4,
             }}
           >
-            Pushing the boundaries of artificial intelligence through innovative research
+            Explore our current and past research projects pushing the boundaries of artificial intelligence through innovative research
             and cutting-edge applications that make a real-world impact.
           </Typography>
 
@@ -139,119 +161,112 @@ const Projects: React.FC = () => {
         </Box>
       </Container>
 
-      {/* Current Projects Section */}
-      <Container maxWidth="lg" sx={{ mb: 8 }}>
-        <Box sx={{ mb: 6 }}>
-          <Typography
-            variant="h3"
-            component="h2"
-            sx={{
-              fontWeight: 700,
-              color: theme.palette.text.primary,
-              mb: 2,
-              textAlign: "center",
-            }}
-          >
-            Current Projects
-          </Typography>
-          <Divider
-            sx={{
-              width: "100px",
-              height: "4px",
-              backgroundColor: theme.palette.primary.main,
-              mx: "auto",
-              mb: 4,
+      {/* Search and Filter Section */}
+      <Container maxWidth="lg" sx={{ mb: { xs: 4, md: 6 }, px: { xs: 2, sm: 3 } }}>
+        {/* Search Bar */}
+        <TextField
+          fullWidth
+          variant="outlined"
+          placeholder="Search by project name, description, or TPM..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Search sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" } }} />
+              </InputAdornment>
+            ),
+            endAdornment: searchQuery && (
+              <InputAdornment position="end">
+                <IconButton
+                  size="small"
+                  onClick={() => setSearchQuery("")}
+                  edge="end"
+                  sx={{ p: { xs: 0.5, sm: 1 } }}
+                >
+                  <Clear sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" } }} />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+          sx={{
+            "& .MuiOutlinedInput-root": {
               borderRadius: 2,
-            }}
-          />
-        </Box>
-
-        <Grid container spacing={4}>
-          {NewProjectData.map((project, index) => (
-            <Grid item xs={12} lg={6} key={index}>
-              <Zoom in={true} timeout={300 + index * 100}>
-                <Box sx={{ height: "100%" }}>
-                  <ModernProjectCard {...project} />
-                </Box>
-              </Zoom>
-            </Grid>
-          ))}
-        </Grid>
+              fontSize: { xs: "0.9rem", sm: "1rem" },
+              padding: { xs: "8px 12px", sm: "10px 14px" },
+              "& fieldset": {
+                borderColor: theme.palette.primary.main,
+              },
+              "&:hover fieldset": {
+                borderColor: theme.palette.primary.main,
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: theme.palette.primary.main,
+                borderWidth: "1px",
+              },
+            },
+            "& .MuiOutlinedInput-input": {
+              padding: { xs: "8px 0", sm: "12px 0" },
+            },
+          }}
+        />
       </Container>
 
-      {/* Past Projects Section */}
+      {/* Current Projects Section */}
       <Container maxWidth="lg" sx={{ mb: 8 }}>
-        <Box sx={{ textAlign: "center", mb: 4 }}>
-          <Typography
-            variant="h3"
-            component="h2"
-            sx={{
-              fontWeight: 700,
-              color: theme.palette.text.primary,
-              mb: 2,
-            }}
-          >
-            Past Projects
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              color: theme.palette.text.secondary,
-              mb: 3,
-              maxWidth: "600px",
-              mx: "auto",
-            }}
-          >
-            Explore our legacy of innovation and the groundbreaking work
-            that has shaped our research journey.
-          </Typography>
-          
-          <Fab
-            color="primary"
-            variant="extended"
-            onClick={() => setShowPastProjects(!showPastProjects)}
-            sx={{
-              borderRadius: 8,
-              px: 4,
-              py: 1.5,
-              fontWeight: 600,
-              textTransform: "none",
-              boxShadow: `0 4px 12px rgba(0, 0, 0, 0.2)`,
-              "&:hover": {
-                boxShadow: `0 6px 16px rgba(0, 0, 0, 0.3)`,
-                transform: "translateY(-2px)",
-              },
-            }}
-          >
-            {showPastProjects ? (
-              <>
-                <ExpandLess sx={{ mr: 1 }} />
-                Hide Past Projects
-              </>
-            ) : (
-              <>
-                <ExpandMore sx={{ mr: 1 }} />
-                Show Past Projects
-              </>
-            )}
-          </Fab>
-        </Box>
-
-        <Collapse in={showPastProjects} timeout={500}>
-          <Box sx={{ mt: 4 }}>
-            <Grid container spacing={3}>
-              {PastProjects.map((project, index) => (
-                <Grid item xs={12} md={6} key={index}>
-                  <Zoom in={showPastProjects} timeout={200 + index * 50}>
-                    <Box sx={{ height: "100%" }}>
-                      <ProjectCard {...project} />
-                    </Box>
-                  </Zoom>
-                </Grid>
-              ))}
+        <Grid container spacing={4}>
+          {filteredProjects.length > 0 ? (
+            filteredProjects.map((project, index) => (
+              <Grid item xs={12} lg={6} key={index}>
+                <Zoom in={true} timeout={300 + index * 100}>
+                  <Box sx={{ height: "100%" }}>
+                    <ModernProjectCard {...project} />
+                  </Box>
+                </Zoom>
+              </Grid>
+            ))
+          ) : (
+            <Grid item xs={12}>
+              <Box
+                sx={{
+                  textAlign: "center",
+                  py: 8,
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  sx={{
+                    color: theme.palette.text.secondary,
+                    mb: 2,
+                    fontWeight: 600,
+                  }}
+                >
+                  No projects found
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: theme.palette.text.secondary,
+                    mb: 3,
+                  }}
+                >
+                  Try a different search term
+                </Typography>
+                <Button
+                  variant="outlined"
+                  onClick={handleClearFilters}
+                  startIcon={<Clear />}
+                  sx={{
+                    textTransform: "none",
+                    borderRadius: 2,
+                  }}
+                >
+                  Clear Search
+                </Button>
+              </Box>
             </Grid>
-          </Box>
-        </Collapse>
+          )}
+        </Grid>
       </Container>
     </Box>
   );
