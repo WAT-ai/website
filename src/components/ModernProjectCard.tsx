@@ -113,8 +113,8 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
               label={collaboration}
               size="small"
               sx={{
-                backgroundColor: `${theme.palette.secondary.main}15`,
-                color: theme.palette.secondary.main,
+                backgroundColor: theme.palette.primary.main,
+                color: "#000",
                 fontWeight: 600,
                 fontSize: "0.7rem",
                 height: "22px",
