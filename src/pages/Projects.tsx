@@ -163,7 +163,7 @@ const Projects: React.FC = () => {
       </Container>
 
       {/* Search and Filter Section */}
-      <Container maxWidth="lg" sx={{ mb: 6 }}>
+      <Container maxWidth="lg" sx={{ mb: { xs: 4, md: 6 }, px: { xs: 2, sm: 3 } }}>
         {/* Search Bar */}
         <TextField
           fullWidth
@@ -174,7 +174,7 @@ const Projects: React.FC = () => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <Search />
+                <Search sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" } }} />
               </InputAdornment>
             ),
             endAdornment: searchQuery && (
@@ -183,8 +183,9 @@ const Projects: React.FC = () => {
                   size="small"
                   onClick={() => setSearchQuery("")}
                   edge="end"
+                  sx={{ p: { xs: 0.5, sm: 1 } }}
                 >
-                  <Clear />
+                  <Clear sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" } }} />
                 </IconButton>
               </InputAdornment>
             ),
@@ -192,6 +193,8 @@ const Projects: React.FC = () => {
           sx={{
             "& .MuiOutlinedInput-root": {
               borderRadius: 2,
+              fontSize: { xs: "0.9rem", sm: "1rem" },
+              padding: { xs: "8px 12px", sm: "10px 14px" },
               "& fieldset": {
                 borderColor: theme.palette.primary.main,
               },
@@ -203,37 +206,15 @@ const Projects: React.FC = () => {
                 borderWidth: "1px",
               },
             },
+            "& .MuiOutlinedInput-input": {
+              padding: { xs: "8px 0", sm: "12px 0" },
+            },
           }}
         />
       </Container>
 
       {/* Current Projects Section */}
       <Container maxWidth="lg" sx={{ mb: 8 }}>
-        <Box sx={{ mb: 6 }}>
-          <Typography
-            variant="h3"
-            component="h2"
-            sx={{
-              fontWeight: 700,
-              color: theme.palette.text.primary,
-              mb: 2,
-              textAlign: "center",
-            }}
-          >
-            All Projects
-          </Typography>
-          <Divider
-            sx={{
-              width: "100px",
-              height: "4px",
-              backgroundColor: theme.palette.primary.main,
-              mx: "auto",
-              mb: 4,
-              borderRadius: 2,
-            }}
-          />
-        </Box>
-
         <Grid container spacing={4}>
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project, index) => (
