@@ -17,6 +17,8 @@ import {
   Link,
   Stack,
   Tooltip,
+  Chip,
+  Button,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import {
@@ -26,9 +28,8 @@ import {
   Article,
   Language,
   Description,
-  Person
 } from "@mui/icons-material";
-import { TeamMember, ProjectLinks } from "../data/newProjectData";
+import { TeamMember, ProjectLinks } from "../data/projectData";
 
 interface ModernProjectCardProps {
   title: string;
@@ -37,7 +38,6 @@ interface ModernProjectCardProps {
   teamMembers: TeamMember[];
   links?: ProjectLinks;
   collaboration?: string;
-  tags: string[];
 }
 
 const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
@@ -47,37 +47,30 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
   teamMembers,
   links,
   collaboration,
-  tags,
 }) => {
   const theme = useTheme();
-
-  // Function to get the appropriate contact icon based on the type
-  const getContactIcon = (type: 'email' | 'linkedin') => {
-    switch (type) {
-      case 'email':
-        return <Email fontSize="small" />;
-      case 'linkedin':
-        return <LinkedIn fontSize="small" />;
-      default:
-        return <Person fontSize="small" />;
-    }
-  };
 
   // Function to get the appropriate link icon based on the type
   const getLinkIcon = (type: 'website' | 'repository' | 'paper' | 'documentation') => {
     switch (type) {
       case 'website':
-        return <Language fontSize="small" />;
+        return <Language sx={{ fontSize: "1rem" }} />;
       case 'repository':
-        return <GitHub fontSize="small" />;
+        return <GitHub sx={{ fontSize: "1rem" }} />;
       case 'paper':
-        return <Article fontSize="small" />;
+        return <Article sx={{ fontSize: "1rem" }} />;
       case 'documentation':
-        return <Description fontSize="small" />;
+        return <Description sx={{ fontSize: "1rem" }} />;
       default:
-        return <Language fontSize="small" />;
+        return <Language sx={{ fontSize: "1rem" }} />;
     }
   };
+
+  // Parse TPM names and find their contact info from teamMembers
+  const tpmNames = tpm.split(',').map(name => name.trim());
+  const tpmMembers = teamMembers.filter(member => 
+    tpmNames.some(tpmName => member.name.trim() === tpmName)
+  );
 
   return (
     <motion.div
@@ -90,185 +83,204 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
       <Card
         sx={{
           backgroundColor: theme.palette.background.paper,
-          border: `3px solid ${theme.palette.primary.main}`,
-          borderRadius: 4,
+          border: `2px solid ${theme.palette.primary.main}30`,
+          borderRadius: 3,
           height: "100%",
           display: "flex",
           flexDirection: "column",
           transition: "all 0.3s ease",
           position: "relative",
           overflow: "hidden",
-          boxShadow: `0 4px 16px rgba(0, 0, 0, 0.2)`,
+          boxShadow: `0 2px 8px rgba(0, 0, 0, 0.1)`,
           "&:hover": {
-            boxShadow: `0 8px 20px rgba(0, 0, 0, 0.25)`,
-            borderColor: theme.palette.primary.light,
+            boxShadow: `0 8px 24px rgba(0, 0, 0, 0.15)`,
+            borderColor: theme.palette.primary.main,
+            transform: "translateY(-4px)",
           },
         }}
       >
-      <CardContent sx={{ flex: 1, p: 4 }}>
+      <CardContent sx={{ flex: 1, p: 3, display: "flex", flexDirection: "column" }}>
         {/* Header */}
-        <Box sx={{ mb: 3 }}>
+        <Box sx={{ mb: 2 }}>
           <Typography
-            variant="h4"
+            variant="h5"
             component="h2"
             sx={{
-              fontWeight: 800,
-              mb: 2,
+              fontWeight: 700,
               color: theme.palette.text.primary,
-              lineHeight: 1.2,
+              lineHeight: 1.3,
+              mb: 1,
             }}
           >
             {title}
           </Typography>
+
+          {/* Collaboration Badge */}
+          {collaboration && (
+            <Chip
+              label={collaboration}
+              size="small"
+              sx={{
+                backgroundColor: `${theme.palette.secondary.main}15`,
+                color: theme.palette.secondary.main,
+                fontWeight: 600,
+                fontSize: "0.7rem",
+                height: "22px",
+              }}
+            />
+          )}
         </Box>
 
         {/* Description */}
         <Typography
-          variant="body1"
+          variant="body2"
           sx={{
             color: theme.palette.text.secondary,
-            lineHeight: 1.7,
-            mb: 4,
-            fontSize: "1rem",
-            fontWeight: 400,
+            lineHeight: 1.6,
+            mb: 2.5,
+            fontSize: "0.9rem",
           }}
         >
           {description}
         </Typography>
 
-        {/* TPM Contact Info */}
-        <Box sx={{ mb: 4 }}>
-          <Typography
-            variant="h6"
-            sx={{
-              color: theme.palette.primary.main,
-              fontWeight: 700,
-              mb: 3,
-              fontSize: "1.1rem",
-              letterSpacing: "0.5px",
-            }}
-          >
-            Technical Product Managers
-          </Typography>
-          <Stack spacing={2}>
-            {teamMembers.map((member, index) => (
-              <Box
-                key={index}
+        {/* Bottom Section - pushed to bottom */}
+        <Box sx={{ mt: "auto" }}>
+          {/* Project Links */}
+          {links && Object.keys(links).length > 0 && (
+            <Box sx={{ mb: 2 }}>
+              <Typography
+                variant="caption"
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  p: 2.5,
-                  borderRadius: 3,
-                  backgroundColor: `${theme.palette.background.default}30`,
-                  border: `1px solid ${theme.palette.primary.main}15`,
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    backgroundColor: `${theme.palette.primary.main}08`,
-                    borderColor: `${theme.palette.primary.main}30`,
-                  },
+                  color: theme.palette.text.secondary,
+                  fontWeight: 600,
+                  fontSize: "0.7rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                  mb: 1,
+                  display: "block",
                 }}
               >
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: theme.palette.text.primary,
-                    fontWeight: 600,
-                    fontSize: "1rem",
-                  }}
-                >
-                  {member.name}
-                </Typography>
-                <Stack direction="row" spacing={1}>
-                  {member.email && (
-                    <Tooltip title={`Email ${member.name}`} arrow>
-                      <IconButton
-                        component={Link}
-                        href={`mailto:${member.email}`}
-                        size="medium"
-                        sx={{
-                          color: theme.palette.primary.main,
-                          backgroundColor: `${theme.palette.primary.main}12`,
-                          borderRadius: 2,
-                          "&:hover": {
-                            backgroundColor: `${theme.palette.primary.main}20`,
-                          },
-                        }}
-                      >
-                        {getContactIcon('email')}
-                      </IconButton>
-                    </Tooltip>
-                  )}
-                  {member.linkedin && (
-                    <Tooltip title={`LinkedIn - ${member.name}`} arrow>
-                      <IconButton
-                        component={Link}
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        size="medium"
-                        sx={{
-                          color: theme.palette.primary.main,
-                          backgroundColor: `${theme.palette.primary.main}12`,
-                          borderRadius: 2,
-                          "&:hover": {
-                            backgroundColor: `${theme.palette.primary.main}20`,
-                          },
-                        }}
-                      >
-                        {getContactIcon('linkedin')}
-                      </IconButton>
-                    </Tooltip>
-                  )}
-                </Stack>
-              </Box>
-            ))}
-          </Stack>
-        </Box>
-
-        {/* Project Links */}
-        {links && Object.keys(links).length > 0 && (
-          <Box sx={{ mt: "auto" }}>
-            <Typography
-              variant="h6"
-              sx={{
-                color: theme.palette.primary.main,
-                fontWeight: 700,
-                mb: 2,
-                fontSize: "1.1rem",
-                letterSpacing: "0.5px",
-              }}
-            >
-              Project Resources
-            </Typography>
-            <Stack direction="row" spacing={1.5} sx={{ flexWrap: "wrap", gap: 1.5 }}>
-              {Object.entries(links).map(([key, url]) => (
-                <Tooltip key={key} title={key.charAt(0).toUpperCase() + key.slice(1)} arrow>
-                  <IconButton
+              </Typography>
+              <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", gap: 1 }}>
+                {Object.entries(links).map(([key, url]) => (
+                  <Button
+                    key={key}
                     component={Link}
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    size="large"
+                    size="small"
+                    variant="outlined"
+                    startIcon={getLinkIcon(key as any)}
                     sx={{
-                      backgroundColor: `${theme.palette.primary.main}15`,
+                      textTransform: "capitalize",
+                      fontSize: "0.75rem",
+                      borderColor: `${theme.palette.primary.main}30`,
                       color: theme.palette.primary.main,
-                      borderRadius: 2.5,
-                      border: `1px solid ${theme.palette.primary.main}25`,
-                      transition: "all 0.3s ease",
                       "&:hover": {
-                        backgroundColor: `${theme.palette.primary.main}25`,
                         borderColor: theme.palette.primary.main,
+                        backgroundColor: `${theme.palette.primary.main}08`,
                       },
                     }}
                   >
-                    {getLinkIcon(key as any)}
-                  </IconButton>
-                </Tooltip>
-              ))}
-            </Stack>
-          </Box>
-        )}
+                    {key}
+                  </Button>
+                ))}
+              </Stack>
+            </Box>
+          )}
+
+          {/* TPM Contact Info - With Labels */}
+          {tpmMembers.length > 0 && (
+            <Box>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: theme.palette.text.secondary,
+                  fontWeight: 600,
+                  fontSize: "0.7rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                  mb: 1,
+                  display: "block",
+                }}
+              >
+                Technical Project Managers
+              </Typography>
+              <Stack spacing={1}>
+                {tpmMembers.map((member, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 1,
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: theme.palette.text.primary,
+                        fontWeight: 500,
+                        fontSize: "0.8rem",
+                      }}
+                    >
+                      {member.name}
+                    </Typography>
+                    {(member.email || member.linkedin) && (
+                      <Stack direction="row" spacing={0.5}>
+                        {member.email && (
+                          <Tooltip title="Email" arrow>
+                            <IconButton
+                              component={Link}
+                              href={`mailto:${member.email}`}
+                              size="small"
+                              sx={{
+                                color: theme.palette.primary.main,
+                                backgroundColor: `${theme.palette.primary.main}08`,
+                                width: 28,
+                                height: 28,
+                                "&:hover": {
+                                  backgroundColor: `${theme.palette.primary.main}15`,
+                                },
+                              }}
+                            >
+                              <Email sx={{ fontSize: "0.9rem" }} />
+                            </IconButton>
+                          </Tooltip>
+                        )}
+                        {member.linkedin && (
+                          <Tooltip title="LinkedIn" arrow>
+                            <IconButton
+                              component={Link}
+                              href={member.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              size="small"
+                              sx={{
+                                color: theme.palette.primary.main,
+                                backgroundColor: `${theme.palette.primary.main}08`,
+                                width: 28,
+                                height: 28,
+                                "&:hover": {
+                                  backgroundColor: `${theme.palette.primary.main}15`,
+                                },
+                              }}
+                            >
+                              <LinkedIn sx={{ fontSize: "0.9rem" }} />
+                            </IconButton>
+                          </Tooltip>
+                        )}
+                      </Stack>
+                    )}
+                  </Box>
+                ))}
+              </Stack>
+            </Box>
+          )}
+        </Box>
       </CardContent>
     </Card>
     </motion.div>
