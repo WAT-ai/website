@@ -60,8 +60,8 @@ const Navbar: React.FC = () => {
   const menuItems = [
     { text: "Students", link: "/students" },
     { text: "Projects", link: "/projects" },
-    { text: "Team", link: "/team" },
     { text: "Partnerships", link: "/partnerships" },
+    { text: "Team", link: "/team" },
     { text: "Contact", link: "/contact" },
     { text: "Blog", link: "https://wataiteam.substack.com/" },
   ];

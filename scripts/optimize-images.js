@@ -1,208 +1,134 @@
 /**
- * Image optimization script for WAT.ai website
- * Compresses images to <200KB using ImageMagick with quality/resize fallbacks
- * Usage: node optimize-images.js [--clean| --help]
+ * Compresses images to <200KB using Sharp.
+ *
+ * Usage: node scripts/optimize-images.js [--clean|--help]
+ *
+ * Prerequisites:
+ *   npm install sharp glob
  */
 
-const fs = require('fs');
+const fs = require('fs/promises');
 const path = require('path');
-const { execSync } = require('child_process');
+const sharp = require('sharp');
+const glob = require('glob');
 
-// Command line argument parsing
-const args = process.argv.slice(2);
-const shouldClean = args.includes('--clean');
-const shouldShowHelp = args.includes('--help') || args.includes('-h');
+const TARGET_SIZE_KB = 200;
+const SRC_DIR = path.join(__dirname, '../src/assets');
+const IMG_PATTERN = '**/*.{jpg,jpeg,png}';
+const OPT_SUFFIX = '_opt';
 
-// Display usage information
-function showHelp() {
-  console.log('Image Optimization Script');
-  console.log('');
-  console.log('Optimizes images to under 200KB by adjusting quality and resizing if needed.');
-  console.log('');
-  console.log('Usage:');
-  console.log('  node optimize-images.js           - Optimize all images in src/assets');
-  console.log('  node optimize-images.js --clean   - Remove all optimized images');
-  console.log('  node optimize-images.js --help    - Show this help message');
-  console.log('');
-  console.log('npm scripts:');
-  console.log('  npm run optimize:images           - Optimize all images');
-  console.log('  npm run optimize:images:clean     - Clean up optimized images');
-  console.log('  npm run optimize:images:help      - Show this help message');
-  console.log('');
-  console.log('Note: Requires ImageMagick');
-  console.log('');
-}
 
-/**
- * Remove all optimized images (_opt suffix files)
- * Useful for clean rebuilds and removing outdated versions
- */
-async function cleanOptimizedImages() {
-  console.log('Starting cleanup of optimized images...');
-  
-  const srcAssetsDir = path.join(__dirname, '../src/assets');
-  
-  // Recursively find optimized image files
-  function findOptimizedImages(dir) {
-    let optimizedImages = [];
-    if (!fs.existsSync(dir)) return optimizedImages;
-    
-    const files = fs.readdirSync(dir);
-    for (const file of files) {
-      const filePath = path.join(dir, file);
-      const stat = fs.statSync(filePath);
-      
-      if (stat.isDirectory()) {
-        // Recursively search subdirectories
-        optimizedImages = optimizedImages.concat(findOptimizedImages(filePath));
-      } else if (/_opt\.(jpg|jpeg|png)$/i.test(file)) {
-        // Match files with _opt suffix
-        optimizedImages.push(filePath);
-      }
-    }
-    return optimizedImages;
-  }
-  
-  const optimizedImages = findOptimizedImages(srcAssetsDir);
-  console.log(`Found ${optimizedImages.length} optimized images to remove`);
-  
-  for (const imagePath of optimizedImages) {
-    try {
-      fs.unlinkSync(imagePath);
-      console.log(`Removed ${path.basename(imagePath)}`);
-    } catch (error) {
-      console.log(`Failed to remove ${path.basename(imagePath)}: ${error.message}`);
-    }
-  }
-  
-  console.log('Cleanup completed!');
-}
-
-// Main optimization function using ImageMagick
 async function optimizeImages() {
   console.log('Starting image optimization...');
-  
-  // Verify ImageMagick installation
-  try {
-    execSync('which magick', { stdio: 'ignore' });
-  } catch (error) {
-    console.log('ImageMagick not found. Please install it first:');
-    console.log('   brew install imagemagick');
+  const imagePaths = glob.sync(IMG_PATTERN, { cwd: SRC_DIR, nodir: true });
+  const imagesToProcess = imagePaths.filter(p => !p.includes(OPT_SUFFIX));
+
+  if (imagesToProcess.length === 0) {
+    console.log('No images found to optimize.');
     return;
   }
-  
-  const srcAssetsDir = path.join(__dirname, '../src/assets');
-  
-  // Recursively find all unoptimized image files
-  function findImages(dir) {
-    let images = [];
-    if (!fs.existsSync(dir)) return images;
-    
-    const files = fs.readdirSync(dir);
-    for (const file of files) {
-      const filePath = path.join(dir, file);
-      const stat = fs.statSync(filePath);
-      
-      if (stat.isDirectory()) {
-        images = images.concat(findImages(filePath));
-      } else if (/\.(jpg|jpeg|png)$/i.test(file) && !/_opt\.(jpg|jpeg|png)$/i.test(file)) {
-        // Only include original images, skip optimized ones
-        images.push(filePath);
-      }
-    }
-    return images;
-  }
-  
-  const images = findImages(srcAssetsDir);
-  console.log(`Found ${images.length} images to optimize`);
-  
-  for (const imagePath of images) {
-    const ext = path.extname(imagePath).toLowerCase();
-    const baseName = path.basename(imagePath, ext);
-    const dir = path.dirname(imagePath);
-    const optimizedPath = path.join(dir, `${baseName}_opt${ext}`);
-    
-    // Skip if optimized version exists (or overwrite)
-    if (fs.existsSync(optimizedPath)) {
-      console.log(`Overwriting existing optimized file: ${path.basename(optimizedPath)}`);
-    }
-    
+
+  console.log(`Found ${imagesToProcess.length} images to optimize.`);
+
+  for (const imagePath of imagesToProcess) {
+    const fullPath = path.join(SRC_DIR, imagePath);
+    const optimizedPath = getOptimizedPath(fullPath);
+
     try {
-      let quality = 85;
-      let optimizedSize = 0;
-      const targetSize = 200 * 1024; // 200KB target
-      
-      // Iteratively reduce quality/size to meet target
-      for (let attempt = 0; attempt < 15; attempt++) {
-        if (ext === '.jpg' || ext === '.jpeg') {
-          // JPEG: Progressive encoding for faster loading
-          execSync(`magick "${imagePath}" -quality ${quality} -interlace Plane "${optimizedPath}"`);
-        } else if (ext === '.png') {
-          // PNG: Compress while maintaining transparency
-          execSync(`magick "${imagePath}" -quality ${quality} "${optimizedPath}"`);
+      const originalSize = (await fs.stat(fullPath)).size;
+      let quality = 80; // Start with good quality
+      let currentWidth = (await sharp(fullPath).metadata()).width;
+      let optimizedBuffer;
+
+      // Iteratively reduce quality and size until the image is under the target size
+      while (quality >= 30) {
+        optimizedBuffer = await sharp(fullPath)
+          .resize({ width: currentWidth })
+          .jpeg({ quality, progressive: true, mozjpeg: true })
+          .toBuffer();
+
+        if (optimizedBuffer.length < TARGET_SIZE_KB * 1024) {
+          break; // Success!
         }
-        
-        optimizedSize = fs.statSync(optimizedPath).size;
-        
-        if (optimizedSize <= targetSize) {
-          break; // Target achieved
-        }
-        
-        // Progressive compression strategy
-        if (attempt < 8) {
-          // First 8 attempts: reduce quality
-          quality = Math.max(20, quality - 10);
+
+        // If still too large, reduce quality or width
+        if (quality > 40) {
+          quality -= 10; // Reduce quality first
         } else {
-          // After attempt 8: aggressive resizing
-          const targetReduction = targetSize / optimizedSize;
-          const scaleFactor = Math.sqrt(targetReduction * 0.85); // 85% safety margin
-          const scalePercent = Math.max(20, Math.floor(scaleFactor * 100)); // Min 20%
-          
-          if (ext === '.jpg' || ext === '.jpeg') {
-            execSync(`magick "${imagePath}" -resize ${scalePercent}% -quality ${Math.max(30, quality)} -interlace Plane "${optimizedPath}"`);
-          } else if (ext === '.png') {
-            execSync(`magick "${imagePath}" -resize ${scalePercent}% -quality ${Math.max(30, quality)} "${optimizedPath}"`);
-          }
-          
-          optimizedSize = fs.statSync(optimizedPath).size;
-          
-          if (optimizedSize <= targetSize) {
-            break;
-          }
-          
-          // Further reduce scale for next attempt
-          quality = Math.max(20, quality - 5);
-        }
-        
-        if (quality <= 15 && attempt > 12) {
-          console.log(`  ⚠️  Reached minimum quality threshold for ${path.basename(imagePath)}`);
-          break;
+          currentWidth = Math.floor(currentWidth * 0.9); // Then reduce size
         }
       }
-      
-      // Display optimization results
-      const originalSize = fs.statSync(imagePath).size;
+
+      await fs.writeFile(optimizedPath, optimizedBuffer);
+
+      const optimizedSize = optimizedBuffer.length;
       const savings = ((originalSize - optimizedSize) / originalSize * 100).toFixed(1);
-      const sizeInKB = (optimizedSize / 1024).toFixed(1);
-      
-      if (optimizedSize <= targetSize) {
-        console.log(`✅ Optimized ${path.basename(imagePath)} - ${savings}% smaller (${sizeInKB}KB)`);
-      } else {
-        console.log(`⚠️  ${path.basename(imagePath)} - ${savings}% smaller (${sizeInKB}KB) - Could not reach 200KB target`);
-      }
+
+      console.log(
+        `✅ Optimized ${imagePath} | ${toKB(originalSize)}KB -> ${toKB(optimizedSize)}KB (Saved ${savings}%)`
+      );
+
     } catch (error) {
-      console.log(`Failed to optimize ${path.basename(imagePath)}: ${error.message}`);
+      console.error(`❌ Failed to optimize ${imagePath}: ${error.message}`);
     }
   }
-  
-  console.log('Image optimization completed!');
+
+  console.log('\nImage optimization completed!');
 }
 
-// Execute based on command line arguments
+
+async function cleanOptimizedImages() {
+  console.log('Cleaning up optimized images...');
+  const imagePaths = glob.sync(`**/*${OPT_SUFFIX}.{jpg,jpeg,png}`, { cwd: SRC_DIR, nodir: true });
+
+  if (imagePaths.length === 0) {
+    console.log('No optimized images found to clean.');
+    return;
+  }
+
+  for (const imagePath of imagePaths) {
+    const fullPath = path.join(SRC_DIR, imagePath);
+    await fs.unlink(fullPath);
+    console.log(`Removed ${imagePath}`);
+  }
+
+  console.log('\nCleanup complete!');
+}
+
+
+function showHelp() {
+  console.log(`
+  Image Optimization Script
+
+  Optimizes images in '${SRC_DIR}' to be under ${TARGET_SIZE_KB}KB.
+
+  Usage:
+    node scripts/optimize-images.js          - Optimize all images
+    node scripts/optimize-images.js --clean  - Remove all optimized images
+    node scripts/optimize-images.js --help   - Show this help message
+
+  Prerequisites:
+    Run 'npm install sharp glob'
+  `);
+}
+
+// --- Helpers ---
+
+const getOptimizedPath = (p) => {
+  const ext = path.extname(p);
+  const base = p.slice(0, -ext.length);
+  return `${base}${OPT_SUFFIX}${ext}`;
+};
+
+const toKB = (bytes) => (bytes / 1024).toFixed(1);
+
+
+
 async function main() {
-  if (shouldShowHelp) {
+  const args = process.argv.slice(2);
+  if (args.includes('--help')) {
     showHelp();
-  } else if (shouldClean) {
+  } else if (args.includes('--clean')) {
     await cleanOptimizedImages();
   } else {
     await optimizeImages();

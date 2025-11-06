@@ -16,7 +16,7 @@ import { motion } from "framer-motion";
 
 interface FAQItem {
   question: string;
-  answer: string;
+  answer: string | React.ReactNode;
 }
 
 interface FAQProps {
