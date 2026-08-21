@@ -173,6 +173,25 @@ const Students: React.FC = () => {
         variant="student"
       />
 
+      {/* Community Gallery */}
+      <UnifiedSection
+        backgroundColor="transparent"
+        minHeight="auto"
+        padding={4}
+      >
+        <Box
+          sx={{
+            width: "100%",
+            maxWidth: "1200px",
+            mx: "auto",
+            px: { xs: 0, sm: 2, md: 3 },
+            pb: { xs: 2, sm: 3, md: 4 },
+          }}
+        >
+          <ImageGallery images={galleryImages} />
+        </Box>
+      </UnifiedSection>
+
       {/* Our Opportunities Section */}
       <UnifiedSection
         backgroundColor="paper"
@@ -546,48 +565,6 @@ const Students: React.FC = () => {
                 </UnifiedCard>
               </Box>
             </Box>
-          </Box>
-        </Box>
-      </UnifiedSection>
-
-      {/* Community Gallery Section */}
-      <UnifiedSection
-        backgroundColor="transparent"
-        minHeight="80vh"
-        centerContent
-      >
-        <Box sx={{ 
-          textAlign: "center", 
-          maxWidth: { xs: "100%", sm: "95%", md: "1200px" }, 
-          margin: "0 auto",
-          px: { xs: 1, sm: 2, md: 3 }
-        }}>
-          <SubsectionTitle sx={{ 
-            mb: { xs: 2, sm: 3, md: 4 },
-            px: { xs: 2, sm: 0 }
-          }}>
-            Join Our Community
-          </SubsectionTitle>
-          
-          <BodyLarge sx={{ 
-            mb: { xs: 4, sm: 6, md: 8 }, 
-            maxWidth: "800px", 
-            margin: "0 auto",
-            px: { xs: 3, sm: 2, md: 0 },
-            fontSize: { xs: "1rem", sm: "1.1rem", md: "1.25rem" },
-            lineHeight: { xs: 1.5, md: 1.6 }
-          }}>
-            Join a vibrant community of AI enthusiasts, researchers, and innovators. 
-            From conferences to collaborative projects, we're building the future of AI together.
-          </BodyLarge>
-          
-          <Box sx={{ 
-            px: { xs: 0, sm: 0, md: 0 },
-            mb: { xs: 4, sm: 6, md: 8 },
-            width: "100%",
-            maxWidth: "100%"
-          }}>
-            <ImageGallery images={galleryImages} />
           </Box>
         </Box>
       </UnifiedSection>
