@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
 import DiscordIcon from "../components/DiscordIcon";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
 import CodeIcon from '@mui/icons-material/Code';
 import SchoolIcon from '@mui/icons-material/School';
 import { SubsectionTitle, BodyLarge } from "../components/Typography";
@@ -122,9 +122,9 @@ const Students: React.FC = () => {
   };
 
   const networkingOpportunities = {
-    title: "Collaborate and Network",
+    title: "Meet Ambitious Builders",
     points: [
-      "Join a tight-knit community of ambitious builders and researchers. We give students the opportunities to attend a national AI conference with industry leaders, as well as access other resources like mentorship, funding, and more.",
+      "We give students the opportunities to attend a national AI conference with industry leaders, as well as access other resources like mentorship, funding, and more.",
       "We also connect our top performing students from our projects to professors and industry partners recruiting AI talent."
     ]
   };
@@ -200,23 +200,51 @@ const Students: React.FC = () => {
       >
         <Box sx={{ 
           textAlign: "center", 
-          maxWidth: "1400px", 
+          maxWidth: "1240px",
           margin: "0 auto",
           px: { xs: 2, sm: 3, md: 4 }
         }}>
-          <SubsectionTitle sx={{ mb: { xs: 6, md: 8 } }}>
+          <SubsectionTitle sx={{
+            display: "inline-block",
+            mb: { xs: 6, md: 10 },
+            fontSize: { xs: "2rem", sm: "2.6rem", md: "3.2rem" },
+            fontWeight: 700,
+            letterSpacing: "-0.035em",
+            position: "relative",
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              left: "50%",
+              bottom: -16,
+              width: 56,
+              height: 3,
+              borderRadius: 99,
+              transform: "translateX(-50%)",
+              backgroundColor: theme.palette.primary.main,
+            },
+          }}>
             Our Opportunities
           </SubsectionTitle>
           
           {/* Responsive alternating layout */}
-          <Box sx={{ position: "relative" }}>
+          <Box sx={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            gap: { xs: 4, md: 6 },
+          }}>
             {/* Project Work - Left aligned */}
             <Box sx={{ 
               display: "flex", 
               alignItems: "stretch", 
-              mb: { xs: 8, md: 12 },
+              position: "relative",
               flexDirection: { xs: "column", md: "row" },
-              gap: { xs: 4, md: 6 }
+              gap: { xs: 4, md: 7 },
+              p: { xs: 2.5, sm: 4, md: 5 },
+              borderRadius: { xs: 4, md: 6 },
+              border: `1px solid ${theme.palette.primary.main}24`,
+              background: `linear-gradient(135deg, ${theme.palette.primary.main}0D, rgba(255,255,255,0.015) 55%)`,
+              overflow: "hidden",
             }}>
               <Box sx={{ 
                 flex: 1,
@@ -228,23 +256,26 @@ const Students: React.FC = () => {
                   display: "flex", 
                   alignItems: "center", 
                   justifyContent: { xs: "center", md: "flex-start" },
-                  mb: 3,
-                  p: 2,
-                  borderRadius: 3,
-                  background: `linear-gradient(135deg, ${theme.palette.primary.main}20, ${theme.palette.primary.main}10)`,
-                  border: `2px solid ${theme.palette.primary.main}30`
+                  mb: 4,
+                  gap: 2,
+                  pb: 3,
+                  borderBottom: `1px solid ${theme.palette.primary.main}55`,
                 }}>
                   <CodeIcon sx={{ 
-                    fontSize: { xs: 36, md: 40 }, 
+                    fontSize: { xs: 42, md: 48 },
                     color: theme.palette.primary.main,
-                    mr: 2
+                    p: 1,
+                    borderRadius: 2.5,
+                    border: `1px solid ${theme.palette.primary.main}44`,
+                    backgroundColor: `${theme.palette.primary.main}12`,
                   }} />
                   <Box sx={{ 
-                    fontSize: { xs: "1.1rem", md: "1.3rem" }, 
-                    fontWeight: 600,
-                    color: theme.palette.primary.main,
+                    fontSize: { xs: "1.5rem", sm: "1.75rem", md: "2rem" },
+                    fontWeight: 750,
+                    color: theme.palette.text.primary,
                     textAlign: { xs: "center", md: "left" },
-                    lineHeight: 1.2
+                    lineHeight: 1.15,
+                    letterSpacing: "-0.025em",
                   }}>
                     {projectOpportunities.title}
                   </Box>
@@ -253,7 +284,9 @@ const Students: React.FC = () => {
                   <StyledBulletPoints 
                     title=""
                     points={projectOpportunities.points}
-                    align="left" 
+                    align="left"
+                    variant="cards"
+                    accentColor={theme.palette.primary.main}
                   />
                 </Box>
               </Box>
@@ -261,17 +294,17 @@ const Students: React.FC = () => {
                 flex: 1,
                 display: "flex",
                 flexDirection: "column",
-                height: "fit-content",
-                minHeight: "auto"
+                justifyContent: "flex-end",
               }}>
                 <UnifiedCard
-                  variant="elevated"
+                  variant="default"
                   padding={0}
                 >
                   <Box sx={{
                     position: "relative",
                     overflow: "hidden",
-                    borderRadius: "9px", 
+                    borderRadius: "12px",
+                    aspectRatio: "4 / 3",
                     "&::before": {
                       content: '""',
                       position: "absolute",
@@ -293,7 +326,8 @@ const Students: React.FC = () => {
                       alt="High Impact AI Projects"
                       sx={{
                         width: "100%",
-                        height: "auto",
+                        height: "100%",
+                        objectFit: "cover",
                         display: "block",
                         boxSizing: "border-box",
                         transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -333,9 +367,14 @@ const Students: React.FC = () => {
             <Box sx={{ 
               display: "flex", 
               alignItems: "stretch", 
-              mb: { xs: 8, md: 12 },
+              position: "relative",
               flexDirection: { xs: "column", md: "row-reverse" },
-              gap: { xs: 4, md: 6 }
+              gap: { xs: 4, md: 7 },
+              p: { xs: 2.5, sm: 4, md: 5 },
+              borderRadius: { xs: 4, md: 6 },
+              border: `1px solid ${theme.palette.warning.main}24`,
+              background: `linear-gradient(225deg, ${theme.palette.warning.main}0D, rgba(255,255,255,0.015) 55%)`,
+              overflow: "hidden",
             }}>
               <Box sx={{ 
                 flex: 1,
@@ -347,23 +386,26 @@ const Students: React.FC = () => {
                   display: "flex", 
                   alignItems: "center", 
                   justifyContent: { xs: "center", md: "flex-start" },
-                  mb: 3,
-                  p: 2,
-                  borderRadius: 3,
-                  background: `linear-gradient(135deg, ${theme.palette.warning.main}20, ${theme.palette.warning.main}10)`,
-                  border: `2px solid ${theme.palette.warning.main}30`
+                  mb: 4,
+                  gap: 2,
+                  pb: 3,
+                  borderBottom: `1px solid ${theme.palette.warning.main}55`,
                 }}>
                   <SchoolIcon sx={{ 
-                    fontSize: { xs: 36, md: 40 }, 
+                    fontSize: { xs: 42, md: 48 },
                     color: theme.palette.warning.main,
-                    mr: 2
+                    p: 1,
+                    borderRadius: 2.5,
+                    border: `1px solid ${theme.palette.warning.main}44`,
+                    backgroundColor: `${theme.palette.warning.main}12`,
                   }} />
                   <Box sx={{ 
-                    fontSize: { xs: "1.1rem", md: "1.3rem" }, 
-                    fontWeight: 600,
-                    color: theme.palette.warning.main,
+                    fontSize: { xs: "1.5rem", sm: "1.75rem", md: "2rem" },
+                    fontWeight: 750,
+                    color: theme.palette.text.primary,
                     textAlign: { xs: "center", md: "left" },
-                    lineHeight: 1.2
+                    lineHeight: 1.15,
+                    letterSpacing: "-0.025em",
                   }}>
                     {workshopOpportunities.title}
                   </Box>
@@ -372,7 +414,9 @@ const Students: React.FC = () => {
                   <StyledBulletPoints 
                     title=""
                     points={workshopOpportunities.points}
-                    align="left" 
+                    align="left"
+                    variant="cards"
+                    accentColor={theme.palette.warning.main}
                   />
                 </Box>
               </Box>
@@ -380,17 +424,17 @@ const Students: React.FC = () => {
                 flex: 1,
                 display: "flex",
                 flexDirection: "column",
-                height: "fit-content",
-                minHeight: "auto"
+                justifyContent: "flex-end",
               }}>
                 <UnifiedCard
-                  variant="elevated"
+                  variant="default"
                   padding={0}
                 >
                   <Box sx={{
                     position: "relative",
                     overflow: "hidden",
-                    borderRadius: "9px", 
+                    borderRadius: "12px",
+                    aspectRatio: "4 / 3",
                     "&::before": {
                       content: '""',
                       position: "absolute",
@@ -412,7 +456,8 @@ const Students: React.FC = () => {
                       alt="AI Workshops & Events"
                       sx={{
                         width: "100%",
-                        height: "auto",
+                        height: "100%",
+                        objectFit: "cover",
                         display: "block",
                         boxSizing: "border-box",
                         transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -453,7 +498,12 @@ const Students: React.FC = () => {
               display: "flex", 
               alignItems: "stretch", 
               flexDirection: { xs: "column", md: "row" },
-              gap: { xs: 4, md: 6 }
+              gap: { xs: 4, md: 7 },
+              p: { xs: 2.5, sm: 4, md: 5 },
+              borderRadius: { xs: 4, md: 6 },
+              border: "1px solid #4DA3D924",
+              background: "linear-gradient(135deg, #4DA3D90D, rgba(255,255,255,0.015) 55%)",
+              overflow: "hidden",
             }}>
               <Box sx={{ 
                 flex: 1,
@@ -465,23 +515,26 @@ const Students: React.FC = () => {
                   display: "flex", 
                   alignItems: "center", 
                   justifyContent: { xs: "center", md: "flex-start" },
-                  mb: 3,
-                  p: 2,
-                  borderRadius: 3,
-                  background: `linear-gradient(135deg, #0077B520, #0077B510)`,
-                  border: `2px solid #0077B530`
+                  mb: 4,
+                  gap: 2,
+                  pb: 3,
+                  borderBottom: "1px solid #4DA3D955",
                 }}>
-                  <LinkedInIcon sx={{ 
-                    fontSize: { xs: 36, md: 40 }, 
-                    color: "#0077B5",
-                    mr: 2
+                  <GroupsRoundedIcon sx={{
+                    fontSize: { xs: 42, md: 48 },
+                    color: "#4DA3D9",
+                    p: 1,
+                    borderRadius: 2.5,
+                    border: "1px solid #4DA3D944",
+                    backgroundColor: "#4DA3D912",
                   }} />
                   <Box sx={{ 
-                    fontSize: { xs: "1.1rem", md: "1.3rem" }, 
-                    fontWeight: 600,
-                    color: "#0077B5",
+                    fontSize: { xs: "1.5rem", sm: "1.75rem", md: "2rem" },
+                    fontWeight: 750,
+                    color: theme.palette.text.primary,
                     textAlign: { xs: "center", md: "left" },
-                    lineHeight: 1.2
+                    lineHeight: 1.15,
+                    letterSpacing: "-0.025em",
                   }}>
                     {networkingOpportunities.title}
                   </Box>
@@ -490,7 +543,9 @@ const Students: React.FC = () => {
                   <StyledBulletPoints 
                     title=""
                     points={networkingOpportunities.points}
-                    align="left" 
+                    align="left"
+                    variant="cards"
+                    accentColor="#4DA3D9"
                   />
                 </Box>
               </Box>
@@ -498,17 +553,17 @@ const Students: React.FC = () => {
                 flex: 1,
                 display: "flex",
                 flexDirection: "column",
-                height: "fit-content",
-                minHeight: "auto"
+                justifyContent: "flex-end",
               }}>
                 <UnifiedCard
-                  variant="elevated"
+                  variant="default"
                   padding={0}
                 >
                   <Box sx={{
                     position: "relative",
                     overflow: "hidden",
-                    borderRadius: "9px", 
+                    borderRadius: "12px",
+                    aspectRatio: "4 / 3",
                     "&::before": {
                       content: '""',
                       position: "absolute",
@@ -527,10 +582,11 @@ const Students: React.FC = () => {
                   }}>
                     <LoadingImage
                       src={network}
-                      alt="Collaborate and Network"
+                      alt="Meet Ambitious Builders"
                       sx={{
                         width: "100%",
-                        height: "auto",
+                        height: "100%",
+                        objectFit: "cover",
                         display: "block",
                         boxSizing: "border-box",
                         transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
