@@ -166,10 +166,11 @@ const Students: React.FC = () => {
     >
       {/* Hero Section */}
       <UnifiedHero
-        title="Join WAT.ai – Waterloo's Hub for Student-Led AI Innovation"
+        title="Join WAT.ai"
         subtitle="Learn. Build. Research. Publish."
-        description="WAT.ai is the University of Waterloo's student-led artificial intelligence organization focused on hands-on learning, real world impact, and meaningful research. Whether you're just curious about machine learning, ready to publish your first paper, or looking to improve your ML skillset with project management experience, WAT.ai is a space to grow your skills and collaborate with others who are passionate about AI."
-        variant="centered"
+        tagline="Waterloo's Hub for Student-Led AI Innovation"
+        description="WAT.ai is UWaterloo's largest AI design team. We've helped hundreds of students make friends, add real-world projects to their portfolios, and land their first internships and research roles in ML."
+        variant="student"
       />
 
       {/* Our Opportunities Section */}
