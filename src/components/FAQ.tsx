@@ -23,14 +23,17 @@ interface FAQProps {
   items: FAQItem[];
   title?: string;
   openItemIndex?: number | null;
+  variant?: "default" | "modern";
 }
 
 const FAQ: React.FC<FAQProps> = ({
   items,
   title = "Frequently Asked Questions",
   openItemIndex = null,
+  variant = "default",
 }) => {
   const theme = useTheme();
+  const isModern = variant === "modern";
   const [expanded, setExpanded] = useState<string | false>(false);
 
   useEffect(() => {
@@ -51,45 +54,89 @@ const FAQ: React.FC<FAQProps> = ({
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
-      <Box sx={{ maxWidth: 800, mx: "auto" }}>
+      <Box
+        sx={{
+          maxWidth: isModern ? 960 : 800,
+          mx: "auto",
+          position: "relative",
+          ...(isModern && {
+            px: { xs: 1, sm: 2 },
+            "&::before": {
+              content: '""',
+              position: "absolute",
+              width: "70%",
+              height: 220,
+              top: 20,
+              left: "15%",
+              background: `radial-gradient(ellipse, ${theme.palette.primary.main}12, transparent 68%)`,
+              filter: "blur(24px)",
+              pointerEvents: "none",
+            },
+          }),
+        }}
+      >
         <Typography
           variant="h2"
           component="h2"
           sx={{
-            fontSize: { xs: "2rem", md: "2.5rem" },
-            fontWeight: 700,
-            color: theme.palette.primary.main,
+            fontSize: isModern ? { xs: "2.5rem", md: "3.5rem" } : { xs: "2rem", md: "2.5rem" },
+            fontWeight: isModern ? 750 : 700,
+            color: isModern ? theme.palette.text.primary : theme.palette.primary.main,
             textAlign: "center",
-            mb: 6,
+            mb: isModern ? 8 : 6,
+            letterSpacing: isModern ? "-0.045em" : undefined,
+            position: "relative",
+            ...(isModern && {
+              "&::after": {
+                content: '""',
+                display: "block",
+                width: 72,
+                height: 2,
+                mt: 2,
+                mx: "auto",
+                borderRadius: 99,
+                background: `linear-gradient(90deg, transparent, ${theme.palette.primary.main}, transparent)`,
+              },
+            }),
           }}
         >
           {title}
         </Typography>
 
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: isModern ? 1.5 : 2 }}>
           {items.map((item, index) => (
             <Accordion
               key={index}
               expanded={expanded === `panel${index}`}
               onChange={handleChange(`panel${index}`)}
               sx={{
-                backgroundColor: theme.palette.background.paper,
-                border: `2px solid ${theme.palette.primary.main}20`,
-                borderRadius: "12px !important",
+                backgroundColor: isModern ? "rgba(20, 20, 20, 0.82)" : theme.palette.background.paper,
+                backgroundImage: isModern
+                  ? `linear-gradient(110deg, ${theme.palette.primary.main}08, transparent 42%)`
+                  : "none",
+                backdropFilter: isModern ? "blur(10px)" : "none",
+                border: `${isModern ? 1 : 2}px solid ${theme.palette.primary.main}${isModern ? "2B" : "20"}`,
+                borderRadius: `${isModern ? 16 : 12}px !important`,
                 overflow: "hidden",
+                boxShadow: isModern ? "0 12px 32px rgba(0,0,0,0.16)" : "none",
                 "&:before": { display: "none" },
                 "&:first-of-type": {
-                  borderRadius: "12px !important",
+                  borderRadius: `${isModern ? 16 : 12}px !important`,
                 },
                 "&:last-of-type": {
-                  borderRadius: "12px !important",
+                  borderRadius: `${isModern ? 16 : 12}px !important`,
                 },
                 "&.Mui-expanded": {
                   margin: 0,
                   borderColor: theme.palette.primary.main,
-                  borderRadius: "12px !important",
+                  borderRadius: `${isModern ? 16 : 12}px !important`,
+                  boxShadow: isModern ? `0 16px 44px ${theme.palette.primary.main}12` : "none",
                 },
-                transition: "all 0.3s ease",
+                "&:hover": isModern ? {
+                  borderColor: `${theme.palette.primary.main}66`,
+                  transform: "translateY(-2px)",
+                } : {},
+                transition: "all 0.25s ease",
               }}
             >
               <AccordionSummary
@@ -97,12 +144,22 @@ const FAQ: React.FC<FAQProps> = ({
                   <ExpandMoreIcon
                     sx={{
                       color: theme.palette.primary.main,
-                      fontSize: "1.5rem",
+                      fontSize: isModern ? "1.25rem" : "1.5rem",
+                      ...(isModern && {
+                        width: 34,
+                        height: 34,
+                        p: 0.75,
+                        borderRadius: "50%",
+                        border: `1px solid ${theme.palette.primary.main}55`,
+                        backgroundColor: `${theme.palette.primary.main}0D`,
+                      }),
                     }}
                   />
                 }
                 sx={{
-                  backgroundColor: `${theme.palette.primary.main}05`,
+                  backgroundColor: isModern ? "transparent" : `${theme.palette.primary.main}05`,
+                  minHeight: isModern ? { xs: 76, md: 88 } : undefined,
+                  px: isModern ? { xs: 2, sm: 3 } : undefined,
                   borderBottom: expanded === `panel${index}` 
                     ? `1px solid ${theme.palette.primary.main}20` 
                     : "none",
@@ -111,16 +168,32 @@ const FAQ: React.FC<FAQProps> = ({
                     backgroundColor: `${theme.palette.primary.main}10`,
                   },
                   "& .MuiAccordionSummary-content": {
-                    margin: "16px 0",
+                    margin: isModern ? "18px 0" : "16px 0",
+                    alignItems: "center",
                   },
                 }}
               >
+                {isModern && (
+                  <Box
+                    sx={{
+                      color: theme.palette.primary.main,
+                      fontSize: "0.72rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.12em",
+                      width: 42,
+                      flexShrink: 0,
+                    }}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </Box>
+                )}
                 <Typography
                   variant="h6"
                   sx={{
-                    fontWeight: 600,
+                    fontWeight: isModern ? 650 : 600,
                     color: theme.palette.text.primary,
-                    fontSize: { xs: "1rem", md: "1.1rem" },
+                    fontSize: isModern ? { xs: "1rem", md: "1.15rem" } : { xs: "1rem", md: "1.1rem" },
+                    letterSpacing: isModern ? "-0.01em" : undefined,
                   }}
                 >
                   {item.question}
@@ -128,16 +201,17 @@ const FAQ: React.FC<FAQProps> = ({
               </AccordionSummary>
               <AccordionDetails
                 sx={{
-                  padding: 3,
-                  backgroundColor: theme.palette.background.paper,
+                  padding: isModern ? { xs: 2.5, sm: 3, md: 3.5 } : 3,
+                  pl: isModern ? { xs: 8, sm: 9 } : undefined,
+                  backgroundColor: isModern ? "rgba(10, 10, 10, 0.35)" : theme.palette.background.paper,
                 }}
               >
                 <Typography
                   variant="body1"
                   sx={{
-                    color: theme.palette.text.secondary,
-                    lineHeight: 1.6,
-                    fontSize: "1rem",
+                    color: isModern ? theme.palette.text.primary : theme.palette.text.secondary,
+                    lineHeight: isModern ? 1.75 : 1.6,
+                    fontSize: isModern ? "1.02rem" : "1rem",
                   }}
                 >
                   {item.answer}

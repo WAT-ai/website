@@ -9,6 +9,7 @@ import DiscordIcon from "../components/DiscordIcon";
 import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
 import CodeIcon from '@mui/icons-material/Code';
 import SchoolIcon from '@mui/icons-material/School';
+import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 import { SubsectionTitle, BodyLarge } from "../components/Typography";
 import StyledBulletPoints from "../components/StyledBulletPoints";
 import ImageGallery from "../components/ImageGallery";
@@ -106,11 +107,15 @@ const Students: React.FC = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   const showApplicationDeadlines = () => {
-    setOpenFaqIndex(0);
+    // Reset first so repeated CTA clicks reopen the FAQ after it has been closed.
+    setOpenFaqIndex(null);
     window.requestAnimationFrame(() => {
-      document.getElementById("application-deadlines")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
+      setOpenFaqIndex(0);
+      window.requestAnimationFrame(() => {
+        document.getElementById("application-deadlines")?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
       });
     });
   };
@@ -146,10 +151,10 @@ const Students: React.FC = () => {
 
   const faqItems = [
     {
-      question: "When do applications open?",
+      question: "How do I join WAT.ai?",
       answer: (
         <>
-          Core member applications typically open near the beginning of each term. Technical project manager applications typically open near the end of each term for projects beginning the following term. Exact dates and application links are announced on our{" "}
+          We publish application core member application forms in the starting month of every term and technical project manager application forms in the final month of every term. Core members apply to their top 3 desired projects and technical project managers apply with a project idea and take a management skills test. Follow us on{" "}
           <Box
             component="a"
             href="https://www.instagram.com/wataiteam/"
@@ -158,14 +163,20 @@ const Students: React.FC = () => {
             sx={{ color: theme.palette.primary.main, fontWeight: 600 }}
           >
             Instagram
-          </Box>
-          .
+          </Box>{" "}
+          or{" "}
+          <Box
+            component="a"
+            href="https://www.linkedin.com/company/wat-ai/"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{ color: theme.palette.primary.main, fontWeight: 600 }}
+          >
+            LinkedIn
+          </Box>{" "}
+          for announcements on the latest applications.
         </>
       ),
-    },
-    {
-      question: "How do I join WAT.ai?",
-      answer: "We publish application core member application forms in the starting month of every term and technical project manager application forms in the final month of every term. Core members apply to their top 3 desired projects and technical project managers apply with a project idea and take a management skills test. Follow us on Instagram or Linkedin for announcements on the latest applications."
     },
     {
       question: "I don't have an AI or ML background. Can I still join?",
@@ -252,11 +263,11 @@ const Students: React.FC = () => {
               position: "absolute",
               left: "50%",
               bottom: -16,
-              width: 56,
-              height: 3,
+              width: 72,
+              height: 2,
               borderRadius: 99,
               transform: "translateX(-50%)",
-              backgroundColor: theme.palette.primary.main,
+              background: `linear-gradient(90deg, transparent, ${theme.palette.primary.main}, transparent)`,
             },
           }}>
             Our Opportunities
@@ -663,41 +674,64 @@ const Students: React.FC = () => {
 
       {/* FAQ Section */}
       <UnifiedSection
-        backgroundColor="paper"
+        backgroundColor="transparent"
         minHeight="80vh"
         centerContent
       >
         <Box id="application-deadlines" sx={{ scrollMarginTop: "96px" }}>
-          <FAQ items={faqItems} title="FAQ" openItemIndex={openFaqIndex} />
+          <FAQ items={faqItems} title="FAQ" openItemIndex={openFaqIndex} variant="modern" />
         </Box>
       </UnifiedSection>
 
       {/* CTA Section */}
       <UnifiedSection
         backgroundColor="transparent"
-        minHeight="50vh"
+        minHeight="55vh"
         centerContent
       >
-        <Box sx={{ textAlign: "center", maxWidth: "900px", margin: "0 auto", px: { xs: 2, sm: 3, md: 0 } }}>
-          <SubsectionTitle sx={{ mb: { xs: 3, sm: 4, md: 5 } }}>
+        <Box
+          sx={{
+            textAlign: "center",
+            maxWidth: "920px",
+            margin: "0 auto",
+            px: { xs: 3, sm: 6, md: 10 },
+            py: { xs: 6, sm: 8, md: 9 },
+            position: "relative",
+          }}
+        >
+          <SubsectionTitle
+            sx={{
+              mb: { xs: 4, sm: 5 },
+              color: theme.palette.text.primary,
+              fontSize: { xs: "2.2rem", sm: "2.75rem", md: "3.25rem" },
+              fontWeight: 750,
+              lineHeight: 1.1,
+              letterSpacing: "-0.04em",
+              position: "relative",
+            }}
+          >
             Still have questions?
           </SubsectionTitle>
           <BodyLarge sx={{ 
-            mb: { xs: 6, sm: 7, md: 8 }, 
-            maxWidth: "600px", 
+            mb: { xs: 4, sm: 5 },
+            maxWidth: "620px",
             margin: "0 auto",
-            px: { xs: 1, sm: 0 }
+            px: { xs: 0, sm: 1 },
+            color: theme.palette.text.secondary,
+            fontSize: { xs: "1rem", sm: "1.1rem" },
+            lineHeight: 1.7,
+            textWrap: "balance",
           }}>
             Reach out to us via discord or email us at contact@watai.ca. We'd love to hear from you!
           </BodyLarge>
           <Box 
             sx={{ 
               display: "flex", 
-              gap: { xs: 2, sm: 3, md: 4 }, 
+              gap: { xs: 2, sm: 2.5 },
               justifyContent: "center", 
               flexWrap: "wrap",
               "& > *": {
-                minWidth: { xs: "140px", sm: "160px", md: "180px" },
+                minWidth: { xs: "100%", sm: "190px" },
                 flex: { xs: "1 1 auto", sm: "0 1 auto" }
               }
             }}
@@ -714,6 +748,7 @@ const Students: React.FC = () => {
               variant="outlined"
               size="large"
               href="mailto:contact@watai.ca"
+              startIcon={<MailOutlineRoundedIcon />}
             >
               Email Us
             </UnifiedButton>
