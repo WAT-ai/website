@@ -2,7 +2,7 @@
  * FAQ - Animated accordion component for frequently asked questions
  * Supports custom title and expandable question/answer pairs
  */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -22,11 +22,22 @@ interface FAQItem {
 interface FAQProps {
   items: FAQItem[];
   title?: string;
+  openItemIndex?: number | null;
 }
 
-const FAQ: React.FC<FAQProps> = ({ items, title = "Frequently Asked Questions" }) => {
+const FAQ: React.FC<FAQProps> = ({
+  items,
+  title = "Frequently Asked Questions",
+  openItemIndex = null,
+}) => {
   const theme = useTheme();
   const [expanded, setExpanded] = useState<string | false>(false);
+
+  useEffect(() => {
+    if (openItemIndex !== null) {
+      setExpanded(`panel${openItemIndex}`);
+    }
+  }, [openItemIndex]);
 
   // Handle the expansion and collapse of accordion panels
   const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {

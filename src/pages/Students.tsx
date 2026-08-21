@@ -103,6 +103,17 @@ const LoadingImage: React.FC<{
  */
 const Students: React.FC = () => {
   const theme = useTheme();
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const showApplicationDeadlines = () => {
+    setOpenFaqIndex(0);
+    window.requestAnimationFrame(() => {
+      document.getElementById("application-deadlines")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  };
 
   // Our three main opportunity areas
   const projectOpportunities = {
@@ -134,6 +145,24 @@ const Students: React.FC = () => {
 
 
   const faqItems = [
+    {
+      question: "When do applications open?",
+      answer: (
+        <>
+          Core member applications typically open near the beginning of each term. Technical project manager applications typically open near the end of each term for projects beginning the following term. Exact dates and application links are announced on our{" "}
+          <Box
+            component="a"
+            href="https://www.instagram.com/wataiteam/"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{ color: theme.palette.primary.main, fontWeight: 600 }}
+          >
+            Instagram
+          </Box>
+          .
+        </>
+      ),
+    },
     {
       question: "How do I join WAT.ai?",
       answer: "We publish application core member application forms in the starting month of every term and technical project manager application forms in the final month of every term. Core members apply to their top 3 desired projects and technical project managers apply with a project idea and take a management skills test. Follow us on Instagram or Linkedin for announcements on the latest applications."
@@ -170,6 +199,13 @@ const Students: React.FC = () => {
         subtitle="Learn. Build. Research. Publish."
         tagline="Waterloo's Hub for Student-Led AI Innovation"
         description="WAT.ai is UWaterloo's largest AI design team. We've helped hundreds of students make friends, add real-world projects to their portfolios, and land their first internships and research roles in ML."
+        actions={[
+          {
+            label: "Application deadlines",
+            variant: "outlined",
+            onClick: showApplicationDeadlines,
+          },
+        ]}
         variant="student"
       />
 
@@ -631,7 +667,9 @@ const Students: React.FC = () => {
         minHeight="80vh"
         centerContent
       >
-        <FAQ items={faqItems} title="FAQ" />
+        <Box id="application-deadlines" sx={{ scrollMarginTop: "96px" }}>
+          <FAQ items={faqItems} title="FAQ" openItemIndex={openFaqIndex} />
+        </Box>
       </UnifiedSection>
 
       {/* CTA Section */}
