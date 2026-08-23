@@ -1,281 +1,119 @@
-// ModernProjectCard.tsx - Card for displaying project info
-// --------------------------------------------------------
-// This component displays a modern card for project details, including title, description, and tags.
-// Edit this file to customize card layout, style, or props.
-
-// Project card for modern projects. Displays title, team, links, and tags.
-// To add new fields, update the ModernProjectCardProps interface and usage.
-// For design changes, edit the Card and Box props.
-import React from "react";
-import {
-  Box,
-  Card,
-  CardContent,
-  IconButton,
-  Typography,
-  useTheme,
-  Link,
-  Stack,
-  Tooltip,
-  Chip,
-  Button,
-} from "@mui/material";
+import React, { useState } from "react";
+import { Box, Button, Chip, Dialog, DialogContent, DialogTitle, IconButton, Link, Stack, Tooltip, Typography, useTheme } from "@mui/material";
+import { ArrowOutwardRounded, CloseRounded, GroupsRounded, HandshakeRounded, LinkedIn } from "@mui/icons-material";
 import { motion } from "framer-motion";
-import {
-  LinkedIn,
-  Email,
-  GitHub,
-  Article,
-  Language,
-  Description,
-} from "@mui/icons-material";
-import { TeamMember, ProjectLinks } from "../data/projectData";
+import { SheetProject } from "../services/projectSheet";
 
-interface ModernProjectCardProps {
-  title: string;
-  tpms: TeamMember[];
-  description: string;
-  links?: ProjectLinks;
-  collaboration?: string;
-}
+const getYoutubeEmbedUrl = (url?: string) => {
+  if (!url) return undefined;
+  const match = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^?&/]+)/i);
+  return match ? `https://www.youtube.com/embed/${match[1]}` : undefined;
+};
 
-const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
-  title,
-  tpms,
-  description,
-  links,
-  collaboration,
+const GridDetails: React.FC<{ label: string; value: React.ReactNode; icon?: React.ReactNode }> = ({ label, value, icon }) => {
+  const theme = useTheme();
+  return (
+    <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "150px 1fr" }, gap: { xs: 0.75, sm: 2 }, py: 2, borderTop: `1px solid ${theme.palette.primary.main}20` }}>
+      <Stack direction="row" spacing={0.75} alignItems="center" sx={{ color: theme.palette.primary.main }}>
+        {icon}
+        <Typography sx={{ fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" }}>{label}</Typography>
+      </Stack>
+      <Typography sx={{ color: theme.palette.text.secondary, fontSize: "0.9rem", lineHeight: 1.65 }}>{value}</Typography>
+    </Box>
+  );
+};
+
+const ModernProjectCard: React.FC<SheetProject> = ({
+  title, term, summary, leads, members, partnership, technologies,
+  themes, result, resultUrl, mediaUrl,
 }) => {
   const theme = useTheme();
-
-  // Function to get the appropriate link icon based on the type
-  const getLinkIcon = (type: 'website' | 'repository' | 'paper' | 'documentation') => {
-    switch (type) {
-      case 'website':
-        return <Language sx={{ fontSize: "1rem" }} />;
-      case 'repository':
-        return <GitHub sx={{ fontSize: "1rem" }} />;
-      case 'paper':
-        return <Article sx={{ fontSize: "1rem" }} />;
-      case 'documentation':
-        return <Description sx={{ fontSize: "1rem" }} />;
-      default:
-        return <Language sx={{ fontSize: "1rem" }} />;
-    }
-  };
+  const [open, setOpen] = useState(false);
+  const youtubeEmbedUrl = getYoutubeEmbedUrl(mediaUrl);
+  const isVideoFile = Boolean(mediaUrl?.match(/\.(mp4|webm|ogg)(?:\?|$)/i));
+  const inProgress = /^in progress$/i.test(result.trim());
+  const completedColor = "#66FF99";
+  const leadList = (
+    <Stack direction="column" alignItems="flex-start" gap={0.5}>
+      {leads.map((lead, index) => (
+        <Stack key={`${lead.name}-${index}`} direction="row" spacing={0.35} alignItems="center">
+          <Typography component="span" sx={{ color: theme.palette.text.secondary, fontSize: "0.86rem", lineHeight: 1.6 }}>{lead.name}</Typography>
+          {lead.linkedin && (
+            <Tooltip title={`${lead.name} on LinkedIn`} arrow>
+              <IconButton component={Link} href={lead.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${lead.name} on LinkedIn`} size="small" sx={{ color: theme.palette.primary.main, width: 25, height: 25, "&:hover": { backgroundColor: `${theme.palette.primary.main}18` } }}>
+                <LinkedIn sx={{ fontSize: "0.95rem" }} />
+              </IconButton>
+            </Tooltip>
+          )}
+        </Stack>
+      ))}
+    </Stack>
+  );
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
-      style={{ height: "100%" }}
-    >
-      <Card
-        sx={{
-          backgroundColor: theme.palette.background.paper,
-          border: `2px solid ${theme.palette.primary.main}30`,
-          borderRadius: 3,
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          transition: "all 0.3s ease",
-          position: "relative",
-          overflow: "hidden",
-          boxShadow: `0 2px 8px rgba(0, 0, 0, 0.1)`,
-          "&:hover": {
-            boxShadow: `0 8px 24px rgba(0, 0, 0, 0.15)`,
-            borderColor: theme.palette.primary.main,
-            transform: "translateY(-4px)",
-          },
-        }}
-      >
-      <CardContent sx={{ flex: 1, p: 3, display: "flex", flexDirection: "column" }}>
-        {/* Header */}
-        <Box sx={{ mb: 2 }}>
-          <Typography
-            variant="h5"
-            component="h2"
-            sx={{
-              fontWeight: 700,
-              color: theme.palette.text.primary,
-              lineHeight: 1.3,
-              mb: 1,
-            }}
-          >
-            {title}
-          </Typography>
+    <motion.article initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }} viewport={{ once: true, amount: 0.15 }} style={{ height: "100%" }}>
+      <Box sx={{
+        height: "100%", display: "flex", flexDirection: "column", overflow: "hidden",
+        borderRadius: 4, border: `1px solid ${theme.palette.primary.main}2B`,
+        background: `linear-gradient(145deg, ${theme.palette.primary.main}09, rgba(20,20,20,0.9) 42%)`,
+        backdropFilter: "blur(8px)", transition: "transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease",
+        "&:hover": { transform: "translateY(-4px)", borderColor: `${theme.palette.primary.main}70`, boxShadow: "0 20px 50px rgba(0,0,0,0.28)" },
+      }}>
+        {mediaUrl && (
+          <Box sx={{ aspectRatio: "16 / 9", overflow: "hidden", backgroundColor: "#090909" }}>
+            {youtubeEmbedUrl ? (
+              <Box component="iframe" src={youtubeEmbedUrl} title={`${title} demo`} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen sx={{ width: "100%", height: "100%", border: 0 }} />
+            ) : isVideoFile ? (
+              <Box component="video" src={mediaUrl} controls preload="metadata" sx={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            ) : (
+              <Box component="img" src={mediaUrl} alt="" loading="lazy" sx={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            )}
+          </Box>
+        )}
 
-          {/* Collaboration Badge */}
-          {collaboration && (
-            <Chip
-              label={collaboration}
-              size="small"
-              sx={{
-                backgroundColor: theme.palette.primary.main,
-                color: "#000",
-                fontWeight: 600,
-                fontSize: "0.7rem",
-                height: "22px",
-              }}
-            />
-          )}
+        <Box sx={{ p: { xs: 2.5, sm: 3.5 }, display: "flex", flexDirection: "column", flex: 1 }}>
+          <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2} sx={{ mb: 2.5 }}>
+            <Typography sx={{ color: theme.palette.primary.main, fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em" }}>{term || "Project"}</Typography>
+            {result && <Stack direction="row" spacing={0.8} alignItems="center"><Box sx={{ width: 7, height: 7, borderRadius: "50%", backgroundColor: inProgress ? theme.palette.primary.main : completedColor, boxShadow: `0 0 10px ${inProgress ? theme.palette.primary.main : completedColor}` }} /><Typography sx={{ color: inProgress ? theme.palette.primary.main : completedColor, fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em" }}>{inProgress ? "In progress" : "Completed"}</Typography></Stack>}
+          </Stack>
+
+          <Stack direction="row" alignItems="flex-start" spacing={2} sx={{ mb: 1.5 }}>
+            <Typography component="h2" sx={{ color: theme.palette.text.primary, fontSize: { xs: "1.55rem", sm: "1.8rem" }, fontWeight: 750, lineHeight: 1.15, letterSpacing: "-0.035em" }}>{title}</Typography>
+          </Stack>
+          <Typography sx={{ color: theme.palette.text.secondary, fontSize: "0.93rem", lineHeight: 1.65, display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 3, overflow: "hidden", mb: 3 }}>{summary}</Typography>
+
+          <Box sx={{ mt: "auto", mx: { xs: -2.5, sm: -3.5 }, mb: { xs: -2.5, sm: -3.5 }, px: { xs: 2.5, sm: 3.5 }, py: 2.5, borderTop: `1px solid ${theme.palette.primary.main}20`, backgroundColor: "rgba(0,0,0,0.2)" }}>
+            <Stack direction="row" useFlexGap flexWrap="wrap" gap={0.65} sx={{ mb: 2 }}>
+              {technologies.map((tag) => <Chip key={`${title}-technology-${tag}`} label={tag} size="small" sx={{ height: 24, color: theme.palette.primary.main, border: `1px solid ${theme.palette.primary.main}66`, backgroundColor: `${theme.palette.primary.main}08`, fontSize: "0.68rem" }} />)}
+              {themes.map((tag) => <Chip key={`${title}-theme-${tag}`} label={tag} size="small" sx={{ height: 24, color: theme.palette.primary.main, border: `1px solid ${theme.palette.primary.main}66`, backgroundColor: `${theme.palette.primary.main}08`, fontSize: "0.68rem" }} />)}
+            </Stack>
+            <Stack direction={{ xs: "column", sm: "row" }} justifyContent="space-between" alignItems={{ xs: "flex-start", sm: "center" }} gap={1.5}>
+              <Box><Stack direction="row" spacing={0.8} alignItems="center" sx={{ mb: 0.65 }}><GroupsRounded sx={{ color: theme.palette.primary.main, fontSize: "0.95rem" }} /><Typography sx={{ color: theme.palette.text.primary, fontSize: "0.66rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.09em" }}>Led by</Typography></Stack>{leadList}</Box>
+              <Button onClick={() => setOpen(true)} endIcon={<ArrowOutwardRounded sx={{ fontSize: "1rem !important" }} />} sx={{ color: "#111", backgroundColor: theme.palette.primary.main, px: 2, py: 0.75, borderRadius: "999px", minWidth: 0, flexShrink: 0, fontSize: "0.8rem", fontWeight: 700, textTransform: "none", "&:hover": { backgroundColor: theme.palette.primary.main, transform: "translateY(-1px)" } }}>View project</Button>
+            </Stack>
+          </Box>
         </Box>
+      </Box>
 
-        {/* Description */}
-        <Typography
-          variant="body2"
-          sx={{
-            color: theme.palette.text.secondary,
-            lineHeight: 1.6,
-            mb: 2.5,
-            fontSize: "0.9rem",
-          }}
-        >
-          {description}
-        </Typography>
-
-        {/* Bottom Section - pushed to bottom */}
-        <Box sx={{ mt: "auto" }}>
-          {/* Project Links */}
-          {links && Object.keys(links).length > 0 && (
-            <Box sx={{ mb: 2 }}>
-              <Typography
-                variant="caption"
-                sx={{
-                  color: theme.palette.text.secondary,
-                  fontWeight: 600,
-                  fontSize: "0.7rem",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.5px",
-                  mb: 1,
-                  display: "block",
-                }}
-              >
-              </Typography>
-              <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", gap: 1 }}>
-                {Object.entries(links).map(([key, url]) => (
-                  <Button
-                    key={key}
-                    component={Link}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    size="small"
-                    variant="outlined"
-                    startIcon={getLinkIcon(key as any)}
-                    sx={{
-                      textTransform: "capitalize",
-                      fontSize: "0.75rem",
-                      borderColor: `${theme.palette.primary.main}30`,
-                      color: theme.palette.primary.main,
-                      "&:hover": {
-                        borderColor: theme.palette.primary.main,
-                        backgroundColor: `${theme.palette.primary.main}08`,
-                      },
-                    }}
-                  >
-                    {key}
-                  </Button>
-                ))}
-              </Stack>
-            </Box>
-          )}
-
-          {/* TPM Contact Info - With Labels */}
-          {tpms.length > 0 && (
-            <Box>
-              <Typography
-                variant="caption"
-                sx={{
-                  color: theme.palette.text.secondary,
-                  fontWeight: 600,
-                  fontSize: "0.7rem",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.5px",
-                  mb: 1,
-                  display: "block",
-                }}
-              >
-                Technical Project Managers
-              </Typography>
-              <Stack spacing={1}>
-                {tpms.map((member, index) => (
-                  <Box
-                    key={index}
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 1,
-                      flexWrap: "wrap",
-                    }}
-                  >
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        color: theme.palette.text.primary,
-                        fontWeight: 500,
-                        fontSize: "0.8rem",
-                      }}
-                    >
-                      {member.name}
-                    </Typography>
-                    {(member.email || member.linkedin) && (
-                      <Stack direction="row" spacing={0.5}>
-                        {member.email && (
-                          <Tooltip title="Email" arrow>
-                            <IconButton
-                              component={Link}
-                              href={`mailto:${member.email}`}
-                              size="small"
-                              sx={{
-                                color: theme.palette.primary.main,
-                                backgroundColor: `${theme.palette.primary.main}08`,
-                                width: 28,
-                                height: 28,
-                                "&:hover": {
-                                  backgroundColor: `${theme.palette.primary.main}15`,
-                                },
-                              }}
-                            >
-                              <Email sx={{ fontSize: "0.9rem" }} />
-                            </IconButton>
-                          </Tooltip>
-                        )}
-                        {member.linkedin && (
-                          <Tooltip title="LinkedIn" arrow>
-                            <IconButton
-                              component={Link}
-                              href={member.linkedin}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              size="small"
-                              sx={{
-                                color: theme.palette.primary.main,
-                                backgroundColor: `${theme.palette.primary.main}08`,
-                                width: 28,
-                                height: 28,
-                                "&:hover": {
-                                  backgroundColor: `${theme.palette.primary.main}15`,
-                                },
-                              }}
-                            >
-                              <LinkedIn sx={{ fontSize: "0.9rem" }} />
-                            </IconButton>
-                          </Tooltip>
-                        )}
-                      </Stack>
-                    )}
-                  </Box>
-                ))}
-              </Stack>
-            </Box>
-          )}
-        </Box>
-      </CardContent>
-    </Card>
-    </motion.div>
+      <Dialog open={open} onClose={() => setOpen(false)} fullWidth maxWidth="md" PaperProps={{ sx: { color: theme.palette.text.primary, backgroundColor: "#131313", backgroundImage: `linear-gradient(145deg, ${theme.palette.primary.main}0B, transparent 38%)`, border: `1px solid ${theme.palette.primary.main}45`, borderRadius: 4, maxHeight: "88vh" } }}>
+        <DialogTitle sx={{ pr: 7, pt: { xs: 3, sm: 4 }, px: { xs: 3, sm: 5 }, pb: 2 }}>
+          <Chip label={term || "Project"} size="small" sx={{ color: theme.palette.primary.main, border: `1px solid ${theme.palette.primary.main}45`, backgroundColor: `${theme.palette.primary.main}0C`, fontWeight: 700, mb: 2 }} />
+          <Typography component="h2" sx={{ fontSize: { xs: "1.8rem", sm: "2.5rem" }, fontWeight: 750, lineHeight: 1.1, letterSpacing: "-0.04em" }}>{title}</Typography>
+          <IconButton onClick={() => setOpen(false)} aria-label="Close project" sx={{ position: "absolute", top: 18, right: 18, color: theme.palette.text.secondary }}><CloseRounded /></IconButton>
+        </DialogTitle>
+        <DialogContent sx={{ px: { xs: 3, sm: 5 }, pb: { xs: 4, sm: 5 } }}>
+          <Stack direction="row" useFlexGap flexWrap="wrap" gap={0.75} sx={{ mb: 3 }}>
+            {technologies.map((tag) => <Chip key={`dialog-${title}-technology-${tag}`} label={tag} size="small" sx={{ color: theme.palette.primary.main, border: `1px solid ${theme.palette.primary.main}66`, backgroundColor: `${theme.palette.primary.main}08` }} />)}
+            {themes.map((tag) => <Chip key={`dialog-${title}-theme-${tag}`} label={tag} size="small" sx={{ color: theme.palette.primary.main, border: `1px solid ${theme.palette.primary.main}66`, backgroundColor: `${theme.palette.primary.main}08` }} />)}
+          </Stack>
+          <Typography sx={{ color: theme.palette.text.primary, fontSize: { xs: "1rem", sm: "1.08rem" }, lineHeight: 1.75, mb: 4 }}>{summary}</Typography>
+          <GridDetails label="Project leads" value={leadList} />
+          {members.length > 0 && <GridDetails label="Project members" value={members.join(", ")} />}
+          {partnership && <GridDetails label="Partnership" value={partnership} icon={<HandshakeRounded sx={{ fontSize: "1rem" }} />} />}
+          {result && !inProgress && <Box sx={{ mt: 3, p: 2.5, borderRadius: 3, borderLeft: `3px solid ${theme.palette.primary.main}`, backgroundColor: `${theme.palette.primary.main}09` }}><Typography sx={{ color: theme.palette.primary.main, fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", mb: 1 }}>Links and results</Typography><Typography sx={{ color: theme.palette.text.primary, lineHeight: 1.6 }}>{result}</Typography></Box>}
+        </DialogContent>
+      </Dialog>
+    </motion.article>
   );
 };
 
