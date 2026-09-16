@@ -11,6 +11,7 @@ import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg";
 import DiscordIcon from "./DiscordIcon";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import XIcon from "@mui/icons-material/X";
 import Link from "@mui/material/Link";
 import { useTheme } from "@mui/material/styles";
 
@@ -92,6 +93,7 @@ const Footer: React.FC = () => {
                 { href: "https://discord.com/invite/Hn3XkK83tJ", icon: DiscordIcon, label: "Discord" },
                 { href: "https://www.linkedin.com/company/wat-ai/", icon: LinkedInIcon, label: "LinkedIn" },
                 { href: "https://www.instagram.com/wataiteam/", icon: InstagramIcon, label: "Instagram" },
+                { href: "https://x.com/uwwatai", icon: XIcon, label: "X (Twitter)" },
               ].map((social) => (
                 <Link
                   key={social.href}
