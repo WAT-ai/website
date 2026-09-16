@@ -15,10 +15,11 @@ const moveSlideshow = keyframes`
 
 // Moving background sprite container
 const Mover = styled(Box)(({ theme }) => ({
-  marginTop: "-50px",
   height: "100%",
   width: "3184px",
   backgroundImage: `url(${require("../assets/slider3_opt.png")})`,
+  backgroundPosition: "center center",
+  backgroundRepeat: "repeat-x",
   position: "absolute",
   top: 0,
   left: 0,
