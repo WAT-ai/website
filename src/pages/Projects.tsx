@@ -24,8 +24,8 @@ const Projects: React.FC = () => {
   const [themeFilter, setThemeFilter] = useState("All themes");
   const [resultFilter, setResultFilter] = useState<"All" | "In progress" | "Completed">("All");
 
-  const technologies = useMemo(() => Array.from(new Set(projects.flatMap((project) => project.technologies))).sort(), [projects]);
-  const themes = useMemo(() => Array.from(new Set(projects.flatMap((project) => project.themes))).sort(), [projects]);
+  const technologies = useMemo(() => Array.from(new Set(projects.flatMap((project) => project.technologies))).sort(), []);
+  const themes = useMemo(() => Array.from(new Set(projects.flatMap((project) => project.themes))).sort(), []);
 
   const filteredProjects = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -37,7 +37,7 @@ const Projects: React.FC = () => {
         && (themeFilter === "All themes" || project.themes.includes(themeFilter))
         && matchesResult;
     });
-  }, [projects, search, technology, themeFilter, resultFilter]);
+  }, [search, technology, themeFilter, resultFilter]);
 
   const clearFilters = () => {
     setSearch("");
@@ -48,6 +48,13 @@ const Projects: React.FC = () => {
 
   const resultCount = projects.filter((project) => project.result && !/^in progress$/i.test(project.result)).length;
   const inProgressCount = projects.filter((project) => /^in progress$/i.test(project.result)).length;
+  const selectFilterSx = {
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": { borderColor: `${theme.palette.primary.main}80` },
+      "&:hover fieldset": { borderColor: theme.palette.primary.main },
+      "&.Mui-focused fieldset": { borderColor: theme.palette.primary.main },
+    },
+  };
 
   return (
     <Box sx={{ minHeight: "100vh", position: "relative", pb: 10 }}>
@@ -73,12 +80,12 @@ const Projects: React.FC = () => {
               <TextField fullWidth value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search projects, leads, technology..." InputProps={{ startAdornment: <InputAdornment position="start"><SearchRounded sx={{ color: theme.palette.primary.main }} /></InputAdornment>, endAdornment: search ? <InputAdornment position="end"><IconButton onClick={() => setSearch("")}><ClearRounded /></IconButton></InputAdornment> : undefined }} sx={{ "& .MuiOutlinedInput-root": { backgroundColor: "rgba(255,255,255,0.025)", borderRadius: 2.5 } }} />
             </Grid>
             <Grid item xs={6} md={3}>
-              <TextField select fullWidth value={technology} onChange={(event) => setTechnology(event.target.value)} label="Technology">
+              <TextField select fullWidth value={technology} onChange={(event) => setTechnology(event.target.value)} label="Technology" sx={selectFilterSx}>
                 <MenuItem value="All technologies">All technologies</MenuItem>{technologies.map((item) => <MenuItem key={item} value={item}>{item}</MenuItem>)}
               </TextField>
             </Grid>
             <Grid item xs={6} md={3}>
-              <TextField select fullWidth value={themeFilter} onChange={(event) => setThemeFilter(event.target.value)} label="Theme">
+              <TextField select fullWidth value={themeFilter} onChange={(event) => setThemeFilter(event.target.value)} label="Theme" sx={selectFilterSx}>
                 <MenuItem value="All themes">All themes</MenuItem>{themes.map((item) => <MenuItem key={item} value={item}>{item}</MenuItem>)}
               </TextField>
             </Grid>
