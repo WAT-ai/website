@@ -232,7 +232,7 @@ const Students: React.FC = () => {
             maxWidth: "1200px",
             mx: "auto",
             px: { xs: 0, sm: 2, md: 3 },
-            pb: { xs: 2, sm: 3, md: 4 },
+            pb: { xs: 8, sm: 9, md: 10 },
           }}
         >
           <ImageGallery images={galleryImages} />
