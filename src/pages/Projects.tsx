@@ -1,10 +1,8 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
-  Alert,
   Box,
   Button,
   Chip,
-  CircularProgress,
   Container,
   Grid,
   IconButton,
@@ -15,48 +13,16 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { ClearRounded, RefreshRounded, School, Science, SearchRounded, TrendingUp } from "@mui/icons-material";
+import { ClearRounded, School, Science, SearchRounded, TrendingUp } from "@mui/icons-material";
 import ModernProjectCard from "../components/ModernProjectCard";
-import { loadProjectsFromSheet, SheetProject } from "../services/projectSheet";
-
-const CACHE_KEY = "watai-projects-sheet-cache-v1";
+import { projects } from "../services/projectData";
 
 const Projects: React.FC = () => {
   const theme = useTheme();
-  const [projects, setProjects] = useState<SheetProject[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [reloadToken, setReloadToken] = useState(0);
   const [search, setSearch] = useState("");
   const [technology, setTechnology] = useState("All technologies");
   const [themeFilter, setThemeFilter] = useState("All themes");
-  const [resultFilter, setResultFilter] = useState<"All" | "In progress" | "Results">("All");
-
-  useEffect(() => {
-    let active = true;
-    setLoading(true);
-    setError("");
-
-    loadProjectsFromSheet()
-      .then((data) => {
-        if (!active) return;
-        setProjects(data);
-        localStorage.setItem(CACHE_KEY, JSON.stringify(data));
-      })
-      .catch((loadError: Error) => {
-        if (!active) return;
-        const cached = localStorage.getItem(CACHE_KEY);
-        if (cached) {
-          setProjects(JSON.parse(cached));
-          setError("Showing the most recently saved project data because the live sheet is temporarily unavailable.");
-        } else {
-          setError(loadError.message);
-        }
-      })
-      .finally(() => active && setLoading(false));
-
-    return () => { active = false; };
-  }, [reloadToken]);
+  const [resultFilter, setResultFilter] = useState<"All" | "In progress" | "Completed">("All");
 
   const technologies = useMemo(() => Array.from(new Set(projects.flatMap((project) => project.technologies))).sort(), [projects]);
   const themes = useMemo(() => Array.from(new Set(projects.flatMap((project) => project.themes))).sort(), [projects]);
@@ -96,7 +62,7 @@ const Projects: React.FC = () => {
               { value: inProgressCount, label: "Active Projects", icon: <TrendingUp /> },
               { value: resultCount, label: "Past Projects", icon: <School /> },
             ].map((stat) => (
-              <Box key={stat.label} sx={{ minWidth: { xs: 70, sm: 110 } }}><Box sx={{ color: theme.palette.primary.main, display: "flex", justifyContent: "center", mb: 1 }}>{stat.icon}</Box><Typography sx={{ color: theme.palette.primary.main, fontSize: { xs: "1.8rem", sm: "2.3rem" }, fontWeight: 750, lineHeight: 1 }}>{loading ? "–" : stat.value}</Typography><Typography sx={{ color: theme.palette.text.secondary, fontSize: { xs: "0.65rem", sm: "0.8rem" }, mt: 1 }}>{stat.label}</Typography></Box>
+              <Box key={stat.label} sx={{ minWidth: { xs: 70, sm: 110 } }}><Box sx={{ color: theme.palette.primary.main, display: "flex", justifyContent: "center", mb: 1 }}>{stat.icon}</Box><Typography sx={{ color: theme.palette.primary.main, fontSize: { xs: "1.8rem", sm: "2.3rem" }, fontWeight: 750, lineHeight: 1 }}>{stat.value}</Typography><Typography sx={{ color: theme.palette.text.secondary, fontSize: { xs: "0.65rem", sm: "0.8rem" }, mt: 1 }}>{stat.label}</Typography></Box>
             ))}
           </Stack>
         </Box>
@@ -118,16 +84,12 @@ const Projects: React.FC = () => {
             </Grid>
           </Grid>
           <Stack direction="row" useFlexGap flexWrap="wrap" gap={1} alignItems="center" sx={{ mt: 2 }}>
-            {(["All", "In progress", "Results"] as const).map((filter) => <Chip key={filter} label={filter} clickable onClick={() => setResultFilter(filter)} sx={{ color: resultFilter === filter ? "#111" : theme.palette.text.secondary, backgroundColor: resultFilter === filter ? theme.palette.primary.main : "rgba(255,255,255,0.05)", fontWeight: 700 }} />)}
+            {(["All", "In progress", "Completed"] as const).map((filter) => <Chip key={filter} label={filter} clickable onClick={() => setResultFilter(filter)} sx={{ color: resultFilter === filter ? "#111" : theme.palette.text.secondary, backgroundColor: resultFilter === filter ? theme.palette.primary.main : "rgba(255,255,255,0.05)", fontWeight: 700 }} />)}
             {(search || technology !== "All technologies" || themeFilter !== "All themes" || resultFilter !== "All") && <Button onClick={clearFilters} sx={{ ml: "auto", color: theme.palette.text.secondary }}>Clear filters</Button>}
           </Stack>
         </Box>
 
-        {error && <Alert severity={projects.length ? "warning" : "error"} action={<Button color="inherit" startIcon={<RefreshRounded />} onClick={() => setReloadToken((value) => value + 1)}>Retry</Button>} sx={{ mb: 4 }}>{error}</Alert>}
-
-        {loading ? (
-          <Box sx={{ minHeight: 300, display: "grid", placeItems: "center" }}><CircularProgress color="primary" /></Box>
-        ) : filteredProjects.length ? (
+        {filteredProjects.length ? (
           <Grid container spacing={3}>
             {filteredProjects.map((project) => <Grid item xs={12} md={6} key={project.id}><ModernProjectCard {...project} /></Grid>)}
           </Grid>

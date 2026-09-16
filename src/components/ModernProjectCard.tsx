@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Box, Button, Chip, Dialog, DialogContent, DialogTitle, IconButton, Link, Stack, Tooltip, Typography, useTheme } from "@mui/material";
-import { ArrowOutwardRounded, CloseRounded, GroupsRounded, HandshakeRounded, LinkedIn } from "@mui/icons-material";
+import { ArrowOutwardRounded, CloseRounded, GroupsRounded, HandshakeRounded, LinkedIn, PlayCircleOutlineRounded } from "@mui/icons-material";
 import { motion } from "framer-motion";
-import { SheetProject } from "../services/projectSheet";
+import { Project } from "../types/project";
 
-const getYoutubeEmbedUrl = (url?: string) => {
+const getYoutubeVideoId = (url?: string) => {
   if (!url) return undefined;
   const match = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^?&/]+)/i);
-  return match ? `https://www.youtube.com/embed/${match[1]}` : undefined;
+  return match?.[1];
 };
 
 const GridDetails: React.FC<{ label: string; value: React.ReactNode; icon?: React.ReactNode }> = ({ label, value, icon }) => {
@@ -23,13 +23,15 @@ const GridDetails: React.FC<{ label: string; value: React.ReactNode; icon?: Reac
   );
 };
 
-const ModernProjectCard: React.FC<SheetProject> = ({
+const ModernProjectCard: React.FC<Project> = ({
   title, term, summary, leads, members, partnership, technologies,
   themes, result, resultUrl, mediaUrl,
 }) => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const youtubeEmbedUrl = getYoutubeEmbedUrl(mediaUrl);
+  const youtubeVideoId = getYoutubeVideoId(mediaUrl);
+  const youtubeEmbedUrl = youtubeVideoId ? `https://www.youtube.com/embed/${youtubeVideoId}` : undefined;
+  const youtubeThumbnailUrl = youtubeVideoId ? `https://i.ytimg.com/vi/${youtubeVideoId}/hqdefault.jpg` : undefined;
   const isVideoFile = Boolean(mediaUrl?.match(/\.(mp4|webm|ogg)(?:\?|$)/i));
   const inProgress = /^in progress$/i.test(result.trim());
   const completedColor = "#66FF99";
@@ -61,10 +63,13 @@ const ModernProjectCard: React.FC<SheetProject> = ({
       }}>
         {mediaUrl && (
           <Box sx={{ aspectRatio: "16 / 9", overflow: "hidden", backgroundColor: "#090909" }}>
-            {youtubeEmbedUrl ? (
-              <Box component="iframe" src={youtubeEmbedUrl} title={`${title} demo`} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen sx={{ width: "100%", height: "100%", border: 0 }} />
+            {youtubeThumbnailUrl ? (
+              <Box component="img" src={youtubeThumbnailUrl} alt={`${title} video preview`} loading="lazy" sx={{ width: "100%", height: "100%", objectFit: "cover" }} />
             ) : isVideoFile ? (
-              <Box component="video" src={mediaUrl} controls preload="metadata" sx={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <Stack alignItems="center" justifyContent="center" sx={{ width: "100%", height: "100%", color: theme.palette.primary.main }}>
+                <PlayCircleOutlineRounded sx={{ fontSize: "3rem" }} />
+                <Typography sx={{ mt: 0.75, fontSize: "0.78rem", fontWeight: 700 }}>Video demo</Typography>
+              </Stack>
             ) : (
               <Box component="img" src={mediaUrl} alt="" loading="lazy" sx={{ width: "100%", height: "100%", objectFit: "cover" }} />
             )}
@@ -102,6 +107,17 @@ const ModernProjectCard: React.FC<SheetProject> = ({
           <IconButton onClick={() => setOpen(false)} aria-label="Close project" sx={{ position: "absolute", top: 18, right: 18, color: theme.palette.text.secondary }}><CloseRounded /></IconButton>
         </DialogTitle>
         <DialogContent sx={{ px: { xs: 3, sm: 5 }, pb: { xs: 4, sm: 5 } }}>
+          {open && mediaUrl && (
+            <Box sx={{ aspectRatio: "16 / 9", overflow: "hidden", borderRadius: 3, backgroundColor: "#090909", mb: 3 }}>
+              {youtubeEmbedUrl ? (
+                <Box component="iframe" src={youtubeEmbedUrl} title={`${title} demo`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen sx={{ width: "100%", height: "100%", border: 0 }} />
+              ) : isVideoFile ? (
+                <Box component="video" src={mediaUrl} controls preload="metadata" playsInline sx={{ width: "100%", height: "100%", objectFit: "contain" }} />
+              ) : (
+                <Box component="img" src={mediaUrl} alt={`${title} project`} sx={{ width: "100%", height: "100%", objectFit: "contain" }} />
+              )}
+            </Box>
+          )}
           <Stack direction="row" useFlexGap flexWrap="wrap" gap={0.75} sx={{ mb: 3 }}>
             {technologies.map((tag) => <Chip key={`dialog-${title}-technology-${tag}`} label={tag} size="small" sx={{ color: theme.palette.primary.main, border: `1px solid ${theme.palette.primary.main}66`, backgroundColor: `${theme.palette.primary.main}08` }} />)}
             {themes.map((tag) => <Chip key={`dialog-${title}-theme-${tag}`} label={tag} size="small" sx={{ color: theme.palette.primary.main, border: `1px solid ${theme.palette.primary.main}66`, backgroundColor: `${theme.palette.primary.main}08` }} />)}

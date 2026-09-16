@@ -31,6 +31,7 @@ function readProjects_() {
 
   const headers = values[0].map(normalizeHeader_);
   const indexes = {
+    id: findColumn_(headers, ["project id"]),
     started: findColumn_(headers, ["started"]),
     title: findColumn_(headers, ["project title"]),
     summary: findColumn_(headers, ["project summary"]),
@@ -49,6 +50,7 @@ function readProjects_() {
     if (!title || !summary) return null;
 
     return {
+      projectId: valueAt_(row, indexes.id),
       started: valueAt_(row, indexes.started),
       title: title,
       summary: summary,
