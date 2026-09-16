@@ -8,7 +8,7 @@ import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import { ReactComponent as Logo } from "../assets/wat_ai_logo.svg";
 import TechSlideshow from "../components/TechSlideshow";
 import { useTheme } from "@mui/material/styles";
-import { HeroTitle, SectionTitle, SubsectionTitle, BodyLarge, BodyText } from "../components/Typography";
+import { HeroTitle, SectionTitle, BodyLarge } from "../components/Typography";
 import UnifiedSection from "../components/UnifiedSection";
 import UnifiedButton from "../components/UnifiedButton";
 
@@ -190,31 +190,17 @@ const HomePage: React.FC = memo(() => {
               overflow: "hidden",
             }}
           >
-            <SubsectionTitle sx={{ 
-              textAlign: "center", 
-              maxWidth: "760px",
-              mx: "auto",
-              mb: { xs: 3, sm: 4 },
-              color: theme.palette.text.primary,
-              fontSize: { xs: "1.45rem", sm: "1.85rem", md: "2.2rem" },
-              fontWeight: 700,
-              lineHeight: 1.25,
-              letterSpacing: "-0.025em",
-              textWrap: "balance",
-            }}>
-              Fostering The Future Of AI Talent At The University of Waterloo
-            </SubsectionTitle>
             <BodyLarge sx={{ 
               textAlign: "center", 
-              mb: { xs: 3, sm: 4 }, 
+              mb: { xs: 4, sm: 5 },
               maxWidth: "800px", 
               mx: "auto",
               color: theme.palette.text.primary,
               fontSize: { xs: "1rem", sm: "1.12rem" },
               lineHeight: 1.75,
             }}>
-              WAT.ai is a student-run Artificial Intelligence (AI) Organization at
-              the University of Waterloo and the undergraduate student body of the{" "}
+              WAT.ai is the largest AI design team at the University of Waterloo.
+              We're part of the{" "}
               <Box
                 component="a"
                 href="https://uwaterloo.ca/artificial-intelligence-institute/"
@@ -232,9 +218,9 @@ const HomePage: React.FC = memo(() => {
                   },
                 }}
               >
-                Waterloo AI Institute
+                Waterloo.ai Institute
               </Box>{" "}
-              and member of the{" "}
+              and the{" "}
               <Box
                 component="a"
                 href="https://uwaterloo.ca/sedra-student-design-centre/"
@@ -252,32 +238,18 @@ const HomePage: React.FC = memo(() => {
                   },
                 }}
               >
-                Sedra Student Design Centre (SSDC)
-              </Box>.
+                Sedra Student Design Centre
+              </Box>. Every term, we have 60+ students running 8–12 AI projects—from
+              robotic manipulators to healthcare chatbots.
             </BodyLarge>
-            <BodyText sx={{ 
-              textAlign: "center", 
-              mb: { xs: 4, sm: 5 }, 
-              maxWidth: "700px", 
-              mx: "auto",
-              color: theme.palette.text.secondary,
-              fontSize: { xs: "0.96rem", sm: "1.05rem" },
-              lineHeight: 1.75,
-            }}>
-              Our goal is to establish an environment to enable the continued
-              growth of AI talent and suitable access to opportunities within the
-              Waterloo community. We provide opportunities for undergraduate and
-              graduate students to engage in impactful projects through
-              collaboration with companies and internal research.
-            </BodyText>
-            <UnifiedButton
-              variant="outlined"
-              size="large"
-              to="/team"
-              endIcon={<ArrowForwardRoundedIcon sx={{ fontSize: "1.2em" }} />}
-            >
-              Meet The Team
-            </UnifiedButton>
+            <Box sx={{ display: "flex", justifyContent: "center", gap: 2, flexWrap: "wrap" }}>
+              <UnifiedButton variant="primary" size="large" to="/students">
+                For Students
+              </UnifiedButton>
+              <UnifiedButton variant="outlined" size="large" to="/partnerships">
+                For Partners
+              </UnifiedButton>
+            </Box>
           </Box>
         </Box>
       </UnifiedSection>
