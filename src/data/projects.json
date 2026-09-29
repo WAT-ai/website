@@ -1,0 +1,914 @@
+[
+  {
+    "id": "chefost",
+    "started": "May 2026",
+    "term": "Summer 2026",
+    "year": 2026,
+    "title": "ChefOST",
+    "summary": "A method of video object-state tracking with continuous semantic representation, reduced to cooking videos. Given a user-specified ingredient, chefOST will propagate semantic object state forward through time, creating the ability to identify the state of (hopefully) any food in any video at any frame.",
+    "leads": [
+      {
+        "name": "Harrison Fulford (MLE Shopify)",
+        "linkedin": "https://www.linkedin.com/in/harrison-fulford-147a1b2a9/"
+      },
+      {
+        "name": "Rafael Fonseca (MLE Shopify)",
+        "linkedin": "https://www.linkedin.com/in/raf-fonseca/"
+      }
+    ],
+    "members": [
+      "Justin Wang",
+      "Michelle Jeon",
+      "Ryan Li",
+      "Pritika Lahiri",
+      "Shray Kumar"
+    ],
+    "technologies": [
+      "Computer Vision"
+    ],
+    "themes": [
+      "Automation"
+    ],
+    "result": "In progress"
+  },
+  {
+    "id": "weatherloo",
+    "started": "May 2026",
+    "term": "Summer 2026",
+    "year": 2026,
+    "title": "Weatherloo",
+    "summary": "We're building an automated ML pipeline to deliver accurate localized weather forecasts. Our custom ML-based weather models will be deployed and distributed to the community through our own weather app.",
+    "leads": [
+      {
+        "name": "Cindy Li (SWE, Shopify)",
+        "linkedin": "https://linkedin.com/in/cindehaa/"
+      },
+      {
+        "name": "Ayaan Rezwan",
+        "linkedin": "https://www.linkedin.com/in/ayaanrezwan/"
+      }
+    ],
+    "members": [],
+    "technologies": [
+      "Deep Learning"
+    ],
+    "themes": [
+      "Sustainability",
+      "Automation"
+    ],
+    "result": "In progress"
+  },
+  {
+    "id": "worldfold",
+    "started": "May 2026",
+    "term": "Summer 2026",
+    "year": 2026,
+    "title": "WorldFold",
+    "summary": "WorldFold is a dual-arm robot which utilizes world modelling and reinforcement learning to fold cloth garments with unpredictable & chaotic deformations.",
+    "leads": [
+      {
+        "name": "Adam Kamel"
+      },
+      {
+        "name": "Vijay Goyal"
+      }
+    ],
+    "members": [
+      "Zechariah Wang",
+      "Joshua Barre",
+      "Anushka Punukollu",
+      "Jacob Lu",
+      "Roy Suliaman",
+      "Mohammed Naqi",
+      "Ethan Fung",
+      "Ruby Zhao"
+    ],
+    "technologies": [
+      "RL",
+      "Robotics"
+    ],
+    "themes": [
+      "Hardware",
+      "Automation"
+    ],
+    "result": "In progress"
+  },
+  {
+    "id": "epa-consultant-chatbot",
+    "started": "Jan 2026",
+    "term": "Winter 2026",
+    "year": 2026,
+    "title": "EPA Consultant Chatbot",
+    "summary": "An AI-powered, multi-agent regulatory consultant platform that structures global pesticide guidelines to automate compliance planning, gap analysis, and traceable Q&A.",
+    "leads": [
+      {
+        "name": "Sachit Juneja",
+        "linkedin": "https://www.linkedin.com/in/sachit-singh-juneja/"
+      },
+      {
+        "name": "William Cagas",
+        "linkedin": "https://www.linkedin.com/in/william-cagas/"
+      }
+    ],
+    "members": [
+      "Fiona Cai",
+      "Richard Zhu",
+      "Lawrence Zou",
+      "Afreed Hassan",
+      "Shreya Sharma",
+      "Brandon Kong",
+      "Jinay Desai",
+      "Ricky Tang"
+    ],
+    "partnership": "Bindwell (YC W25)",
+    "technologies": [
+      "Chatbots",
+      "GraphRAG"
+    ],
+    "themes": [
+      "Sustainability"
+    ],
+    "result": "In progress"
+  },
+  {
+    "id": "insightpulse",
+    "started": "Jan 2026",
+    "term": "Winter 2026",
+    "year": 2026,
+    "title": "InsightPulse",
+    "summary": "InsightPulse is a machine learning-driven market intelligence platform that analyzes macroeconomic indicators, asset performance, and market signals to classify the current market environment as risk-on, neutral, or risk-off. The system uses calculated features such as returns, volatility, moving averages, correlations, yields, inflation, oil prices, DXY, and VIX to generate market state predictions and plain-English explanations. It also includes a Scenario Playground, where users can adjust macro inputs like Fed Funds, CPI, GDP, unemployment, PMI, oil, DXY, and VIX, and the model estimates their potential impact on major assets and sectors.",
+    "leads": [
+      {
+        "name": "Sharanya Basu (SWE Fellow.ai)",
+        "linkedin": "https://www.linkedin.com/in/sharanya-basu/"
+      }
+    ],
+    "members": [
+      "Khalil Ahmad Qamar (MLOps Palitronica)",
+      "Lia Moradpour",
+      "Sai Sujit Kodakalla (SWE Shopify)",
+      "Krishna Jawale (SWE AltaML)",
+      "Nalin Verma",
+      "Deeptendu Shekhar Ray",
+      "Yousuf Rashid",
+      "Aradhana Vasudev"
+    ],
+    "technologies": [
+      "Time series Analysis",
+      "Deep Learning"
+    ],
+    "themes": [
+      "Finance"
+    ],
+    "result": "In progress",
+    "mediaUrl": "https://youtu.be/R5IKibZUFkI"
+  },
+  {
+    "id": "flockrl",
+    "started": "Sep 2025",
+    "term": "Fall 2025",
+    "year": 2025,
+    "title": "FlockRL",
+    "summary": "Created an RL algorithm for obstacle detection and a custom drone flight simulator for testing, complete with physics, collision handling, and perception. Designed with the goal of investigating sim-to-real transfer onto resource-constrained hardware in relatively static environments like factory floors. Single-drone navigation was shipped with potential to extend into multi-drone coordination.",
+    "leads": [
+      {
+        "name": "Katie Zhong",
+        "linkedin": "https://www.linkedin.com/in/katie-zhong/"
+      },
+      {
+        "name": "Joshua Zhang (TikTok, Shopify MLE)",
+        "linkedin": "https://www.linkedin.com/in/joshualeezhang/"
+      }
+    ],
+    "members": [
+      "Cindy Li (Shopify, Skyvern YC S23 MLE)",
+      "Wenzhao Pan (Shopify)",
+      "Claire Guo (Shopify)",
+      "David Zhong",
+      "Daniel Wei",
+      "Aadesh Kumar",
+      "Daniel Long",
+      "Lucas Jin (YC Startup School S26)",
+      "Lovera Lokeswara (Shopify)",
+      "Advitiya Sharma",
+      "Raiya Minhas (RBC SWE, RBC AI Eng)"
+    ],
+    "technologies": [
+      "RL"
+    ],
+    "themes": [
+      "Hardware"
+    ],
+    "result": "Github, demo",
+    "resultUrl": "https://github.com/FlockRL/simulator"
+  },
+  {
+    "id": "politicalllm",
+    "started": "Sep 2025",
+    "term": "Fall 2025",
+    "year": 2025,
+    "title": "PoliticalLLM",
+    "summary": "Created LLM agents that can make political decisions, like in parliamentary legislation. Tested transferability of decision making skills in different environments (financial games like Monopoly, social games like Werewolf, political simulators, and also bill votes). Tested different agent setups for decision making (lawyers arguing in a courtroom, majority votes, etc.)",
+    "leads": [
+      {
+        "name": "Mehar Shienh (ML for ads, Apple)",
+        "linkedin": "https://www.linkedin.com/in/mehar-shienh/"
+      },
+      {
+        "name": "Madhav Malhotra (ML Infra, Tesla)",
+        "linkedin": "https://www.linkedin.com/in/madhav-malhotra/"
+      }
+    ],
+    "members": [
+      "Jordan Leis (Cansbridge Fellow)",
+      "Devon Kisob",
+      "Evan Dennison",
+      "Yalda Nikookar",
+      "Jennifer Yu"
+    ],
+    "technologies": [
+      "Chatbots"
+    ],
+    "themes": [
+      "Legal",
+      "Automation"
+    ],
+    "result": "Github. Conference paper (won award at Ethical Tech for a Global Future Symposium)",
+    "resultUrl": "https://github.com/Madhav-Malhotra/political-chatbot"
+  },
+  {
+    "id": "satellite-ml",
+    "started": "Sep 2024",
+    "term": "Fall 2024",
+    "year": 2024,
+    "title": "Satellite ML",
+    "summary": "We deployed AI on microcontrollers intended for satellites to identify and segment methane plumes using hyperspectral machine learning models. This works towards climate change mitigation by providing precise and real-time data on methane emissions.",
+    "leads": [
+      {
+        "name": "Prahar Ijner (NeurIPS author)",
+        "linkedin": "https://www.linkedin.com/in/prahar-ijner/"
+      },
+      {
+        "name": "Sarah Ali (ML Shopify)",
+        "linkedin": "https://www.linkedin.com/in/sarah-ali-cs/"
+      }
+    ],
+    "members": [
+      "Chloe Zheng",
+      "Madeline Kim",
+      "Harsh Patel",
+      "Calista Besseling",
+      "Yasmeen Elkheir",
+      "Michelle Yao"
+    ],
+    "technologies": [
+      "Computer Vision"
+    ],
+    "themes": [
+      "Sustainability"
+    ],
+    "result": "Github, Environmental Sustainability award at CUCAI 2025",
+    "resultUrl": "https://github.com/WAT-ai/SatML"
+  },
+  {
+    "id": "zoningllm",
+    "started": "Jan 2024",
+    "term": "Winter 2024",
+    "year": 2024,
+    "title": "ZoningLLM",
+    "summary": "We are building a webapp that uses GenAI Methods ( LLM+ RAG) to analyze zoning documents in Ontarian cities to gain insights about zoning regulation that help solve the Ontarian housing crisis.",
+    "leads": [
+      {
+        "name": "Simha Kalimipalli (Masters in MLE at Sunnybrook Hospital)",
+        "linkedin": "https://www.linkedin.com/in/simha-kalimipalli/"
+      },
+      {
+        "name": "Saurodeep Majumdar"
+      }
+    ],
+    "members": [
+      "Liam Dachner",
+      "Jonathan Feng",
+      "Kevin Tan",
+      "Rahul Kumar"
+    ],
+    "partnership": "Smart Waterloo Innovation Lab, Hamming.ai (YC S24)",
+    "technologies": [
+      "Chatbots"
+    ],
+    "themes": [
+      "Sustainability",
+      "Automation"
+    ],
+    "result": "Created zoning bylaw analysis chatbot for use by partner lab"
+  },
+  {
+    "id": "iot-cybersecurity",
+    "started": "Sep 2023",
+    "term": "Fall 2023",
+    "year": 2023,
+    "title": "IoT Cybersecurity",
+    "summary": "Created cyberdefence algorithms (network intrusion detection) for IoT devices. Compared genetic algorithms, random forests, SVMs, and artificial immune systems in an ablation study.",
+    "leads": [
+      {
+        "name": "Madhav Malhotra (ML Infra, Tesla)",
+        "linkedin": "https://www.linkedin.com/in/madhav-malhotra/"
+      }
+    ],
+    "members": [
+      "Ethan Lem (SWE Tesla)",
+      "Tian Yao (MLE Shopify, SWE Tesla)",
+      "Tim Kang (Shopify)",
+      "Zachary Wu",
+      "Akira Yoshiyama (AI research @ EthZurich, TheResidency)",
+      "Yen zein kok",
+      "Kenzy Soror"
+    ],
+    "technologies": [
+      "General"
+    ],
+    "themes": [
+      "Cybersecurity"
+    ],
+    "result": "Paper, Github, Substack blog posts",
+    "resultUrl": "https://docs.google.com/document/d/1PnSahadYfq6rKsXXNEp-1pKmIHV4AuvIE1m2IXexH6A/edit?tab=t.0"
+  },
+  {
+    "id": "legacy-affinnity-predicting-drug-target-binding-with-graph-neural-networks",
+    "started": "",
+    "term": "Current project",
+    "year": 0,
+    "title": "AffiNNity: Predicting Drug–Target Binding with Graph Neural Networks",
+    "summary": "Drug discovery is slow, expensive, and often hit-or-miss. AffiNNity is a machine learning model designed to change that — using Graph Neural Networks (GNNs) to predict how strongly a drug will bind to a target protein. By combining molecular graphs with protein sequence data in a dual-stream setup, the system captures both the shape and behavior of drug–protein interactions. Built on top of large datasets like PDBBind and modern architectures like Graph Isomorphism Networks, AffiNNity learns the patterns that make a drug effective — without needing to run thousands of costly lab tests. The goal is to speed up early-phase drug screening, reduce experimental overhead, and help scientists identify the most promising candidates faster. As pharmaceutical pipelines increasingly rely on computational tools, AffiNNity offers a scalable, accurate way to bring life-saving treatments to patients more efficiently.",
+    "leads": [
+      {
+        "name": "Jahkim Brown-Roopnarine",
+        "linkedin": "https://www.linkedin.com/in/jahkim-brown-roopnarine/"
+      },
+      {
+        "name": "James Yu",
+        "linkedin": "https://www.linkedin.com/in/james-yu2005/"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "In progress"
+  },
+  {
+    "id": "legacy-ai-sentiment-pulse-in-stock-market",
+    "started": "",
+    "term": "Current project",
+    "year": 0,
+    "title": "AI Sentiment Pulse in Stock Market",
+    "summary": "AI Sentiment Pulse in Stock Market is an application-focused project that leverages social media sentiment to anticipate short-term market trends. Inspired by the 2021 GameStop surge—where Reddit discussions triggered dramatic price shifts—we built a system to monitor real-time updates from subreddits like r/WallStreetBets. Instead of focusing on individual stocks, we analyze trending topics and collective user sentiment to detect sudden shifts in market attention. To improve accuracy, our system includes sarcasm detection tailored to the informal and ironic language often used in financial communities. These insights are combined with market data and processed using classical and deep learning models to forecast potential price movements. Our goal is to equip investors with timely, sentiment-driven signals that highlight emerging retail momentum.",
+    "leads": [
+      {
+        "name": "Jiayou (Sam) Zhong",
+        "linkedin": "https://www.linkedin.com/in/jiayouz/"
+      },
+      {
+        "name": "Shenyan (Bob) Zheng",
+        "linkedin": "https://www.linkedin.com/in/shenyan-zheng-0ab064274/"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "In progress"
+  },
+  {
+    "id": "legacy-audio-temporal-segmentation-sentiment-analysis",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "Audio Temporal Segmentation & Sentiment Analysis",
+    "summary": "Our project aims to analyze audio signals to detect phrases and understand emotions. We break down audio into smaller parts (called phrases) and study their patterns over time. This is done using a supervised dataset of audio with labeled phrases and different emotional tags corresponding to each phrase. By looking at the frequency and timing of sounds, we can predict and identify key phrases. We also apply language processing methods to analyze the emotional tone of the audio. This helps improve technologies like phrase detection and language analysis in various multimedia applications.",
+    "leads": [
+      {
+        "name": "Krish Patel"
+      },
+      {
+        "name": "Sahal Sajeer Kalandan"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-bci-signal-decoding-for-motor-control",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "BCI Signal Decoding for Motor Control",
+    "summary": "We aim to develop a Spiking Neural Network that can translate neural activity from the brain's motor areas into muscle control commands. Using implanted electrode data from Macaques, our SNNs will provide insights for advanced prosthetic control and efficient brain-computer interface implementations.",
+    "leads": [
+      {
+        "name": "Jakeb Chouinard"
+      },
+      {
+        "name": "Raihan A. Vaheed"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-causal-modeling-and-time-series-representation-learning-for-diabetes-management",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "Causal Modeling and Time Series Representation Learning for Diabetes Management",
+    "summary": "Gluroo aims to simplify diabetes management by streamlining the tracking of fitness, nutrition, and insulin use for people with diabetes (PWD). This project focuses on improving short-term prandial (meal-time) and postprandial blood glucose outcomes for people with type 1 diabetes, a complex disease that affects nearly 10 million people worldwide. We aim to leverage semi-supervised learning to identify unlabelled meals in time-series blood glucose data, develop meal-scoring functions, and explore causal machine-learning techniques. Our goal is to provide actionable insights to PWD and their care practitioners, enhancing health outcomes and quality of life.",
+    "leads": [
+      {
+        "name": "Christopher Risi"
+      },
+      {
+        "name": "Walker Payne"
+      },
+      {
+        "name": "Dvir Zagury-Grynbaum"
+      }
+    ],
+    "members": [],
+    "partnership": "Gluroo",
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-clipabit-semantic-video-search-engine",
+    "started": "",
+    "term": "Current project",
+    "year": 0,
+    "title": "ClipABit: Semantic Video Search Engine",
+    "summary": "Video editors waste countless hours manually scrubbing through hundreds of footage files to find specific moments for their projects. ClipABit transforms this tedious process into seconds by enabling natural language search across entire video libraries. Simply describe what you're looking for: a sunset scene, a person laughing, or someone walking through a doorway, and instantly locate those exact moments. By making video content as searchable as text, ClipABit empowers creators to focus on storytelling instead of file management, dramatically accelerating the creative process for filmmakers, content creators, and media professionals.",
+    "leads": [
+      {
+        "name": "Eshaan Mehta",
+        "linkedin": "https://www.linkedin.com/in/eshaan-mehta-136a6924b/"
+      },
+      {
+        "name": "Safiya Makada",
+        "linkedin": "https://www.linkedin.com/in/safiya-makada/"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "In progress",
+    "resultUrl": "https://github.com/ClipABit"
+  },
+  {
+    "id": "legacy-copyright-detection-in-large-language-models-an-ethical-approach-to-generative-ai-development",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "Copyright Detection in Large Language Models - An ethical approach to Generative AI Development",
+    "summary": "Use of copyrighted content in training generative AI models has increased significantly as the field has emerged, however, it is challenging to know whether a model is using copyrighted material in its training data. There are two project goals The first is to develop tools to detect whether a piece of given content was used in training data of an LLM. The second is to build an open-source RAG-based logging system to keep track of pieces of flagged media that have been found in the training data of publicly available LLMs.",
+    "leads": [
+      {
+        "name": "Senan Gaffori"
+      },
+      {
+        "name": "Khushee Kapoor"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-deep-learning-framework-comparison",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "Deep Learning Framework Comparison",
+    "summary": "The goal of our project is to benchmark performance of several deep learning frameworks, including TensorFlow, PyTorch, Jax, MxNet, Flux.jl, and KNet.jl. We build models from scratch in each framework and test them on common datasets.",
+    "leads": [
+      {
+        "name": "Anusha Raisinghani"
+      },
+      {
+        "name": "Trevor Yu"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-deep-learning-race-car",
+    "started": "",
+    "term": "Current project",
+    "year": 0,
+    "title": "Deep Learning Race Car",
+    "summary": "Self-driving technology could prevent millions of traffic deaths caused by human error each year. The Deep Learning Race Car project advances autonomous vehicle research by building a miniature race car that learns to navigate tracks independently. Racing serves as an ideal testing ground for autonomous systems because it demands split-second decisions and rapid adaptation to new environments. These challenges directly translate to real-world self-driving scenarios. By demonstrating how AI can master high-speed navigation in constrained spaces, this project contributes to making autonomous vehicles safer and more reliable for everyone.",
+    "leads": [
+      {
+        "name": "Nina Zhang",
+        "linkedin": "https://www.linkedin.com/in/nina-zhang-a85935310/"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "In progress"
+  },
+  {
+    "id": "legacy-deep-reinforcement-learning-for-stock-portfolio-optimization",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "Deep Reinforcement Learning for Stock Portfolio Optimization",
+    "summary": "We are developing a reinforcement learning policy-agent model that optimizes a stock portfolio for long-term capital gains. This model will trade on stocks, commodities and indexes, and have access to real-time data on individual assets, as well as various indicators. In simpler words, we're making a model to make your Wealthsimple balance go up fast! 💰",
+    "leads": [
+      {
+        "name": "Balambika Baskaran"
+      },
+      {
+        "name": "Ali Elhor"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-delaynomore-ttc-bus-delay-forecaster",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "DelayNoMore: TTC Bus Delay Forecaster",
+    "summary": "The goal of this project is to develop a model that accurately predicts whether a bus route will be delayed by leveraging previous years' TTC delay data which includes time of delay, location, route, vehicle number, and a few other fields. We also plan on expanding these fields by including seasonality, weather/road conditions, and other applicable features.",
+    "leads": [
+      {
+        "name": "Ted Ferris"
+      },
+      {
+        "name": "Chow Sheng Liang"
+      },
+      {
+        "name": "Franklin Ramirez"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-energy-efficient-ai-accelerators-for-transformer-models",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "Energy-efficient AI Accelerators for Transformer Models",
+    "summary": "We'll be creating an AI accelerator (a computer chip optimised to run AI models) for transformers. Our specific goal is to optimise the energy consumption of this AI accelerator, given the rising energy demand from data centres housing computer LLM inference. Our final digital accelerator design will be manufactured using Tiny Tapeout, whereas intermediate testing will occur using industry simulation softwares and field-programmable gate arrays (FPGAs).",
+    "leads": [
+      {
+        "name": "Madhav Malhotra"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-fortif-ai-ai-driven-companion-for-senior-independence",
+    "started": "",
+    "term": "Current project",
+    "year": 0,
+    "title": "FORTif.ai: AI-Driven Companion for Senior Independence",
+    "summary": "FORTif.ai is an AI-driven companion that empowers seniors to live independently by merging proactive safety monitoring with tailored daily support. Using a computer-vision–powered Hazard Detection model, it continuously scans the home for potential risks—like spills, cluttered pathways, and tripping hazards—and offers clear, actionable recommendations to address them. At the same time, an intuitive AI chatbot engages users in friendly, proactive conversations, providing timely medication and appointment reminders, personalized wellness check-ins, and empathetic responses to questions or concerns. With built-in voice-to-text capabilities and real-time safety insights, FORTif.ai delivers a seamless, user-centric experience designed to enhance home safety, streamline everyday routines, and foster lasting independence for seniors.",
+    "leads": [
+      {
+        "name": "Lino Kee",
+        "linkedin": "https://www.linkedin.com/in/linokee0423/"
+      },
+      {
+        "name": "Edson Takei",
+        "linkedin": "https://www.linkedin.com/in/edsontakei/"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "In progress"
+  },
+  {
+    "id": "legacy-microgrid-rl-autonomous-optimization-of-renewable-powered-microgrids",
+    "started": "",
+    "term": "Current project",
+    "year": 0,
+    "title": "Microgrid RL: Autonomous Optimization of Renewable-Powered Microgrids",
+    "summary": "Millions of people in rural Sub-Saharan Africa lack reliable access to electricity, hindering economic development and quality of life. Renewable-powered microgrids offer a solution, but managing the complex balance between solar generation, battery storage, and fluctuating demand remains challenging and costly. This project develops AI systems that autonomously optimize microgrid operations, making clean energy more reliable and affordable for off-grid communities. By reducing operational complexity and maximizing the use of renewable resources, this work directly contributes to expanding energy access in regions that need it most, enabling education, healthcare, and economic opportunities.",
+    "leads": [
+      {
+        "name": "Jordan Leis",
+        "linkedin": "https://www.linkedin.com/in/jordan-leis"
+      },
+      {
+        "name": "Devon Kisob",
+        "linkedin": "https://www.linkedin.com/in/devonkisob/"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "In progress"
+  },
+  {
+    "id": "legacy-nuanceedge",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "NuanceEdge",
+    "summary": "Open science is critical for a society's development and prosperity through knowledge sharing, collaboration, public trust, and evidence-informed decision making. It is currently difficult for policymakers to access and understand latest scientific results, making it difficult to appropriately inform decision making with the latest knowledge. Our team will be looking to address this problem by developing a web-based platform, NuanceEdge, aimed at making science more accessible through extraction of key insights and better presentation using generative AI tools.",
+    "leads": [
+      {
+        "name": "Rachel Heo"
+      },
+      {
+        "name": "Ethan Lem"
+      },
+      {
+        "name": "Shruti Srivatsan"
+      }
+    ],
+    "members": [],
+    "partnership": "W&W",
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-oliver-ai-powered-virtual-teaching-assistant",
+    "started": "",
+    "term": "Current project",
+    "year": 0,
+    "title": "Oliver: AI-Powered Virtual Teaching Assistant",
+    "summary": "In recent years, advancements in conversational AI have led to the development of intelligent tutoring systems to enhance learning experiences through interactive conversation. This project, Oliver, is an innovative virtual teaching assistant and course management system that leverages contextual memory and response strategies designed to promote active learning and critical thinking. Unlike traditional models that frequently offer direct answers, Oliver encourages exploration and comprehension. Through our research paper, we underscore Oliver's potential to serve as a powerful tool in education, supporting learners in developing deeper cognitive skills rather than relying on rote memorization.",
+    "leads": [
+      {
+        "name": "Haoran Zhu",
+        "linkedin": "https://www.linkedin.com/in/haoran-zhu-5243b0186/"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "In progress",
+    "resultUrl": "https://github.com/XiandaDu/WatAIOliver"
+  },
+  {
+    "id": "legacy-pianofi-ai-powered-piano-transcription",
+    "started": "",
+    "term": "Current project",
+    "year": 0,
+    "title": "Pianofi: AI-Powered Piano Transcription",
+    "summary": "Musicians spend hours painstakingly transcribing songs by ear or settle for inaccurate auto-generated sheet music. PianoFi democratizes music learning by instantly transforming any song into professional-quality piano sheet music. Whether you're a beginner wanting to learn your favorite pop song or an advanced pianist seeking accurate transcriptions of complex pieces, PianoFi makes quality practice material accessible to everyone. By eliminating the barrier between hearing a song and being able to play it, this tool empowers musicians at all skill levels to learn, practice, and perform the music they love.",
+    "leads": [
+      {
+        "name": "Jonathan Gong",
+        "linkedin": "https://www.linkedin.com/in/jonathan-gong-005491263/"
+      },
+      {
+        "name": "Bruce Wang",
+        "linkedin": "https://www.linkedin.com/in/brucewang15/"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "In progress",
+    "resultUrl": "https://github.com/Pianofi"
+  },
+  {
+    "id": "legacy-pitch-ai",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "Pitch AI",
+    "summary": "We aim to develop a generative AI tool to create movie trailers for the media industry. We'll be using machine learning and deep learning to generate scenarios. The input parameters for the trailer generation include character ideas, plot points, and the user's prompt. The output is a text-based trailer with characters, scene descriptions, and emotions that the user can utilize. This project aims to provide a new tool for filmmakers and creatives in the industry.",
+    "leads": [
+      {
+        "name": "Amandeep Kaur"
+      },
+      {
+        "name": "Zahra Sarayloo"
+      }
+    ],
+    "members": [],
+    "partnership": "Product Ventures",
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-playfitt-recommender-system",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "PlayFitt Recommender System",
+    "summary": "Our objective is to help people be more active! We developed a recommender system for the PlayFitt fitness app using a contextual bandit algorithm. This takes into account information about the users as context, and makes decisions about rep counts and reward values to suggest. Notably, this approach enables online learning.",
+    "leads": [
+      {
+        "name": "Ben Bates"
+      },
+      {
+        "name": "Richard Wills"
+      }
+    ],
+    "members": [],
+    "partnership": "Intellisports",
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-prostate-cancer-prediction-with-correlated-diffusion-imaging",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "Prostate Cancer Prediction With Correlated Diffusion Imaging",
+    "summary": "The application of machine learning to medical images has led to impressive advancement in cancer diagnostics. Our objective is to develop a baseline of deep learning models to detect the presence of prostate cancer within a novel Correlated Diffusion Imaging (CDI) dataset.",
+    "leads": [
+      {
+        "name": "Hargun Mujral"
+      },
+      {
+        "name": "Jarett Dewbury"
+      }
+    ],
+    "members": [],
+    "partnership": "Dr. Alexander Wong & Hayden Gunraj",
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-radiel-health-personalized-medicine-through-computational-fluid-dynamics",
+    "started": "",
+    "term": "Current project",
+    "year": 0,
+    "title": "Radiel Health: Personalized Medicine Through Computational Fluid Dynamics",
+    "summary": "Surgical diagnosis has always been very observational, decisions were based off of what could be seen. There have been many successful attempts to add more quantitative metrics in medicine, but still diagnoses tend to be 'one-size-fits-all'. The next big leap in the field comes in the form of personalized medicine, where each patient has their own customized treatment that's shaped through empirical research. We are developing a platform where surgeons can upload ultrasounds of an artery, which is then turned into a 3D mesh and is run through our ML model. This model, trained on geometric and physics-based data from ultrasounds, allows us to quickly and accurately predict critical flow parameters for surgeries like coronary interventions. The goal is to minimize the cost to make these parameters available to surgeons from any clinic, making diagnoses more informed.",
+    "leads": [
+      {
+        "name": "Rishabh Sharma",
+        "linkedin": "https://www.linkedin.com/in/rishabh2003sharma/"
+      },
+      {
+        "name": "Ahash Ganeshamoorthy",
+        "linkedin": "https://www.linkedin.com/in/ahash-ganeshamoorthy/"
+      },
+      {
+        "name": "Jatin Mehta",
+        "linkedin": "https://www.linkedin.com/in/jatin-r-mehta/"
+      }
+    ],
+    "members": [],
+    "partnership": "UW Fluid Flow Physics Group",
+    "technologies": [],
+    "themes": [],
+    "result": "In progress",
+    "resultUrl": "https://radielhealth.com/"
+  },
+  {
+    "id": "legacy-reinforcement-learning-chess-engine",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "Reinforcement Learning Chess Engine",
+    "summary": "We are developing an artificial intelligence chess engine based on the work of Deep Mind on their chess engine━Alpha-Zero. We are also iteratively testing and modifying the model to improve performance on hardware with much more limited processing power than what was available to Deep Mind when creating Alpha-Zero.",
+    "leads": [
+      {
+        "name": "Amya Singhal"
+      },
+      {
+        "name": "Thomas Fortin"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-reinforcement-learning-for-doom-1993",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "Reinforcement Learning for Doom (1993)",
+    "summary": "The project aims to build an RL agent that plays Doom (1993), improving upon the work from Playing FPS Games with Deep Reinforcement Learning (Lample & Chaplot 2017). They are currently implementing a DTQN model to train an agent in Vizdoom.",
+    "leads": [
+      {
+        "name": "Karman Singh"
+      },
+      {
+        "name": "Krish Sethi"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-see-dr-mobile-diabetic-retinopathy-screening",
+    "started": "",
+    "term": "Current project",
+    "year": 0,
+    "title": "See-DR: Mobile Diabetic Retinopathy Screening",
+    "summary": "Diabetic retinopathy is a leading cause of preventable blindness, yet many at-risk patients lack access to regular eye screenings due to the cost and scarcity of specialized equipment. See-DR addresses this healthcare gap by transforming any smartphone into a portable screening device that can detect early signs of vision-threatening eye disease. By making screenings accessible in community clinics, pharmacies, and underserved areas, this tool has the potential to catch diabetic retinopathy before it causes irreversible damage, saving sight and improving quality of life for millions of people with diabetes worldwide.",
+    "leads": [
+      {
+        "name": "Jessica Yuan",
+        "linkedin": "https://www.linkedin.com/in/jessica-yuan1/"
+      },
+      {
+        "name": "Hari Chandrasekhar",
+        "linkedin": "https://www.linkedin.com/in/hari-chandrasekhar/"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "In progress",
+    "resultUrl": "https://github.com/jessicayuan1/see-dr"
+  },
+  {
+    "id": "legacy-solar-photovoltaic-output-prediction",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "Solar Photovoltaic Output Prediction",
+    "summary": "We set out to develop deep learning models that predict solar photovoltaic output. These forecasts on solar energy production can drive better energy decisions, massively reducing carbon emmissions produced by power grids.",
+    "leads": [
+      {
+        "name": "Areel Khan"
+      },
+      {
+        "name": "Carter Demars"
+      }
+    ],
+    "members": [],
+    "partnership": "Open Climate Fix",
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-stable-diffused-adversarial-attacks",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "Stable Diffused Adversarial Attacks",
+    "summary": "We are exploring pre-trained computer vision models (i.e. MobileNet_v1) with the goal to exploit vulnerabilities through various adversarial attacks. Our work aims to develop an architecture that automates adversarial attack image generation in model misclassification.",
+    "leads": [
+      {
+        "name": "Andy Wu"
+      },
+      {
+        "name": "Dhrumil Patel"
+      },
+      {
+        "name": "Rayaq Siddiqui"
+      }
+    ],
+    "members": [],
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  },
+  {
+    "id": "legacy-winddm-conditional-diffusion-models-for-super-resolution-of-wind-data",
+    "started": "",
+    "term": "Past project",
+    "year": 0,
+    "title": "WindDM: Conditional Diffusion Models for Super-resolution of Wind Data",
+    "summary": "Access to high-quality, microscale data on local wind patterns is essential for determining optimal placements of wind farms. While this has traditionally been achieved through the use of Large Eddy Simulations (LES) to super-resolve mesoscale data, these are slow and costly to produce. We propose using recent advances in diffusion models to produce scalable and accurate microscale data at a fraction of the cost of LES models. We also leverage conditional information from the domain of interest to further improve our generations.",
+    "leads": [
+      {
+        "name": "Daniel Bartman"
+      },
+      {
+        "name": "Jacob Schnell"
+      }
+    ],
+    "members": [],
+    "partnership": "Veer Renewables",
+    "technologies": [],
+    "themes": [],
+    "result": "Completed"
+  }
+]
