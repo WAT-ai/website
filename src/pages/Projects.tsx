@@ -60,9 +60,8 @@ const Projects: React.FC = () => {
     <Box sx={{ minHeight: "100vh", position: "relative", pb: 10 }}>
       <Container maxWidth="lg">
         <Box sx={{ textAlign: "center", minHeight: { xs: "62vh", md: "70vh" }, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", py: 8, position: "relative" }}>
-          <Box sx={{ color: theme.palette.primary.main, textTransform: "uppercase", letterSpacing: "0.16em", fontSize: "0.75rem", fontWeight: 700, mb: 2 }}>Research · Engineering · Impact</Box>
           <Typography component="h1" sx={{ color: theme.palette.text.primary, fontSize: { xs: "2.6rem", sm: "3.8rem", md: "5rem" }, fontWeight: 750, lineHeight: 1.02, letterSpacing: "-0.05em", mb: 3, textWrap: "balance" }}>Our Research Projects</Typography>
-          <Typography sx={{ color: theme.palette.text.secondary, maxWidth: 800, fontSize: { xs: "1rem", sm: "1.15rem" }, lineHeight: 1.75, textWrap: "balance", mb: 5 }}>Explore our current and past research projects pushing the boundaries of artificial intelligence through innovative research and cutting-edge applications that make a real-world impact.</Typography>
+          <Typography sx={{ color: theme.palette.text.secondary, maxWidth: 800, fontSize: { xs: "1rem", sm: "1.15rem" }, lineHeight: 1.75, textWrap: "balance", mb: 5 }}>Explore our current and past research projects pushing the boundaries of artificial intelligence</Typography>
           <Stack direction="row" spacing={{ xs: 3, sm: 6 }} divider={<Box sx={{ width: "1px", backgroundColor: `${theme.palette.primary.main}30` }} />}>
             {[
               { value: projects.length, label: "Total Projects", icon: <Science /> },
