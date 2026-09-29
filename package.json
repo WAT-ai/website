@@ -36,6 +36,7 @@
     "optimize:images": "node scripts/optimize-images.js",
     "optimize:images:clean": "node scripts/optimize-images.js --clean",
     "optimize:images:help": "node scripts/optimize-images.js --help",
+    "import-projects": "node scripts/import-projects.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
