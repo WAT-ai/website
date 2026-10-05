@@ -124,24 +124,24 @@ const Students: React.FC = () => {
   const projectOpportunities = {
     title: "Work on High-Impact AI Projects",
     points: [
-      "We run 8-month long projects in engineering and research initiatives in areas like GenAI, computer vision, NLP, healthcare, and more. These give you the chance to tackle real world problems and publish your work.",
-      "Less experienced students can apply as core members to learn alongside peers. More experienced students can build their leadership experience by applying as technical project managers."
+      "Join an 8-month AI project in areas such as computer vision, robotics, or healthcare, with opportunities to publish your work.",
+      "Apply as a core member (CM) to build alongside peers, or as a technical project manager (TPM) to lead a team."
     ]
   };
 
   const workshopOpportunities = {
     title: "Attend AI Workshops & Events",
     points: [
-      "Learn and teach machine learning through beginner-friendly tutorials, advanced sessions, and cross-disciplinary applications in healthcare, robotics, and beyond.",
-      "We have opportunities for both beginners looking to get ML skills and more experienced students looking for project management and mentorship skills."
+      "Build your skills through beginner-friendly ML tutorials and advanced sessions on applications in healthcare, robotics, and beyond.",
+      "More experienced members can teach sessions and mentor other students."
     ]
   };
 
   const networkingOpportunities = {
     title: "Meet Ambitious Builders",
     points: [
-      "We give students the opportunities to attend a national AI conference with industry leaders, as well as access other resources like mentorship, funding, and more.",
-      "We also connect our top performing students from our projects to professors and industry partners recruiting AI talent."
+      "Attend a national AI conference with industry leaders and access mentorship, funding, and other resources.",
+      "Connect with professors and industry partners recruiting AI talent for research and career opportunities."
     ]
   };
 
@@ -207,12 +207,11 @@ const Students: React.FC = () => {
       {/* Hero Section */}
       <UnifiedHero
         title="Join WAT.ai"
-        subtitle="Learn. Build. Research. Publish."
-        tagline="Waterloo's Hub for Student-Led AI Innovation"
+        tagline="Waterloo's largest community of AI student builders"
         description="WAT.ai is UWaterloo's largest AI design team. We've helped hundreds of students make friends, add real-world projects to their portfolios, and land their first internships and research roles in ML."
         actions={[
           {
-            label: "Application deadlines",
+            label: "Application FAQ",
             variant: "outlined",
             onClick: showApplicationDeadlines,
           },
