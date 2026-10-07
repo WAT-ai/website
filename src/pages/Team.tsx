@@ -90,7 +90,9 @@ const Team: React.FC = () => {
               lineHeight: 1.6,
             }}
           >
-            Meet the passionate individuals driving AI innovation at the University of Waterloo
+            Meet the passionate individuals driving
+            <br />
+            AI innovation at the University of Waterloo
           </Typography>
         </Box>
       </UnifiedSection>
