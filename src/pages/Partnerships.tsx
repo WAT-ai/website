@@ -106,11 +106,8 @@ const Partnerships: React.FC = () => {
             Let's build the future of AI together
           </Typography>
           <Box sx={{ maxWidth: 800, mb: 5 }}>
-            <Typography sx={{ ...bodySx, fontSize: { xs: "1rem", sm: "1.15rem" }, textWrap: "balance", mb: 2 }}>
-              At WAT.ai, we have a history of collaborating with companies, research labs, and nonprofits.
-            </Typography>
             <Typography sx={{ ...bodySx, fontSize: { xs: "1rem", sm: "1.15rem" }, textWrap: "balance" }}>
-              Our partnerships have ranged from workshops and hackathons to hiring pipelines and research initiatives.
+              At WAT.ai, we have a history of collaborating with companies, research labs, and nonprofits. Our partnerships have ranged from workshops and hackathons to hiring pipelines and research initiatives.
             </Typography>
           </Box>
           <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
@@ -119,36 +116,39 @@ const Partnerships: React.FC = () => {
           </Stack>
         </Box>
 
-        <Box component="section" aria-labelledby="opportunities" sx={{
-          display: "grid",
-          gridTemplateColumns: { xs: "1fr", md: "minmax(0, 0.85fr) minmax(0, 1.4fr)" },
-          gap: { xs: 4, md: 7 },
-          p: { xs: 3, sm: 4, md: 5 },
-          mb: { xs: 8, md: 12 },
-          borderRadius: 4,
-          border: `1px solid ${theme.palette.primary.main}25`,
-          backgroundColor: "rgba(15,15,15,0.94)",
-        }}>
-          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+        <Box component="section" aria-labelledby="opportunities" sx={{ mt: { xs: 6, md: 10 }, mb: { xs: 8, md: 12 } }}>
+          <Box sx={{ textAlign: "center", mb: { xs: 4, md: 5 } }}>
             <Typography component="h2" id="opportunities" sx={headingSx}>Partnership Opportunities</Typography>
-            <Typography sx={{ ...bodySx, mb: 3 }}>We offer flexible collaboration models to match your goals</Typography>
-            <UnifiedButton variant="primary" href="https://tally.so/r/mY8DEB">Get in touch</UnifiedButton>
+            <Typography sx={bodySx}>We offer flexible collaboration models to match your goals</Typography>
           </Box>
-          <Box component="ul" sx={{ listStyle: "none", p: 0, m: 0 }}>
+          <Box component="ul" sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))", md: "repeat(4, minmax(0, 1fr))" },
+            gap: 3,
+            listStyle: "none",
+            p: 0,
+            m: 0,
+          }}>
             {partnershipOpportunities.map((point) => (
               <Box component="li" key={point.description} sx={{
                 display: "flex",
-                alignItems: "flex-start",
-                gap: { xs: 2, sm: 2.5 },
-                py: 2.5,
-                borderBottom: `1px solid ${theme.palette.primary.main}25`,
-                "&:first-of-type": { pt: 0 },
-                "&:last-of-type": { pb: 0, borderBottom: 0 },
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+                gap: 3,
+                px: 2.5,
+                py: 4,
+                borderRadius: 4,
+                border: `1px solid ${theme.palette.primary.main}2B`,
+                backgroundColor: "rgba(15,15,15,0.94)",
               }}>
-                <Box sx={{ color: theme.palette.primary.main, flexShrink: 0, display: "flex", pt: 0.4, "& svg": { fontSize: 24 } }}>{point.icon}</Box>
+                <Box sx={{ color: theme.palette.primary.main, flexShrink: 0, display: "flex", "& svg": { fontSize: 56 } }}>{point.icon}</Box>
                 <Typography sx={{ ...bodySx, color: theme.palette.text.primary }}>{point.description}</Typography>
               </Box>
             ))}
+          </Box>
+          <Box sx={{ textAlign: "center", mt: { xs: 6, md: 8 } }}>
+            <UnifiedButton variant="primary" href="https://tally.so/r/mY8DEB">Get in touch</UnifiedButton>
           </Box>
         </Box>
 
