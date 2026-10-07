@@ -154,7 +154,7 @@ const HomePage: React.FC = memo(() => {
             color: theme.palette.primary.contrastText,
             textWrap: "balance",
           }}>
-            Fostering the Future of AI at Waterloo
+            UWaterloo's largest AI student design team
           </HeroTitle>
           <UnifiedButton
             variant="primary"
@@ -239,8 +239,8 @@ const HomePage: React.FC = memo(() => {
                 }}
               >
                 Sedra Student Design Centre
-              </Box>. Every term, we have 60+ students running 8–12 AI projects—from
-              robotic manipulators to healthcare chatbots.
+              </Box>. Every term, 60+ students run 8-12 AI projects, from physical AI
+              to cyberdefence algorithms.
             </BodyLarge>
             <Box sx={{ display: "flex", justifyContent: "center", gap: 2, flexWrap: "wrap" }}>
               <UnifiedButton variant="primary" size="large" to="/students">
